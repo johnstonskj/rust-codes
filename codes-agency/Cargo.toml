@@ -1,9 +1,17 @@
 [package]
 name = "codes-agency"
+description = "This package provides a common code representing standards agencies"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-agency/"
+license = "MIT"
+readme = "README.md"
+publish = true
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+features = ["default"]
 
 [features]
 default = ["serde_derive"]
