@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "codes-agency",
+    "codes-iso-4217"
+]
