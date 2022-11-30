@@ -26,14 +26,15 @@ For notes on the design of the API, see the repository
 By default only the `serde` feature is enabled.
 
 * `serde` - Enables serialization of the [CurrencyCode] type.
-* `no-agency-url` - Removes the [Agency::url] method.
-* `no-standard-url` - Removes the [Standard::url] methods.
   
 ## Changes
 
 **Version 0.1.2**
 
 * Remove the trait `Code`.
+* Remove some feature flags.
+* Added documentation.
+* Added IANA, IEEE, IETF as agencies.
 
 **Version 0.1.1**
 
