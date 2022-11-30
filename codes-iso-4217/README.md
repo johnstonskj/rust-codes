@@ -36,6 +36,7 @@ By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] a
 * `monetary_units` - Adds the [CurrencyCode::monetary_units] method.
 * `is_fund` - Adds the [CurrencyCode::is_fund] method.
 * `historical_codes` - Adds the [CurrencyCode::is_historical] and [CurrencyCode::withdrawal_date] methods.
+
 ## Changes
 
 **Version 0.1.1**
