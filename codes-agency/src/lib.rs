@@ -76,9 +76,13 @@ use serde::{Deserialize, Serialize};
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Agency {
+    /// [Internet Assigned Numbers Authority](https://www.iana.org)
     IANA,
+    /// [IEEE](https://www.ieee.org)
     IEEE,
+    /// [The Internet Engineering Task Force](https://www.ietf.org)
     IETF,
+    /// [International Organization for Standardization](https://www.iso.org)
     ISO,
 }
 
@@ -98,7 +102,7 @@ pub struct Standard {
 }
 
 ///
-/// An error using in the `FromStr` implementation below.
+/// An error using in the `FromStr` implementation.
 ///
 #[derive(Clone, Debug, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
