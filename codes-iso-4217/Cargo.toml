@@ -23,7 +23,7 @@ is_fund = []
 historical_codes = []
 
 [dependencies]
-codes-agency = { version = "0.1", path = "../codes-agency" }
+codes-agency = { version = ">=0.1.2", path = "../codes-agency" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [build-dependencies]

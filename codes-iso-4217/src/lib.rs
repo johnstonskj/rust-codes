@@ -12,11 +12,6 @@ let code = CurrencyCode::BZD;
 
 assert_eq!(code.alpha_code(), "BZD");
 assert_eq!(code.numeric_code(), Some(84));
-assert_eq!(code.currency_name(), "Belize Dollar");
-assert_eq!(code.country_name(), "BELIZE");
-assert_eq!(code.is_fund(), false);
-assert_eq!(code.is_historical(), false);
-assert_eq!(code.withdrawal_date(), None);
 
 assert_eq!(ISO_4217.title(), "Currency codes");
 ```
