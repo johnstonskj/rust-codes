@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AgencyList>
+  <Agency>
+    <ShortName>IANA</ShortName>
+    <Name>Internet Assigned Numbers Authority</Name>
+    <Url>https://www.iana.org</Url>
+  </Agency>
+  <Agency>
+    <ShortName>IEEE</ShortName>
+    <Name>IEEE</Name>
+    <Url>https://www.ieee.org</Url>
+  </Agency>
+  <Agency>
+    <ShortName>IETF</ShortName>
+    <Name>The Internet Engineering Task Force</Name>
+    <Url>https://www.ietf.org</Url>
+  </Agency>
+  <Agency>
+    <ShortName>ISO</ShortName>
+    <Name>International Organization for Standardization</Name>
+    <Url>https://www.iso.org</Url>
+  </Agency>
+</AgencyList>
