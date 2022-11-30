@@ -1,23 +1,23 @@
 [package]
 name = "codes-agency"
 description = "This package provides a common code representing standards agencies"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-agency/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 publish = true
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
-features = ["default"]
+all-features = true
 
 [features]
-default = ["serde_derive"]
+default = ["serde"]
 no-agency-url = []
 no-standard-url = []
-serde_derive = ["serde"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"], optional = true }
