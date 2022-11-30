@@ -51,21 +51,23 @@ YYYYY
     dyn_drop,
 )]
 
-use serde::{Deserialize, Serialize};
 use std::{fmt::Display, str::FromStr};
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "serde_derive", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Agency {
     ISO,
 }
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "serde_derive", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Standard {
     agency: Agency,
     short_ref: &'static str,
@@ -76,15 +78,9 @@ pub struct Standard {
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
-#[cfg_attr(feature = "serde_derive", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Error {
     Unknown(String),
-}
-
-pub trait Code: Display + FromStr {
-    fn standard() -> &'static Standard
-    where
-        Self: Sized;
 }
 
 // ------------------------------------------------------------------------------------------------
