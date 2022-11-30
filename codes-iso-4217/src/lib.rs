@@ -6,7 +6,7 @@ country code specification.
 # Example
 
 ```rust
-use codes_iso_4217::CurrencyCode;
+use codes_iso_4217::{CurrencyCode, ISO_4217};
 
 let code = CurrencyCode::BZD;
 
@@ -18,7 +18,7 @@ assert_eq!(code.is_fund(), false);
 assert_eq!(code.is_historical(), false);
 assert_eq!(code.withdrawal_date(), None);
 
-assert_eq!(code.standard().title(), "Currency codes");
+assert_eq!(ISO_4217.title(), "Currency codes");
 ```
 
 # Features
