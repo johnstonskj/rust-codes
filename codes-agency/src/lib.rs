@@ -71,6 +71,7 @@ pub struct Standard {
     short_ref: &'static str,
     long_ref: Option<&'static str>,
     title: &'static str,
+    #[cfg(not(feature = "no-standard-url"))]
     url: &'static str,
 }
 
@@ -120,10 +121,11 @@ impl Agency {
 
     pub fn name(&self) -> &'static str {
         match self {
-            Self::ISO => "",
+            Self::ISO => "International Organization for Standardization",
         }
     }
 
+    #[cfg(not(feature = "no-agency-url"))]
     pub fn url(&self) -> &'static str {
         match self {
             Self::ISO => "https://www.iso.org/",
@@ -134,6 +136,7 @@ impl Agency {
 // ------------------------------------------------------------------------------------------------
 
 impl Standard {
+    #[cfg(not(feature = "no-standard-url"))]
     pub const fn new(
         agency: Agency,
         short_ref: &'static str,
@@ -149,6 +152,7 @@ impl Standard {
         }
     }
 
+    #[cfg(not(feature = "no-standard-url"))]
     pub const fn new_with_long_ref(
         agency: Agency,
         short_ref: &'static str,
@@ -162,6 +166,31 @@ impl Standard {
             long_ref: Some(long_ref),
             title,
             url,
+        }
+    }
+
+    #[cfg(feature = "no-standard-url")]
+    pub const fn new(agency: Agency, short_ref: &'static str, title: &'static str) -> Self {
+        Self {
+            agency,
+            short_ref,
+            long_ref: None,
+            title,
+        }
+    }
+
+    #[cfg(feature = "no-standard-url")]
+    pub const fn new_with_long_ref(
+        agency: Agency,
+        short_ref: &'static str,
+        long_ref: &'static str,
+        title: &'static str,
+    ) -> Self {
+        Self {
+            agency,
+            short_ref,
+            long_ref: Some(long_ref),
+            title,
         }
     }
 
@@ -181,6 +210,7 @@ impl Standard {
         self.title
     }
 
+    #[cfg(not(feature = "no-standard-url"))]
     pub fn url(&self) -> &'static str {
         self.url
     }

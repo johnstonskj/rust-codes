@@ -1,0 +1,196 @@
+use std::fmt;
+use std::str::FromStr;
+use codes_agency::{Agency, Code, Standard};
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO-4217 specification.
+///
+pub const ISO_4217: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "4217",
+    "ISO 4217:2015",
+    "Currency codes",
+    "https://www.iso.org/iso-4217-currency-codes.html",
+);
+
+/// 
+/// This type represents The codes defined in the ISO 4127 standard and the
+/// implementations included are generated from ISO's own public data files.
+/// 
+/// The choice to model the actual codes as an `enum` allows for a compact
+/// representation for storage with additional properties from the
+/// specification added as methods. Most methods are feature-gated so that by
+/// default only the alphabetic and numeric codes are available.
+/// 
+/// See more at [iso.org](https://www.iso.org/iso-4217-currency-codes.html).
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].currency_name }}
+    {{ id}},{% endfor %}
+{{ "}" }}
+
+///
+/// An error associated with handling String representations of the ISO
+/// alphabetic code.
+///
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct {{ type_name }}Error(String);
+
+// ------------------------------------------------------------------------------------------------
+// Public Constants
+// ------------------------------------------------------------------------------------------------
+
+/// The publication date of the `list-one` file used to generate active entries.
+pub const ACTIVE_PUBLISH_DATE: &str = "{{ active_file_date }}";
+
+/// The publication date of the `list-three` file used to generate historical entries.
+pub const HISTORICAL_PUBLISH_DATE: &str = "{{ historical_file_date }}";
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl fmt::Display for {{ type_name }} {{ "{" }}
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
+        write!(f, "{}", self.alpha_code())
+    {{ "}" }}
+{{ "}" }}
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{{ id }}),{% endfor %}
+            _ => Err({{ type_name }}Error(s.to_string())),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+
+impl Code for {{ type_name }} {
+    fn standard() -> &'static Standard
+    where
+        Self: Sized,
+    {
+        &ISO_4217
+    }
+}
+
+impl {{ type_name }} {{ "{" }}
+     /// 
+     /// The alphabetic code is based on another ISO standard, ISO 3166, which lists
+     /// the codes for country names. The first two letters of the ISO 4217
+     /// three-letter code are the same as the code for the country name, and, where
+     /// possible, the third letter corresponds to the first letter of the currency
+     /// name.
+     /// 
+     /// For example:
+     /// 
+     /// * The US dollar is represented as USD – the US coming from the ISO 3166
+     ///   country code and the D for dollar.
+     /// * The Swiss franc is represented by CHF – the CH being the code for
+     ///   Switzerland in the ISO 3166 code and F for franc.
+     /// 
+     pub fn alpha_code(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id }} => "{{ id }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+    /// 
+    /// The three-digit numeric code is useful when currency codes need to be
+    /// understood in countries that do not use Latin scripts and for computerized
+    /// systems. Where possible, the three-digit numeric code is the same as the
+    /// numeric country code.
+    /// 
+    /// For currencies having minor units, ISO 4217:2015 also shows the relationship
+    /// between the minor unit and the currency itself (i.e. whether it divides into
+    /// 100 or 1000).
+    /// 
+    /// ISO 4217:2015 also describes historical codes in List 3, as well as the codes
+    /// representing certain funds in List 2.
+    ///  
+     pub fn numeric_code(&self) -> Option<u16> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].numeric_code %}
+            Self::{{ id }} => Some({{ codes[id].numeric_code }}),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return the registered descriptive name of this code.
+    ///
+    #[cfg(feature = "currency_name")]
+    pub fn currency_name(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{{ id }} => "{{ codes[id].currency_name }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return the country, or entity, that is responsible for this code.
+    ///
+    #[cfg(feature = "country_name")]
+    pub fn country_name(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{{ id }} => "{{ codes[id].country_name }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return the number of decimal values this code typically uses.
+    ///
+    #[cfg(feature = "monetary_units")]
+    pub fn monetary_units(&self) -> Option<u8> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].monetary_units %}
+            Self::{{ id }} => Some({{ codes[id].monetary_units }}),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return `true` if this code represents a fund, else `false`.
+    ///
+    #[cfg(feature = "is_fund")]
+    pub fn is_fund(&self) -> bool {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].is_fund %}
+            Self::{{ id }} => true,{% endif %}{% endfor %}
+            _ => false,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return `true` if this code represents an historical code, else `false`.
+    ///
+    #[cfg(feature = "historical_codes")]
+    pub fn is_historical(&self) -> bool {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].is_historical %}
+            Self::{{ id }} => true,{% endif %}{% endfor %}
+            _ => false,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// For historical codes (where `is_historical` is `true`), return the
+    /// informal date of withdrawal.
+    ///
+    #[cfg(feature = "historical_codes")]
+    pub fn withdrawal_date(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].withdrawal_date %}
+            Self::{{ id }} => Some("{{ codes[id].withdrawal_date }}"),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+     {{ "}" }}
+{{ "}" }}

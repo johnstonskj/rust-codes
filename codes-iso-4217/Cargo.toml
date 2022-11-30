@@ -1,22 +1,31 @@
 [package]
 name = "codes-iso-4217"
-description  = "This package provides an implementation of ISO 4217:2015 currency codes"
+description  = "This package contains an implementation of the ISO-4217 country code specification."
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-iso-4217/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 publish = true
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
-features = ["default"]
+all-features = true
 
 [features]
-default = ["serde_derive"]
-serde_derive = ["serde"]
+default = ["serde"]
+currency_name = []
+country_name = []
+monetary_units = []
+is_fund = []
+historical_codes = []
 
 [dependencies]
 codes-agency = { version = "0.1", path = "../codes-agency" }
 serde = { version = "1.0", features = ["derive"], optional = true }
+
+[build-dependencies]
+tera = "1.17"
+quick-xml = "0.26"
