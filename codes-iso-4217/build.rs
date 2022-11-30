@@ -199,7 +199,7 @@ fn make_renderer(
     template_name: String,
     generated_file_name: String,
 ) -> impl Fn(Context) -> Result<(), Box<dyn Error>> {
-    let render_template_to_file = move |ctx: Context| -> Result<(), Box<dyn Error>> {
+    move |ctx: Context| -> Result<(), Box<dyn Error>> {
         let output_dir: String = env::var("OUT_DIR").unwrap();
         let file_name = Path::new(&output_dir).join(&generated_file_name);
         let file = File::create(&file_name)?;
@@ -211,8 +211,7 @@ fn make_renderer(
         tera.render_to(&template_name, &ctx, file)?;
 
         Ok(())
-    };
-    render_template_to_file
+    }
 }
 
 impl XmlState {

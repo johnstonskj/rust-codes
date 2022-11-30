@@ -1,6 +1,6 @@
 use std::fmt;
 use std::str::FromStr;
-use codes_agency::{Agency, Code, Standard};
+use codes_agency::{Agency, Standard};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -45,6 +45,7 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
 /// alphabetic code.
 ///
 #[derive(Clone, Debug, PartialEq, Eq)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct {{ type_name }}Error(String);
 
 // ------------------------------------------------------------------------------------------------
@@ -78,15 +79,6 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-
-impl Code for {{ type_name }} {
-    fn standard() -> &'static Standard
-    where
-        Self: Sized,
-    {
-        &ISO_4217
-    }
-}
 
 impl {{ type_name }} {{ "{" }}
      /// 

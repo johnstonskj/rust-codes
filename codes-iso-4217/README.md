@@ -10,7 +10,7 @@ For notes on the design of the API, see the repository
 # Example
 
 ```rust
-use codes_iso_4217::CurrencyCode;
+use codes_iso_4217::{CurrencyCode, ISO_4217};
 
 let code = CurrencyCode::BZD;
 
@@ -22,7 +22,7 @@ assert_eq!(code.is_fund(), false);
 assert_eq!(code.is_historical(), false);
 assert_eq!(code.withdrawal_date(), None);
 
-assert_eq!(code.standard().title(), "Currency codes");
+assert_eq!(ISO_4217.title(), "Currency codes");
 ```
 
 # Features
@@ -38,6 +38,10 @@ By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] a
 * `historical_codes` - Adds the [CurrencyCode::is_historical] and [CurrencyCode::withdrawal_date] methods.
 
 ## Changes
+
+**Version 0.1.2**
+
+* Removed the implementation of the `Code` trait.
 
 **Version 0.1.1**
 
