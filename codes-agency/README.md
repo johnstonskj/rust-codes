@@ -29,6 +29,11 @@ By default only the `serde` feature is enabled.
   
 ## Changes
 
+**Version 0.1.3**
+
+* Added documentation to `Agency` variants.
+* Renamed `Error` to be inline with other package naming conventions.
+
 **Version 0.1.2**
 
 * Remove the trait `Code`.
