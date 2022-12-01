@@ -157,6 +157,7 @@ jobs:
         command: test
         args: --workspace --examples --all-features --no-fail-fast
 
+        
   coverage:   
     name: Code Coverage
     needs: test
