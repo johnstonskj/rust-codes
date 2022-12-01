@@ -77,7 +77,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{{ id }}),{% endfor %}
-            _ => Err({{ type_name }}Error(s.to_string())),
+            _ => Err({{ type_name }}Error::FromStr(s.to_string())),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
