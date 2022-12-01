@@ -1,7 +1,7 @@
 [package]
 name = "codes-iso-4217"
 description  = "This package contains an implementation of the ISO-4217 country code specification."
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-iso-4217/"
@@ -23,7 +23,7 @@ is_fund = []
 historical_codes = []
 
 [dependencies]
-codes-agency = { version = ">=0.1.2", path = "../codes-agency" }
+codes-agency = { version = ">=0.1.3", path = "../codes-agency" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [build-dependencies]
