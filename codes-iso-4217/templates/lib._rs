@@ -148,6 +148,7 @@ impl {{ type_name }} {{ "{" }}
     /// Return the number of decimal values this code typically uses.
     ///
     #[cfg(feature = "monetary_units")]
+    #[allow(clippy::match-like-matches-macro)]
     pub fn monetary_units(&self) -> Option<u8> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].monetary_units %}
             Self::{{ id }} => Some({{ codes[id].monetary_units }}),{% endif %}{% endfor %}
@@ -159,6 +160,7 @@ impl {{ type_name }} {{ "{" }}
     /// Return `true` if this code represents a fund, else `false`.
     ///
     #[cfg(feature = "is_fund")]
+    #[allow(clippy::match-like-matches-macro)]
     pub fn is_fund(&self) -> bool {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].is_fund %}
             Self::{{ id }} => true,{% endif %}{% endfor %}
@@ -170,6 +172,7 @@ impl {{ type_name }} {{ "{" }}
     /// Return `true` if this code represents an historical code, else `false`.
     ///
     #[cfg(feature = "historical_codes")]
+    #[allow(clippy::match-like-matches-macro)]
     pub fn is_historical(&self) -> bool {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].is_historical %}
             Self::{{ id }} => true,{% endif %}{% endfor %}
@@ -182,6 +185,7 @@ impl {{ type_name }} {{ "{" }}
     /// informal date of withdrawal.
     ///
     #[cfg(feature = "historical_codes")]
+    #[allow(clippy::match-like-matches-macro)]
     pub fn withdrawal_date(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].withdrawal_date %}
             Self::{{ id }} => Some("{{ codes[id].withdrawal_date }}"),{% endif %}{% endfor %}
