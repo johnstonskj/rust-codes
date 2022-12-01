@@ -41,7 +41,9 @@ By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] a
 
 **Version 0.1.2**
 
+* Added more documentation.
 * Removed the implementation of the `Code` trait.
+* Changed error type to enum from struct.
 
 **Version 0.1.1**
 
