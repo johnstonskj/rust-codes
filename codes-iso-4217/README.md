@@ -7,7 +7,7 @@ country code specification.
 For notes on the design of the API, see the repository 
 [README](https://github.com/johnstonskj/rust-codes/blob/main/README.md).
 
-# Example
+## Example
 
 ```rust
 use codes_iso_4217::{CurrencyCode, ISO_4217};
@@ -25,7 +25,7 @@ assert_eq!(code.withdrawal_date(), None);
 assert_eq!(ISO_4217.title(), "Currency codes");
 ```
 
-# Features
+## Features
 
 By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] and
 [CurrencyCode::numeric_code] methods cannot be excluded.

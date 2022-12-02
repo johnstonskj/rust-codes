@@ -1,0 +1,22 @@
+[package]
+name = "codes-iso-10383"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+all-features = true
+
+[features]
+default = ["serde"]
+category_description = []
+
+[dependencies]
+codes-agency = { version = ">=0.1.3", path = "../codes-agency" }
+common = { version = "0.1", path = "../common" }
+serde = { version = "1.0", features = ["derive"], optional = true }
+
+[build-dependencies]
+common = { version = "0.1", path = "../common" }
+csv = "1.1"
+tera = "1.17"

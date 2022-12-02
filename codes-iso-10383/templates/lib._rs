@@ -1,0 +1,107 @@
+use std::fmt;
+use std::str::FromStr;
+use codes_agency::{Agency, Standard};
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO-10383 specification.
+///
+pub const ISO_10383: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "10383",
+    "ISO 10383:2012",
+    "Securities and related financial instruments — Codes for exchanges and market identification (MIC)",
+    "https://www.iso.org/standard/61067.html",
+);
+
+/// 
+/// 
+/// See more at [iso.org](https://www.iso.org/standard/61067.html).
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].market_name }}
+    {% if id is matching("^[0-9]") %}#[allow(non_camel_case_types)]
+    m{% endif %}{{ id }},{% endfor %}
+{{ "}" }}
+
+pub use common::CodeParseError as {{ type_name }}Error;
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl fmt::Display for {{ type_name }} {{ "{" }}
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
+        write!(f, "{}", self.code())
+    {{ "}" }}
+{{ "}" }}
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
+            _ => Err(common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+impl AsRef<str> for {{ type_name }} {{ "{" }}
+    fn as_ref(&self) -> &str {{ "{" }}
+        self.code()
+    {{ "}" }}
+{{ "}" }}
+
+impl From<{{ type_name }}> for String {{ "{" }}
+    fn from(v: {{ type_name }}) -> String {{ "{" }}
+        v.code().to_string()
+    {{ "}" }}
+{{ "}" }}
+
+impl {{ type_name }} {{ "{" }}
+     pub fn code(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     pub fn operating_code(&self) -> Option<Self> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].operating_mic %}
+             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Self::{{ codes[id].operating_mic }}),{% endif %}{% endfor %}
+         _ => None,
+         {{ "}" }}
+     {{ "}" }}
+
+    pub fn is_segment(&self) -> bool {
+        self.operating_code().is_some()
+    }
+
+    #[cfg(feature = "market_name")]
+    pub fn market_name(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].market_name }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+
+    #[cfg(feature = "legal_entity")]
+    pub fn legal_entity_name(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].legal_entity_name %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].legal_entity_name }}",{% endif %}{% endfor %}
+            _ => None,
+            {{ "}" }}
+    {{ "}" }}
+
+
+
+{{ "}" }}
