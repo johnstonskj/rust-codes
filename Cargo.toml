@@ -3,6 +3,7 @@
 members = [
     "common",
     "codes-agency",
+    "codes-iso-3166",
     "codes-iso-4217",
     "codes-iso-10383",
     "codes-iso-17442",

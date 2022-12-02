@@ -9,11 +9,17 @@ use serde::{Deserialize, Serialize};
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
+///
+///
+///
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Status {
+    /// Currently active
     Active,
+    /// Expired, or deactivated
     Expired,
+    /// Updated since last publication
     Updated,
 }
 

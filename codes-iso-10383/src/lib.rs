@@ -1,13 +1,38 @@
 /*!
-One-line description.
+This package contains an implementation of the
+[ISO-10383](https://www.iso.org/standard/61067.html) Securities and related
+financial instruments — Codes for exchanges and market identification (MIC)
+specification.
 
-Mstore detailed description, with
+ISO 10383 specifies a universal method of identifying exchanges, trading
+platforms, regulated or non-regulated markets and trade reporting facilities
+as sources of prices and related information in order to facilitate automated
+processing.
+
+It is intended for use in any application and communication for identification of places
+
+* where a financial instrument is listed (place of official listing),
+* where a related trade is executed (place of trade), and
+* where trade details are reported (trade reporting facility).
+
+Note that field descriptions are taken from [ISO 10383 Market Identifier Codes
+- Release 2.0
+Factsheet](https://www.iso20022.org/sites/default/files/2022-11/ISO10383_MIC_Release_2_0_Factsheet_v2.pdf).
 
 # Example
 
 YYYYY
 
 # Features
+
+By default only the `serde` feature is enabled, the [MarketIdCode::code] and
+[MarketIdCode::operating_code], and [MarketIdCode::is_segment] methods cannot be excluded.
+
+* `serde` - Enables serialization of the [CurrencyCode] type.
+* `market_name`
+* `legal_entity`
+
+* `category_description`
 
 */
 

@@ -9,6 +9,10 @@ use serde::{Deserialize, Serialize};
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
+///
+/// The Market Category specifies the type of market. The list of market types
+/// is predefined.
+///
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Category {

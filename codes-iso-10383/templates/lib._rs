@@ -73,23 +73,38 @@ impl From<{{ type_name }}> for String {{ "{" }}
 {{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
-     pub fn code(&self) -> &'static str {{ "{" }}
-         match self {{ "{" }}{% for id in all_ids %}
-             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
-         {{ "}" }}
-     {{ "}" }}
+    ///
+    /// Market Identifier Code allocated to the market named
+    /// in ‘Market Name-Institution Description’
+    ///
+    pub fn code(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
 
-     pub fn operating_code(&self) -> Option<Self> {{ "{" }}
-         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].operating_mic %}
-             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Self::{{ codes[id].operating_mic }}),{% endif %}{% endfor %}
-         _ => None,
-         {{ "}" }}
-     {{ "}" }}
+    ///
+    /// The entity operating an exchange/market/trade reporting
+    /// facility in a specific market/country.
+    ///
+    pub fn operating_code(&self) -> Option<Self> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].operating_mic %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Self::{{ codes[id].operating_mic }}),{% endif %}{% endfor %}
+        _ => None,
+        {{ "}" }}
+    {{ "}" }}
 
+    ///
+    /// Returns `true` if this MIC represents a segment within an operating
+    /// MIC.
+    ///
     pub fn is_segment(&self) -> bool {
         self.operating_code().is_some()
     }
 
+    ///
+    /// The name, or institution description, of the market.
+    ///
     #[cfg(feature = "market_name")]
     pub fn market_name(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
@@ -97,6 +112,12 @@ impl {{ type_name }} {{ "{" }}
         {{ "}" }}
     {{ "}" }}
 
+    // The legal name of the entity owning the market.
+    
+    ///
+    /// The Legal Entity Identifier (LEI) of the entity owning the
+    /// market. See ISO 17442-1.
+    ///
     #[cfg(feature = "legal_entity")]
     pub fn legal_entity_id(&self) -> Option<LegalEntityId> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].legal_entity_id %}
@@ -105,6 +126,35 @@ impl {{ type_name }} {{ "{" }}
             {{ "}" }}
     {{ "}" }}
 
+    // Market category: specifies the type of market. The list of market types
+    // is predefined (1). The list can be updated upon request to the RA,
+    // which will validate the request.
+
+    // Acronym: known acronym of the market.
+
+    // ISO country code (see ISO 3166-1): alpha-2 code of the country where
+    // the market is
+
+    // City: city where the market is located.
+    
+    // Website: website of the market.
+    
+    // Status: active, updated (since last publication), expired (=
+    // deactivated).
+    
+    // Creation date: date indicating when the MIC was originally created.
+    
+    // Last update date: date indicating when the MIC was last modified
+    
+    // Last validation date: date indicating when the MIC was last reviewed
+    // for correctness.
+    
+    // Expiry date: The expiry date is populated when the MIC is deactivated; upon
+    // request from the MIC owner; following market research (user request) or
+    // maintenance. The expiry date field is left blank when a MIC is created.
+    
+    // Comments: any additional information worth mentioning to help users with identifying the
+    // exchange or understanding a modification.
 
 
 {{ "}" }}
