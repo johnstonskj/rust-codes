@@ -2,6 +2,9 @@ use std::fmt;
 use std::str::FromStr;
 use codes_agency::{Agency, Standard};
 
+#[cfg(feature = "legal_entity")]
+use codes_iso_17442::LegalEntityId;
+
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
@@ -95,9 +98,9 @@ impl {{ type_name }} {{ "{" }}
     {{ "}" }}
 
     #[cfg(feature = "legal_entity")]
-    pub fn legal_entity_name(&self) -> Option<&'static str> {{ "{" }}
-        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].legal_entity_name %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].legal_entity_name }}",{% endif %}{% endfor %}
+    pub fn legal_entity_id(&self) -> Option<LegalEntityId> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].legal_entity_id %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(LegalEntityId::from_str("{{ codes[id].legal_entity_id }}").unwrap()),{% endif %}{% endfor %}
             _ => None,
             {{ "}" }}
     {{ "}" }}
