@@ -1,9 +1,12 @@
 use common::{default_finalize, default_init, make_default_renderer, process};
+use tera::Value;
 
+#[allow(dead_code)]
 const TYPE_NAME: &str = "{{ type name }}";
 
 #[derive(Debug)]
 struct Data {
+    #[allow(dead_code)]
     rows: Vec<DataRow>,
 }
 
@@ -27,17 +30,17 @@ impl Default for Data {
     }
 }
 impl From<Data> for tera::Context {
-    fn from(data: Data) -> Self {
+    fn from(_data: Data) -> Self {
         todo!()
     }
 }
 
 impl From<DataRow> for Value {
-    fn from(row: DataRow) -> Self {
+    fn from(_row: DataRow) -> Self {
         todo!()
     }
 }
 
-fn process_input_data(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
+fn process_input_data(_data: Data) -> Result<Data, Box<dyn std::error::Error>> {
     todo!()
 }
