@@ -1,0 +1,81 @@
+use crate::LanguageCodeError;
+use std::fmt;
+use std::str::FromStr;
+use codes_agency::{Agency, Standard};
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO-10383 specification.
+///
+pub const ISO_639_5: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "639-5",
+    "ISO 639-5:2002",
+    "Codes for the representation of names of languages — Part 1: Alpha-2 code",
+    "https://www.iso.org/standard/22109.html",
+);
+
+/// 
+/// 
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].label }}
+    {{ id | capitalize }},{% endfor %}
+{{ "}" }}
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl fmt::Display for {{ type_name }} {{ "{" }}
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
+        write!(f, "{}", self.code())
+    {{ "}" }}
+{{ "}" }}
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{{ id | capitalize }}),{% endfor %}
+            _ => Err(common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+impl AsRef<str> for {{ type_name }} {{ "{" }}
+    fn as_ref(&self) -> &str {{ "{" }}
+        self.code()
+    {{ "}" }}
+{{ "}" }}
+
+impl From<{{ type_name }}> for String {{ "{" }}
+    fn from(v: {{ type_name }}) -> String {{ "{" }}
+        v.code().to_string()
+    {{ "}" }}
+{{ "}" }}
+
+impl {{ type_name }} {{ "{" }}
+     pub fn code(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     pub fn label(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ codes[id].label }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+{{ "}" }}

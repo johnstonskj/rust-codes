@@ -1,3 +1,4 @@
+use crate::LanguageCodeError;
 use std::fmt;
 use std::str::FromStr;
 use codes_agency::{Agency, Standard};
@@ -14,12 +15,12 @@ use serde::{Deserialize, Serialize};
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
 /// package that describes the ISO-10383 specification.
 ///
-pub const ISO_10383: Standard = Standard::new_with_long_ref(
+pub const ISO_639_1: Standard = Standard::new_with_long_ref(
     Agency::ISO,
-    "99999",
-    "ISO 99999:2023",
-    "An ISO Standard",
-    "https://www.iso.org/standard/",
+    "639-1",
+    "ISO 639-1:2002",
+    "Codes for the representation of names of languages — Part 1: Alpha-2 code",
+    "https://www.iso.org/standard/22109.html",
 );
 
 /// 
@@ -28,12 +29,9 @@ pub const ISO_10383: Standard = Standard::new_with_long_ref(
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
-    /// {{ codes[id].market_name }}
-    {% if id is matching("^[0-9]") %}#[allow(non_camel_case_types)]
-    m{% endif %}{{ id }},{% endfor %}
+    /// {{ codes[id].label }}
+    {{ id | capitalize }},{% endfor %}
 {{ "}" }}
-
-pub use common::CodeParseError as {{ type_name }}Error;
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
@@ -50,7 +48,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
-            "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
+            "{{ id }}" => Ok(Self::{{ id | capitalize }}),{% endfor %}
             _ => Err(common::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
@@ -71,9 +69,20 @@ impl From<{{ type_name }}> for String {{ "{" }}
 impl {{ type_name }} {{ "{" }}
      pub fn code(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
-             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+             Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
          {{ "}" }}
      {{ "}" }}
 
+     pub fn label(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ codes[id].label }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
 
+     pub fn alt_labels(&self) -> &'static [&'static str] {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].alt_labels %}
+             Self::{{ id | capitalize }} => &[{% for label in codes[id].alt_labels %}"{{ label }}",{% endfor %}],{% endif %}{% endfor %}
+             _ => &[],
+         {{ "}" }}
+     {{ "}" }}
 {{ "}" }}

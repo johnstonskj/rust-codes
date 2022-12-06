@@ -1,0 +1,109 @@
+use crate::LanguageCodeError;
+use crate::part_1::LanguageCode as Part1;
+use std::fmt;
+use std::str::FromStr;
+use codes_agency::{Agency, Standard};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO-10383 specification.
+///
+pub const ISO_639_3: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "639-3",
+    "ISO 639-3:2007",
+    "Codes for the representation of names of languages — Part 3: Alpha-3 code for comprehensive coverage of languages",
+    "https://www.iso.org/standard/",
+);
+
+/// 
+/// 
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].ref_name }}
+    {{ id | capitalize }},{% endfor %}
+{{ "}" }}
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl fmt::Display for {{ type_name }} {{ "{" }}
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
+        write!(f, "{}", self.code())
+    {{ "}" }}
+{{ "}" }}
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, <LanguageCode as FromStr>::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{{ id | capitalize }}),{% endfor %}
+            _ => Err(common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+impl AsRef<str> for {{ type_name }} {{ "{" }}
+    fn as_ref(&self) -> &str {{ "{" }}
+        self.code()
+    {{ "}" }}
+{{ "}" }}
+
+impl From<{{ type_name }}> for String {{ "{" }}
+    fn from(v: {{ type_name }}) -> String {{ "{" }}
+        v.code().to_string()
+    {{ "}" }}
+{{ "}" }}
+
+impl {{ type_name }} {{ "{" }}
+     pub fn code(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     pub fn part_1_code(&self) -> Option<Part1> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].part_1_code %}
+             Self::{{ id | capitalize }} => Some(Part1::{{ codes[id].part_1_code | capitalize }}),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+
+     #[cfg(feature = "scope")]
+     pub fn scope(&self) -> LanguageScope {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => LanguageScope::{{ codes[id].scope }},{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     #[cfg(feature = "language_type")]
+     pub fn language_type(&self) -> LanguageType {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => LanguageType::{{ codes[id].language_type }},{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     #[cfg(feature = "ref_name")]
+     pub fn ref_name(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ codes[id].ref_name }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     #[cfg(feature = "comment")]
+     pub fn comment(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].comment %}
+             Self::{{ id | capitalize }} => Some("{{ codes[id].comment }}"),{% endif %}{% endfor %}
+             _ => None
+         {{ "}" }}
+     {{ "}" }}
+{{ "}" }}

@@ -12,6 +12,7 @@ serde = { version = "1.0", features = ["derive"], optional = true }
 
 [build-dependencies]
 common = { version = "0.1", path = "../common" }
+csv = "1.1"
 tera = "1.17"
 
 [package.metadata.docs.rs]
@@ -19,5 +20,6 @@ targets = ["x86_64-unknown-linux-gnu"]
 all-features = true
 
 [features]
-default = ["serde"]
-
+default = ["serde", "part_3"]
+part_3 = []
+ref_name = []

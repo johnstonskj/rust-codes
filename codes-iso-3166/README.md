@@ -13,6 +13,10 @@ TBD
 
 ## Features
 
+## Refresh
+
+While ISO licenses the 3166 tables freely, access to the whole data tables is via subscription, and so there is not currently a way to download the tables periodically to keep up-to-date.
+
 ## Changes
 
 **Version 0.1.0**
