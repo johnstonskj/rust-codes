@@ -1,5 +1,6 @@
 use codes_common::{
-    default_finalize, default_init, make_default_renderer, process, DEFAULT_DATA_DIR,
+    default_finalize, default_init, make_default_renderer, process, rerun_if_changed,
+    DEFAULT_DATA_DIR,
 };
 use std::fs::File;
 use tera::{Map, Value};
@@ -136,6 +137,8 @@ impl From<DataRow> for Value {
 
 fn process_mic_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
     let file_name = format!("{}/ISO10383_MIC.csv", DEFAULT_DATA_DIR);
+
+    rerun_if_changed(&file_name);
 
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)
