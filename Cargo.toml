@@ -1,7 +1,7 @@
 [workspace]
 
 members = [
-    "common",
+    "codes-common",
     "codes-agency",
     "codes-iso-639",
     "codes-iso-3166",

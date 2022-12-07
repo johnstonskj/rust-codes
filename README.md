@@ -15,17 +15,23 @@ structured manner
 
 ## Changes
 
+**2022-12-06**
+
+* Released the following:
+  * `codes-iso-639`; an implementation of the ISO-4217 Language Codes standard.
+  * `codes-iso-10383`; an implementation of the ISO-10383 Market Identification (MIC) standard.
+  * `codes-iso-17442`; an implementation of the ISO-17442 Legal Entity Identifier (LEI) standard.
+
 **2022-11-30**
 
 * Released the following:
-  * `codes_agency`; codes that identify standards agencies.
-  * `codes_iso_4217`; an implementation of the ISO-4217 currency codes standard,
+  * `codes-agency`; codes that identify standards agencies.
+  * `codes-iso-4217`; an implementation of the ISO-4217 currency codes standard.
 
 ## TODO
 
 * Standards:
   * ISO 3166, Codes for the representation of names of countries and their subdivisions
-  * ISO 639, Codes for the representation of names of languages
   * ISO 15924, Codes for the representation of names of scripts
   * IANA Character Sets https://www.iana.org/assignments/character-sets/character-sets.xhtml
   * ISO ICS
