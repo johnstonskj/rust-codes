@@ -1,0 +1,135 @@
+use codes_agency::{Agency, Standard};
+use codes_common::code_impl;
+use crate::CountryCodeError;
+use std::str::FromStr;
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "status")]
+use crate::part_1::status::Status;
+
+#[cfg(feature = "languages")]
+use codes_iso_639::part_3::LanguageCode;
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO 3166 specification.
+///
+pub const ISO_3166: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "3166",
+    "ISO 3166:2023",
+    "An ISO Standard",
+    "https://www.iso.org/standard/",
+);
+
+/// 
+/// 
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].short_name }}
+    {{ id }},{% endfor %}
+{{ "}" }}
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{{ id }}),{% endfor %}
+            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+code_impl!({{ type_name }}, alpha_2_code);
+
+impl {{ type_name }} {{ "{" }}
+     /// Alpha-2 code – a two-letter code that represents a country name,
+     /// recommended as the general purpose code.
+     /// Two-letter country codes are the most widely used of the three,
+     /// and used most prominently for the Internet's country code
+     /// top-level domains (with a few exceptions)
+     pub fn alpha_2_code(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id }} => "{{ id }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     pub fn short_name(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id }} => "{{ codes[id].short_name }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     /// Alpha-3 code – a three-letter code that represents a country name,
+     /// which is usually more closely related to the country name.
+     /// These also allow a better visual association between the codes and
+     /// the country names than the alpha-2 codes
+     #[cfg(feature = "alpha_3_code")]
+     pub fn alpha_3_code(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].alpha_3_code %}
+             Self::{{ id }} => Some("{{ codes[id].alpha_3_code }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "numeric_code")]
+     pub fn numeric_code(&self) -> Option<u16> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].numeric_code %}
+             Self::{{ id }} => Some({{ codes[id].numeric_code }}),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "independent")]
+     pub fn independent(&self) -> Option<bool> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].independent %}
+             Self::{{ id }} => Some({{ codes[id].independent }}),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "status")]
+     pub fn status(&self) -> Status {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id }} => {{ codes[id].status }},{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "full_name")]
+     pub fn full_name(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].full_name %}
+             Self::{{ id }} => Some("{{ codes[id].full_name }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "languages")]
+     pub fn languages(&self) -> Option<&[LanguageCode]> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].languages %}
+             Self::{{ id }} => Some(&[{% for language in codes[id].languages %}LanguageCode::{{ language | capitalize }},{% endfor %}]),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "languages")]
+     pub fn administrative_language(&self) -> Option<LanguageCode> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].administrative_language %}
+             Self::{{ id }} => Some(LanguageCode::{{ codes[id].administrative_language | capitalize }}),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+{{ "}" }}
