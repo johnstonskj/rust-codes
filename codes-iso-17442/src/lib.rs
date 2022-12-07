@@ -4,7 +4,7 @@ This package contains an implementation of the
 Legal Entity Identifier (LEI) specification.
 
 The Legal Entity Identifier (LEI) is a unique global identifier for legal
-entities participating in financial transactions.[1] Also known as an LEI code
+entities participating in financial transactions. Also known as an LEI code
 or LEI number, its purpose is to help identify legal entities on a globally
 accessible database. Legal entities are organisations such as companies or
 government entities that participate in financial transactions. The identifier

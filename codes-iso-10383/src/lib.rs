@@ -15,9 +15,7 @@ It is intended for use in any application and communication for identification o
 * where a related trade is executed (place of trade), and
 * where trade details are reported (trade reporting facility).
 
-Note that field descriptions are taken from [ISO 10383 Market Identifier Codes
-- Release 2.0
-Factsheet](https://www.iso20022.org/sites/default/files/2022-11/ISO10383_MIC_Release_2_0_Factsheet_v2.pdf).
+Note that field descriptions are taken from ISO 10383 Market Identifier Codes - [Release 2.0 Factsheet](https://www.iso20022.org/sites/default/files/2022-11/ISO10383_MIC_Release_2_0_Factsheet_v2.pdf).
 
 # Example
 
@@ -28,7 +26,7 @@ YYYYY
 By default only the `serde` feature is enabled, the [MarketIdCode::code] and
 [MarketIdCode::operating_code], and [MarketIdCode::is_segment] methods cannot be excluded.
 
-* `serde` - Enables serialization of the [CurrencyCode] type.
+* `serde` - Enables serialization of the [MarketIdCode] type.
 * `market_name`
 * `legal_entity`
 
