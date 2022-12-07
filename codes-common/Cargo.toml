@@ -1,7 +1,7 @@
 [package]
 name = "codes-common"
 description  = "Support capabilities for codes-* packages."
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-common/"
@@ -10,7 +10,6 @@ license = "MIT"
 readme = "README.md"
 publish = true
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 tera = "1.17.1"
