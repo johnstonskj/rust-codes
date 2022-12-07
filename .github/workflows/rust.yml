@@ -24,7 +24,12 @@ jobs:
     needs: [test, docs]
     strategy:
       matrix:
-        package: ["codes-agency", "codes-iso-4217"]
+        package:
+          - codes-agency
+          - codes-iso-639
+          - codes-iso-4217
+          - codes-iso-10383
+          - codes-iso-17442
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
