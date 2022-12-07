@@ -1,7 +1,7 @@
 /*!
 This package contains an implementation of the
-[ISO-17442](https://www.iso.org/standard/78829.html)
-Legal Entity Identifier (LE) specification.
+[ISO 17442](https://www.iso.org/standard/78829.html)
+Legal Entity Identifier (LEI) specification.
 
 The Legal Entity Identifier (LEI) is a unique global identifier for legal
 entities participating in financial transactions.[1] Also known as an LEI code

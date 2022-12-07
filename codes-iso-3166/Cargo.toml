@@ -1,7 +1,14 @@
 [package]
 name = "codes-iso-3166"
+description  = "This package contains an implementation of the ISO 3166 Country Codes specification."
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-iso-3166/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+publish = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
