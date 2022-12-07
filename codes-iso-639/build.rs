@@ -2,7 +2,7 @@ use codes_common::{default_init, make_default_renderer, process, DEFAULT_DATA_DI
 use std::fs::File;
 use tera::{Map, Value};
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 struct Data {
     rows: Vec<Map<String, Value>>,
     macros: Map<String, Value>,
@@ -31,15 +31,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     )?;
 
     Ok(())
-}
-
-impl Default for Data {
-    fn default() -> Self {
-        Self {
-            rows: Default::default(),
-            macros: Default::default(),
-        }
-    }
 }
 
 fn process_part1_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {

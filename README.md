@@ -30,16 +30,38 @@ structured manner
 
 ## TODO
 
-* Standards:
-  * ISO 3166, Codes for the representation of names of countries and their subdivisions
-  * ISO 15924, Codes for the representation of names of scripts
-  * IANA Character Sets https://www.iana.org/assignments/character-sets/character-sets.xhtml
-  * ISO ICS
-    https://www.iso.org/files/live/sites/isoorg/files/archive/pdf/en/international_classification_for_standards.pdf
-  * ISO/IEC 81346-2
-  * SIC https://en.wikipedia.org/wiki/Standard_Industrial_Classification
-  * NAICS https://www.census.gov/naics/
-  * ITU-T standards E.123 and E.164. 
-  * Currency symbols? https://en.wikipedia.org/wiki/Currency_symbol
-  * ISO (SWIFT) BIC https://en.wikipedia.org/wiki/ISO_9362
-  * ISO 13616 IBAN
+### Code Standards
+
+* ISO 3166, Codes for the representation of names of countries and their subdivisions
+* ISO 15924, Codes for the representation of names of scripts
+* IANA Character Sets
+  https://www.iana.org/assignments/character-sets/character-sets.xhtml
+* ISO (SWIFT) BIC https://en.wikipedia.org/wiki/ISO_9362
+* ISO 13616 IBAN
+* Currency symbols? https://en.wikipedia.org/wiki/Currency_symbol
+
+### Classification Standards
+
+* ISO ICS (https://github.com/metanorma/iso-ics-codes) and
+  https://www.iso.org/files/live/sites/isoorg/files/archive/pdf/en/international_classification_for_standards.pdf
+* IEC 81346-1:2022 Industrial systems, installations and equipment and 
+  industrial products — Structuring principles and reference 
+  designations — Part 1: Basic rules
+* ISO/IEC 81346-2 - Industrial systems, installations and equipment and
+  industrial products — Structuring principles and reference 
+  designations — Part 2: Classification of objects and codes for classes
+* SIC https://en.wikipedia.org/wiki/Standard_Industrial_Classification
+* NAICS https://www.census.gov/naics/ and https://en.wikipedia.org/wiki/North_American_Industry_Classification_System
+* ITU-T E.123 Notation for national and international telephone
+  numbers, e-mail addresses and web addresses
+* ITU-T E.164 The international public telecommunication numbering plan
+* UN number - A UN number (United Nations number) is a four-digit number 
+  that identifies hazardous materials, and articles (such as explosives, 
+  flammable liquids, oxidizers, toxic liquids, etc.) in the framework 
+  of international trade and transport.
+* United Nations Standard Products and Services Code (UNSPSC) https://en.wikipedia.org/wiki/UNSPSC
+
+### Data Types
+
+* Vehicle identification number https://en.wikipedia.org/wiki/Vehicle_identification_number
+* Serial shipping container code https://en.wikipedia.org/wiki/Serial_shipping_container_code

@@ -6,7 +6,7 @@ use tera::{Map, Value};
 
 const TYPE_NAME: &str = "MarketIdCode";
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 struct Data {
     rows: Vec<DataRow>,
 }
@@ -40,13 +40,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     )
 }
 
-impl Default for Data {
-    fn default() -> Self {
-        Self {
-            rows: Default::default(),
-        }
-    }
-}
 impl From<Data> for tera::Context {
     fn from(data: Data) -> Self {
         let mut ctx = tera::Context::new();

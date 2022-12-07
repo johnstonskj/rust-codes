@@ -162,7 +162,7 @@ impl Deref for LegalEntityId {
 
 impl From<LegalEntityId> for String {
     fn from(v: LegalEntityId) -> String {
-        v.0.clone()
+        v.0
     }
 }
 

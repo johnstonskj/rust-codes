@@ -1,10 +1,10 @@
-use common::{default_finalize, default_init, make_default_renderer, process};
+use codes_common::{default_finalize, default_init, make_default_renderer, process};
 use tera::Value;
 
 #[allow(dead_code)]
 const TYPE_NAME: &str = "{{ type name }}";
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 struct Data {
     #[allow(dead_code)]
     rows: Vec<DataRow>,
@@ -22,16 +22,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     )
 }
 
-impl Default for Data {
-    fn default() -> Self {
-        Self {
-            rows: Default::default(),
-        }
-    }
-}
 impl From<Data> for tera::Context {
     fn from(_data: Data) -> Self {
-        todo!()
+        let mut ctx = tera::Context::new();
+
+        ctx.insert(
+            "type_name".to_string(),
+            &Value::String("LanguageCode".to_string()),
+        );
+
+        ctx
     }
 }
 
@@ -42,5 +42,5 @@ impl From<DataRow> for Value {
 }
 
 fn process_input_data(_data: Data) -> Result<Data, Box<dyn std::error::Error>> {
-    todo!()
+    Ok(Default::default())
 }

@@ -40,7 +40,7 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     {{ id}},{% endfor %}
 {{ "}" }}
 
-pub use common::CodeParseError as {{ type_name }}Error;
+pub use codes_common::CodeParseError as {{ type_name }}Error;
 
 // ------------------------------------------------------------------------------------------------
 // Public Constants
@@ -68,7 +68,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{{ id }}),{% endfor %}
-            _ => Err(common::unknown_value("{{ type_name }}", s)),
+            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
