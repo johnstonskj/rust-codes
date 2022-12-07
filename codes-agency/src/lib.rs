@@ -60,7 +60,8 @@ pub const ISO_4217: Standard = Standard::new_with_long_ref(
     dyn_drop,
 )]
 
-use std::{fmt::Display, str::FromStr};
+use codes_common::code_impl;
+use std::str::FromStr;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -119,12 +120,6 @@ pub enum AgencyError {
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-impl Display for Agency {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.short_name())
-    }
-}
-
 impl FromStr for Agency {
     type Err = AgencyError;
 
@@ -138,6 +133,8 @@ impl FromStr for Agency {
         }
     }
 }
+
+code_impl!(Agency, short_name);
 
 impl Agency {
     ///
@@ -256,7 +253,7 @@ impl Standard {
 
 // ------------------------------------------------------------------------------------------------
 
-impl Display for AgencyError {
+impl std::fmt::Display for AgencyError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(
             f,

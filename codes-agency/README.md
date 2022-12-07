@@ -29,6 +29,11 @@ By default only the `serde` feature is enabled.
   
 ## Changes
 
+**Version 0.1.4**
+
+* Clean-up implementation based on newer `codes-common`
+* Using new `Code` trait and macro-created implementation.
+
 **Version 0.1.3**
 
 * Added documentation to `Agency` variants.
