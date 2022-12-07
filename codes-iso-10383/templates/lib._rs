@@ -1,6 +1,6 @@
-use std::fmt;
-use std::str::FromStr;
 use codes_agency::{Agency, Standard};
+use codes_common::code_impl;
+use std::str::FromStr;
 
 #[cfg(feature = "legal_entity")]
 use codes_iso_17442::LegalEntityId;
@@ -43,12 +43,6 @@ pub use codes_common::CodeParseError as {{ type_name }}Error;
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-impl fmt::Display for {{ type_name }} {{ "{" }}
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
-        write!(f, "{}", self.code())
-    {{ "}" }}
-{{ "}" }}
-
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
 
@@ -60,17 +54,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl AsRef<str> for {{ type_name }} {{ "{" }}
-    fn as_ref(&self) -> &str {{ "{" }}
-        self.code()
-    {{ "}" }}
-{{ "}" }}
-
-impl From<{{ type_name }}> for String {{ "{" }}
-    fn from(v: {{ type_name }}) -> String {{ "{" }}
-        v.code().to_string()
-    {{ "}" }}
-{{ "}" }}
+code_impl!({{ type_name }});
 
 impl {{ type_name }} {{ "{" }}
     ///
@@ -82,7 +66,7 @@ impl {{ type_name }} {{ "{" }}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
         {{ "}" }}
     {{ "}" }}
-
+ 
     ///
     /// The entity operating an exchange/market/trade reporting
     /// facility in a specific market/country.

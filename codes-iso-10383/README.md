@@ -17,7 +17,14 @@ TBD
 
 ## Changes
 
+**Version 0.1.1**
+
+* Clean-up implementation based on newer `codes-common`
+* Using new `Code` trait and macro-created implementation.
+
 **Version 0.1.0**
+
+* Initial release
 
 ## TODO
 
