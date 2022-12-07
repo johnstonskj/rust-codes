@@ -1,11 +1,12 @@
+use codes_common::{
+    default_finalize, default_init, input_file_name, make_default_renderer, process,
+    rerun_if_changed,
+};
 use quick_xml::events::Event;
 use quick_xml::name::QName;
 use quick_xml::reader::Reader;
-use std::env;
 use std::error::Error;
-use std::fs::File;
-use std::path::Path;
-use tera::{Context, Map, Number, Tera, Value};
+use tera::{Context, Map, Number, Value};
 
 #[derive(Debug)]
 enum XmlState {
@@ -20,74 +21,38 @@ enum XmlState {
     WithdrawalDate,
 }
 
-#[derive(Debug)]
-struct XmlContext {
+#[derive(Debug, Default)]
+struct Data {
     codes: Map<String, Value>,
-    all_ids: Vec<String>,
     active_file_date: String,
     historical_file_date: String,
 }
 
 const TYPE_NAME: &str = "CurrencyCode";
 
-const INPUT_DIR: &str = "data";
-
-const TEMPLATE_DIR: &str = "templates";
-
 fn main() -> Result<(), Box<dyn Error>> {
-    let render = make_renderer("lib._rs".to_string(), "generated.rs".to_string());
-    init_context()
-        .and_then(|ctx| process_iso_list_xml(ctx, "list-one.xml", false))
-        .and_then(|ctx| process_iso_list_xml(ctx, "list-three.xml", true))
-        .and_then(finalize_context)
-        .and_then(render)
-}
-
-fn init_context() -> Result<XmlContext, Box<dyn Error>> {
-    Ok(XmlContext {
-        codes: Default::default(),
-        all_ids: Default::default(),
-        active_file_date: Default::default(),
-        historical_file_date: Default::default(),
-    })
-}
-
-fn finalize_context(mut xml_ctx: XmlContext) -> Result<Context, Box<dyn Error>> {
-    let mut ctx = Context::new();
-
-    ctx.insert(
-        "type_name".to_string(),
-        &Value::String(TYPE_NAME.to_string()),
-    );
-
-    ctx.insert("active_file_date", &Value::String(xml_ctx.active_file_date));
-    ctx.insert(
-        "historical_file_date",
-        &Value::String(xml_ctx.historical_file_date),
-    );
-
-    ctx.insert("codes", &Value::Object(xml_ctx.codes));
-
-    xml_ctx.all_ids.sort();
-    xml_ctx.all_ids.dedup();
-    ctx.insert(
-        "all_ids",
-        &Value::Array(xml_ctx.all_ids.into_iter().map(Value::String).collect()),
-    );
-
-    Ok(ctx)
+    process(
+        default_init,
+        |ctx| {
+            process_iso_list_xml(ctx, "list-one.xml", false)
+                .and_then(|ctx| process_iso_list_xml(ctx, "list-three.xml", true))
+        },
+        default_finalize,
+        make_default_renderer("lib._rs", "generated.rs"),
+    )
 }
 
 fn process_iso_list_xml(
-    mut xml_ctx: XmlContext,
+    mut data: Data,
     file_name: &str,
     is_historical: bool,
-) -> Result<XmlContext, Box<dyn Error>> {
-    let file_name = format!("{}/{}", INPUT_DIR, file_name);
+) -> Result<Data, Box<dyn Error>> {
+    let file_name = input_file_name(file_name);
+
+    rerun_if_changed(&file_name);
+
     let mut reader = Reader::from_file(&file_name)?;
     reader.trim_text(true);
-
-    println!("cargo:rerun-if-changed={}", file_name);
 
     let is_historical_default = Value::Bool(is_historical);
     let is_fund_default = Value::Bool(false);
@@ -108,10 +73,10 @@ fn process_iso_list_xml(
                             let attribute = attribute?;
                             if attribute.key == QName(b"Pblshd") {
                                 if is_historical {
-                                    xml_ctx.historical_file_date =
+                                    data.historical_file_date =
                                         String::from_utf8(attribute.value.to_vec())?;
                                 } else {
-                                    xml_ctx.active_file_date =
+                                    data.active_file_date =
                                         String::from_utf8(attribute.value.to_vec())?;
                                 }
                             }
@@ -146,7 +111,6 @@ fn process_iso_list_xml(
                         }
                         XmlState::CurencyCode => {
                             alpha_code = text.clone();
-                            xml_ctx.all_ids.push(text.clone());
                             entry.insert("alpha_code".to_string(), Value::String(text));
                         }
                         XmlState::CurrencyNumber => {
@@ -170,15 +134,14 @@ fn process_iso_list_xml(
                         || e.name() == XmlState::Historical.tag_name()
                     {
                         if !alpha_code.is_empty() {
-                            xml_ctx
-                                .codes
+                            data.codes
                                 .insert(alpha_code.clone(), Value::Object(entry.clone()));
                         }
                         break;
                     }
                 }
                 Ok(Event::Eof) => {
-                    return Ok(xml_ctx);
+                    return Ok(data);
                 }
                 Err(e) => {
                     eprintln!(
@@ -195,24 +158,9 @@ fn process_iso_list_xml(
     }
 }
 
-fn make_renderer(
-    template_name: String,
-    generated_file_name: String,
-) -> impl Fn(Context) -> Result<(), Box<dyn Error>> {
-    move |ctx: Context| -> Result<(), Box<dyn Error>> {
-        let output_dir: String = env::var("OUT_DIR").unwrap();
-        let file_name = Path::new(&output_dir).join(&generated_file_name);
-        let file = File::create(&file_name)?;
-
-        let tera = Tera::new(&format!("{}/*._rs", TEMPLATE_DIR))?;
-
-        println!("cargo:rerun-if-changed={}/{}", TEMPLATE_DIR, template_name);
-
-        tera.render_to(&template_name, &ctx, file)?;
-
-        Ok(())
-    }
-}
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
 
 impl XmlState {
     pub fn tag_name(&self) -> QName {
@@ -242,5 +190,36 @@ impl XmlState {
             QName(b"WthdrwlDt") => Some(Self::WithdrawalDate),
             _ => None,
         }
+    }
+}
+
+impl From<Data> for Context {
+    fn from(data: Data) -> Self {
+        let mut ctx = Context::new();
+
+        ctx.insert(
+            "type_name".to_string(),
+            &Value::String(TYPE_NAME.to_string()),
+        );
+
+        ctx.insert("active_file_date", &Value::String(data.active_file_date));
+
+        ctx.insert(
+            "historical_file_date",
+            &Value::String(data.historical_file_date),
+        );
+
+        let mut all_ids: Vec<&String> = data.codes.keys().collect();
+
+        all_ids.sort();
+        all_ids.dedup();
+        ctx.insert(
+            "all_ids",
+            &Value::Array(all_ids.into_iter().cloned().map(Value::String).collect()),
+        );
+
+        ctx.insert("codes", &Value::Object(data.codes));
+
+        ctx
     }
 }

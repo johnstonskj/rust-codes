@@ -1,7 +1,7 @@
 [package]
 name = "codes-iso-4217"
 description  = "This package contains an implementation of the ISO 4217 Currency Codes specification."
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-iso-4217/"
@@ -28,5 +28,6 @@ codes-common = { version = "0.1", path = "../codes-common" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [build-dependencies]
-tera = "1.17"
+codes-common = { version = "0.1", path = "../codes-common" }
 quick-xml = "0.26"
+tera = "1.17"

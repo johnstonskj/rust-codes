@@ -1,6 +1,6 @@
-use std::fmt;
 use std::str::FromStr;
 use codes_agency::{Agency, Standard};
+use codes_common::code_impl;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -56,12 +56,6 @@ pub const HISTORICAL_PUBLISH_DATE: &str = "{{ historical_file_date }}";
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-impl fmt::Display for {{ type_name }} {{ "{" }}
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
-        write!(f, "{}", self.alpha_code())
-    {{ "}" }}
-{{ "}" }}
-
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
 
@@ -73,17 +67,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl AsRef<str> for {{ type_name }} {{ "{" }}
-    fn as_ref(&self) -> &str {{ "{" }}
-        self.alpha_code()
-    {{ "}" }}
-{{ "}" }}
-
-impl From<{{ type_name }}> for String {{ "{" }}
-    fn from(v: {{ type_name }}) -> String {{ "{" }}
-        v.alpha_code().to_string()
-    {{ "}" }}
-{{ "}" }}
+code_impl!({{ type_name }}, alpha_code);
 
 impl {{ type_name }} {{ "{" }}
      /// 

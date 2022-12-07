@@ -39,6 +39,11 @@ By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] a
 
 ## Changes
 
+**Version 0.1.3**
+
+* Clean-up implementation based on newer `codes-common`
+* Using new `Code` trait and macro-created implementation.
+
 **Version 0.1.2**
 
 * Added more documentation.
