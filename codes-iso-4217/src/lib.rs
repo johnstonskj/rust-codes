@@ -1,7 +1,7 @@
 /*!
 This package contains an implementation of the
-[ISO-4217](https://www.iso.org/iso-4217-currency-codes.html)
-country code specification.
+[ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
+Currency Codes specification.
 
 # Example
 

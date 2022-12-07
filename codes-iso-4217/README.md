@@ -1,8 +1,8 @@
-# Crate codes-iso-4217
+# Package codes-iso-4217
 
 This package contains an implementation of the
-[ISO-4217](https://www.iso.org/iso-4217-currency-codes.html)
-country code specification.
+[ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
+Currency Codes specification.
 
 For notes on the design of the API, see the repository 
 [README](https://github.com/johnstonskj/rust-codes/blob/main/README.md).
