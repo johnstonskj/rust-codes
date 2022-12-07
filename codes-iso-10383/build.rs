@@ -1,4 +1,6 @@
-use common::{default_finalize, default_init, make_default_renderer, process, DEFAULT_DATA_DIR};
+use codes_common::{
+    default_finalize, default_init, make_default_renderer, process, DEFAULT_DATA_DIR,
+};
 use std::fs::File;
 use tera::{Map, Value};
 

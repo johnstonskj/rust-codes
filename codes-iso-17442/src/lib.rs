@@ -93,7 +93,7 @@ By default only the `serde` feature is enabled.
 )]
 
 use codes_agency::{Agency, Standard};
-use common::{invalid_format, invalid_length};
+use codes_common::{invalid_format, invalid_length};
 use std::{fmt::Display, fmt::Formatter, ops::Deref, str::FromStr};
 
 #[cfg(feature = "serde")]
@@ -130,7 +130,7 @@ pub const ISO_17442: Standard = Standard::new_with_long_ref(
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct LegalEntityId(String);
 
-pub use common::CodeParseError as LegalEntityIdError;
+pub use codes_common::CodeParseError as LegalEntityIdError;
 
 // ------------------------------------------------------------------------------------------------
 // Public Functions

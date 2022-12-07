@@ -1,4 +1,4 @@
-use common::{invalid_length, unknown_value};
+use codes_common::{invalid_length, unknown_value};
 use std::fmt;
 use std::str::FromStr;
 

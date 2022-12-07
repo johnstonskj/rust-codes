@@ -96,7 +96,7 @@ language codes.
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
-pub use common::CodeParseError as LanguageCodeError;
+pub use codes_common::CodeParseError as LanguageCodeError;
 
 // ------------------------------------------------------------------------------------------------
 // Modules
