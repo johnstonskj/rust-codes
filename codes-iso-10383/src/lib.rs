@@ -1,7 +1,7 @@
 /*!
 This package contains an implementation of the
 [ISO-10383](https://www.iso.org/standard/61067.html) Securities and related
-financial instruments — Codes for exchanges and market identification (MIC)
+financial instruments — Codes for exchanges and Market Identification (MIC)
 specification.
 
 ISO 10383 specifies a universal method of identifying exchanges, trading

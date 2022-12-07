@@ -1,7 +1,14 @@
 [package]
 name = "codes-iso-10383"
+description  = "This package contains an implementation of the ISO-10383 Market Identification Code (MIC) specification."
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-iso-10383/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+publish = true
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
