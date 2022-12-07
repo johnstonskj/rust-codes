@@ -1,7 +1,14 @@
 [package]
 name = "codes-iso-639"
+description  = "This package contains an implementation of the ISO 639 (Parts 1, 3, and 5) Language Code specifications."
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-iso-639/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+publish = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -20,6 +27,10 @@ targets = ["x86_64-unknown-linux-gnu"]
 all-features = true
 
 [features]
-default = ["serde", "part_3"]
+default = ["serde"]
 part_3 = []
-ref_name = []
+part_5 = []
+scope = []
+language_type = []
+macro_individuals = []
+comment = []

@@ -11,7 +11,7 @@ use codes_agency::{Agency, Standard};
 ///
 /// An instance of the `Standard` struct defined in the
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
-/// package that describes the ISO-10383 specification.
+/// package that describes the ISO-639-3 specification.
 ///
 pub const ISO_639_3: Standard = Standard::new_with_long_ref(
     Agency::ISO,
@@ -22,13 +22,54 @@ pub const ISO_639_3: Standard = Standard::new_with_long_ref(
 );
 
 /// 
-/// 
+/// A Language Code enumeration representing the three-letter
+/// 639-3 identifier.
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     /// {{ codes[id].ref_name }}
     {{ id | capitalize }},{% endfor %}
+{{ "}" }}
+
+// ------------------------------------------------------------------------------------------------
+// Public Functions
+// ------------------------------------------------------------------------------------------------
+
+///
+/// The code `mis` (uncoded languages, originally an abbreviation for
+/// 'miscellaneous') is intended for languages which have not (yet) been 
+/// included in the ISO standard.
+///
+pub fn special_for_uncoded_languages() -> {{ type_name }} {{ "{" }}
+    {{ type_name }}::Mis
+{{ "}" }}
+
+///
+/// The code `mul` (multiple languages) is intended for cases where the
+/// data includes more than one language, and (for example) the database
+/// requires a single ISO code.
+///
+pub fn special_for_multiple_languages() -> {{ type_name }} {{ "{" }}
+    {{ type_name }}::Mul
+{{ "}" }}
+
+///
+/// The code `und` (undetermined) is intended for cases where the language
+/// in the data has not been identified, such as when it is mislabeled
+/// or never had been labeled. It is not intended for cases such as
+/// Trojan where an unattested language has been given a name.
+///
+pub fn special_for_undetermined_language() -> {{ type_name }} {{ "{" }}
+    {{ type_name }}::Und
+{{ "}" }}
+
+///
+/// The code `zxx` (no linguistic content / not applicable) is intended
+/// for data which is not a language at all, such as animal calls.
+///
+pub fn special_for_no_linguistic_content() -> {{ type_name }} {{ "{" }}
+    {{ type_name }}::Zxx
 {{ "}" }}
 
 // ------------------------------------------------------------------------------------------------
@@ -65,12 +106,18 @@ impl From<{{ type_name }}> for String {{ "{" }}
 {{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
+     ///
+     /// Returns the ISO 639-3 three-letter code a string.
+     ///
      pub fn code(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
          {{ "}" }}
      {{ "}" }}
 
+     ///
+     /// Returns the corresponding ISO 639-1 two-letter code, if one exists.
+     ///
      pub fn part_1_code(&self) -> Option<Part1> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].part_1_code %}
              Self::{{ id | capitalize }} => Some(Part1::{{ codes[id].part_1_code | capitalize }}),{% endif %}{% endfor %}
@@ -78,6 +125,19 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
+     ///
+     /// Returns the name (called "ref name" in the standard)
+     /// of this language.
+     ///
+     pub fn language_name(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ codes[id].ref_name }}",{% endfor %}
+         {{ "}" }}
+     {{ "}" }}
+
+     ///
+     /// Return the scope defined for this language.
+     ///
      #[cfg(feature = "scope")]
      pub fn scope(&self) -> LanguageScope {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
@@ -85,6 +145,9 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
+     ///
+     /// Return the language type defined for this language.
+     ///
      #[cfg(feature = "language_type")]
      pub fn language_type(&self) -> LanguageType {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
@@ -92,17 +155,24 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
-     #[cfg(feature = "ref_name")]
-     pub fn ref_name(&self) -> &'static str {{ "{" }}
-         match self {{ "{" }}{% for id in all_ids %}
-             Self::{{ id | capitalize }} => "{{ codes[id].ref_name }}",{% endfor %}
-         {{ "}" }}
-     {{ "}" }}
-
+     ///
+     /// Return any comment included in the registration for this language.
+     ///
      #[cfg(feature = "comment")]
      pub fn comment(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].comment %}
              Self::{{ id | capitalize }} => Some("{{ codes[id].comment }}"),{% endif %}{% endfor %}
+             _ => None
+         {{ "}" }}
+     {{ "}" }}
+
+     ///
+     /// If this language is a macro language, return a list of individuals.
+     ///
+     #[cfg(feature = "macro_individuals")]
+     pub fn macro_individuals(&self) -> Option<&[LanguageCode]> {{ "{" }}
+         match self {{ "{" }}{% for code, individuals in macro_langs %}
+             Self::{{ code | capitalize }} => Some(&[{% for code in individuals %}{{ type_name }}::{{ code | capitalize }}, {% endfor %} ]),{% endfor %}
              _ => None
          {{ "}" }}
      {{ "}" }}

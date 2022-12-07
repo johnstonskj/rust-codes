@@ -13,18 +13,30 @@ use serde::{Deserialize, Serialize};
 ///
 /// An instance of the `Standard` struct defined in the
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
-/// package that describes the ISO-10383 specification.
+/// package that describes the ISO-639-5 specification.
 ///
 pub const ISO_639_5: Standard = Standard::new_with_long_ref(
     Agency::ISO,
     "639-5",
-    "ISO 639-5:2002",
-    "Codes for the representation of names of languages — Part 1: Alpha-2 code",
-    "https://www.iso.org/standard/22109.html",
+    "ISO 639-5:2008",
+    "Codes for the representation of names of languages — Part 5: Alpha-3 code for language families and groups",
+    "https://www.iso.org/standard/39536.html",
 );
 
 /// 
-/// 
+/// A Language Code enumeration representing the three-letter
+/// 639-35identifier.
+///
+/// ISO 639-5 defines alpha-3 (3-letter) codes, called "collective
+/// codes", that identify language families and groups. As of the
+/// February 11, 2013 update to ISO 639-5, the standard defines
+/// 115 collective codes. The United States Library of Congress
+/// maintains the list of Alpha-3 codes that comprise ISO 639-5.
+///
+/// The standard does not cover all language families used by
+/// linguists. The languages covered by a group code need not be
+/// linguistically related, but may have a geographic relation,
+/// or category relation (such as Creoles).
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
@@ -67,13 +79,19 @@ impl From<{{ type_name }}> for String {{ "{" }}
 {{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
+     ///
+     /// Returns the ISO 639-5 three-letter code a string.
+     ///
      pub fn code(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
          {{ "}" }}
      {{ "}" }}
 
-     pub fn label(&self) -> &'static str {{ "{" }}
+     ///
+     /// Returns the name of this language family or group.
+     ///
+     pub fn family_or_group_name(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id | capitalize }} => "{{ codes[id].label }}",{% endfor %}
          {{ "}" }}

@@ -5,6 +5,7 @@ use tera::{Map, Value};
 #[derive(Debug)]
 struct Data {
     rows: Vec<Map<String, Value>>,
+    macros: Map<String, Value>,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -17,7 +18,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     process(
         default_init,
-        process_part3_csv,
+        |data| process_part3_csv(data).and_then(process_part3_macro_csv),
         finalize_part3,
         make_default_renderer("part_3._rs", "part_3.rs"),
     )?;
@@ -36,6 +37,7 @@ impl Default for Data {
     fn default() -> Self {
         Self {
             rows: Default::default(),
+            macros: Default::default(),
         }
     }
 }
@@ -58,23 +60,19 @@ fn process_part1_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
             Value::String(record.get(1).unwrap().to_string()),
         );
 
-        let label = record.get(2).unwrap().to_string();
-        let (primary, other) = if label.contains('|') {
-            let mut labels = label.split('|');
-            let label = labels.next().unwrap().trim();
-            let other = labels
-                .map(|s| Value::String(s.trim().to_string()))
-                .collect::<Vec<Value>>();
-            (label.to_string(), other)
-        } else {
-            (label, Vec::default())
-        };
-
-        row.insert("label".to_string(), Value::String(primary));
-
-        if !other.is_empty() {
-            row.insert("alt_labels".to_string(), Value::Array(other));
-        }
+        let names = record.get(2).unwrap().to_string();
+        row.insert(
+            "label".to_string(),
+            Value::String(if names.contains('|') {
+                let names = names.split('|');
+                names
+                    .map(|s| s.to_string())
+                    .collect::<Vec<String>>()
+                    .join("; ")
+            } else {
+                names.to_string()
+            }),
+        );
 
         data.rows.push(row);
     }
@@ -195,6 +193,33 @@ fn process_part3_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
     Ok(data)
 }
 
+fn process_part3_macro_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
+    let file_name = format!("{}/iso-639-3-macro-languages.tsv", DEFAULT_DATA_DIR);
+
+    let mut rdr = csv::ReaderBuilder::new()
+        .has_headers(true)
+        .delimiter(b'\t')
+        .trim(csv::Trim::All)
+        .from_reader(File::open(file_name)?);
+
+    for result in rdr.records() {
+        let record = result?;
+
+        if record.get(2).unwrap() == "A" {
+            let macro_code = record.get(0).unwrap();
+            let individual_code = Value::String(record.get(1).unwrap().to_string());
+            if let Some(Value::Array(macro_langs)) = data.macros.get_mut(macro_code) {
+                macro_langs.push(individual_code)
+            } else {
+                data.macros
+                    .insert(macro_code.to_string(), Value::Array(vec![individual_code]));
+            }
+        }
+    }
+
+    Ok(data)
+}
+
 fn finalize_part3(data: Data) -> std::result::Result<tera::Context, Box<dyn std::error::Error>> {
     let mut ctx = tera::Context::new();
 
@@ -230,6 +255,8 @@ fn finalize_part3(data: Data) -> std::result::Result<tera::Context, Box<dyn std:
                 .collect(),
         ),
     );
+
+    ctx.insert("macro_langs", &data.macros);
 
     Ok(ctx)
 }

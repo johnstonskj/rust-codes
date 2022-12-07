@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// An instance of the `Standard` struct defined in the
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
-/// package that describes the ISO-10383 specification.
+/// package that describes the ISO-639-1 specification.
 ///
 pub const ISO_639_1: Standard = Standard::new_with_long_ref(
     Agency::ISO,
@@ -24,7 +24,8 @@ pub const ISO_639_1: Standard = Standard::new_with_long_ref(
 );
 
 /// 
-/// 
+/// A Language Code enumeration representing the two-letter
+/// 639-1 identifier.
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
@@ -67,22 +68,22 @@ impl From<{{ type_name }}> for String {{ "{" }}
 {{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
+     ///
+     /// Returns the ISO 639-1 two-letter code a string.
+     ///
      pub fn code(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
          {{ "}" }}
      {{ "}" }}
 
-     pub fn label(&self) -> &'static str {{ "{" }}
+     ///
+     /// Returns name, or names of this language. Where multiple names
+     /// exist they are separated by `';'`.
+     ///
+     pub fn language_name(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id | capitalize }} => "{{ codes[id].label }}",{% endfor %}
-         {{ "}" }}
-     {{ "}" }}
-
-     pub fn alt_labels(&self) -> &'static [&'static str] {{ "{" }}
-         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].alt_labels %}
-             Self::{{ id | capitalize }} => &[{% for label in codes[id].alt_labels %}"{{ label }}",{% endfor %}],{% endif %}{% endfor %}
-             _ => &[],
          {{ "}" }}
      {{ "}" }}
 {{ "}" }}

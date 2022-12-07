@@ -1,5 +1,9 @@
 /*!
-One-line description.
+This package contains an implementation of the ISO 639
+[part 1](https://www.iso.org/standard/22109.html),
+[part 3](https://www.iso.org/standard/39534.html), and
+[part 5](https://www.iso.org/standard/39536.html)
+Language Code specifications.
 
 ISO 639-1, the two-character code, was devised primarily for use in
 terminology and includes identifiers for most of the major languages of the
@@ -34,6 +38,17 @@ languages.
 YYYYY
 
 # Features
+
+By default only the `serde` feature is enabled, and [part_1] two-letter
+language codes.
+
+* `serde` - Enables serialization of the different Language Code types.
+* `part_3` - Adds the ISO 639-3 three-letter language codes.
+  * `comment` - Adds the `LanguageCode::comment` method.
+  * `language_type` - Adds the `LanguageCode::language_type` method.
+  * `macro_individuals` - Adds the `LanguageCode::macro_individuals` method.
+  * `scope` - Adds the `LanguageCode::scope` method.
+* `part_5` - Adds the ISO 639-5 three-letter language family or group codes.
 
 */
 
