@@ -1,7 +1,7 @@
 use crate::LanguageCodeError;
-use std::fmt;
 use std::str::FromStr;
 use codes_agency::{Agency, Standard};
+use codes_common::code_impl;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -38,12 +38,6 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-impl fmt::Display for {{ type_name }} {{ "{" }}
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {{ "{" }}
-        write!(f, "{}", self.code())
-    {{ "}" }}
-{{ "}" }}
-
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
 
@@ -55,17 +49,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl AsRef<str> for {{ type_name }} {{ "{" }}
-    fn as_ref(&self) -> &str {{ "{" }}
-        self.code()
-    {{ "}" }}
-{{ "}" }}
-
-impl From<{{ type_name }}> for String {{ "{" }}
-    fn from(v: {{ type_name }}) -> String {{ "{" }}
-        v.code().to_string()
-    {{ "}" }}
-{{ "}" }}
+code_impl!({{ type_name }});
 
 impl {{ type_name }} {{ "{" }}
      ///
