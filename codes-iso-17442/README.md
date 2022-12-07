@@ -18,6 +18,8 @@ For notes on the design of the API, see the repository
 
 **Version 0.1.0**
 
+* Initial release
+
 ## TODO
 
 TBD
