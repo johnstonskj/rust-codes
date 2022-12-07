@@ -1,4 +1,4 @@
-# Package codes-iso-xxx
+# Package codes-iso-10383
 
 This package contains an implementation of the [ISO
 10383](https://www.iso.org/standard/61067.html) Securities and related
