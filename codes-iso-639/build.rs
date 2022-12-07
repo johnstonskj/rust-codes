@@ -1,10 +1,14 @@
-use codes_common::{default_init, make_default_renderer, process, DEFAULT_DATA_DIR};
+use codes_common::{
+    default_finalize_for, default_init, make_default_renderer, process, rerun_if_changed,
+    Data as DataTrait, DEFAULT_DATA_DIR,
+};
+use std::collections::BTreeMap;
 use std::fs::File;
 use tera::{Map, Value};
 
 #[derive(Debug, Default)]
 struct Data {
-    rows: Vec<Map<String, Value>>,
+    rows: BTreeMap<String, Map<String, Value>>,
     macros: Map<String, Value>,
 }
 
@@ -12,7 +16,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     process(
         default_init,
         process_part1_csv,
-        finalize_part1,
+        default_finalize_for,
         make_default_renderer("part_1._rs", "part_1.rs"),
     )?;
 
@@ -26,7 +30,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     process(
         default_init,
         process_part5_csv,
-        finalize_part5,
+        default_finalize_for,
         make_default_renderer("part_5._rs", "part_5.rs"),
     )?;
 
@@ -35,6 +39,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 fn process_part1_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
     let file_name = format!("{}/iso-639-1.tsv", DEFAULT_DATA_DIR);
+
+    rerun_if_changed(&file_name);
 
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)
@@ -46,10 +52,9 @@ fn process_part1_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
         let record = result?;
 
         let mut row: Map<String, Value> = Default::default();
-        row.insert(
-            "code".to_string(),
-            Value::String(record.get(1).unwrap().to_string()),
-        );
+
+        let id = record.get(1).unwrap().to_string();
+        row.insert("code".to_string(), Value::String(id.clone()));
 
         let names = record.get(2).unwrap().to_string();
         row.insert(
@@ -65,55 +70,16 @@ fn process_part1_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
             }),
         );
 
-        data.rows.push(row);
+        data.insert_row(&id, row);
     }
 
     Ok(data)
 }
 
-fn finalize_part1(data: Data) -> std::result::Result<tera::Context, Box<dyn std::error::Error>> {
-    let mut ctx = tera::Context::new();
-
-    ctx.insert(
-        "type_name".to_string(),
-        &Value::String("LanguageCode".to_string()),
-    );
-
-    let mut all_ids: Vec<String> = data
-        .rows
-        .iter()
-        .map(|r| r.get("code").unwrap().as_str().unwrap().to_string())
-        .collect();
-    all_ids.sort();
-    all_ids.dedup();
-
-    ctx.insert(
-        "all_ids",
-        &Value::Array(all_ids.into_iter().map(Value::String).collect()),
-    );
-
-    ctx.insert(
-        "codes",
-        &Value::Object(
-            data.rows
-                .into_iter()
-                .map(|row| {
-                    (
-                        row.get("code").unwrap().as_str().unwrap().to_string(),
-                        Value::Object(row),
-                    )
-                })
-                .collect(),
-        ),
-    );
-
-    println!("{:#?}", ctx);
-
-    Ok(ctx)
-}
-
 fn process_part3_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
     let file_name = format!("{}/iso-639-3.tsv", DEFAULT_DATA_DIR);
+
+    rerun_if_changed(&file_name);
 
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)
@@ -125,10 +91,9 @@ fn process_part3_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
         let record = result?;
 
         let mut row: Map<String, Value> = Default::default();
-        row.insert(
-            "code".to_string(),
-            Value::String(record.get(0).unwrap().to_string()),
-        );
+
+        let id = record.get(0).unwrap().to_string();
+        row.insert("code".to_string(), Value::String(id.clone()));
 
         let part_1_code = record.get(3).unwrap().to_string();
         if part_1_code != "sh" {
@@ -178,7 +143,7 @@ fn process_part3_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
             row.insert("comment".to_string(), Value::String(comment));
         }
 
-        data.rows.push(row);
+        data.insert_row(&id, row);
     }
 
     Ok(data)
@@ -186,6 +151,8 @@ fn process_part3_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
 
 fn process_part3_macro_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
     let file_name = format!("{}/iso-639-3-macro-languages.tsv", DEFAULT_DATA_DIR);
+
+    rerun_if_changed(&file_name);
 
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)
@@ -212,48 +179,18 @@ fn process_part3_macro_csv(mut data: Data) -> Result<Data, Box<dyn std::error::E
 }
 
 fn finalize_part3(data: Data) -> std::result::Result<tera::Context, Box<dyn std::error::Error>> {
-    let mut ctx = tera::Context::new();
+    let macros = data.macros.clone();
+    let mut ctx = default_finalize_for(data)?;
 
-    ctx.insert(
-        "type_name".to_string(),
-        &Value::String("LanguageCode".to_string()),
-    );
-
-    let mut all_ids: Vec<String> = data
-        .rows
-        .iter()
-        .map(|r| r.get("code").unwrap().as_str().unwrap().to_string())
-        .collect();
-    all_ids.sort();
-    all_ids.dedup();
-
-    ctx.insert(
-        "all_ids",
-        &Value::Array(all_ids.into_iter().map(Value::String).collect()),
-    );
-
-    ctx.insert(
-        "codes",
-        &Value::Object(
-            data.rows
-                .into_iter()
-                .map(|row| {
-                    (
-                        row.get("code").unwrap().as_str().unwrap().to_string(),
-                        Value::Object(row),
-                    )
-                })
-                .collect(),
-        ),
-    );
-
-    ctx.insert("macro_langs", &data.macros);
+    ctx.insert("macro_langs", &macros);
 
     Ok(ctx)
 }
 
 fn process_part5_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
     let file_name = format!("{}/iso-639-5.tsv", DEFAULT_DATA_DIR);
+
+    rerun_if_changed(&file_name);
 
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)
@@ -266,56 +203,44 @@ fn process_part5_csv(mut data: Data) -> Result<Data, Box<dyn std::error::Error>>
 
         let mut row: Map<String, Value> = Default::default();
 
-        row.insert(
-            "code".to_string(),
-            Value::String(record.get(1).unwrap().to_string()),
-        );
+        let id = record.get(1).unwrap().to_string();
+        row.insert("code".to_string(), Value::String(id.clone()));
+
         row.insert(
             "label".to_string(),
             Value::String(record.get(2).unwrap().to_string()),
         );
 
-        data.rows.push(row);
+        data.insert_row(&id, row);
     }
 
     Ok(data)
 }
 
-fn finalize_part5(data: Data) -> std::result::Result<tera::Context, Box<dyn std::error::Error>> {
-    let mut ctx = tera::Context::new();
+impl DataTrait for Data {
+    fn new(_: &'static str) -> Self
+    where
+        Self: Sized,
+    {
+        Self {
+            rows: Default::default(),
+            macros: Default::default(),
+        }
+    }
 
-    ctx.insert(
-        "type_name".to_string(),
-        &Value::String("LanguageCode".to_string()),
-    );
+    fn type_name(&self) -> &'static str {
+        "LanguageCode"
+    }
 
-    let mut all_ids: Vec<String> = data
-        .rows
-        .iter()
-        .map(|r| r.get("code").unwrap().as_str().unwrap().to_string())
-        .collect();
-    all_ids.sort();
-    all_ids.dedup();
+    fn rows(&self) -> &std::collections::BTreeMap<String, Map<String, Value>> {
+        &self.rows
+    }
 
-    ctx.insert(
-        "all_ids",
-        &Value::Array(all_ids.into_iter().map(Value::String).collect()),
-    );
+    fn rows_mut(&mut self) -> &mut std::collections::BTreeMap<String, Map<String, Value>> {
+        &mut self.rows
+    }
 
-    ctx.insert(
-        "codes",
-        &Value::Object(
-            data.rows
-                .into_iter()
-                .map(|row| {
-                    (
-                        row.get("code").unwrap().as_str().unwrap().to_string(),
-                        Value::Object(row),
-                    )
-                })
-                .collect(),
-        ),
-    );
-
-    Ok(ctx)
+    fn into_rows(self) -> std::collections::BTreeMap<String, Map<String, Value>> {
+        self.rows
+    }
 }
