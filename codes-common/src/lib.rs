@@ -51,7 +51,7 @@ YYYYY
     dyn_drop,
 )]
 
-use std::{env, fs::File, path::Path};
+use std::{collections::BTreeMap, env, fs::File, path::Path};
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
@@ -60,6 +60,52 @@ use std::{env, fs::File, path::Path};
 pub const DEFAULT_DATA_DIR: &str = "data";
 
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
+
+pub trait Data {
+    fn new(type_name: &'static str) -> Self
+    where
+        Self: Sized;
+    fn type_name(&self) -> &'static str;
+    fn all_ids(&self) -> Vec<&String> {
+        self.rows().keys().collect()
+    }
+    fn all_ids_sorted(&self) -> Value {
+        let mut all_ids = self.all_ids();
+        all_ids.sort();
+        all_ids.dedup();
+        Value::Array(
+            all_ids
+                .into_iter()
+                .map(|s| Value::String(s.into()))
+                .collect(),
+        )
+    }
+    fn rows(&self) -> &BTreeMap<String, Map<String, Value>>;
+    fn rows_mut(&mut self) -> &mut BTreeMap<String, Map<String, Value>>;
+    fn into_rows(self) -> BTreeMap<String, Map<String, Value>>;
+    fn contains(&self, id: &str) -> bool {
+        self.rows().contains_key(id)
+    }
+    fn get(&self, id: &str) -> Option<&Map<String, Value>> {
+        self.rows().get(id)
+    }
+    fn get_mut(&mut self, id: &str) -> Option<&mut Map<String, Value>> {
+        self.rows_mut().get_mut(id)
+    }
+    fn insert_row(&mut self, id: &str, row: Map<String, Value>) {
+        self.rows_mut().insert(id.to_string(), row);
+    }
+    fn insert_row_value(&mut self, id: &str, key: &str, value: Value) {
+        let row = self.get_mut(id).unwrap();
+        row.insert(key.to_string(), value);
+    }
+}
+
+#[derive(Debug, Default)]
+pub struct SimpleData {
+    type_name: &'static str,
+    rows: BTreeMap<String, Map<String, Value>>,
+}
 
 // ------------------------------------------------------------------------------------------------
 // Public Functions
@@ -98,6 +144,49 @@ where
     Ok(data.into())
 }
 
+pub fn default_finalize_for<T>(data: T) -> Result<tera::Context, Box<dyn std::error::Error>>
+where
+    T: Data,
+{
+    let mut ctx = tera::Context::new();
+
+    ctx.insert("type_name", &Value::String(data.type_name().into()));
+
+    ctx.insert("all_ids", &data.all_ids_sorted());
+
+    ctx.insert(
+        "codes",
+        &Value::Object(
+            data.into_rows()
+                .into_iter()
+                .map(|(key, value)| (key, Value::Object(value)))
+                .collect(),
+        ),
+    );
+
+    Ok(ctx)
+}
+
+#[inline]
+pub fn input_file_name(name: &str) -> String {
+    let file_name = format!("{}/{}", DEFAULT_DATA_DIR, name);
+    rerun_if_changed(&file_name);
+    file_name
+}
+
+#[inline]
+pub fn rerun_if_changed(file_name: &str) {
+    println!("cargo:rerun-if-changed={}", file_name);
+}
+
+#[inline]
+pub fn rerun_if_template_changed(file_name: &str) {
+    println!(
+        "cargo:rerun-if-changed={}/{}",
+        DEFAULT_TEMPLATE_DIR, file_name
+    );
+}
+
 pub fn make_default_renderer<S1, S2>(
     template_name: S1,
     generated_file_name: S2,
@@ -112,10 +201,7 @@ where
         let output_dir: String = env::var("OUT_DIR").unwrap();
         let file_name = Path::new(&output_dir).join(&generated_file_name);
 
-        println!(
-            "cargo:rerun-if-changed={}/{}",
-            DEFAULT_TEMPLATE_DIR, template_name
-        );
+        rerun_if_template_changed(&template_name);
 
         let tera = tera::Tera::new(&format!("{}/*._rs", DEFAULT_TEMPLATE_DIR))?;
 
@@ -130,6 +216,34 @@ where
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
+impl Data for SimpleData {
+    fn new(type_name: &'static str) -> Self
+    where
+        Self: Sized,
+    {
+        Self {
+            type_name,
+            rows: Default::default(),
+        }
+    }
+
+    fn type_name(&self) -> &'static str {
+        self.type_name
+    }
+
+    fn rows(&self) -> &BTreeMap<String, Map<String, Value>> {
+        &self.rows
+    }
+
+    fn rows_mut(&mut self) -> &mut BTreeMap<String, Map<String, Value>> {
+        &mut self.rows
+    }
+
+    fn into_rows(self) -> BTreeMap<String, Map<String, Value>> {
+        self.rows
+    }
+}
+
 // ------------------------------------------------------------------------------------------------
 // Modules
 // ------------------------------------------------------------------------------------------------
@@ -137,3 +251,4 @@ where
 #[doc(hidden)]
 mod error;
 pub use error::{invalid_format, invalid_length, unknown_value, CodeParseError};
+use tera::{Map, Value};
