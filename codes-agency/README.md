@@ -29,6 +29,10 @@ By default only the `serde` feature is enabled.
   
 ## Changes
 
+**Version 0.1.5**
+
+* Added `ALL_CODES` constant.
+
 **Version 0.1.4**
 
 * Clean-up implementation based on newer `codes-common`

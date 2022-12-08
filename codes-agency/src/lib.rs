@@ -87,6 +87,9 @@ pub enum Agency {
     ISO,
 }
 
+/// Provides an array of all defined codes, useful for queries.
+pub const ALL_CODES: [Agency; 4] = [Agency::IANA, Agency::IEEE, Agency::IETF, Agency::ISO];
+
 ///
 /// This structure allows for the description of a specific standard, or specification,
 /// issued by a well-known standards agency. Note that different versions of a standard
