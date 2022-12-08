@@ -37,6 +37,11 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     m{% endif %}{{ id }},{% endfor %}
 {{ "}" }}
 
+/// Provides an array of all defined codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
+    {{ type_name }}::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }},{% endfor %}
+];
+
 pub use codes_common::CodeParseError as {{ type_name }}Error;
 
 // ------------------------------------------------------------------------------------------------

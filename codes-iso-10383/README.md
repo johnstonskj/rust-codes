@@ -17,6 +17,10 @@ TBD
 
 ## Changes
 
+**Version 0.1.2**
+
+* Added `ALL_CODES` constant.
+
 **Version 0.1.1**
 
 * Clean-up implementation based on newer `codes-common`
