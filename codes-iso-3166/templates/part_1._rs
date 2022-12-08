@@ -135,6 +135,7 @@ impl {{ type_name }} {{ "{" }}
 
      /// Returns the short name of this country in it's own administrative language.
      #[cfg(feature = "local_names")]
+     #[allow(clippy::match_single_binding)]
      pub fn local_short_name(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].local_short_name %}
              Self::{{ id }} => Some("{{ codes[id].local_short_name }}"),{% endif %}{% endfor %}
@@ -144,6 +145,7 @@ impl {{ type_name }} {{ "{" }}
 
      /// Returns the full name of this country in it's own administrative language.
      #[cfg(all(feature = "local_names", feature = "full_name"))]
+     #[allow(clippy::match_single_binding)]
      pub fn local_full_name(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].local_full_name %}
              Self::{{ id }} => Some("{{ codes[id].local_full_name }}"),{% endif %}{% endfor %}
