@@ -1,7 +1,7 @@
 [package]
 name = "codes-common"
 description  = "Support capabilities for codes-* packages."
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-common/"
@@ -9,7 +9,6 @@ authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 publish = true
-
 
 [dependencies]
 tera = "1.17.1"
