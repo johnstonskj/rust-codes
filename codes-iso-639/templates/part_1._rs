@@ -34,7 +34,7 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     {{ id | capitalize }},{% endfor %}
 {{ "}" }}
 
-/// Provides an array of all defined codes, useful for queries.
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
     {{ type_name }}::{{ id | capitalize }},{% endfor %}
 ];

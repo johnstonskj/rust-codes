@@ -87,7 +87,7 @@ pub enum Agency {
     ISO,
 }
 
-/// Provides an array of all defined codes, useful for queries.
+/// Provides an array of all defined [Agency] codes, useful for queries.
 pub const ALL_CODES: [Agency; 4] = [Agency::IANA, Agency::IEEE, Agency::IETF, Agency::ISO];
 
 ///
