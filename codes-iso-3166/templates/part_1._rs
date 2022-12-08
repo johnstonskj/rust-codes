@@ -27,14 +27,22 @@ pub const ISO_3166: Standard = Standard::new_with_long_ref(
 );
 
 /// 
+/// This is a full enumeration of all the countries defined in ISO 3166-1.
 /// 
+/// The standard's two-letter code is used as a variant name, in upper
+/// case.  
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
-    /// {{ codes[id].short_name }}
+    /// {{ codes[id].short_name | replace(from="[", to="\[") | replace(from="]", to="\]") }}
     {{ id }},{% endfor %}
 {{ "}" }}
+
+/// Provides an array of all defined codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
+    {{ type_name }}::{{ id }},{% endfor %}
+];
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
@@ -54,11 +62,9 @@ impl FromStr for {{ type_name }} {{ "{" }}
 code_impl!({{ type_name }}, alpha_2_code);
 
 impl {{ type_name }} {{ "{" }}
-     /// Alpha-2 code – a two-letter code that represents a country name,
-     /// recommended as the general purpose code.
-     /// Two-letter country codes are the most widely used of the three,
-     /// and used most prominently for the Internet's country code
-     /// top-level domains (with a few exceptions)
+     /// Returns the two-letter country codes which are the most widely
+     /// used of the three, and used most prominently for the Internet's
+     /// country code top-level domains (with a few exceptions).
      pub fn alpha_2_code(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => "{{ id }}",{% endfor %}
@@ -71,10 +77,9 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
-     /// Alpha-3 code – a three-letter code that represents a country name,
-     /// which is usually more closely related to the country name.
-     /// These also allow a better visual association between the codes and
-     /// the country names than the alpha-2 codes
+     /// Returns the three-letter country codes which allow a better
+     /// visual association between the codes and the country names
+     /// than the alpha-2 codes.
      #[cfg(feature = "alpha_3_code")]
      pub fn alpha_3_code(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].alpha_3_code %}
@@ -82,7 +87,12 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the three-digit country codes which are identical to
+     /// those developed and maintained by the United Nations
+     /// Statistics Division, with the advantage of script (writing
+     /// system) independence, and hence useful for people or systems
+     /// using non-Latin scripts.
      #[cfg(feature = "numeric_code")]
      pub fn numeric_code(&self) -> Option<u16> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].numeric_code %}
@@ -114,6 +124,22 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
      
+     #[cfg(feature = "local_names")]
+     pub fn local_short_name(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].local_short_name %}
+             Self::{{ id }} => Some("{{ codes[id].local_short_name }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(all(feature = "local_names", feature = "full_name"))]
+     pub fn local_full_name(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].local_full_name %}
+             Self::{{ id }} => Some("{{ codes[id].local_full_name }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
      #[cfg(feature = "languages")]
      pub fn languages(&self) -> Option<&[LanguageCode]> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].languages %}
@@ -126,6 +152,22 @@ impl {{ type_name }} {{ "{" }}
      pub fn administrative_language(&self) -> Option<LanguageCode> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].administrative_language %}
              Self::{{ id }} => Some(LanguageCode::{{ codes[id].administrative_language | capitalize }}),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "formerly")]
+     pub fn former_short_name(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].former_short_name %}
+             Self::{{ id }} => Some("{{ codes[id].former_short_name }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+     
+     #[cfg(feature = "formerly")]
+     pub fn former_alpha_3_code(&self) -> Option<&'static str> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].former_alpha_3_code %}
+             Self::{{ id }} => Some("{{ codes[id].former_alpha_3_code }}"),{% endif %}{% endfor %}
              _ => None,
          {{ "}" }}
      {{ "}" }}

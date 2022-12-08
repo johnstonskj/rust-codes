@@ -13,11 +13,20 @@ use codes_iso_639::part_3::LanguageCode;
 // ------------------------------------------------------------------------------------------------
 
 /// 
-/// 
+/// This type is used to encapsulate the numeric code for territories.
+///
+/// The territory code is not used directly in the standard but the names
+/// are included in comments in the main country list to enumerate the
+/// territories by country. 
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct {{ type_name }}(u32);
+
+/// Provides an array of all defined codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
+    {{ type_name }}({{ id }}),{% endfor %}
+];
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
@@ -51,11 +60,13 @@ impl TryFrom<u32> for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl {{ type_name }} {{ "{" }}    
+impl {{ type_name }} {{ "{" }}
+     /// Returns the numeric code for this territory.
      pub fn code(&self) -> u32 {{ "{" }}
          self.0
      {{ "}" }}
 
+     /// Returns the country code for the country that includes this territory.
      pub fn country_code(&self) -> CountryCode {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => CountryCode::{{ codes[id].country_alpha_2_code }},{% endfor %}
@@ -63,6 +74,7 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
+     /// Return the language code corresponding to this territory's name.
      pub fn language_code(&self) -> LanguageCode {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => LanguageCode::{{ codes[id].language_alpha_3_code | capitalize }},{% endfor %}
@@ -70,6 +82,7 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
+     /// Returns the name of this territory.
      pub fn name(&self) -> &'static str {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => "{{ codes[id].name }}",{% endfor %}

@@ -28,7 +28,11 @@ pub const ISO_3166: Standard = Standard::new_with_long_ref(
 );
 
 /// 
+/// This is a full enumeration of all the country subdivisions defined in
+/// ISO 3166-1.
 /// 
+/// The standard's code is used as a variant name, in upper case, with the
+/// hyphen separator replaced with an underscore.  
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
@@ -37,6 +41,11 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     /// {{ codes[id].code }}
     {{ id }},{% endfor %}
 {{ "}" }}
+
+/// Provides an array of all defined codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
+    {{ type_name }}::{{ id }},{% endfor %}
+];
 
 // ------------------------------------------------------------------------------------------------
 // Implementations

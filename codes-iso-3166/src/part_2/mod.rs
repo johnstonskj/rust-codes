@@ -8,7 +8,7 @@ The purpose of ISO 3166-2 is to establish an international standard of short
 and unique alphanumeric codes to represent the relevant administrative
 divisions and dependent territories of all countries in a more convenient and
 less ambiguous form than their full names. Each complete ISO 3166-2 code
-consists of two parts, separated by a hyphen:[1]
+consists of two parts, separated by a hyphen:
 
 * The first part is the ISO 3166-1 alpha-2 code of the country;
 * The second part is a string of up to three alphanumeric characters, which
@@ -45,10 +45,14 @@ include!(concat!(env!("OUT_DIR"), "/part_2.rs"));
 #[doc(hidden)]
 mod categories;
 #[cfg(feature = "categories")]
-pub use categories::SubdivisionCategoryCode;
+pub use categories::{SubdivisionCategoryCode, ALL_CODES as ALL_CATEGORIES};
 
 #[cfg(feature = "territories")]
 #[doc(hidden)]
 mod territories;
 #[cfg(feature = "territories")]
-pub use territories::TerritoryCode;
+pub use territories::{TerritoryCode, ALL_CODES as ALL_TERRITORIES};
+
+#[cfg(feature = "indices")]
+#[doc(hidden)]
+pub mod indices;

@@ -12,7 +12,7 @@ their subdivisions.
 # Alpha-2 Codes
 
 SO 3166-1 alpha-2 codes are two-letter country codes defined in ISO 3166-1,
-part of the ISO 3166 standard[1] published by the International Organization
+part of the ISO 3166 standard published by the International Organization
 for Standardization (ISO), to represent countries, dependent territories, and
 special areas of geographical interest. They are the most widely used of the
 country codes published by ISO (the others being alpha-3 and numeric), and are
@@ -55,17 +55,28 @@ difficult to use, understand, or correctly interpret. While numeric codes
 overcome the problems of script dependence, this independence comes at the
 cost of loss of mnemonic convenience.
 
-|                         | AG                  | ID                        |
-| ----------------------- | ------------------- | ------------------------- |
-| **alpha-2 code**        | AG                  | ID                        |
-| **short name**          | Antigua and Barbuda | Indonesia                 |
-| alpha-3 code            | ATG                 | IDN                       |
-| numeric code            | 028                 | 360                       |
-| independent             | true                | true                      |
-| status                  | Assigned            | Assigned                  |
-| full name               |                     | the Republic of Indonesia |
-| languages               | Eng, Fra            | Eng, Fra, Ind             |
-| administrative language | Eng                 | Ind                       |
+# Properties
+
+The following table demonstrates the set of properties available on the part-1
+`CountryCode` type. Note that where a code has been reused, that is it has an
+active record *and* a former record, then the details of the former are
+included. Where a full name is not included it is safe to assume that the short
+name may be used as such.
+
+|                         | AG                  | ID                        | SK                  |
+| ----------------------- | ------------------- | ------------------------- | ------------------- |
+| **alpha-2 code**        | AG                  | ID                        | SK                  |
+| **short name**          | Antigua and Barbuda | Indonesia                 | Slovakia            |
+| alpha-3 code            | ATG                 | IDN                       | SVK                 |
+| numeric code            | 028                 | 360                       | 703                 |
+| independent             | true                | true                      | true                |
+| status                  | Assigned            | Assigned                  | Assigned            |
+| full name               |                     | the Republic of Indonesia | the Slovak Republic |
+| languages               | Eng, Fra            | Eng, Fra, Ind             | Eng, Fra, Slk       |
+| administrative language | Eng                 | Ind                       | Slk                 |
+| former alpha-3 code     |                     |                           | SKM                 |
+| former short name       |                     |                           | Sikkim              |
+
 */
 
 // ------------------------------------------------------------------------------------------------
@@ -85,3 +96,7 @@ include!(concat!(env!("OUT_DIR"), "/part_1.rs"));
 mod status;
 #[cfg(feature = "status")]
 pub use status::Status;
+
+#[cfg(feature = "indices")]
+#[doc(hidden)]
+pub mod indices;

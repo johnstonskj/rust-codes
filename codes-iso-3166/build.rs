@@ -7,7 +7,11 @@ use tera::{Map, Value};
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     process(
         || Ok(SimpleData::new("CountryCode")),
-        |data| process_part_1_data(data).and_then(process_part_1_language_data),
+        |data| {
+            process_part_1_data(data)
+                .and_then(process_part_1_language_data)
+                .and_then(process_part_1_name_data)
+        },
         filter_finalize_part_1,
         make_default_renderer("part_1._rs", "part_1.rs"),
     )?;
@@ -116,13 +120,6 @@ fn process_part_1_data(mut data: SimpleData) -> Result<SimpleData, Box<dyn std::
     Ok(data)
 }
 
-pub fn filter_finalize_part_1(
-    mut data: SimpleData,
-) -> Result<tera::Context, Box<dyn std::error::Error>> {
-    data.retain(|_, v| v.contains_key("alpha_2_code"));
-    default_finalize_for(data)
-}
-
 fn process_part_1_language_data(
     mut data: SimpleData,
 ) -> Result<SimpleData, Box<dyn std::error::Error>> {
@@ -162,6 +159,51 @@ fn process_part_1_language_data(
     }
 
     Ok(data)
+}
+
+fn process_part_1_name_data(
+    mut data: SimpleData,
+) -> Result<SimpleData, Box<dyn std::error::Error>> {
+    let file_name = input_file_name("country-names.csv");
+
+    let mut rdr = csv::ReaderBuilder::new()
+        .has_headers(true)
+        .trim(csv::Trim::All)
+        .from_reader(File::open(file_name)?);
+
+    for result in rdr.records() {
+        let record = result?;
+
+        let code = record.get(0).unwrap();
+        let row = data.get_mut(code).unwrap();
+
+        // AN/ANT has no administrative language
+        if let Some(admin_language) = row.get("administrative_language") {
+            let admin_language = admin_language.as_str().unwrap();
+
+            let language_alpha_3_code = record.get(4).unwrap();
+            if language_alpha_3_code == admin_language {
+                let name = record.get(5).unwrap().to_string();
+                if !name.is_empty() {
+                    row.insert("administrative_short_name".to_string(), name.into());
+                }
+
+                let name = record.get(7).unwrap().to_string();
+                if !name.is_empty() {
+                    row.insert("administrative_full_name".to_string(), name.into());
+                }
+            }
+        }
+    }
+
+    Ok(data)
+}
+
+pub fn filter_finalize_part_1(
+    mut data: SimpleData,
+) -> Result<tera::Context, Box<dyn std::error::Error>> {
+    data.retain(|_, v| v.contains_key("alpha_2_code"));
+    default_finalize_for(data)
 }
 
 fn process_part_2_data(mut data: SimpleData) -> Result<SimpleData, Box<dyn std::error::Error>> {
@@ -305,6 +347,8 @@ fn process_part_2_territory_data(
 
     for result in rdr.records() {
         let record = result?;
+
+        // TODO: Add local_name using administrative language
 
         let language_alpha_3_code = record.get(5).unwrap();
         if language_alpha_3_code == "eng" {

@@ -1,5 +1,7 @@
 /*!
-This package contains an implementation of the [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) part 1 standard.
+This package contains an implementation of the [ISO
+// 3166](https://www.iso.org/iso-3166-country-codes.html), parts 1 and 2,
+// standard.
 
 The purpose of ISO 3166 is to define internationally recognized codes of
 letters and/or numbers that we can use when we refer to countries and their
@@ -39,11 +41,18 @@ language codes.
 * `independent` - Adds the `CountryCode::independent` method.
 * `status` - Adds the `CountryCode::status` method.
 * `full_name` - Adds the `CountryCode::full_name` method.
+* `local_names` - Adds the `CountryCode::local_short_name` and
+  `CountryCode::local_full_name` methods.
 * `languages`  - Adds the `CountryCode::administrative_language` and `CountryCode::languages` methods (requires package `codes-iso-639`).
+* `formerly` - Adds the `CountryCode::former_short_name` and
+  `CountryCode::former_alpha_3_code` methods.
 * `part_2` - Adds the corresponding module and `SubdivisionCode`.
   * `categories` - Adds the `SubdivisionCode::category_code` method and `SubdivisionCategoryCode` type.
   * `territories` - Adds the `TerritoryCode` type.
   * `languages` - Adds the `SubdivisionCode::name_language` method.
+
+Note that the method `CountryCode::local_full_name` requires both
+`local_names` and `full_name` features.
 
 */
 
