@@ -11,7 +11,8 @@ use serde::{Deserialize, Serialize};
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Status assigned to each country code.
+/// Status assigned to each country code. Note that those that are marked as
+/// formerly used are not included.
 ///
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]

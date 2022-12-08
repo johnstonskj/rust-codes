@@ -19,6 +19,10 @@ consists of two parts, separated by a hyphen:[1]
 Each complete ISO 3166-2 code can then be used to uniquely identify a country
 subdivision in a global context.
 
+# Categories
+
+# Territories
+
 # Example
 
 YYYYY

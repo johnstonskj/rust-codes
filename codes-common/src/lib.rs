@@ -297,6 +297,15 @@ impl Data for SimpleData {
     }
 }
 
+impl SimpleData {
+    pub fn retain<F>(&mut self, f: F)
+    where
+        F: FnMut(&String, &mut Map<String, Value>) -> bool,
+    {
+        self.rows.retain(f);
+    }
+}
+
 // ------------------------------------------------------------------------------------------------
 // Modules
 // ------------------------------------------------------------------------------------------------

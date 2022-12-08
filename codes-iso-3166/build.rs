@@ -8,7 +8,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     process(
         || Ok(SimpleData::new("CountryCode")),
         |data| process_part_1_data(data).and_then(process_part_1_language_data),
-        default_finalize_for,
+        filter_finalize_part_1,
         make_default_renderer("part_1._rs", "part_1.rs"),
     )?;
 
@@ -45,55 +45,82 @@ fn process_part_1_data(mut data: SimpleData) -> Result<SimpleData, Box<dyn std::
     for result in rdr.records() {
         let record = result?;
 
-        let mut row: Map<String, Value> = Default::default();
-
+        let mut new_row: Map<String, Value> = Default::default();
         let id = record.get(0).unwrap().to_string();
-        row.insert("alpha_2_code".to_string(), Value::String(id.clone()));
+        let row = if let Some(existing_row) = data.get_mut(&id) {
+            existing_row
+        } else {
+            &mut new_row
+        };
 
-        let alpha_3_code = record.get(1).unwrap().to_string();
-        if !alpha_3_code.is_empty() {
-            row.insert("alpha_3_code".to_string(), Value::String(alpha_3_code));
-        }
-
-        let numeric_code = record.get(2).unwrap();
-        if !numeric_code.is_empty() {
-            let numeric_code = u32::from_str(numeric_code).unwrap();
+        let status = record.get(4).unwrap();
+        if status == "formerly-used" {
             row.insert(
-                "numeric_code".to_string(),
-                Value::Number(numeric_code.into()),
+                "former_alpha_3_code".to_string(),
+                Value::String(record.get(1).unwrap().to_string()),
             );
-        }
 
-        let independent = record.get(3).unwrap().to_string();
-        if independent == "YES" {
-            row.insert("independent".to_string(), Value::Bool(true));
-        } else if independent == "NO" {
-            row.insert("independent".to_string(), Value::Bool(false));
-        }
+            row.insert(
+                "former_short_name".to_string(),
+                Value::String(record.get(5).unwrap().to_string()),
+            );
+        } else {
+            row.insert("alpha_2_code".to_string(), Value::String(id.clone()));
 
-        row.insert(
-            "status".to_string(),
-            Value::String(status_from_standard_string(record.get(4).unwrap())),
-        );
+            let alpha_3_code = record.get(1).unwrap().to_string();
+            if !alpha_3_code.is_empty() {
+                row.insert("alpha_3_code".to_string(), Value::String(alpha_3_code));
+            }
 
-        let mut short_name = record.get(5).unwrap().to_string();
-        if short_name.is_empty() {
-            short_name = record.get(6).unwrap().to_string();
+            let numeric_code = record.get(2).unwrap();
+            if !numeric_code.is_empty() {
+                let numeric_code = u32::from_str(numeric_code).unwrap();
+                row.insert(
+                    "numeric_code".to_string(),
+                    Value::Number(numeric_code.into()),
+                );
+            }
+
+            let independent = record.get(3).unwrap().to_string();
+            if independent == "YES" {
+                row.insert("independent".to_string(), Value::Bool(true));
+            } else if independent == "NO" {
+                row.insert("independent".to_string(), Value::Bool(false));
+            }
+
+            row.insert(
+                "status".to_string(),
+                Value::String(status_from_standard_string(status)),
+            );
+
+            let mut short_name = record.get(5).unwrap().to_string();
             if short_name.is_empty() {
-                short_name = record.get(4).unwrap().replace('-', " ");
+                short_name = record.get(6).unwrap().to_string();
+                if short_name.is_empty() {
+                    short_name = record.get(4).unwrap().replace('-', " ");
+                }
+            }
+            row.insert("short_name".to_string(), Value::String(short_name));
+
+            let full_name = record.get(7).unwrap().to_string();
+            if !full_name.is_empty() {
+                row.insert("full_name".to_string(), Value::String(full_name));
             }
         }
-        row.insert("short_name".to_string(), Value::String(short_name));
 
-        let full_name = record.get(7).unwrap().to_string();
-        if !full_name.is_empty() {
-            row.insert("full_name".to_string(), Value::String(full_name));
+        if !data.contains(&id) {
+            data.insert_row(&id, new_row);
         }
-
-        data.insert_row(&id, row);
     }
 
     Ok(data)
+}
+
+pub fn filter_finalize_part_1(
+    mut data: SimpleData,
+) -> Result<tera::Context, Box<dyn std::error::Error>> {
+    data.retain(|_, v| v.contains_key("alpha_2_code"));
+    default_finalize_for(data)
 }
 
 fn process_part_1_language_data(

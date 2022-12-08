@@ -20,6 +20,7 @@ This example shows the use of the part-1 Country Code.
 
 ```rust
 use codes_iso_3166::part_1::CountryCode;
+use std::str::FromStr;
 
 let country = CountryCode::from_str("AG").unwrap();
 
