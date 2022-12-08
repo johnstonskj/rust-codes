@@ -21,7 +21,23 @@ subdivision in a global context.
 
 # Categories
 
+Each country defines a set of categories that describe the different entities
+they recognize. For example, consider the following three records. Note that
+both Australia and the USA define a code for *state*, these are distinct as
+their local meaning may differ.
+
+| Country | Name                     | Subdivisions |
+| ------- | ------------------------ | ------------ |
+| AU      | Australia                | 6 states, and 2 territories |
+| UG      | Uganda                   | 4 geographical regions, 134 districts, and 1 city |
+| US      | United States of America | 50 states, 1 district, and 6 outlying areas |
+
 # Territories
+
+In the example above Australia is noted as having 2 territories, and
+territories may be listed in part-1 as non-independent countries. In such
+cases the [SubdivisionCode] will have a `CountryCode` value named *separate
+country code*.
 
 # Example
 
@@ -54,5 +70,4 @@ mod territories;
 pub use territories::{TerritoryCode, ALL_CODES as ALL_TERRITORIES};
 
 #[cfg(feature = "indices")]
-#[doc(hidden)]
 pub mod indices;

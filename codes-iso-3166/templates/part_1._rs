@@ -39,7 +39,7 @@ pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     {{ id }},{% endfor %}
 {{ "}" }}
 
-/// Provides an array of all defined codes, useful for queries.
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
     {{ type_name }}::{{ id }},{% endfor %}
 ];
@@ -71,6 +71,9 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
 
+     /// Returns a name for this country in English; this name is considered usable
+     /// in most cases, although a more formal or complete name may be
+     /// present in [{{ type_name }}::full_name].
      pub fn short_name(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => "{{ codes[id].short_name }}",{% endfor %}
@@ -100,7 +103,11 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns a boolean value which denotes the country as a legally
+     /// independent state. The standard has some records without values
+     /// which are represented as `None` rather than choose a default
+     /// boolean value.
      #[cfg(feature = "independent")]
      pub fn independent(&self) -> Option<bool> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].independent %}
@@ -108,14 +115,16 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns this country record's [Status].
      #[cfg(feature = "status")]
      pub fn status(&self) -> Status {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => {{ codes[id].status }},{% endfor %}
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns a full, formal, or complete, name for this country, if one exists.
      #[cfg(feature = "full_name")]
      pub fn full_name(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].full_name %}
@@ -123,7 +132,8 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the short name of this country in it's own administrative language.
      #[cfg(feature = "local_names")]
      pub fn local_short_name(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].local_short_name %}
@@ -131,7 +141,8 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the full name of this country in it's own administrative language.
      #[cfg(all(feature = "local_names", feature = "full_name"))]
      pub fn local_full_name(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].local_full_name %}
@@ -139,7 +150,8 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns a list of recognized [LanguageCode]s for this country.
      #[cfg(feature = "languages")]
      pub fn languages(&self) -> Option<&[LanguageCode]> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].languages %}
@@ -147,7 +159,8 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the LanguageCode for the country's administrative language.
      #[cfg(feature = "languages")]
      pub fn administrative_language(&self) -> Option<LanguageCode> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].administrative_language %}
@@ -155,7 +168,9 @@ impl {{ type_name }} {{ "{" }}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// If this code were formerly assigned to another country, this returns
+     /// the short name of the former country.
      #[cfg(feature = "formerly")]
      pub fn former_short_name(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].former_short_name %}
@@ -164,6 +179,8 @@ impl {{ type_name }} {{ "{" }}
          {{ "}" }}
      {{ "}" }}
      
+     /// If this code were formerly assigned to another country, this returns
+     /// the three-letter country code of the former country.
      #[cfg(feature = "formerly")]
      pub fn former_alpha_3_code(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].former_alpha_3_code %}

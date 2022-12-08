@@ -23,7 +23,7 @@ use codes_iso_639::part_3::LanguageCode;
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct {{ type_name }}(u32);
 
-/// Provides an array of all defined codes, useful for queries.
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
     {{ type_name }}({{ id }}),{% endfor %}
 ];

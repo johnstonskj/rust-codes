@@ -98,5 +98,4 @@ mod status;
 pub use status::Status;
 
 #[cfg(feature = "indices")]
-#[doc(hidden)]
 pub mod indices;

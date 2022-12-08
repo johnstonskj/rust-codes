@@ -11,7 +11,7 @@ use serde::{Deserialize, Serialize};
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Status assigned to each country code. Note that those that are marked as
+/// Status assigned to each [super::CountryCode]. Note that those that are marked as
 /// *formerly used* are not included directly.
 ///
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]

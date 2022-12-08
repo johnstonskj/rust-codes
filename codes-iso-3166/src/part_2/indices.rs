@@ -1,5 +1,5 @@
 /*!
-Provides lookup functions for [SubdivisionCode] by secondary identifiers.
+Provides lookup functions for [super::SubdivisionCode] by secondary identifiers.
 */
 
 // use ...

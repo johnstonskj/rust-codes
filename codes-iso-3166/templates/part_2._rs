@@ -38,11 +38,11 @@ pub const ISO_3166: Standard = Standard::new_with_long_ref(
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 #[allow(non_camel_case_types)]
 pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
-    /// {{ codes[id].code }}
+    /// {{ codes[id].code }}: {{ codes[id].name | replace(from="[", to="\[") | replace(from="]", to="\]")  }}
     {{ id }},{% endfor %}
 {{ "}" }}
 
-/// Provides an array of all defined codes, useful for queries.
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
     {{ type_name }}::{{ id }},{% endfor %}
 ];
@@ -65,45 +65,61 @@ impl FromStr for {{ type_name }} {{ "{" }}
 code_impl!({{ type_name }});
 
 impl {{ type_name }} {{ "{" }}
+     /// Returns the code for this national subdivision.
      pub fn code(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => "{{ codes[id].code }}",{% endfor %}
          {{ "}" }}
      {{ "}" }}
 
+     /// Returns the country code for the country in which this subdivision exists.
      pub fn country_code(&self) -> CountryCode {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => CountryCode::{{ codes[id].country_alpha_2_code }},{% endfor %}
          {{ "}" }}
      {{ "}" }}
 
+     /// Returns a country code if this subdivision also has a separate code
+     /// in ISO 3166-1.
+     pub fn separate_country_code(&self) -> Option<CountryCode> {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].separate_country_code %}
+             Self::{{ id }} => Some(CountryCode::{{ codes[id].separate_country_code }}),{% endif %}{% endfor %}
+         _ => None,
+         {{ "}" }}
+     {{ "}" }}
+
+     /// Return the category code for this subdivision.
      #[cfg(feature = "categories")]
      pub fn category_code(&self) -> SubdivisionCategoryCode {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => SubdivisionCategoryCode::new_unchecked({{ codes[id].category_code }}),{% endfor %}
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the parent subdivision if nested subdivisions are described.
      pub fn parent_subdivision_code(&self) -> Option<Self> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].parent_subdivision_code %}
              Self::{{ id }} => Some(Self::{{ codes[id].parent_subdivision_code }}),{% endif %}{% endfor %}
              _ => None,
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the name of this subdivision
      pub fn name(&self) -> &'static str {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
              Self::{{ id }} => "{{ codes[id].name }}",{% endfor %}
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns the language code in which the name of this subdivision is represented.
      #[cfg(feature = "languages")]
      pub fn name_language(&self) -> LanguageCode {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].name_language %}
              Self::{{ id }} => LanguageCode::{{ codes[id].name_language | capitalize }},{% endif %}{% endfor %}
          {{ "}" }}
      {{ "}" }}
-     
+
+     /// Returns any local variation of this subdivision's name.
      pub fn name_local_variation(&self) -> Option<&'static str> {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}{% if codes[id].name_local_variation %}
              Self::{{ id }} => Some("{{ codes[id].name_local_variation }}"),{% endif %}{% endfor %}

@@ -1,6 +1,8 @@
 use codes_common::{
     default_finalize_for, input_file_name, make_default_renderer, process, Data, SimpleData,
 };
+use lazy_static::lazy_static;
+use regex::Regex;
 use std::{fs::File, str::FromStr};
 use tera::{Map, Value};
 
@@ -250,6 +252,13 @@ fn process_part_2_data(mut data: SimpleData) -> Result<SimpleData, Box<dyn std::
     Ok(data)
 }
 
+lazy_static! {
+    static ref SUBDIV_NAME_REGEX: Regex = Regex::new(
+        "(?P<all> \\(see also separate country code entry under (?P<code>[A-Z][A-Z~])\\))$"
+    )
+    .unwrap();
+}
+
 fn process_part_2_name_data(
     mut data: SimpleData,
 ) -> Result<SimpleData, Box<dyn std::error::Error>> {
@@ -271,10 +280,19 @@ fn process_part_2_name_data(
             Value::String(record.get(6).unwrap().to_string()),
         );
 
-        row.insert(
-            "name".to_string(),
-            Value::String(record.get(7).unwrap().to_string()),
-        );
+        let name = record.get(7).unwrap();
+        let name = if let Some(groups) = SUBDIV_NAME_REGEX.captures(name) {
+            let whole_match = groups.name("all").unwrap();
+            let code_match = groups.name("code").unwrap();
+            row.insert(
+                "separate_country_code".to_string(),
+                code_match.as_str().to_string().into(),
+            );
+            name[..whole_match.start()].trim().to_string()
+        } else {
+            name.to_string()
+        };
+        row.insert("name".to_string(), name.into());
 
         let name_local_variation = record.get(8).unwrap().to_string();
         if !name_local_variation.is_empty() {

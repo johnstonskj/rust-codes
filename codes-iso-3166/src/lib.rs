@@ -1,7 +1,7 @@
 /*!
 This package contains an implementation of the [ISO
-// 3166](https://www.iso.org/iso-3166-country-codes.html), parts 1 and 2,
-// standard.
+3166](https://www.iso.org/iso-3166-country-codes.html), parts 1 and 2,
+standard.
 
 The purpose of ISO 3166 is to define internationally recognized codes of
 letters and/or numbers that we can use when we refer to countries and their
