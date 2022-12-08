@@ -1,0 +1,92 @@
+use crate::CountryCodeError;
+use crate::part_1::CountryCode;
+use std::str::FromStr;
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "languages")]
+use codes_iso_639::part_3::LanguageCode;
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+/// 
+/// 
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub struct {{ type_name }}(u32);
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = CountryCodeError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self({{ id }})),{% endfor %}
+            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+impl From<{{ type_name }}> for u32 {{ "{" }}
+    fn from(v: {{ type_name }}) -> Self {{ "{" }}
+        v.0
+    {{ "}" }}
+{{ "}" }}
+
+impl TryFrom<u32> for {{ type_name }} {{ "{" }}
+    type Error = CountryCodeError;
+
+    fn try_from(value: u32) -> Result<Self, Self::Error> {{ "{" }}
+        match value {{ "{" }}{% for id in all_ids %}
+            {{ id }} => Ok(Self({{ id }})),{% endfor %}
+            _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+impl {{ type_name }} {{ "{" }}
+     #[inline]
+     pub(crate) fn new_unchecked(id: u32) -> Self {{ "{" }}
+         Self(id)
+     {{ "}" }}
+     
+     pub fn code(&self) -> u32 {{ "{" }}
+         self.0
+     {{ "}" }}
+
+     pub fn country_code(&self) -> CountryCode {{ "{" }}
+         match self.0 {{ "{" }}{% for id in all_ids %}
+             {{ id }} => CountryCode::{{ codes[id].country_alpha_2_code }},{% endfor %}
+             _ => unreachable!(),
+         {{ "}" }}
+     {{ "}" }}
+
+     pub fn language_code(&self) -> LanguageCode {{ "{" }}
+         match self.0 {{ "{" }}{% for id in all_ids %}
+             {{ id }} => LanguageCode::{{ codes[id].language_alpha_3_code | capitalize }},{% endfor %}
+             _ => unreachable!(),
+         {{ "}" }}
+     {{ "}" }}
+
+     pub fn name(&self) -> &'static str {{ "{" }}
+         match self.0 {{ "{" }}{% for id in all_ids %}
+             {{ id }} => "{{ codes[id].name }}",{% endfor %}
+             _ => unreachable!(),
+         {{ "}" }}
+     {{ "}" }}
+     
+     
+     pub fn name_plural(&self) -> Option<&'static str> {{ "{" }}
+         match self.0 {{ "{" }}{% for id in all_ids %}{% if codes[id].name_plural %}
+             {{ id }} => Some("{{ codes[id].name_plural }}"),{% endif %}{% endfor %}
+             _ => None,
+         {{ "}" }}
+     {{ "}" }}
+{{ "}" }}

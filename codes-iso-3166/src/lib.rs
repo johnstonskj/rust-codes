@@ -16,7 +16,16 @@ script.
 
 # Example
 
-YYYYY
+This example shows the use of the part-1 Country Code.
+
+```rust
+use codes_iso_3166::part_1::CountryCode;
+
+let country = CountryCode::from_str("AG").unwrap();
+
+assert_eq!(country.alpha_2_code(), "AG");
+assert_eq!(country.short_name(), "Antigua and Barbuda");
+```
 
 # Features
 
@@ -29,7 +38,11 @@ language codes.
 * `independent` - Adds the `CountryCode::independent` method.
 * `status` - Adds the `CountryCode::status` method.
 * `full_name` - Adds the `CountryCode::full_name` method.
- * `languages`  - Adds the `CountryCode::administrative_language` and `CountryCode::languages` methods (requires package `codes-iso-639`).
+* `languages`  - Adds the `CountryCode::administrative_language` and `CountryCode::languages` methods (requires package `codes-iso-639`).
+* `part_2` - Adds the corresponding module and `SubdivisionCode`.
+  * `categories` - Adds the `SubdivisionCode::category_code` method and `SubdivisionCategoryCode` type.
+  * `territories` - Adds the `TerritoryCode` type.
+  * `languages` - Adds the `SubdivisionCode::name_language` method.
 
 */
 
@@ -84,3 +97,6 @@ pub use codes_common::CodeParseError as CountryCodeError;
 // ------------------------------------------------------------------------------------------------
 
 pub mod part_1;
+
+#[cfg(feature = "part_2")]
+pub mod part_2;

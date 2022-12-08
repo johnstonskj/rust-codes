@@ -6,9 +6,6 @@ use std::str::FromStr;
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
-#[cfg(feature = "status")]
-use crate::part_1::status::Status;
-
 #[cfg(feature = "languages")]
 use codes_iso_639::part_3::LanguageCode;
 
@@ -23,10 +20,10 @@ use codes_iso_639::part_3::LanguageCode;
 ///
 pub const ISO_3166: Standard = Standard::new_with_long_ref(
     Agency::ISO,
-    "3166",
-    "ISO 3166:2023",
-    "An ISO Standard",
-    "https://www.iso.org/standard/",
+    "3166-1",
+    "ISO 3166-1:2020",
+    "Codes for the representation of names of countries and their subdivisions - Part 1: Country code",
+    "https://www.iso.org/standard/72482.html",
 );
 
 /// 
