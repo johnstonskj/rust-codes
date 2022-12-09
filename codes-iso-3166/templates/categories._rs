@@ -67,11 +67,6 @@ impl TryFrom<u32> for {{ type_name }} {{ "{" }}
 {{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
-     #[inline]
-     pub(crate) fn new_unchecked(id: u32) -> Self {{ "{" }}
-         Self(id)
-     {{ "}" }}
-
      /// Returns the numeric code for this category.
      pub fn code(&self) -> u32 {{ "{" }}
          self.0
