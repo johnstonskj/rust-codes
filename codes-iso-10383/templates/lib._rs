@@ -77,8 +77,8 @@ impl {{ type_name }} {{ "{" }}
     /// facility in a specific market/country.
     ///
     pub fn operating_code(&self) -> Option<Self> {{ "{" }}
-        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].operating_mic %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Self::{{ codes[id].operating_mic }}),{% endif %}{% endfor %}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].operating_mic %}{% set op_mic = codes[id].operating_mic %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Self::{% if op_mic is matching("^[0-9]") %}m{% endif %}{{ op_mic }}),{% endif %}{% endfor %}
         _ => None,
         {{ "}" }}
     {{ "}" }}

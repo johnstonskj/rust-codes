@@ -17,6 +17,10 @@ TBD
 
 ## Changes
 
+**Version 0.1.3**
+
+* Using new `codes-common` CSV handling framework.
+
 **Version 0.1.2**
 
 * Added `ALL_CODES` constant.
