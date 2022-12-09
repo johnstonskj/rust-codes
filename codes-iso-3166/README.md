@@ -1,6 +1,7 @@
 # Package codes-iso-3166
 
-This package contains an implementation of the [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) part 1 standard.
+This package contains an implementation of the [ISO
+3166](https://www.iso.org/iso-3166-country-codes.html) parts 1 and 2 standards.
 
 The purpose of ISO 3166 is to define internationally recognized codes of
 letters and/or numbers that we can use when we refer to countries and their
@@ -70,7 +71,7 @@ periodically to keep up-to-date.
 
 **Version 0.1.2**
 
-* Added `ALL_CODES` constant for all relevant types<35;12;24M.
+* Added `ALL_CODES` constant for all relevant types.
 * Added `indices` modules to part 1 and 2, partial implementations.
 
 **Version 0.1.1**
