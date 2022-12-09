@@ -38,7 +38,7 @@ pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in al
     {{ type_name }}::{{ id }},{% endfor %}
 ];
 
-pub use common::CodeParseError as {{ type_name }}Error;
+pub use codes_common::CodeParseError as {{ type_name }}Error;
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
@@ -51,7 +51,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
-            _ => Err(common::unknown_value("{{ type_name }}", s)),
+            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
@@ -66,12 +66,5 @@ impl {{ type_name }} {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
         {{ "}" }}
-    {{ "}" }}
-
-    ///
-    /// Returns the CODE as a string.
-    ///
-    pub fn as_str(&self) -> &'static str {{ "{" }}
-        self.code().to_string()
     {{ "}" }}
 {{ "}" }}

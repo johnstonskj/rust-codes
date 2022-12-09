@@ -1,5 +1,6 @@
 /*!
-One-line description.
+This package contains an implementation of the
+[$(echo $1 | tr a-z A-Z) $(echo $2 | tr a-z A-Z)](...) specification.
 
 More detailed description, with
 
