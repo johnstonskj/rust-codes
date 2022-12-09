@@ -48,6 +48,10 @@ By default only the `serde` feature is enabled.
 
 ## Changes
 
+**Version 0.1.1**
+
+* Using new `codes-common` CSV handling framework.
+
 **Version 0.1.0**
 
 * Initial release
