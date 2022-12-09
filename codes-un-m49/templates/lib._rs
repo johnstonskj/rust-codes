@@ -1,0 +1,134 @@
+use std::str::FromStr;
+use codes_agency::{Agency, Standard};
+use codes_common::code_impl;
+
+#[cfg(feature = "country_codes")]
+use codes_iso_3166::part_1::CountryCode;
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the UN M49 specification.
+///
+pub const UN_M49: Standard = Standard::new_with_long_ref(
+    Agency::UN,
+    "M49",
+    "M49",
+    "Standard Country or Area Codes for Statistical Use (Series M, No. 49)",
+    "https://unstats.un.org/unsd/methodology/m49/overview/",
+);
+
+/// 
+/// This structure encapsulates the integer code for regions defined
+/// in the UN M49 standard.
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub struct {{ type_name }}(u16);
+
+{% for id in all_ids %}
+/// {{ codes[id].name }}
+pub const UN_M69_REGION_{{ id }}: {{ type_name }} = {{ type_name }}({{ codes[id].code_as_int }});
+{% endfor %}
+
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
+    UN_M69_REGION_{{ id }},{% endfor %}
+];
+
+pub use codes_common::CodeParseError as {{ type_name }}Error;
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self({{ codes[id].code_as_int }})),{% endfor %}
+            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+code_impl!({{ type_name }}, code, u16);
+
+impl {{ type_name }} {{ "{" }}
+    ///
+    /// Returns the M49 code as an integer.
+    ///
+    pub const fn code(&self) -> u16 {{ "{" }}
+        self.0
+    {{ "}" }}
+
+    ///
+    /// Return the M49 defined name for this region. Note that where the
+    /// region this name *may not* be the same as the `short_name` defined
+    /// in the ISO 3166 `CountryCode`.
+    ///
+    pub const fn name(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self({{ codes[id].code_as_int }}) => "{{ codes[id].name }}",{% endfor %}
+        _ => unreachable!(),
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return the kind, or level, of this region.
+    ///
+    pub const fn kind(&self) -> RegionKind {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self({{ codes[id].code_as_int }}) => RegionKind::{{ codes[id].kind }},{%
+        endfor %}
+        _ => unreachable!(),
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Return the [{{ type_name }}] instance for the parent of this region
+    /// if one is specified.
+    ///
+    pub const fn parent_code(&self) -> Option<Self> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].parent_code %}
+            Self({{ codes[id].code_as_int }}) => Some(UN_M69_REGION_{{ codes[id].parent_code }}),{% endif %}{% endfor %}
+        _ => None,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// If this region is a country (kind is `RegionKind::Country`) return the
+    /// ISO 3166 `CountryCode` corresponding to this region. Note that if the
+    /// feature `country_codes` is not specified this function will return `&str`.
+    ///
+    #[cfg(feature = "country_codes")]
+    pub const fn country_code(&self) -> Option<CountryCode> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].country_alpha_2_code %}
+            Self({{ codes[id].code_as_int }}) => Some(CountryCode::{{ codes[id].country_alpha_2_code }}),{% endif %}{% endfor %}
+        _ => None,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// If this region is a country (kind is `RegionKind::Country`) return the
+    /// ISO 3166 two-letter code corresponding to this region. Note that if the
+    /// feature `country_codes` is specified this function will return a
+    /// `CountryCode` instance from the `codes-iso-3166` package.
+    ///
+    #[cfg(not(feature = "country_codes"))]
+    pub const fn country_code(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].country_alpha_2_code %}
+            Self({{ codes[id].code_as_int }}) => Some("{{ codes[id].country_alpha_2_code }}"),{% endif %}{% endfor %}
+        _ => None,
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
