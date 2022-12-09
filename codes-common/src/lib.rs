@@ -68,7 +68,7 @@ pub const DEFAULT_DATA_DIR: &str = "data";
 
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
 
-pub trait Code<T1, T2: ?Sized>: Debug + Display + FromStr + Into<T1> + AsRef<T2> {}
+pub trait Code<T>: Debug + Display + FromStr + Into<T> {}
 
 pub trait Data {
     fn new(type_name: &'static str) -> Self
@@ -141,14 +141,22 @@ macro_rules! code_impl {
             }
         }
 
-        impl $crate::Code<$id_type, $id_type_ref> for $type_name {}
+        impl $crate::Code<$id_type> for $type_name {}
     };
-    ($type_name:ty, $id_field:ident, $id_type_ref:ty, $id_type:ty) => {
-        code_impl!($type_name, $id_field, $id_type_ref, $id_type_ref, clone);
-    };
+    ($type_name:ty, $id_field:ident, $id_type:ty) => {
+        impl ::std::fmt::Display for $type_name {
+            fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+                write!(f, "{}", self.$id_field())
+            }
+        }
 
-    ($type_name:ty, $id_field:ident, $id_type_ref:ty) => {
-        code_impl!($type_name, $id_field, $id_type_ref, $id_type_ref, clone);
+        impl ::std::convert::From<$type_name> for $id_type {
+            fn from(v: $type_name) -> Self {
+                v.$id_field()
+            }
+        }
+
+        impl $crate::Code<$id_type> for $type_name {}
     };
 
     ($type_name:ty, $id_field:ident) => {

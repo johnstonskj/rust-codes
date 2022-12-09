@@ -7,6 +7,10 @@ For notes on the design of the API, see the repository
 
 ## Changes
 
+**Version 0.1.3**
+
+* Re-worked `code_impl` macro for non-string codes.
+
 **Version 0.1.2**
 
 * Added `retain` method to `SimpleData`.
