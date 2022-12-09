@@ -15,24 +15,32 @@ structured manner
 
 ## Changes
 
+**2022-12-09**
+
+  * [`codes-un-m49`](codes-un-m49); an implementation of the [UN M49](https://unstats.un.org/unsd/methodology/m49/overview) Region Codes standard.
+
+**2022-12-09**
+
+  * [`codes-iso-3166`](codes-iso-3166); an implementation of the [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) Country and
+    Subdivision Codes standard.
+
 **2022-12-06**
 
 * Released the following:
-  * `codes-iso-639`; an implementation of the ISO-4217 Language Codes standard.
-  * `codes-iso-10383`; an implementation of the ISO-10383 Market Identification (MIC) standard.
-  * `codes-iso-17442`; an implementation of the ISO-17442 Legal Entity Identifier (LEI) standard.
+  * [`codes-iso-639`](codes-iso-639); an implementation of the [ISO 4217](https://www.iso.org/iso-639-language-codes.html) Language Codes standard.
+  * [`codes-iso-10383`](codes-iso-10383); an implementation of the [ISO 10383](https://www.iso.org/standard/61067.html) Market Identification (MIC) standard.
+  * [`codes-iso-17442`](https://www.iso.org/standard/75998.html); an implementation of the [ISO 17442](https://www.iso.org/standard/78829.html) Legal Entity Identifier (LEI) standard.
 
 **2022-11-30**
 
 * Released the following:
-  * `codes-agency`; codes that identify standards agencies.
-  * `codes-iso-4217`; an implementation of the ISO-4217 currency codes standard.
+  * [`codes-agency`](codes-agency); codes that identify standards agencies.
+  * [`codes-iso-4217`](codes-iso-4217); an implementation of the [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html) Currency codes standard.
 
 ## TODO
 
 ### Code Standards
 
-* ISO 3166, Codes for the representation of names of countries and their subdivisions
 * ISO 15924, Codes for the representation of names of scripts
 * IANA Character Sets
   https://www.iana.org/assignments/character-sets/character-sets.xhtml
@@ -63,6 +71,8 @@ structured manner
   flammable liquids, oxidizers, toxic liquids, etc.) in the framework 
   of international trade and transport.
 * United Nations Standard Products and Services Code (UNSPSC) https://en.wikipedia.org/wiki/UNSPSC
+
+https://unstats.un.org/unsd/classifications/unsdclassifications/
 
 ### Data Types
 
