@@ -172,6 +172,51 @@ macro_rules! code_impl {
     };
 }
 
+#[cfg(feature = "csv_tools")]
+#[macro_export]
+macro_rules! insert_field {
+    ($value:expr => $row:ident, $name:expr) => {
+        $row.insert($name.to_string(), $value.into());
+    };
+    ($record:ident, $index:expr => $row:ident, $name:expr) => {
+        $row.insert($name.to_string(), $record.get($index).unwrap().into());
+    };
+    ($record:ident, $index:expr => $row:ident, $name:expr) => {
+        $row.insert($name.to_string(), $record.get($index).unwrap().into());
+    };
+    ($record:ident, $row:ident, $($index:expr => $name:expr),+) => {
+        $(
+            insert_field!($record, $index => $row, $name);
+        )+
+    };
+    ($record:ident, $row:ident, $index:expr => $name:expr, $field_type:ty) => {{
+        let temp = $record.get($index).unwrap();
+        let temp = <$field_type>::from_str(temp).unwrap();
+        $row.insert($name.to_string(), temp.into());
+    }};
+    ($record:ident, $row:ident, $($index:expr => $name:expr, $field_type:ty),+) => {
+        $(
+            insert_field!($record, $index => $row, $name, $field_type);
+        )+
+    };
+}
+
+#[cfg(feature = "csv_tools")]
+#[macro_export]
+macro_rules! insert_optional_field {
+    ($record:ident, $index:expr => $row:ident, $name:expr) => {{
+        let temp = $record.get($index).unwrap();
+        if !temp.is_empty() {
+            $row.insert($name.to_string(), temp.into());
+        }
+    }};
+    ($record:ident, $row:ident, $($index:expr => $name:expr),+) => {
+        $(
+            insert_optional_field!($record, $index => $row, $name);
+        )+
+    };
+}
+
 // ------------------------------------------------------------------------------------------------
 // Public Functions
 // ------------------------------------------------------------------------------------------------

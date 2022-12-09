@@ -7,6 +7,11 @@ For notes on the design of the API, see the repository
 
 ## Changes
 
+**Version 0.1.5**
+
+* Updated CSV handlers
+* Added CSV macros
+
 **Version 0.1.4**
 
 * Added `csv_tools` feature

@@ -10,6 +10,7 @@ YYYYY
 */
 
 use crate::{input_file_name, Data, DataRow};
+use csv::Reader;
 use csv::StringRecord;
 use std::fs::File;
 use tera::{Map, Value};
@@ -62,7 +63,21 @@ where
     process_vsv_input(data, file_name, b'\t', process_row)
 }
 
-pub fn process_vsv_input<D, F>(
+pub fn open_csv_file(
+    file_name: &str,
+    delimiter: Option<u8>,
+) -> Result<Reader<File>, Box<dyn std::error::Error>> {
+    let file_name = input_file_name(file_name);
+
+    Ok(csv::ReaderBuilder::new()
+        .has_headers(true)
+        .delimiter(delimiter.unwrap_or(b','))
+        .comment(Some(b'#'))
+        .trim(csv::Trim::All)
+        .from_reader(File::open(file_name)?))
+}
+
+fn process_vsv_input<D, F>(
     mut data: D,
     file_name: &str,
     delimiter: u8,
@@ -72,14 +87,7 @@ where
     D: Data,
     F: Fn(StringRecord, &mut DataRow) -> Result<String, Box<dyn std::error::Error>>,
 {
-    let file_name = input_file_name(file_name);
-
-    let mut rdr = csv::ReaderBuilder::new()
-        .has_headers(true)
-        .delimiter(delimiter)
-        .comment(Some(b'#'))
-        .trim(csv::Trim::All)
-        .from_reader(File::open(file_name)?);
+    let mut rdr = open_csv_file(file_name, Some(delimiter))?;
 
     for result in rdr.records() {
         let record = result?;
