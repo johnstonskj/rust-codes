@@ -42,6 +42,8 @@ structured manner
 ### Code Standards
 
 * ISO 15924, Codes for the representation of names of scripts
+  https://www.iso.org/standard/81905.html
+  https://unicode.org/iso15924/iso15924-codes.html
 * IANA Character Sets
   https://www.iana.org/assignments/character-sets/character-sets.xhtml
 * ISO (SWIFT) BIC https://en.wikipedia.org/wiki/ISO_9362
