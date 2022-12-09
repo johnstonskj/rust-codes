@@ -85,6 +85,8 @@ pub enum Agency {
     IETF,
     /// [International Organization for Standardization](https://www.iso.org)
     ISO,
+    /// [The United Nations](https://www.un.org)
+    UN,
 }
 
 /// Provides an array of all defined [Agency] codes, useful for queries.
@@ -132,6 +134,7 @@ impl FromStr for Agency {
             "IEEE" => Ok(Self::IEEE),
             "IETF" => Ok(Self::IETF),
             "ISO" => Ok(Self::ISO),
+            "UN" => Ok(Self::UN),
             _ => Err(AgencyError::FromStr(s.to_string())),
         }
     }
@@ -150,6 +153,7 @@ impl Agency {
             Self::IEEE => "IEEE",
             Self::IETF => "IETF",
             Self::ISO => "ISO",
+            Self::UN => "UN",
         }
     }
 
@@ -162,6 +166,7 @@ impl Agency {
             Self::IEEE => "IEEE",
             Self::IETF => "The Internet Engineering Task Force",
             Self::ISO => "International Organization for Standardization",
+            Self::UN => "The United Nations",
         }
     }
 
@@ -174,7 +179,15 @@ impl Agency {
             Self::IEEE => "https://www.ieee.org",
             Self::IETF => "https://www.ietf.org",
             Self::ISO => "https://www.iso.org",
+            Self::UN => "https://www.un.org",
         }
+    }
+
+    ///
+    /// Some agencies are hierarchical, this returns a parent agency, if one exists.
+    ///
+    pub const fn parent_agency(&self) -> Option<Self> {
+        None
     }
 }
 
