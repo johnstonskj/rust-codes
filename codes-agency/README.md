@@ -29,6 +29,10 @@ By default only the `serde` feature is enabled.
   
 ## Changes
 
+**Version 0.1.6**
+
+* Add the UN as a new Agency.
+
 **Version 0.1.5**
 
 * Added `ALL_CODES` constant.
