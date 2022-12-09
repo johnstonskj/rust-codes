@@ -59,6 +59,7 @@ use std::{
     path::Path,
     str::FromStr,
 };
+use tera::{Map, Value};
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
@@ -69,6 +70,9 @@ pub const DEFAULT_DATA_DIR: &str = "data";
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
 
 pub trait Code<T>: Debug + Display + FromStr + Into<T> {}
+
+pub type DataRow = Map<String, Value>;
+pub type DataMap = BTreeMap<String, Map<String, Value>>;
 
 pub trait Data {
     fn new(type_name: &'static str) -> Self
@@ -89,19 +93,19 @@ pub trait Data {
                 .collect(),
         )
     }
-    fn rows(&self) -> &BTreeMap<String, Map<String, Value>>;
-    fn rows_mut(&mut self) -> &mut BTreeMap<String, Map<String, Value>>;
-    fn into_rows(self) -> BTreeMap<String, Map<String, Value>>;
+    fn rows(&self) -> &DataMap;
+    fn rows_mut(&mut self) -> &mut DataMap;
+    fn into_rows(self) -> DataMap;
     fn contains(&self, id: &str) -> bool {
         self.rows().contains_key(id)
     }
-    fn get(&self, id: &str) -> Option<&Map<String, Value>> {
+    fn get(&self, id: &str) -> Option<&DataRow> {
         self.rows().get(id)
     }
-    fn get_mut(&mut self, id: &str) -> Option<&mut Map<String, Value>> {
+    fn get_mut(&mut self, id: &str) -> Option<&mut DataRow> {
         self.rows_mut().get_mut(id)
     }
-    fn insert_row(&mut self, id: &str, row: Map<String, Value>) {
+    fn insert_row(&mut self, id: &str, row: DataRow) {
         self.rows_mut().insert(id.to_string(), row);
     }
     fn insert_row_value(&mut self, id: &str, key: &str, value: Value) {
@@ -113,7 +117,7 @@ pub trait Data {
 #[derive(Debug, Default)]
 pub struct SimpleData {
     type_name: &'static str,
-    rows: BTreeMap<String, Map<String, Value>>,
+    rows: DataMap,
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -321,4 +325,6 @@ impl SimpleData {
 #[doc(hidden)]
 mod error;
 pub use error::{invalid_format, invalid_length, unknown_value, CodeParseError};
-use tera::{Map, Value};
+
+#[cfg(feature = "csv_tools")]
+pub mod csv;
