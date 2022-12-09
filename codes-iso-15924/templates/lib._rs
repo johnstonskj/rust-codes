@@ -23,14 +23,13 @@ pub const ISO_10383: Standard = Standard::new_with_long_ref(
 );
 
 /// 
-/// 
+/// This enumeration is the set of Scripts defined in ISO 15924.
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
-    /// {{ codes[id].market_name }}
-    {% if id is matching("^[0-9]") %}#[allow(non_camel_case_types)]
-    m{% endif %}{{ id }},{% endfor %}
+    /// {{ codes[id].name }}
+    {{ id }},{% endfor %}
 {{ "}" }}
 
 /// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
@@ -50,7 +49,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
-            "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
+            "{{ id }}" => Ok(Self::{{ id }}),{% endfor %}
             _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
@@ -60,11 +59,57 @@ code_impl!({{ type_name }});
 
 impl {{ type_name }} {{ "{" }}
     ///
-    /// Returns the CODE as a string.
+    /// Returns the four-letter code for this script.
     ///
     pub fn code(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+            Self::{{ id }} => "{{ id }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+    
+    ///
+    /// Returns the numeric code for this script.
+    ///
+    pub fn numeric_code(&self) -> u16 {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{{ id }} => {{ codes[id].numeric_code }},{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+    
+    ///
+    /// Returns the name of this script.
+    ///
+    pub fn name(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{{ id }} => "{{ codes[id].name }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+    
+    ///
+    /// Returns the PVA for this script.
+    ///
+    pub fn property_value_alias(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].alias %}
+            Self::{{ id }} => Some("{{ codes[id].alias }}"),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+    {{ "}" }}
+    
+    ///
+    /// Returns the Unicode version this script was first published.
+    ///
+    pub fn unicode_version(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{{ id }} => "{{ codes[id].unicode_version }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+    
+    ///
+    /// Returns the date this code was added to Unicode as a `YYYY-MM-DD` string for this script.
+    ///
+    pub fn date_string(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{{ id }} => "{{ codes[id].date }}",{% endfor %}
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

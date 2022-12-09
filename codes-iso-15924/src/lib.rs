@@ -22,14 +22,26 @@ one could differentiate, for example, between Serbian written in the Cyrillic
 (sr-Cyrl) or Latin (sr-Latn) script, or mark romanized or transliterated text
 as such.
 
-Registration Authority [The Unicode Consortium](https://home.unicode.org/) - https://www.unicode.org/iso15924/codelists.html
-
-
 # Example
 
-YYYYY
+```rust
+use codes_iso_15924::ScriptCode;
+
+let code = ScriptCode::Rohg;
+
+assert_eq!(code.code(), "Rohg");
+assert_eq!(code.numeric_code(), 167);
+assert_eq!(code.name(), "Hanifi Rohingya");
+assert_eq!(code.property_value_alias(), Some("Hanifi_Rohingya"));
+assert_eq!(code.unicode_version(), "11.0");
+assert_eq!(code.date_string(),"2017-11-21");
+```
 
 # Features
+
+By default only the `serde` feature is enabled.
+
+* `serde` - Enables serialization of the [ScriptCode] type.
 
 */
 
