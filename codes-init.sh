@@ -41,11 +41,11 @@ echo "Updating Cargo.toml"
 
 cat <<EOT >> $PACKAGE/Cargo.toml
 codes-agency = { version = "0.1", path = "../codes-agency" }
-common = { version = "0.1", path = "../common" }
+codes-common = { version = "0.1", path = "../codes-common" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [build-dependencies]
-common = { version = "0.1", path = "../common" }
+codes-common = { version = "0.1", path = "../codes-common" }
 tera = "1.17"
 
 [package.metadata.docs.rs]
