@@ -3,8 +3,12 @@ name = "codes-iso-15924"
 description = "This package contains an implementation of the ISO 15924 Codes for the representation of names of scripts specification."
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-iso-15924/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+publish = true
 
 [dependencies]
 codes-agency = { version = "0.1", path = "../codes-agency" }
