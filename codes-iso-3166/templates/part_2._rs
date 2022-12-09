@@ -17,9 +17,9 @@ use codes_iso_639::part_3::LanguageCode;
 ///
 /// An instance of the `Standard` struct defined in the
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
-/// package that describes the ISO 3166 specification.
+/// package that describes the ISO 3166-2 specification.
 ///
-pub const ISO_3166: Standard = Standard::new_with_long_ref(
+pub const ISO_3166_2: Standard = Standard::new_with_long_ref(
     Agency::ISO,
     "3166-2",
     "ISO 3166-2:2020",
@@ -90,9 +90,9 @@ impl {{ type_name }} {{ "{" }}
 
      /// Return the category code for this subdivision.
      #[cfg(feature = "categories")]
-     pub fn category_code(&self) -> SubdivisionCategoryCode {{ "{" }}
+     pub fn category_code(&self) -> categories::SubdivisionCategoryCode {{ "{" }}
          match self {{ "{" }}{% for id in all_ids %}
-             Self::{{ id }} => SubdivisionCategoryCode::new_unchecked({{ codes[id].category_code }}),{% endfor %}
+             Self::{{ id }} => categories::ISO_3166_CATEGORY_{{ codes[id].category_code }},{% endfor %}
          {{ "}" }}
      {{ "}" }}
 

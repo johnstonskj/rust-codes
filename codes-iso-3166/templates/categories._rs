@@ -24,9 +24,14 @@ use codes_iso_639::part_3::LanguageCode;
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct {{ type_name }}(u32);
 
+{% for id in all_ids %}
+/// Category "{{ codes[id].name }}"{% if codes[id].country_alpha_2_code %}, defined by country `{{ codes[id].country_alpha_2_code }}`{% endif %}.
+pub const ISO_3166_CATEGORY_{{ id }}: {{ type_name }} = {{ type_name }}({{ id }});
+{% endfor %}
+
 /// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
-    {{ type_name }}({{ id }}),{% endfor %}
+    ISO_3166_CATEGORY_{{ id }},{% endfor %}
 ];
 
 // ------------------------------------------------------------------------------------------------

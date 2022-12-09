@@ -39,10 +39,6 @@ territories may be listed in part-1 as non-independent countries. In such
 cases the [SubdivisionCode] will have a `CountryCode` value named *separate
 country code*.
 
-# Example
-
-YYYYY
-
 */
 
 // ------------------------------------------------------------------------------------------------
@@ -58,16 +54,10 @@ include!(concat!(env!("OUT_DIR"), "/part_2.rs"));
 // ------------------------------------------------------------------------------------------------
 
 #[cfg(feature = "categories")]
-#[doc(hidden)]
-mod categories;
-#[cfg(feature = "categories")]
-pub use categories::{SubdivisionCategoryCode, ALL_CODES as ALL_CATEGORIES};
+pub mod categories;
 
 #[cfg(feature = "territories")]
-#[doc(hidden)]
-mod territories;
-#[cfg(feature = "territories")]
-pub use territories::{TerritoryCode, ALL_CODES as ALL_TERRITORIES};
+pub mod territories;
 
 #[cfg(feature = "indices")]
 pub mod indices;

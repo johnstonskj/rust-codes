@@ -16,9 +16,9 @@ use codes_iso_639::part_3::LanguageCode;
 ///
 /// An instance of the `Standard` struct defined in the
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
-/// package that describes the ISO 3166 specification.
+/// package that describes the ISO 3166-1 specification.
 ///
-pub const ISO_3166: Standard = Standard::new_with_long_ref(
+pub const ISO_3166_1: Standard = Standard::new_with_long_ref(
     Agency::ISO,
     "3166-1",
     "ISO 3166-1:2020",

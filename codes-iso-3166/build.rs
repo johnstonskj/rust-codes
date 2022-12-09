@@ -356,7 +356,7 @@ fn process_part_2_category_data(
 fn process_part_2_territory_data(
     mut data: SimpleData,
 ) -> Result<SimpleData, Box<dyn std::error::Error>> {
-    let file_name = input_file_name("subdivision-categories.csv");
+    let file_name = input_file_name("territories.csv");
 
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(true)

@@ -69,6 +69,10 @@ periodically to keep up-to-date.
 
 ## Changes
 
+**Version 0.1.3**
+
+* Use new style enumerations for categories and territories in part 2.
+
 **Version 0.1.2**
 
 * Added `ALL_CODES` constant for all relevant types.
