@@ -17,10 +17,14 @@ structured manner
 
 **2022-12-09**
 
+* Released the following:
+  * [`codes-iso-15924`](codes-iso-15924); an implementation of the [ISO 15924](https://www.iso.org/standard/81905.html) Information and documentation — Codes for the representation of names of scripts specification.
   * [`codes-un-m49`](codes-un-m49); an implementation of the [UN M49](https://unstats.un.org/unsd/methodology/m49/overview) Region Codes standard.
-
+  * Updated [`codes-iso-10383`](codes-iso-10383) with all methods.
+  
 **2022-12-09**
 
+* Released the following:
   * [`codes-iso-3166`](codes-iso-3166); an implementation of the [ISO 3166](https://www.iso.org/iso-3166-country-codes.html) Country and
     Subdivision Codes standard.
 
@@ -28,7 +32,7 @@ structured manner
 
 * Released the following:
   * [`codes-iso-639`](codes-iso-639); an implementation of the [ISO 4217](https://www.iso.org/iso-639-language-codes.html) Language Codes standard.
-  * [`codes-iso-10383`](codes-iso-10383); an implementation of the [ISO 10383](https://www.iso.org/standard/61067.html) Market Identification (MIC) standard.
+  * [`codes-iso-10383`](codes-iso-10383); a partial implementation of the [ISO 10383](https://www.iso.org/standard/61067.html) Market Identification (MIC) standard.
   * [`codes-iso-17442`](https://www.iso.org/standard/75998.html); an implementation of the [ISO 17442](https://www.iso.org/standard/78829.html) Legal Entity Identifier (LEI) standard.
 
 **2022-11-30**
@@ -41,9 +45,6 @@ structured manner
 
 ### Code Standards
 
-* ISO 15924, Codes for the representation of names of scripts
-  https://www.iso.org/standard/81905.html
-  https://unicode.org/iso15924/iso15924-codes.html
 * IANA Character Sets
   https://www.iana.org/assignments/character-sets/character-sets.xhtml
 * ISO (SWIFT) BIC https://en.wikipedia.org/wiki/ISO_9362
