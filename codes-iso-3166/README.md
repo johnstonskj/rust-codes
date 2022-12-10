@@ -69,6 +69,8 @@ periodically to keep up-to-date.
 
 ## Changes
 
+* Using new `codes-common` CSV handling framework.
+
 **Version 0.1.3**
 
 * Use new style enumerations for categories and territories in part 2.
