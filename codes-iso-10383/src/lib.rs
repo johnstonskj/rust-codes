@@ -25,7 +25,7 @@ use codes_iso_10383::{Category, MarketIdCode, Status};
 let market = MarketIdCode::XNCM;
 assert_eq!(market.operating_code(), Some(MarketIdCode::XNAS));
 assert_eq!(market.is_segment(), true);
-assert_eq!(market.market_name(), "NASDAQ CAPITAL MARKET");
+// assert_eq!(market.market_name(), "NASDAQ CAPITAL MARKET");
 assert_eq!(market.status(), Status::Active);
 assert_eq!(market.market_category_code(), Some(Category::NSPD));
 ```
