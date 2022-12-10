@@ -29,10 +29,11 @@ assert_eq!(market.is_segment(), true);
 assert_eq!(market.status(), Status::Active);
 assert_eq!(market.market_category_code(), Some(Category::NSPD));
 assert_eq!(market.acronym(), None);
-assert_eq!(market.website_url(), Some("http://www.nasdaq.com"));
 
 // feature = "real_url"
-// assert_eq!(market.(), Some(url::Url::from_str("http://www.nasdaq.com").unwrap()));
+// assert_eq!(market.website_url(), Some(url::Url::from_str("http://www.nasdaq.com").unwrap()));
+// or
+// assert_eq!(market.website_url(), Some("http://www.nasdaq.com"));
 
 // feature = "market_name"
 // assert_eq!(market.market_name(), "NASDAQ CAPITAL MARKET");

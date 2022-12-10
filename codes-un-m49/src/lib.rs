@@ -23,10 +23,11 @@ let region = M49::UN_M69_REGION_258;
 assert_eq!(region.code(), 258);
 assert_eq!(region.name(), "French Polynesia");
 assert_eq!(region.kind(), M49::RegionKind::Country);
-assert_eq!(region.country_code(), Some("PF"));
 
 // feature = "country_codes"
-assert_eq!(parent.country_code(), Some(CountryCode::PF));
+// assert_eq!(parent.country_code(), Some(CountryCode::PF));
+// or
+// assert_eq!(region.country_code(), Some("PF"));
 
 let parent = region.parent_code().unwrap();
 assert_eq!(parent.code(), 61);
