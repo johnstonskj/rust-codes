@@ -3,6 +3,9 @@
 This package contains an implementation of the [ISO
 3166](https://www.iso.org/iso-3166-country-codes.html) parts 1 and 2 standards.
 
+[![crates.io](https://img.shields.io/crates/v/codes-iso-3166.svg)](https://crates.io/crates/codes-iso-3166)
+[![docs.rs](https://docs.rs/codes-iso-3166/badge.svg)](https://docs.rs/codes-iso-3166)
+
 The purpose of ISO 3166 is to define internationally recognized codes of
 letters and/or numbers that we can use when we refer to countries and their
 subdivisions. However, it does not define the names of countries – this

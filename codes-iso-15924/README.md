@@ -3,6 +3,9 @@
 This package contains an implementation of the
 [ISO 15924](https://www.iso.org/standard/81905.html) Information and documentation — Codes for the representation of names of scripts specification.
 
+[![crates.io](https://img.shields.io/crates/v/codes-iso-15924.svg)](https://crates.io/crates/codes-iso-15924)
+[![docs.rs](https://docs.rs/codes-iso-15924/badge.svg)](https://docs.rs/codes-iso-15924)
+
 ISO 15924, Codes for the representation of names of scripts, is an
 international standard defining codes for writing systems or scripts (a "set
 of graphic characters used for the written form of one or more languages").

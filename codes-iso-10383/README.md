@@ -5,6 +5,9 @@ This package contains an implementation of the [ISO
 financial instruments — Codes for exchanges and market identification (MIC)
 specification.
 
+[![crates.io](https://img.shields.io/crates/v/codes-iso-10383.svg)](https://crates.io/crates/codes-iso-10383)
+[![docs.rs](https://docs.rs/codes-iso-10383/badge.svg)](https://docs.rs/codes-iso-10383)
+
 ISO 10383 specifies a universal method of identifying exchanges, trading
 platforms, regulated or non-regulated markets and trade reporting facilities
 as sources of prices and related information in order to facilitate automated

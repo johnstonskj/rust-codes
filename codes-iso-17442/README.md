@@ -4,6 +4,9 @@ This package contains an implementation of the [ISO
 17442](https://www.iso.org/standard/78829.html) Legal Entity Identifier (LEI)
 specification.
 
+[![crates.io](https://img.shields.io/crates/v/codes-iso-17442.svg)](https://crates.io/crates/codes-iso-17442)
+[![docs.rs](https://docs.rs/codes-iso-17442/badge.svg)](https://docs.rs/codes-iso-17442)
+
 The Legal Entity Identifier (LEI) is a unique global identifier for legal
 entities participating in financial transactions. Also known as an LEI code
 or LEI number, its purpose is to help identify legal entities on a globally

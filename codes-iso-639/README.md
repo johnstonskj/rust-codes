@@ -6,6 +6,9 @@ This package contains an implementation of the ISO 639
 [part 5](https://www.iso.org/standard/39536.html)
 Language Code specifications.
 
+[![crates.io](https://img.shields.io/crates/v/codes-iso-639.svg)](https://crates.io/crates/codes-iso-639)
+[![docs.rs](https://docs.rs/codes-iso-639/badge.svg)](https://docs.rs/codes-iso-639)
+
 ISO 639-1, the two-character code, was devised primarily for use in
 terminology and includes identifiers for most of the major languages of the
 world that are not only most frequently represented in the total body of the

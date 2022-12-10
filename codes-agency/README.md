@@ -2,6 +2,9 @@
 
 This package provides a common code representing standards agencies.
 
+[![crates.io](https://img.shields.io/crates/v/codes-agency.svg)](https://crates.io/crates/codes-agency)
+[![docs.rs](https://docs.rs/codes-agency/badge.svg)](https://docs.rs/codes-agency)
+
 The two core types, [Agency] and [Standard] work together to provide reporting
 capabilities to other *codes* project packages. Specifically a package that
 provides types corresponding to a standard definition can have an instance of
