@@ -50,6 +50,10 @@ By default only the `serde` feature is enabled, the [MarketIdCode::code] and
 
 ## Changes
 
+**Version 0.1.5**
+
+* Fixed template bugs for `country_code` and `website_url`.
+
 **Version 0.1.4**
 
 * Added all missing methods.
