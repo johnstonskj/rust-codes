@@ -44,7 +44,6 @@ assert_eq!(lei.check_digits(), "16");
 
 # Features
 
-
 By default only the `serde` feature is enabled.
 
 * `serde` - Enables serialization of the [LegalEntityId] type.

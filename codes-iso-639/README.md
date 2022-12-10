@@ -39,7 +39,14 @@ For notes on the design of the API, see the repository
 
 ## Example
 
-TBD
+```rust
+use codes_iso_639::part_1::LanguageCode;
+
+let code = LanguageCode::Fr;
+
+assert_eq!(code.as_ref(), "fr");
+assert_eq!(code.language_name(), "French");
+```
 
 ## Features
 
