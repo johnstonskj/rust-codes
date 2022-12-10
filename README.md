@@ -5,7 +5,7 @@ structured manner
 
 ![MIT License](https://img.shields.io/badge/license-mit-118811.svg)
 [![Rust](https://github.com/johnstonskj/rust-codes/actions/workflows/rust.yml/badge.svg)](https://github.com/johnstonskj/rust-codes/actions/workflows/rust.yml)
-[![Audit](https://github.com/johnstonskj/rust-codes/actions/workflows/audit.yml/badge.svg)](https://github.com/johnstonskj/rust-codes/actions/workflows/audit.yml)
+[![Security audit](https://github.com/johnstonskj/rust-codes/actions/workflows/security-audit.yml/badge.svg)](https://github.com/johnstonskj/rust-codes/actions/workflows/security-audit.yml)
 [![Codecov](https://codecov.io/gh/johnstonskj/rust-codes/branch/main/graph/badge.svg?token=1HGN6M4KIT)](https://codecov.io/gh/johnstonskj/rust-codes)
 [![GitHub stars](https://img.shields.io/github/stars/johnstonskj/rust-codes.svg)](https://github.com/johnstonskj/rust-codes/stargazers)
 
