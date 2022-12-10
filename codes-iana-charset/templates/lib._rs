@@ -14,10 +14,9 @@ use serde::{Deserialize, Serialize};
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
 /// package that describes the ISO-10383 specification.
 ///
-pub const IANA_CHARSET: Standard = Standard::new_with_long_ref(
+pub const IANA_CHARSET: Standard = Standard::new(
     Agency::IANA,
     "Charset",
-    "Character Sets",
     "Character Sets",
     "https://www.iana.org/assignments/character-sets/character-sets.xhtml",
 );

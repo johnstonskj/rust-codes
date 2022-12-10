@@ -17,9 +17,8 @@ use serde::{Deserialize, Serialize};
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
 /// package that describes the UN M49 specification.
 ///
-pub const UN_M49: Standard = Standard::new_with_long_ref(
+pub const UN_M49: Standard = Standard::new(
     Agency::UN,
-    "M49",
     "M49",
     "Standard Country or Area Codes for Statistical Use (Series M, No. 49)",
     "https://unstats.un.org/unsd/methodology/m49/overview/",
