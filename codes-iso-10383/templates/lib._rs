@@ -206,7 +206,7 @@ impl {{ type_name }} {{ "{" }}
     #[cfg(feature = "real_url")]
     pub fn website_url(&self) -> Option<url::Url> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].url %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(url::Url::from_str("{{ codes[id].url }}").unwrap()),{% endif %}{% endfor %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(url::Url::from_str("http://{{ codes[id].url | lower }}").unwrap()),{% endif %}{% endfor %}
             _ => None,
         {{ "}" }}
     {{ "}" }}
@@ -217,7 +217,7 @@ impl {{ type_name }} {{ "{" }}
     #[cfg(not(feature = "real_url"))]
     pub fn website_url(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].url %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("{{ codes[id].url }}"),{% endif %}{% endfor %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("http://{{ codes[id].url | lower }}"),{% endif %}{% endfor %}
             _ => None,
         {{ "}" }}
     {{ "}" }}

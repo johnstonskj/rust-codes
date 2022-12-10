@@ -23,11 +23,36 @@ Note that field descriptions are taken from ISO 10383 Market Identifier Codes - 
 use codes_iso_10383::{Category, MarketIdCode, Status};
 
 let market = MarketIdCode::XNCM;
+assert_eq!(market.code(), "XNCM");
 assert_eq!(market.operating_code(), Some(MarketIdCode::XNAS));
 assert_eq!(market.is_segment(), true);
-// assert_eq!(market.market_name(), "NASDAQ CAPITAL MARKET");
 assert_eq!(market.status(), Status::Active);
 assert_eq!(market.market_category_code(), Some(Category::NSPD));
+assert_eq!(market.acronym(), None);
+assert_eq!(market.website_url(), Some("http://www.nasdaq.com"));
+
+// feature = "real_url"
+// assert_eq!(market.(), Some(url::Url::from_str("http://www.nasdaq.com").unwrap()));
+
+// feature = "market_name"
+// assert_eq!(market.market_name(), "NASDAQ CAPITAL MARKET");
+
+// feature = "location"
+// assert_eq!(market.country_code(), Some(CountryCode::US));
+// assert_eq!(market.city(), Some("NEW YORK"));
+
+// feature = "legal_entity"
+// assert_eq!(market.legal_entity_name(), None);
+// assert_eq!(market.legal_entity_id(), None);
+
+// feature = "dates"
+// assert_eq!(market.creation_date(), "2008-02-25");
+// assert_eq!(market.last_update_date(), Some("2008-02-25"));
+// assert_eq!(market.last_validation_date(), None);
+// assert_eq!(market.expiration_date(), None);
+
+// feature = "comments"
+// assert_eq!(market.comments(), Some("..."));
 ```
 
 # Features
