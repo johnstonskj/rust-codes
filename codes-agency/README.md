@@ -14,11 +14,22 @@ the [Standard] struct that describes the standard. This in turn references the
 Consider the following example from the ISO 4217 package.
 
 ```rust
-use codes_iso_4217::ISO_4217;
+use codes_agency::{Agency, Standard};
 
-assert_eq!(ISO_4217.short_ref(), "4217");
-assert_eq!(ISO_4217.title(), "Currency codes");
+// Taken from codes_iso_4217
+pub const ISO_4217: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "4217",
+    "ISO 4217:2015",
+    "Currency codes",
+    "https://www.iso.org/iso-4217-currency-codes.html",
+);
+
 assert_eq!(ISO_4217.agency().to_string(), String::from("ISO"));
+assert_eq!(ISO_4217.short_ref(), "4217");
+assert_eq!(ISO_4217.long_ref(), Some(&"ISO 4217:2015"));
+assert_eq!(ISO_4217.title(), "Currency codes");
+assert_eq!(ISO_4217.url(), "https://www.iso.org/iso-4217-currency-codes.html");
 ```
 
 For notes on the design of the API, see the repository 
