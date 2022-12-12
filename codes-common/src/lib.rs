@@ -189,7 +189,7 @@ macro_rules! insert_field {
             insert_field!($record, $index => $row, $name);
         )+
     };
-    ($record:ident, $row:ident, $index:expr => $name:expr, $field_type:ty) => {{
+    ($record:ident, $index:expr => $row:ident, $name:expr, $field_type:ty) => {{
         let temp = $record.get($index).unwrap();
         let temp = <$field_type>::from_str(temp).unwrap();
         $row.insert($name.to_string(), temp.into());

@@ -1,7 +1,7 @@
 [package]
 name = "codes-common"
 description  = "Support capabilities for codes-* packages."
-version = "0.1.5"
+version = "0.1.6"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-common/"

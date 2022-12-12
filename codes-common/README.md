@@ -10,6 +10,10 @@ For notes on the design of the API, see the repository
 
 ## Changes
 
+**Version 0.1.6**
+
+* Fixed a bug in the insert field macros
+
 **Version 0.1.5**
 
 * Updated CSV handlers
