@@ -41,7 +41,6 @@ pub const UN_M69_REGION_{{ id }}: {{ type_name }} = {{ type_name }}({{ codes[id]
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
     UN_M69_REGION_{{ id }},{% endfor %}
 ];
-
 pub use codes_common::CodeParseError as {{ type_name }}Error;
 
 // ------------------------------------------------------------------------------------------------
