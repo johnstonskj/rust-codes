@@ -17,7 +17,13 @@ structured manner
    and choice of names should be consistent across packages.
 1. **Make them composable**; packages should only model a single standard and
    should reuse others.
-1. **Keep them up-to-date**; 
+1. **Keep them up-to-date**; find ways to automate updates from source material.
+
+
+For information on contributing to this project, see the following.
+
+1. Project [Code-of-Conduct](CODE_OF_CONDUCT.md).
+1. Project [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Changes
 
