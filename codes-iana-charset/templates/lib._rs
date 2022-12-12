@@ -22,19 +22,24 @@ pub const IANA_CHARSET: Standard = Standard::new(
 );
 
 /// 
-/// 
+/// This type is used to encapsulate the numeric **MIB enum** for
+/// IANA-defined Character Sets.
+///
+/// This integer code is used as the main identifier rather than the
+/// textual names as they have no common formatting.
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
-pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
-    /// {{ codes[id].market_name }}
-    {% if id is matching("^[0-9]") %}#[allow(non_camel_case_types)]
-    m{% endif %}{{ id }},{% endfor %}
-{{ "}" }}
+pub struct {{ type_name }}(u16);
+
+{% for id in all_ids %}
+/// {{ codes[id].name }}
+pub const CHARSET_{{ id }}: {{ type_name }} = {{ type_name }}({{ id }});
+{% endfor %}
 
 /// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
 pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
-    {{ type_name }}::{{ id }},{% endfor %}
+    CHARSET_{{ id }},{% endfor %}
 ];
 
 pub use codes_common::CodeParseError as {{ type_name }}Error;
@@ -43,27 +48,87 @@ pub use codes_common::CodeParseError as {{ type_name }}Error;
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
-            "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
+            "{{ codes[id].name }}" => Ok(Self({{ id }})),{% if codes[id].aliases %}
+            {% for alias in codes[id].aliases %}"{{ alias }}" => Ok(Self({{ id }})),{% endfor %}
+        {% endif %}{% endfor %}
             _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
 
-code_impl!({{ type_name }});
+impl TryFrom<u16> for {{ type_name }} {{ "{" }}
+    type Error = {{ type_name }}Error;
+
+    fn try_from(value: u16) -> Result<Self, Self::Error> {{ "{" }}
+        match value {{ "{" }}{% for id in all_ids %}
+            {{ id }} => Ok(Self({{ id }})),{% endfor %}
+            _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+code_impl!({{ type_name }}, id, u16);
 
 impl {{ type_name }} {{ "{" }}
     ///
-    /// Returns the CODE as a string.
+    /// Returns this character set identifier (MIB Enumeration Value).
     ///
-    pub fn code(&self) -> &'static str {{ "{" }}
+    pub fn id(&self) -> u16 {{ "{" }}
+        self.0
+    {{ "}" }}
+    
+    ///
+    /// Returns this character set's name as a string.
+    ///
+    pub fn name(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+            Self({{ id }}) => "{{ codes[id].name }}",{% endfor %}
+            _ => unreachable!()
+        {{ "}" }}
+    {{ "}" }}
+     
+    ///
+    /// Returns this character set's source as a string.
+    ///
+    pub fn source(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self({{ id }}) => r##"{{ codes[id].source }}"##,{% endfor %}
+            _ => unreachable!()
+        {{ "}" }}
+    {{ "}" }}
+    
+    ///
+    /// Returns this character set's preferred MIME alias as a string.
+    ///
+    pub fn preferred_alias(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].preferred_alias %}
+            Self({{ id }}) => Some("{{ codes[id].preferred_alias }}"),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Returns this character set's set of aliases as a list of strings.
+    ///
+    pub fn aliases(&self) -> &[&'static str] {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self({{ id }}) => &[{% for alias in codes[id].aliases %}"{{ alias }}",{% endfor %}],{% endfor %}
+            _ => unreachable!()
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// Returns this character set's reference as a string.
+    ///
+    pub fn reference(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].reference %}
+            Self({{ id }}) => Some(r##"{{ codes[id].reference }}"##),{% endif %}{% endfor %}
+            _ => None,
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

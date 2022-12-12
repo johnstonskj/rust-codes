@@ -27,6 +27,13 @@ For information on contributing to this project, see the following.
 
 ## Changes
 
+**2022-12-12**
+
+* Released the following:
+  * [`codes-iana-charset`](codes-iana-charset); an implementation of the [IANA Character
+  Sets](https://www.iana.org/assignments/character-sets/character-sets.xhtml)
+  standard.
+  
 **2022-12-09**
 
 * Released the following:
@@ -57,8 +64,6 @@ For information on contributing to this project, see the following.
 
 ### Code Standards
 
-* IANA Character Sets
-  https://www.iana.org/assignments/character-sets/character-sets.xhtml
 * ISO (SWIFT) BIC https://en.wikipedia.org/wiki/ISO_9362
 * ISO 13616 IBAN
 * Currency symbols? https://en.wikipedia.org/wiki/Currency_symbol
