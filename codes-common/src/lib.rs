@@ -56,6 +56,7 @@ use std::{
     env,
     fmt::{Debug, Display},
     fs::File,
+    hash::Hash,
     path::Path,
     str::FromStr,
 };
@@ -71,7 +72,7 @@ pub const DEFAULT_DATA_DIR: &str = "data";
 
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
 
-pub trait Code<T>: Debug + Display + FromStr + Into<T> {}
+pub trait Code<T>: Clone + Debug + Display + FromStr + Into<T> + PartialEq + Eq + Hash {}
 
 pub type DataRow = Map<String, Value>;
 pub type DataMap = BTreeMap<String, Map<String, Value>>;
