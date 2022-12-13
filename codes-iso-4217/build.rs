@@ -1,6 +1,5 @@
 use codes_common::{
     default_finalize, default_init, input_file_name, make_default_renderer, process,
-    rerun_if_changed,
 };
 use quick_xml::events::Event;
 use quick_xml::name::QName;
@@ -36,6 +35,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         |ctx| {
             process_iso_list_xml(ctx, "list-one.xml", false)
                 .and_then(|ctx| process_iso_list_xml(ctx, "list-three.xml", true))
+                .and_then(process_symbol_data)
         },
         default_finalize,
         make_default_renderer("lib._rs", "generated.rs"),
@@ -48,8 +48,6 @@ fn process_iso_list_xml(
     is_historical: bool,
 ) -> Result<Data, Box<dyn Error>> {
     let file_name = input_file_name(file_name);
-
-    rerun_if_changed(&file_name);
 
     let mut reader = Reader::from_file(&file_name)?;
     reader.trim_text(true);
@@ -222,4 +220,64 @@ impl From<Data> for Context {
 
         ctx
     }
+}
+
+fn process_symbol_data(mut data: Data) -> Result<Data, Box<dyn std::error::Error>> {
+    use scraper::{Html, Selector};
+    use std::fs;
+
+    fn element_text(element: &scraper::element_ref::ElementRef) -> String {
+        element
+            .text()
+            .map(|s| s.to_string())
+            .collect::<Vec<String>>()
+            .join("")
+            .trim()
+            .to_string()
+    }
+
+    let file_name = input_file_name("xe-symbols.html");
+    let source = fs::read_to_string(&file_name)?;
+
+    let document = Html::parse_document(&source);
+    let row_selector = Selector::parse("li.eOCRRO").unwrap();
+    let data_selector = Selector::parse("div.hawZDG").unwrap();
+
+    for row in document.select(&row_selector) {
+        let strings = row
+            .select(&data_selector)
+            .enumerate()
+            .filter_map(|(i, e)| {
+                if let 0..=11 = &i {
+                    Some(element_text(&e))
+                } else {
+                    None
+                }
+            })
+            .collect::<Vec<String>>();
+        assert_eq!(strings.len(), 6);
+
+        let alpha_code = strings.get(1).unwrap();
+        if alpha_code != "Currency Code" {
+            if let Some(row) = data.codes.get_mut(alpha_code) {
+                let row = row.as_object_mut().unwrap();
+
+                row.insert(
+                    "currency_string".into(),
+                    strings.get(2).unwrap().to_string().into(),
+                );
+
+                let unicode: Vec<Value> = strings
+                    .get(5)
+                    .unwrap()
+                    .split(',')
+                    .map(|s| u32::from_str_radix(s.trim(), 16).unwrap().into())
+                    .collect();
+
+                row.insert("currency_code_points".into(), unicode.into());
+            }
+        }
+    }
+
+    Ok(data)
 }

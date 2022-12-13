@@ -182,5 +182,33 @@ impl {{ type_name }} {{ "{" }}
             Self::{{ id }} => Some("{{ codes[id].withdrawal_date }}"),{% endif %}{% endfor %}
             _ => None,
         {{ "}" }}
-     {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// If known, return the symbol, as a string, for this currency.
+    /// Note that this is unlikely to ever have a value for historical
+    /// codes.
+    ///
+    #[cfg(feature = "symbols")]
+    pub fn currency_symbol_str(&self) -> Option<&'static str> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].currency_string %}
+            Self::{{ id }} => Some("{{ codes[id].currency_string }}"),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+    {{ "}" }}
+
+    ///
+    /// If known, return the symbol, as a list of Unicode code points,
+    /// for this currency. As many countries use multi-character symbols a
+    /// list of points is returned.
+    /// Note that this is unlikely to ever have a value for historical
+    /// codes.
+    ///
+    #[cfg(feature = "symbols")]
+    pub fn currency_symbol_code_points(&self) -> Option<&[u32]> {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}{% if codes[id].currency_code_points %}
+            Self::{{ id }} => Some(&[{{ codes[id].currency_code_points | join(sep=", ") }}]),{% endif %}{% endfor %}
+            _ => None,
+        {{ "}" }}
+    {{ "}" }}
 {{ "}" }}

@@ -10,6 +10,10 @@ or three letters. Some of the alphabetic codes for major currencies are
 familiar, such as "EUR" for Euros. Fortunately, ISO 4217 covers everything
 from Afghanis to Zambian Kwacha as well.
 
+This package extends the data model of the ISO specification by adding a
+currency symbol string (and Unicode code points for the symbol) where possible
+to all symbols.
+
 # Example
 
 ```rust
@@ -19,6 +23,26 @@ let code = CurrencyCode::BZD;
 
 assert_eq!(code.alpha_code(), "BZD");
 assert_eq!(code.numeric_code(), Some(84));
+
+// feature = "currency_name"
+// assert_eq!(code.currency_name(), "Belize Dollar");
+
+// feature = "country_name"
+// assert_eq!(code.country_name(), "BELIZE");
+
+// feature = "monetary_units"
+// assert_eq!(code.monetary_units(), 2);
+
+// feature = "is_fund"
+// assert_eq!(code.is_fund(), false);
+
+// feature = "historical_codes"
+// assert_eq!(code.is_historical(), false);
+// assert_eq!(code.withdrawal_date(), None);
+
+// feature = "symbols"
+// assert_eq!(code.currency_symbol_str(), Some("BZ$"));
+// assert_eq!(code.currency_symbol_code_points(), Some(&[0x42, 0x5a, 0x24]));
 
 assert_eq!(ISO_4217.title(), "Currency codes");
 ```
@@ -34,6 +58,7 @@ By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] a
 * `monetary_units` - Adds the [CurrencyCode::monetary_units] method.
 * `is_fund` - Adds the [CurrencyCode::is_fund] method.
 * `historical_codes` - Adds the [CurrencyCode::is_historical] and [CurrencyCode::withdrawal_date] methods.
+* `symbols` - Adds the [CurrencyCode::currency_symbol_str] and [CurrencyCode::currency_symbol_code_points] methods.
 
 */
 
