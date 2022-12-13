@@ -17,6 +17,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         make_default_renderer("lib._rs", "generated.rs"),
     )
 }
+
 fn process_input_data(mut data: SimpleData) -> Result<SimpleData, Box<dyn std::error::Error>> {
     use scraper::{Html, Selector};
     use std::fs;
