@@ -47,9 +47,9 @@ fn process_input_row(
     let aliases: Vec<Value> = record
         .get(5)
         .unwrap()
-        .split("\n\n")
+        .split('\n')
         .filter_map(|s| {
-            if s != name {
+            if !s.is_empty() && s != name {
                 Some(s.to_string().into())
             } else {
                 None
