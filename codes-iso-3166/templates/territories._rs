@@ -67,12 +67,12 @@ impl TryFrom<u32> for {{ type_name }} {{ "{" }}
 
 impl {{ type_name }} {{ "{" }}
      /// Returns the numeric code for this territory.
-     pub fn code(&self) -> u32 {{ "{" }}
+     pub const fn code(&self) -> u32 {{ "{" }}
          self.0
      {{ "}" }}
 
      /// Returns the country code for the country that includes this territory.
-     pub fn country_code(&self) -> CountryCode {{ "{" }}
+     pub const fn country_code(&self) -> CountryCode {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => CountryCode::{{ codes[id].country_alpha_2_code }},{% endfor %}
              _ => unreachable!(),
@@ -80,7 +80,7 @@ impl {{ type_name }} {{ "{" }}
      {{ "}" }}
 
      /// Return the language code corresponding to this territory's name.
-     pub fn language_code(&self) -> LanguageCode {{ "{" }}
+     pub const fn language_code(&self) -> LanguageCode {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => LanguageCode::{{ codes[id].language_alpha_3_code | capitalize }},{% endfor %}
              _ => unreachable!(),
@@ -88,7 +88,7 @@ impl {{ type_name }} {{ "{" }}
      {{ "}" }}
 
      /// Returns the name of this territory.
-     pub fn name(&self) -> &'static str {{ "{" }}
+     pub const fn name(&self) -> &'static str {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => "{{ codes[id].name }}",{% endfor %}
              _ => unreachable!(),

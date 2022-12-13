@@ -69,7 +69,7 @@ impl {{ type_name }} {{ "{" }}
     /// Market Identifier Code allocated to the market named
     /// in ‘Market Name-Institution Description’
     ///
-    pub fn code(&self) -> &'static str {{ "{" }}
+    pub const fn code(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
         {{ "}" }}
@@ -83,7 +83,7 @@ impl {{ type_name }} {{ "{" }}
     /// The entity operating an exchange/market/trade reporting
     /// facility in a specific market/country.
     ///
-    pub fn operating_code(&self) -> Option<Self> {{ "{" }}
+    pub const fn operating_code(&self) -> Option<Self> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].operating_mic %}{% set op_mic = codes[id].operating_mic %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Self::{% if op_mic is matching("^[0-9]") %}m{% endif %}{{ op_mic }}),{% endif %}{% endfor %}
         _ => None,
@@ -94,7 +94,7 @@ impl {{ type_name }} {{ "{" }}
     /// Returns `true` if this MIC represents a segment within an operating
     /// MIC.
     ///
-    pub fn is_segment(&self) -> bool {
+    pub const fn is_segment(&self) -> bool {
         self.operating_code().is_some()
     }
 
@@ -102,7 +102,7 @@ impl {{ type_name }} {{ "{" }}
     /// The name, or institution description, of the market.
     ///
     #[cfg(feature = "market_name")]
-    pub fn market_name(&self) -> &'static str {{ "{" }}
+    pub const fn market_name(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].market_name }}",{% endfor %}
         {{ "}" }}
@@ -113,7 +113,7 @@ impl {{ type_name }} {{ "{" }}
     /// the market is
     ///
     #[cfg(feature = "location")]
-    pub fn country_code(&self) -> Option<CountryCode> {{ "{" }}
+    pub const fn country_code(&self) -> Option<CountryCode> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].country_code %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(CountryCode::{{ codes[id].country_code }}),{% endif %}{% endfor %}
             _ => None,
@@ -124,7 +124,7 @@ impl {{ type_name }} {{ "{" }}
     /// City: city where the market is located.
     ///
     #[cfg(feature = "location")]
-    pub fn city(&self) -> &'static str {{ "{" }}
+    pub const fn city(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].city }}",{% endfor %}
         {{ "}" }}
@@ -134,7 +134,7 @@ impl {{ type_name }} {{ "{" }}
     /// Status: active, updated (since last publication), expired (=
     /// deactivated).
     ///
-    pub fn status(&self) -> Status {{ "{" }}
+    pub const fn status(&self) -> Status {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Status::{{ codes[id].status | capitalize }},{% endfor %}
         {{ "}" }}
@@ -144,7 +144,7 @@ impl {{ type_name }} {{ "{" }}
     /// Creation date: date indicating when the MIC was originally created.
     ///
     #[cfg(feature = "dates")]
-    pub fn creation_date(&self) -> &'static str {{ "{" }}
+    pub const fn creation_date(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].created }}",{% endfor %}
         {{ "}" }}
@@ -158,7 +158,7 @@ impl {{ type_name }} {{ "{" }}
     /// The legal name of the entity owning the market.
     ///
     #[cfg(feature = "legal_entity")]
-    pub fn legal_entity_name(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn legal_entity_name(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].legal_entity_name %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("{{ codes[id].legal_entity_name }}"),{% endif %}{% endfor %}
             _ => None,
@@ -182,7 +182,7 @@ impl {{ type_name }} {{ "{" }}
     /// is predefined (1). The list can be updated upon request to the RA,
     /// which will validate the request.
     ///
-    pub fn market_category_code(&self) -> Option<Category> {{ "{" }}
+    pub const fn market_category_code(&self) -> Option<Category> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].category_code %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some(Category::{{ codes[id].category_code }}),{% endif %}{% endfor %}
             _ => None,
@@ -192,7 +192,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Acronym: known acronym of the market.
     ///
-    pub fn acronym(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn acronym(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].acronym %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("{{ codes[id].acronym }}"),{% endif %}{% endfor %}
             _ => None,
@@ -215,7 +215,7 @@ impl {{ type_name }} {{ "{" }}
     /// Website: website of the market.
     ///
     #[cfg(not(feature = "real_url"))]
-    pub fn website_url(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn website_url(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].url %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("http://{{ codes[id].url | lower }}"),{% endif %}{% endfor %}
             _ => None,
@@ -227,7 +227,7 @@ impl {{ type_name }} {{ "{" }}
     /// Last update date: date indicating when the MIC was last modified
     ///
     #[cfg(feature = "dates")]
-    pub fn last_update_date(&self) -> &'static str {{ "{" }}
+    pub const fn last_update_date(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].last_modified %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ codes[id].last_modified }}",{% endif %}{% endfor %}
         {{ "}" }}
@@ -238,7 +238,7 @@ impl {{ type_name }} {{ "{" }}
     /// for correctness.
     ///
     #[cfg(feature = "dates")]
-    pub fn last_validation_date(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn last_validation_date(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].last_validated %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("{{ codes[id].last_validated }}"),{% endif %}{% endfor %}
             _ => None,
@@ -251,7 +251,7 @@ impl {{ type_name }} {{ "{" }}
     /// maintenance. The expiry date field is left blank when a MIC is created.
     ///
     #[cfg(feature = "dates")]
-    pub fn expiration_date(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn expiration_date(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].expirey_date %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("{{ codes[id].expirey_date }}"),{% endif %}{% endfor %}
             _ => None,
@@ -263,12 +263,10 @@ impl {{ type_name }} {{ "{" }}
     /// exchange or understanding a modification.
     ///
     #[cfg(feature = "comments")]
-    pub fn comments(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn comments(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].comments %}
             Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => Some("{{ codes[id].comments | replace(from='"', to='\"') }}"),{% endif %}{% endfor %}
             _ => None,
         {{ "}" }}
     {{ "}" }}
-
-
 {{ "}" }}

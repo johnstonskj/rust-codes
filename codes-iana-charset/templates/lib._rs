@@ -78,14 +78,14 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns this character set identifier (MIB Enumeration Value).
     ///
-    pub fn id(&self) -> u16 {{ "{" }}
+    pub const fn id(&self) -> u16 {{ "{" }}
         self.0
     {{ "}" }}
     
     ///
     /// Returns this character set's name as a string.
     ///
-    pub fn name(&self) -> &'static str {{ "{" }}
+    pub const fn name(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self({{ id }}) => "{{ codes[id].name }}",{% endfor %}
             _ => unreachable!()
@@ -95,7 +95,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns this character set's source as a string.
     ///
-    pub fn source(&self) -> &'static str {{ "{" }}
+    pub const fn source(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self({{ id }}) => r##"{{ codes[id].source }}"##,{% endfor %}
             _ => unreachable!()
@@ -105,7 +105,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns this character set's preferred MIME alias as a string.
     ///
-    pub fn preferred_alias(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn preferred_alias(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].preferred_alias %}
             Self({{ id }}) => Some("{{ codes[id].preferred_alias }}"),{% endif %}{% endfor %}
             _ => None,
@@ -115,7 +115,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns this character set's set of aliases as a list of strings.
     ///
-    pub fn aliases(&self) -> &[&'static str] {{ "{" }}
+    pub const fn aliases(&self) -> &[&'static str] {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self({{ id }}) => &[{% for alias in codes[id].aliases %}"{{ alias }}",{% endfor %}],{% endfor %}
             _ => unreachable!()
@@ -125,7 +125,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns this character set's reference as a string.
     ///
-    pub fn reference(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn reference(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].reference %}
             Self({{ id }}) => Some(r##"{{ codes[id].reference }}"##),{% endif %}{% endfor %}
             _ => None,

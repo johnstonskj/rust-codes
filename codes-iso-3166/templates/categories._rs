@@ -68,12 +68,12 @@ impl TryFrom<u32> for {{ type_name }} {{ "{" }}
 
 impl {{ type_name }} {{ "{" }}
      /// Returns the numeric code for this category.
-     pub fn code(&self) -> u32 {{ "{" }}
+     pub const fn code(&self) -> u32 {{ "{" }}
          self.0
      {{ "}" }}
 
      /// Returns the country code for the country defining this category.
-     pub fn country_code(&self) -> CountryCode {{ "{" }}
+     pub const fn country_code(&self) -> CountryCode {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => CountryCode::{{ codes[id].country_alpha_2_code }},{% endfor %}
              _ => unreachable!(),
@@ -81,7 +81,7 @@ impl {{ type_name }} {{ "{" }}
      {{ "}" }}
 
      /// Return the language code corresponding to this category's name.
-     pub fn language_code(&self) -> LanguageCode {{ "{" }}
+     pub const fn language_code(&self) -> LanguageCode {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => LanguageCode::{{ codes[id].language_alpha_3_code | capitalize }},{% endfor %}
              _ => unreachable!(),
@@ -89,7 +89,7 @@ impl {{ type_name }} {{ "{" }}
      {{ "}" }}
 
      /// Return the name of this category.
-     pub fn name(&self) -> &'static str {{ "{" }}
+     pub const fn name(&self) -> &'static str {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}
              {{ id }} => "{{ codes[id].name }}",{% endfor %}
              _ => unreachable!(),
@@ -97,7 +97,7 @@ impl {{ type_name }} {{ "{" }}
      {{ "}" }}
      
      /// Return the plural form, if different, of this category name.
-     pub fn name_plural(&self) -> Option<&'static str> {{ "{" }}
+     pub const fn name_plural(&self) -> Option<&'static str> {{ "{" }}
          match self.0 {{ "{" }}{% for id in all_ids %}{% if codes[id].name_plural %}
              {{ id }} => Some("{{ codes[id].name_plural }}"),{% endif %}{% endfor %}
              _ => None,

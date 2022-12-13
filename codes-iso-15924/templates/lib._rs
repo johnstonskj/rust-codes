@@ -61,7 +61,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the four-letter code for this script.
     ///
-    pub fn code(&self) -> &'static str {{ "{" }}
+    pub const fn code(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{{ id }} => "{{ id }}",{% endfor %}
         {{ "}" }}
@@ -70,7 +70,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the numeric code for this script.
     ///
-    pub fn numeric_code(&self) -> u16 {{ "{" }}
+    pub const fn numeric_code(&self) -> u16 {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{{ id }} => {{ codes[id].numeric_code }},{% endfor %}
         {{ "}" }}
@@ -79,7 +79,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the name of this script.
     ///
-    pub fn name(&self) -> &'static str {{ "{" }}
+    pub const fn name(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{{ id }} => "{{ codes[id].name }}",{% endfor %}
         {{ "}" }}
@@ -88,7 +88,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the PVA for this script.
     ///
-    pub fn property_value_alias(&self) -> Option<&'static str> {{ "{" }}
+    pub const fn property_value_alias(&self) -> Option<&'static str> {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}{% if codes[id].alias %}
             Self::{{ id }} => Some("{{ codes[id].alias }}"),{% endif %}{% endfor %}
             _ => None,
@@ -98,7 +98,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the Unicode version this script was first published.
     ///
-    pub fn unicode_version(&self) -> &'static str {{ "{" }}
+    pub const fn unicode_version(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{{ id }} => "{{ codes[id].unicode_version }}",{% endfor %}
         {{ "}" }}
@@ -107,7 +107,7 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the date this code was added to Unicode as a `YYYY-MM-DD` string for this script.
     ///
-    pub fn date_string(&self) -> &'static str {{ "{" }}
+    pub const fn date_string(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
             Self::{{ id }} => "{{ codes[id].date }}",{% endfor %}
         {{ "}" }}
