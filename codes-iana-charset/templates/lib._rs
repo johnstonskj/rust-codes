@@ -30,7 +30,7 @@ pub const IANA_CHARSET: Standard = Standard::new(
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
-pub struct {{ type_name }}(u16);
+pub struct {{ type_name }}({{ inner_type_name }});
 
 {% for id in all_ids %}
 /// {{ codes[id].name }}
@@ -61,10 +61,10 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl TryFrom<u16> for {{ type_name }} {{ "{" }}
+impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
     type Error = {{ type_name }}Error;
 
-    fn try_from(value: u16) -> Result<Self, Self::Error> {{ "{" }}
+    fn try_from(value: {{ inner_type_name }}) -> Result<Self, Self::Error> {{ "{" }}
         match value {{ "{" }}{% for id in all_ids %}
             {{ id }} => Ok(Self({{ id }})),{% endfor %}
             _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
@@ -72,13 +72,13 @@ impl TryFrom<u16> for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-code_impl!({{ type_name }}, id, u16);
+code_impl!({{ type_name }}, id, {{ inner_type_name }});
 
 impl {{ type_name }} {{ "{" }}
     ///
     /// Returns this character set identifier (MIB Enumeration Value).
     ///
-    pub const fn id(&self) -> u16 {{ "{" }}
+    pub const fn id(&self) -> {{ inner_type_name }} {{ "{" }}
         self.0
     {{ "}" }}
     

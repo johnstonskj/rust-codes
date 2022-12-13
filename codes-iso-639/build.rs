@@ -170,8 +170,19 @@ impl DataTrait for Data {
         }
     }
 
+    fn new_with_inner(_: &'static str, _: &'static str) -> Self
+    where
+        Self: Sized,
+    {
+        unreachable!()
+    }
+
     fn type_name(&self) -> &'static str {
         "LanguageCode"
+    }
+
+    fn inner_type_name(&self) -> Option<&'static str> {
+        None
     }
 
     fn rows(&self) -> &std::collections::BTreeMap<String, Map<String, Value>> {

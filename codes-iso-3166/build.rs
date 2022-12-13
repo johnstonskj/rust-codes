@@ -1,5 +1,6 @@
 use codes_common::{
     default_finalize_for, input_file_name, make_default_renderer, process, Data, SimpleData,
+    DEFAULT_NUMERIC_CODE_TYPE,
 };
 use lazy_static::lazy_static;
 use regex::Regex;
@@ -26,14 +27,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     )?;
 
     process(
-        || Ok(SimpleData::new("SubdivisionCategoryCode")),
+        || {
+            Ok(SimpleData::new_with_inner(
+                "SubdivisionCategoryCode",
+                DEFAULT_NUMERIC_CODE_TYPE,
+            ))
+        },
         process_part_2_category_data,
         default_finalize_for,
         make_default_renderer("categories._rs", "categories.rs"),
     )?;
 
     process(
-        || Ok(SimpleData::new("TerritoryCode")),
+        || {
+            Ok(SimpleData::new_with_inner(
+                "TerritoryCode",
+                DEFAULT_NUMERIC_CODE_TYPE,
+            ))
+        },
         process_part_2_territory_data,
         default_finalize_for,
         make_default_renderer("territories._rs", "territories.rs"),

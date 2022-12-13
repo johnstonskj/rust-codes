@@ -21,9 +21,20 @@ structured manner
 
 So far there are three distinct patterns used when implementing codes, namely:
 
-* **Named Enumeration Type**
-* **Constant Numeric Type**
-* **Non-Enumerated Type**
+* **Named Enumeration Type**; these are cases where the standard defines a
+  clearly enumerated set of values commonly referred to by some non-numeric
+  identifier or name. The code type is a Rust **`enum`** with each identifier
+  or name as a variant.
+* **Constant Numeric Type**; these are cases where the standard defines a
+  clearly enumerated set of numeric values that identify specific codes. In
+  this case we use a
+  [newtype](https://doc.rust-lang.org/rust-by-example/generics/new_types.html)
+  to capture the specific numeric identifiers and a set of defined constant
+  instances.
+* **Non-Enumerated Type**; these are cases there the standard does not define
+  values, but addresses the format, or structure, of a code or identifier. For
+  example the Legal Entity ID specification describes the format of an
+  identifier but cannot enumerate all possible values.
 
 
 For information on contributing to this project, see the following.
@@ -56,7 +67,7 @@ Value Types
 Extended Value Types
 
 * `Url`
-* `chrono`
+* `DateTime`
 
 
 ```rust
@@ -96,6 +107,8 @@ pub use codes_common::CodeParseError as ExampleCodeError;
 
 ### Named Enumeration Pattern
 
+See [codes-iso-4217](https://docs.rs/codes-iso-4217)
+
 Data Type
 
 ``` rust
@@ -127,6 +140,8 @@ pub const ALL_CODES: [ExampleCode;4] = [
 
 ### Constant Numeric Pattern
 
+See [codes-iana-charset](https://docs.rs/codes-iana-charset)
+
 Data Type
 
 ``` rust
@@ -134,7 +149,6 @@ pub struct ExampleCode(u16);
 
 ```
 
-* `From`
 * `TryFrom`
 
 Constant Values
@@ -155,6 +169,8 @@ pub const ALL_CODES: [ExampleCode;4] = [
 ```
 
 ### Non-Enumerated Type Pattern
+
+See [codes-iso-17442](https://docs.rs/codes-iso-17442)
 
 Constructors
 

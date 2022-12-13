@@ -30,7 +30,7 @@ pub const UN_M49: Standard = Standard::new(
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
-pub struct {{ type_name }}(u16);
+pub struct {{ type_name }}({{ inner_type_name }});
 
 {% for id in all_ids %}
 /// {{ codes[id].name }}
@@ -59,13 +59,13 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-code_impl!({{ type_name }}, code, u16);
+code_impl!({{ type_name }}, code, {{ inner_type_name }});
 
 impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the M49 code as an integer.
     ///
-    pub const fn code(&self) -> u16 {{ "{" }}
+    pub const fn code(&self) -> {{ inner_type_name }} {{ "{" }}
         self.0
     {{ "}" }}
 

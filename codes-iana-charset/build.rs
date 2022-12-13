@@ -1,7 +1,7 @@
 use codes_common::csv::process_csv_input;
 use codes_common::{
     default_finalize_for, insert_field, insert_optional_field, make_default_renderer, process,
-    Data, DataRow, SimpleData,
+    Data, DataRow, SimpleData, DEFAULT_NUMERIC_CODE_TYPE,
 };
 use csv::StringRecord;
 use std::str::FromStr;
@@ -12,7 +12,12 @@ const TYPE_NAME: &str = "CharacterSetCode";
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     process(
-        || Ok(SimpleData::new(TYPE_NAME)),
+        || {
+            Ok(SimpleData::new_with_inner(
+                TYPE_NAME,
+                DEFAULT_NUMERIC_CODE_TYPE,
+            ))
+        },
         |data| process_csv_input(data, "character-sets-1.csv", process_input_row),
         default_finalize_for,
         make_default_renderer("lib._rs", "generated.rs"),

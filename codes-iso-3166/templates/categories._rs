@@ -22,7 +22,7 @@ use codes_iso_639::part_3::LanguageCode;
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
-pub struct {{ type_name }}(u32);
+pub struct {{ type_name }}({{ inner_type_name }});
 
 {% for id in all_ids %}
 /// Category "{{ codes[id].name }}"{% if codes[id].country_alpha_2_code %}, defined by country `{{ codes[id].country_alpha_2_code }}`{% endif %}.
@@ -49,16 +49,16 @@ impl FromStr for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl From<{{ type_name }}> for u32 {{ "{" }}
+impl From<{{ type_name }}> for {{ inner_type_name }} {{ "{" }}
     fn from(v: {{ type_name }}) -> Self {{ "{" }}
         v.0
     {{ "}" }}
 {{ "}" }}
 
-impl TryFrom<u32> for {{ type_name }} {{ "{" }}
+impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
     type Error = CountryCodeError;
 
-    fn try_from(value: u32) -> Result<Self, Self::Error> {{ "{" }}
+    fn try_from(value: {{ inner_type_name }}) -> Result<Self, Self::Error> {{ "{" }}
         match value {{ "{" }}{% for id in all_ids %}
             {{ id }} => Ok(Self({{ id }})),{% endfor %}
             _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
@@ -68,7 +68,7 @@ impl TryFrom<u32> for {{ type_name }} {{ "{" }}
 
 impl {{ type_name }} {{ "{" }}
      /// Returns the numeric code for this category.
-     pub const fn code(&self) -> u32 {{ "{" }}
+     pub const fn code(&self) -> {{ inner_type_name }} {{ "{" }}
          self.0
      {{ "}" }}
 

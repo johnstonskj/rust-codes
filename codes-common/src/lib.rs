@@ -65,6 +65,8 @@ use tera::{Map, Value};
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
+pub const DEFAULT_NUMERIC_CODE_TYPE: &str = "u16";
+
 pub const DEFAULT_DATA_DIR: &str = "data";
 
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
@@ -78,7 +80,14 @@ pub trait Data {
     fn new(type_name: &'static str) -> Self
     where
         Self: Sized;
+    fn new_with_inner(type_name: &'static str, inner_type_name: &'static str) -> Self
+    where
+        Self: Sized;
     fn type_name(&self) -> &'static str;
+    fn inner_type_name(&self) -> Option<&'static str>;
+    fn has_inner_type(&self) -> bool {
+        self.inner_type_name().is_some()
+    }
     fn all_ids(&self) -> Vec<&String> {
         self.rows().keys().collect()
     }
@@ -117,6 +126,7 @@ pub trait Data {
 #[derive(Debug, Default)]
 pub struct SimpleData {
     type_name: &'static str,
+    inner_type_name: Option<&'static str>,
     rows: DataMap,
 }
 
@@ -262,6 +272,10 @@ where
 
     ctx.insert("type_name", &Value::String(data.type_name().into()));
 
+    if let Some(inner_type_name) = data.inner_type_name() {
+        ctx.insert("inner_type_name", &Value::String(inner_type_name.into()));
+    }
+
     ctx.insert("all_ids", &data.all_ids_sorted());
 
     ctx.insert(
@@ -333,12 +347,27 @@ impl Data for SimpleData {
     {
         Self {
             type_name,
+            inner_type_name: None,
+            rows: Default::default(),
+        }
+    }
+    fn new_with_inner(type_name: &'static str, inner_type_name: &'static str) -> Self
+    where
+        Self: Sized,
+    {
+        Self {
+            type_name,
+            inner_type_name: Some(inner_type_name),
             rows: Default::default(),
         }
     }
 
     fn type_name(&self) -> &'static str {
         self.type_name
+    }
+
+    fn inner_type_name(&self) -> Option<&'static str> {
+        self.inner_type_name
     }
 
     fn rows(&self) -> &BTreeMap<String, Map<String, Value>> {

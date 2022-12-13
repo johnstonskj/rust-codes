@@ -3,6 +3,7 @@ use tera::{Map, Value};
 
 use codes_common::{
     default_finalize_for, input_file_name, make_default_renderer, process, Data, SimpleData,
+    DEFAULT_NUMERIC_CODE_TYPE,
 };
 //use tera::Value;
 
@@ -11,7 +12,12 @@ const TYPE_NAME: &str = "RegionClassificationCode";
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     process(
-        || Ok(SimpleData::new(TYPE_NAME)),
+        || {
+            Ok(SimpleData::new_with_inner(
+                TYPE_NAME,
+                DEFAULT_NUMERIC_CODE_TYPE,
+            ))
+        },
         process_input_data,
         default_finalize_for,
         make_default_renderer("lib._rs", "generated.rs"),
