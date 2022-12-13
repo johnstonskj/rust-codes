@@ -5,8 +5,8 @@ Support capabilities for `codes-*` packages.
 For notes on the design of the API, see the repository 
 [README](https://github.com/johnstonskj/rust-codes/blob/main/README.md).
 
-[![crates.io](https://img.shields.io/crates/v/codes-iso-common.svg)](https://crates.io/crates/codes-iso-common)
-[![docs.rs](https://docs.rs/codes-iso-common/badge.svg)](https://docs.rs/codes-iso-common)
+[![crates.io](https://img.shields.io/crates/v/codes-common.svg)](https://crates.io/crates/codes-common)
+[![docs.rs](https://docs.rs/codes-common/badge.svg)](https://docs.rs/codes-common)
 
 ## Changes
 
