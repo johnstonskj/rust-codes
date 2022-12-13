@@ -47,9 +47,10 @@ fn process_input_row(
     let aliases: Vec<Value> = record
         .get(5)
         .unwrap()
+        // "\n\n" works on macos and linux, but not windows.
         .split('\n')
         .filter_map(|s| {
-            if !s.is_empty() && s != name {
+            if !s.is_empty() && s != "\r" && s != name {
                 Some(s.to_string().into())
             } else {
                 None
