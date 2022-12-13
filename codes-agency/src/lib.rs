@@ -193,8 +193,31 @@ impl Agency {
     ///
     /// Some agencies are hierarchical, this returns a parent agency, if one exists.
     ///
-    pub const fn parent_agency(&self) -> Option<Self> {
+    pub const fn parent_agency(&self) -> Option<&Self> {
         None
+    }
+
+    ///
+    /// Return a [URN](https://www.rfc-editor.org/rfc/rfc8141) that identifies
+    /// an agency. The *namespace identifier* is "agency" (this is not a
+    /// [registered](https://www.iana.org/assignments/urn-namespaces/urn-namespaces.xhtml)
+    /// value) and the *namespace-specific string* is the agency and parent
+    /// agency set in order and separated with "/".
+    ///
+    /// # Example
+    ///
+    /// ```rust,ignore
+    /// let urn = Agency::CEFACT.agency_urn();
+    /// assert_eq!(&urn, "urn:agency:un/unece/cefact");
+    /// ```
+    ///
+    pub fn agency_urn(&self) -> String {
+        let mut path = vec![self.short_name().to_lowercase()];
+        let agency = self;
+        while let Some(agency) = agency.parent_agency() {
+            path.insert(0, agency.short_name().to_lowercase());
+        }
+        format!("urn:agency:{}", path.join("/"))
     }
 }
 
