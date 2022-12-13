@@ -19,11 +19,156 @@ structured manner
    should reuse others.
 1. **Keep them up-to-date**; find ways to automate updates from source material.
 
+So far there are three distinct patterns used when implementing codes, namely:
+
+* **Named Enumeration Type**
+* **Constant Numeric Type**
+* **Non-Enumerated Type**
+
 
 For information on contributing to this project, see the following.
 
 1. Project [Code-of-Conduct](CODE_OF_CONDUCT.md).
 1. Project [Contribution Guidelines](CONTRIBUTING.md).
+
+### Common Features
+
+Implemented traits `codes-common::Code`
+
+``` rust
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+/* ExampleCode */
+```
+
+* `Display`
+* `FromStr`
+* `From`
+
+* `AsRef`
+
+Value Types
+
+``` rust
+
+```
+
+Extended Value Types
+
+* `Url`
+* `chrono`
+
+
+```rust
+impl ExampleCode {
+    #[cfg(feature = "real_url")]
+    pub fn website_url(&self) -> Option<url::Url> {
+        todo!()
+    }
+    #[cfg(not(feature = "real_url"))]
+    pub const fn website_url(&self) -> Option<&'static str> {
+        todo!()
+    }
+}
+```
+
+Methods
+
+Accessor methods should be marked **`const`** as much as possible.
+
+``` rust
+impl ExampleCode {
+     pub const fn code(&self) -> &'static str {
+         match self {
+             Self::ExampleOne => "001",
+             Self::ExampleTwo => "002",
+             // ...
+         }
+     }
+}
+```
+
+Errors
+
+``` rust
+pub use codes_common::CodeParseError as ExampleCodeError;
+```
+
+### Named Enumeration Pattern
+
+Data Type
+
+``` rust
+pub enum ExampleCode {
+    /// Example number one
+    ExampleOne,
+    /// Example number two
+    ExampleTwo,
+    /// Example number three
+    ExampleThree,
+    /// Example number four
+    ExampleFour,
+}
+
+`FromStr` will use the values `ExampleOne`, `ExampleTwo`, etc.
+
+```
+
+All Codes array
+
+``` rust
+pub const ALL_CODES: [ExampleCode;4] = [
+    ExampleCode::ExampleOne,
+    ExampleCode::ExampleTwo[,
+    ExampleCode::ExampleThree,
+    ExampleCode::ExampleFour,
+];
+```
+
+### Constant Numeric Pattern
+
+Data Type
+
+``` rust
+pub struct ExampleCode(u16);
+
+```
+
+* `From`
+* `TryFrom`
+
+Constant Values
+
+``` rust
+pub const EXAMPLE_1: ExampleCode = ExampleCode(1);
+```
+
+All Codes array
+
+``` rust
+pub const ALL_CODES: [ExampleCode;4] = [
+    EXAMPLE_1,
+    EXAMPLE_2,
+    EXAMPLE_3,
+    EXAMPLE_4,
+];
+```
+
+### Non-Enumerated Type Pattern
+
+Constructors
+
+where possible use FromStr or tryFrom. Else use `new`
+
+``` rust
+impl ExampleCode {
+    #[doc(hidden)]
+    pub(crate) const fn new_unchecked(s: &'static str) -> Self {
+        todo!()
+    }
+}
+```
+
 
 ## Changes
 
