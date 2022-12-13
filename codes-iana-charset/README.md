@@ -58,7 +58,6 @@ assert_eq!(latin_1.aliases(), &[
     "csISOLatin1"
 ]);
 assert_eq!(latin_1.reference(), Some("[RFC1345][Keld_Simonsen]"));
-assert_eq!(latin_1.note(), None);
 ```
 Note that the implementation of `FromStr` takes into account all aliases.
 
@@ -84,6 +83,10 @@ By default only the `serde` feature is enabled.
 * `serde` - Enables serialization of the [CharacterSetCode] type.
 
 ## Changes
+
+**Version 0.1.1**
+
+* Fixed example bug
 
 **Version 0.1.0**
 

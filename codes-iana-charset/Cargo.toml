@@ -1,7 +1,7 @@
 [package]
 name = "codes-iana-charset"
 description  = "This package contains an implementation of the IANA Character Set registry."
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-iana-charset/"

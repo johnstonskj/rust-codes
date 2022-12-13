@@ -50,7 +50,6 @@ assert_eq!(latin_1.aliases(), &[
     "csISOLatin1"
 ]);
 assert_eq!(latin_1.reference(), Some("[RFC1345][Keld_Simonsen]"));
-assert_eq!(latin_1.note(), None);
 ```
 Note that the implementation of `FromStr` takes into account all aliases.
 
