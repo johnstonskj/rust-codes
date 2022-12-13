@@ -49,8 +49,9 @@ fn process_input_row(
         .unwrap()
         // "\n\n" works on macos and linux, but not windows.
         .split('\n')
+        .map(str::trim)
         .filter_map(|s| {
-            if !s.is_empty() && s != "\r" && s != name {
+            if !s.is_empty() && s != name {
                 Some(s.to_string().into())
             } else {
                 None
