@@ -47,7 +47,7 @@ assert_eq!(code.date_string(),"2017-11-21");
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the [ScriptCode] type.
+* `serde` - Enables serialization of the `ScriptCode` type.
 
 ## Changes
 

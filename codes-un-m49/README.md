@@ -51,8 +51,8 @@ assert_eq!(parent.name(), "World");
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the [RegionClassificationCode] type.
-* `country_codes`; if enabled the value returned by the [RegionClassificationCode::country_code]
+* `serde` - Enables serialization of the `RegionClassificationCode` type.
+* `country_codes`; if enabled the value returned by the `RegionClassificationCode::country_code`
   method will be an instance of `CountryCode` from the `codes-iso-3166`
   package, otherwise it returns `'static str`.
 

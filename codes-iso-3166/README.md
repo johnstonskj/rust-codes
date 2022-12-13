@@ -40,7 +40,7 @@ assert_eq!(country.short_name(), "Antigua and Barbuda");
 
 ## Features
 
-By default only the `serde` feature is enabled, and [part_1] two-letter
+By default only the `serde` feature is enabled, and part-1 two-letter
 language codes.
 
 * `serde` - Enables serialization of the different Language Code types.

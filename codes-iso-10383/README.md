@@ -64,17 +64,17 @@ assert_eq!(market.acronym(), None);
 
 ## Features
 
-By default only the `serde` feature is enabled, the [MarketIdCode::code] and
-[MarketIdCode::operating_code], and [MarketIdCode::is_segment] methods cannot be excluded.
+By default only the `serde` feature is enabled, the `MarketIdCode::code` and
+`MarketIdCode::operating_code`, and `MarketIdCode::is_segment` methods cannot be excluded.
 
-* `serde` - Enables serialization of the [MarketIdCode] type.
-* `market_name` - Adds the [MarketIdCode::market_name] method.
-* `location` - Adds the [MarketIdCode::country_code] and [MarketIdCode::city] methods.
-* `legal_entity` - Adds the [MarketIdCode::legal_entity_id] and [MarketIdCode::legal_entity_name] methods.
-* `real_url - Uses the `Url` type from the `url` crate for the [MarketIdCode::website_url] method.
-* `dates` - Adds the [MarketIdCode::creation_date], [MarketIdCode::last_update_date], [MarketIdCode::last_validation_date], and [MarketIdCode::expiration_date] methods.
+* `serde` - Enables serialization of the `MarketIdCode` type.
+* `market_name` - Adds the `MarketIdCode::market_name` method.
+* `location` - Adds the `MarketIdCode::country_code` and `MarketIdCode::city` methods.
+* `legal_entity` - Adds the `MarketIdCode::legal_entity_id` and `MarketIdCode::legal_entity_name` methods.
+* `real_url - Uses the `Url` type from the `url` crate for the `MarketIdCode::website_url` method.
+* `dates` - Adds the `MarketIdCode::creation_date`, `MarketIdCode::last_update_date`, `MarketIdCode::last_validation_date`, and `MarketIdCode::expiration_date` methods.
 * `real_dates` - Used the `DateTime<Utc>` types from the `chrono` crate for date functions **Work In Progress**
-* `comments` - Adds the [MarketIdCode::comments] method.
+* `comments` - Adds the `MarketIdCode::comments` method.
 
 ## Changes
 

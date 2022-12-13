@@ -56,16 +56,16 @@ assert_eq!(ISO_4217.title(), "Currency codes");
 
 ## Features
 
-By default only the `serde` feature is enabled, the [CurrencyCode::alpha_code] and
-[CurrencyCode::numeric_code] methods cannot be excluded.
+By default only the `serde` feature is enabled, the `CurrencyCode::alpha_code` and
+`CurrencyCode::numeric_code` methods cannot be excluded.
 
-* `serde` - Enables serialization of the [CurrencyCode] type.
-* `currency_name` - Adds the [CurrencyCode::currency_name] method.
-* `country_name` - Adds the [CurrencyCode::country_name] method.
-* `monetary_units` - Adds the [CurrencyCode::monetary_units] method.
-* `is_fund` - Adds the [CurrencyCode::is_fund] method.
-* `historical_codes` - Adds the [CurrencyCode::is_historical] and [CurrencyCode::withdrawal_date] methods.
-* `symbols` - Adds the [CurrencyCode::currency_symbol_str] and [CurrencyCode::currency_symbol_code_points] methods.
+* `serde` - Enables serialization of the `CurrencyCode` type.
+* `currency_name` - Adds the `CurrencyCode::currency_name` method.
+* `country_name` - Adds the `CurrencyCode::country_name` method.
+* `monetary_units` - Adds the `CurrencyCode::monetary_units` method.
+* `is_fund` - Adds the `CurrencyCode::is_fund` method.
+* `historical_codes` - Adds the `CurrencyCode::is_historical` and `CurrencyCode::withdrawal_date` methods.
+* `symbols` - Adds the `CurrencyCode::currency_symbol_str` and `CurrencyCode::currency_symbol_code_points` methods.
 
 ## Changes
 

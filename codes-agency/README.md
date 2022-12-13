@@ -39,7 +39,7 @@ For notes on the design of the API, see the repository
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the [CurrencyCode] type.
+* `serde` - Enables serialization of the `Agency` type.
   
 ## Changes
 

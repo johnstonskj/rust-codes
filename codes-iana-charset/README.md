@@ -80,7 +80,7 @@ assert_eq!(some_charset, iso_8859_1);
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the [CharacterSetCode] type.
+* `serde` - Enables serialization of the `CharacterSetCode` type.
 
 ## Changes
 

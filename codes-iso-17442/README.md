@@ -54,7 +54,7 @@ assert_eq!(lei.check_digits(), "16");
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the [LegalEntityId] type.
+* `serde` - Enables serialization of the `LegalEntityId` type.
 * `url` - Enables the conversion between LEI and URL (URN) forms.
 
 ## Changes
