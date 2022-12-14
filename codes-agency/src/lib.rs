@@ -84,6 +84,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Agency {
+    /// [GS1]()
+    GS1,
     /// [Internet Assigned Numbers Authority](https://www.iana.org)
     IANA,
     /// [IEEE](https://www.ieee.org)
@@ -137,6 +139,7 @@ impl FromStr for Agency {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
+            "GS1" => Ok(Self::GS1),
             "IANA" => Ok(Self::IANA),
             "IEEE" => Ok(Self::IEEE),
             "IETF" => Ok(Self::IETF),
@@ -156,6 +159,7 @@ impl Agency {
     ///
     pub const fn short_name(&self) -> &'static str {
         match self {
+            Self::GS1 => "GS1",
             Self::IANA => "IANA",
             Self::IEEE => "IEEE",
             Self::IETF => "IETF",
@@ -169,6 +173,7 @@ impl Agency {
     ///
     pub const fn name(&self) -> &'static str {
         match self {
+            Self::GS1 => "GS1 AISBL",
             Self::IANA => "Internet Assigned Numbers Authority",
             Self::IEEE => "IEEE",
             Self::IETF => "The Internet Engineering Task Force",
@@ -182,6 +187,7 @@ impl Agency {
     ///
     pub const fn url(&self) -> &'static str {
         match self {
+            Self::GS1 => "https://www.gs1.org",
             Self::IANA => "https://www.iana.org",
             Self::IEEE => "https://www.ieee.org",
             Self::IETF => "https://www.ietf.org",
