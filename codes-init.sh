@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
 
-AGENCY=$(echo $1 | tr A-Z a-z)
-NAME=$(echo $2 | tr A-Z a-z)
+LAGENCY=$(echo $1 | tr A-Z a-z)
+LNAME=$(echo $2 | tr A-Z a-z)
+PACKAGE="codes-${LAGENCY}-${LNAME}"
 
-PACKAGE="codes-${AGENCY}-${NAME}"
-NAME="$(echo $1 | tr a-z A-Z) $(echo $2 | tr a-z A-Z)"
+UAGENCY=$(echo $1 | tr a-z A-Z)
+UNAME=$(echo $2 | tr a-z A-Z)
+PACKAGE_NAME="${UAGENCY} ${UNAME}"
 
 echo "Creating new cargo package $PACKAGE"
 
@@ -13,11 +15,13 @@ cargo init --lib $PACKAGE
 echo "Adding README"
 
 cat <<EOT >> $PACKAGE/README.md
-# Package $PACKAGE
+# Package ${PACKAGE}
 
 This package contains an implementation of the
-[$NAME](...) specification.
+[${NAME}](...) specification.
 
+[![crates.io](https://img.shields.io/crates/v/${PACKAGE}.svg)](https://crates.io/crates/${PACKAGE})
+[![docs.rs](https://docs.rs/${PACKAGE}/badge.svg)](https://docs.rs/${PACKAGE})
 
 For notes on the design of the API, see the repository 
 [README](https://github.com/johnstonskj/rust-codes/blob/main/README.md).
