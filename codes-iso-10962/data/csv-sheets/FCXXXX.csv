@@ -1,0 +1,23 @@
+Commodities futures,(F-C),Futures contracts based on bulk goods.,F-C-*-*-*-*,FCXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,E,"Extraction resources (metals, precious metals, coal, oil, gas)",F-C-E-*-*-*,FCEXXX
+,A,"Agriculture (commodities which include forestry, fishing, livestock, grain, dairy, corn, cocoa, soybeans, sugar, coffee)",F-C-A-*-*-*,FCAXXX
+,I,"Industrial products (construction, manufacturing)",F-C-I-*-*-*,FCIXXX
+,S,"Services (transportation, communication, trade)",F-C-S-*-*-*,FCSXXX
+,N,"Environmental (includes carbon-related, emission reduction, weather)",F-C-N-*-*-*,FCNXXX
+,P,Polypropylene products (includes plastics),F-C-P-*-*-*,FCPXXX
+,H,"Generated resources (includes electricity, renewable energy, or any power/energy delivered through a utility network or provider)",F-C-H-*-*-*,FCHXXX
+,M,Others (miscellaneous),F-C-M-*-*-*,FCMXXX
+Second attribute,,Delivery (indicates whether the settlement of the future is made in cash or whether the underlying instruments are delivered),Code,rdfs.label
+,P,Physical,F-C-*-P-*-*,FCXPXX
+,C,Cash,F-C-*-C-*-*,FCXCXX
+,N,Non-deliverable,F-C-*-N-*-*,FCXNXX
+Third attribute,,Standardized/non-standardized (indicates whether the terms of the contract are standardized or not),Code,rdfs.label
+,S,"Standardized (the underlying instruments, exercise price, expiration date and contract size of the options are standardized; these options are traded on special option exchanges)",F-C-*-*-S-*,FCXXSX
+,N,Non-standardized (options traded on option exchanges which have non-standard delivery or expiry terms),F-C-*-*-N-*,FCXXNX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,F-C-*-*-*-X,FCXXXX
+
+,,Return to Futures_Category Category,,
+
+,,Return to Categories,,

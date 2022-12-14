@@ -1,0 +1,11 @@
+Entitlement (rights),(R),Financial instruments providing the holder with the privilege to subscribe to or receive specific assets on terms specified.,R-*-*-*-*-*,RXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+A,Allotment (bonus) rights,"Privileges allotted to existing security holders, entitling them to receive new securities free of charge.",R-A-*-*-*-*,RAXXXX,2019
+S,Subscription rights,"Privileges allotted to existing security holders, entitling them to subscribe to new securities at a price normally lower than the prevailing market price.",R-S-*-*-*-*,RSXXXX,2019
+P,Purchase rights,Anti-takeover device that gives a prospective acquiree's shareholders the right to buy shares of the firm or shares of anyone who acquires the firm at a deep discount to their fair market value.,R-P-*-*-*-*,RPXXXX,2019
+W,Warrants,"Financial instruments which permit the holder to purchase a specified amount of a financial instrument, commodity, currency or other during a specified period at a specified price.",R-W-*-*-*-*,RWXXXX,2019
+F,"Mini-future certificates, constant leverage certificates","Mini-futures combine the structure of open-end certificates with leverage option. Mini-futures have no fixed term. The leverage is therefore available without a term restriction. The price of a mini-future always corresponds to its intrinsic value, i.e. the capital outlay, plus the bid-ask spread. The financing costs associated with building up the leverage effect are offset against the capital outlay on a daily basis, thereby eliminating the need for a premium. Investors have to pay only financing costs they actually utilize. In contrast to options, factors like volatility have no influence at all on the price of mini-futures.",R-F-*-*-*-*,RFXXXX,2019
+D,Depositary receipts on entitlements,Depository receipts are securities that facilitate the ownership of instruments traded in other jurisdictions. Depository receipts are widely used in order to allow the trading of entitlements in jurisdictions other than the one where the original entitlements were issued.,R-D-*-*-*-*,RDXXXX,2019
+M,Others (miscellaneous),Entitlements (rights) that do not fit into any of the above Groups described.,R-M-*-*-*-*,RMXXXX,2019
+
+,Return to Categories,,,,

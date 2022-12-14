@@ -1,0 +1,20 @@
+Other assets (miscellaneous),(M-M),The following are other assets that do not fit the Groupings as defined.,M-M-*-*-*-*,MMXXXX
+First attribute,,Further grouping,Code,rdfs.label
+,R,Real estate deeds (represent ownership of property),M-M-R-*-*-*,MMRXXX
+,I,Insurance policies,M-M-I-*-*-*,MMIXXX
+,E,Escrow receipts (bank guarantee that an option writer has the underlying security on deposit and that the underlying security is readily available for delivery if the option is exercised),M-M-E-*-*-*,MMEXXX
+,T,Trade finance instruments (assets based on the securitization of the movement of goods and services),M-M-T-*-*-*,MMTXXX
+,N,Carbon credit (certificate or permit representing the right to emit carbon dioxide),M-M-N-*-*-*,MMNXXX
+,P,Precious metal receipts,M-M-P-*-*-*,MMPXXX
+,S,Other OTC derivative products,M-M-S-*-*-*,MMSXXX
+,M,Others (miscellaneous),M-M-M-*-*-*,MMMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,M-M-*-X-*-*,MMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,M-M-*-*-X-*,MMXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,M-M-*-*-*-X,MMXXXX
+
+,,Return to Others_miscellaneous_Category Category,,
+
+,,Return to Categories,,

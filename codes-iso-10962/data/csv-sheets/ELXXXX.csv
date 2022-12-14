@@ -1,0 +1,23 @@
+Limited partnership units,(E-L),"A limited partnership is a form of partnership similar to a general partnership, except that in addition to one or more general partners (GPs), there are one or more limited partners (LPs).
+Like shareholders in a corporation, the LPs have limited liability, i.e. they are only liable on debts incurred by the firm to the extent of their registered investment and they have no management authority. The GPs pay the LPs the equivalent of a dividend on their investment, the nature and extent of which is usually defined in the partnership agreement.",E-L-*-*-*-*,ELXXXX
+First attribute,,Voting right (indicates the kind of voting power conferred to the shareholder),Code,rdfs.label
+,V,Voting (each share has one vote),E-L-V-*-*-*,ELVXXX
+,N,Non-voting (the shareholder has no voting right),E-L-N-*-*-*,ELNXXX
+,R,Restricted voting (the shareholder may be entitled to less than one vote per share),E-L-R-*-*-*,ELRXXX
+,E,Enhanced voting (the shareholder is entitled to more than one vote per share),E-L-E-*-*-*,ELEXXX
+Second attribute,,Ownership/transfer/sales restrictions (the ownership or transfer of the security is subject to special conditions including country-specific restrictions),Code,rdfs.label
+,T,Restrictions,E-L-*-T-*-*,ELXTXX
+,U,Free (unrestricted),E-L-*-U-*-*,ELXUXX
+Third attribute,,Payment status,Code,rdfs.label
+,O,Nil paid,E-L-*-*-O-*,ELXXOX
+,P,Partly paid,E-L-*-*-P-*,ELXXPX
+,F,Fully paid,E-L-*-*-F-*,ELXXFX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),E-L-*-*-*-B,ELXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),E-L-*-*-*-R,ELXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),E-L-*-*-*-N,ELXXXN
+,M,Others (miscellaneous),E-L-*-*-*-M,ELXXXM
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,

@@ -1,0 +1,16 @@
+Others (miscellaneous),(S-M),Swaps that do not fit into any of the Swaps Groups,S-M-*-*-*-*,SMXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,P,Commercial property (or property derivative) [a derivative where the underlying is commercial property; property derivatives are mostly in the form of swaps where one party pays the return on the index if positive versus the other party paying LIBOR (London interbank offered rate)],S-M-P-*-*-*,SMPXXX
+,M,Others (miscellaneous),S-M-M-*-*-*,SMMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,S-M-*-X-*-*,SMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,S-M-*-*-X-*,SMXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,S-M-*-*-*-C,SMXXXC
+,P,Physical,S-M-*-*-*-P,SMXXXP
+,E,Elect at settlement (determined at the time of settlement),S-M-*-*-*-E,SMXXXE
+
+,,Return to Swaps_Category Category,,
+
+,,Return to Categories,,

@@ -1,0 +1,70 @@
+use std::str::FromStr;
+use codes_agency::{Agency, Standard};
+use codes_common::code_impl;
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO-10962 specification.
+///
+pub const ISO_10962: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "10962",
+    "ISO 10962:2021",
+    "Securities and related financial instruments — Classification of financial instruments (CFI) code",
+    "https://www.iso.org/standard/81140.html",
+);
+
+/// 
+/// 
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].market_name }}
+    {% if id is matching("^[0-9]") %}#[allow(non_camel_case_types)]
+    m{% endif %}{{ id }},{% endfor %}
+{{ "}" }}
+
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in all_ids %}
+    {{ type_name }}::{{ id }},{% endfor %}
+];
+
+pub use codes_common::CodeParseError as {{ type_name }}Error;
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
+            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+code_impl!({{ type_name }});
+
+impl {{ type_name }} {{ "{" }}
+    ///
+    /// Returns the CODE as a string.
+    ///
+    pub fn code(&self) -> &'static str {{ "{" }}
+        match self {{ "{" }}{% for id in all_ids %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}

@@ -1,0 +1,10 @@
+Swaps,(S),"A swap is an agreement or contract where two counterparties agree to exchange periodic streams of cash flows with each other. Swaps can be executed with a variety of asset classes, as listed below.",S-*-*-*-*-*,SXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+R,Rates,"A rates swap is a contract in which two counterparties each agree to pay the other cash flows on defined dates during an agreed period, based on a specified notional amount and a floating interest, floating inflation or fixed interest rate.",S-R-*-*-*-*,SRXXXX,2019
+T,Commodities,"A commodity swap is a derivative contract where the value of the contract is derived from an underlying commodity or commodity index. Commodity derivatives can be physically settled or cash settled. Primary underliers include metals, agricultural goods and energy.",S-T-*-*-*-*,STXXXX,2019
+E,Equity,"An equity swap is a derivative contract where payments are linked to the change in value of an underlying equity (e.g. shares, basket of equities or index). Equity swaps can be physically or cash settled.",S-E-*-*-*-*,SEXXXX,2019
+C,Credit,A credit swap references a value or event related to a debt product or debt issuer.,S-C-*-*-*-*,SCXXXX,2019
+F,Foreign exchange,A foreign exchange swap is a foreign exchange agreement between two parties to exchange a given amount of one currency for another currency for spot delivery or for forward delivery at an agreed rate after a specified period of time.,S-F-*-*-*-*,SFXXXX,2019
+M,Others (miscellaneous),Swaps that do not fit into any of the Swaps Groups,S-M-*-*-*-*,SMXXXX,2019
+
+,Return to Categories,,,,

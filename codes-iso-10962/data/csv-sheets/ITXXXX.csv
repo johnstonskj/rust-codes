@@ -1,0 +1,20 @@
+Commodities,(I-T),Spot contracts to physically deliver the commodity asset at settlement.,I-T-*-*-*-*,ITXXXX
+First attribute,,"Underlying assets (indicates the type of underlying assets that the spot contract buyer receives, and that the seller delivers)",Code,rdfs.label
+,A,Agriculture,I-T-A-*-*-*,ITAXXX
+,J,Energy,I-T-J-*-*-*,ITJXXX
+,K,Metals,I-T-K-*-*-*,ITKXXX
+,N,Environmental (e.g. carbon credits and similar products),I-T-N-*-*-*,ITNXXX
+,P,Polypropylene products,I-T-P-*-*-*,ITPXXX
+,S,Fertilizer,I-T-S-*-*-*,ITSXXX
+,T,Paper,I-T-T-*-*-*,ITTXXX
+,M,Others (miscellaneous),I-T-M-*-*-*,ITMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,I-T-*-X-*-*,ITXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,I-T-*-*-X-*,ITXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,I-T-*-*-*-X,ITXXXX
+
+,,Return to Spot_Category Category,,
+
+,,Return to Categories,,

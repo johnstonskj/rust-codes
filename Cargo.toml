@@ -8,6 +8,7 @@ members = [
     "codes-iso-3166",
     "codes-iso-4217",
     "codes-iso-10383",
+    "codes-iso-10962",
     "codes-iso-15924",
     "codes-iso-17442",
     "codes-un-m49",

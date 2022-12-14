@@ -1,0 +1,19 @@
+Baskets,(T-B),Group of securities that have been put together for a specific investment purpose.,T-B-*-*-*-*,TBXXXX
+First attribute,,Composition,Code,rdfs.label
+,E,Equities,T-B-E-*-*-*,TBEXXX
+,D,Debt instruments,T-B-D-*-*-*,TBDXXX
+,F,CIVs,T-B-F-*-*-*,TBFXXX
+,I,Indices,T-B-I-*-*-*,TBIXXX
+,T,Commodities,T-B-T-*-*-*,TBTXXX
+,C,Currencies,T-B-C-*-*-*,TBCXXX
+,M,Others (miscellaneous),T-B-M-*-*-*,TBMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-B-*-X-*-*,TBXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-B-*-*-X-*,TBXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-B-*-*-*-X,TBXXXX
+
+,,Return to Referential_instrument_Category Category,,
+
+,,Return to Categories,,

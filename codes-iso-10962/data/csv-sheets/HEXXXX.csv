@@ -1,0 +1,36 @@
+Equity,(H-E),"An option where the underlying asset is an equity-linked instrument (i.e. shares, depository receipts, ETFs, indices, baskets).",H-E-*-*-*-*,HEXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,S,"Single stock (an option on a contract which gives the holder the right to buy, and to sell, single-named equity)",H-E-S-*-*-*,HESXXX
+,I,"Index (an option on a contract which gives the holder the right to buy, and to sell, specified equity indices)",H-E-I-*-*-*,HEIXXX
+,B,Basket (an option on a contract that may be exercised based on the weighted average performance of several underlying equities instruments),H-E-B-*-*-*,HEBXXX
+,O,Options,H-E-O-*-*-*,HEOXXX
+,R,Forwards,H-E-R-*-*-*,HERXXX
+,F,Futures,H-E-F-*-*-*,HEFXXX
+,M,Others (miscellaneous),H-E-M-*-*-*,HEMXXX
+Second attribute,,Option style and type,Code,rdfs.label
+,A,European-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price only on the expiration date of the call],H-E-*-A-*-*,HEXAXX
+,B,"American-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price at any time during the term of the call option, up to and including the expiration date of the call]",H-E-*-B-*-*,HEXBXX
+,C,Bermudan-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the call],H-E-*-C-*-*,HEXCXX
+,D,European-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price only on the expiration date of the put],H-E-*-D-*-*,HEXDXX
+,E,"American-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price at any time during the term of the put option, up to and including the expiration date of the put]",H-E-*-E-*-*,HEXEXX
+,F,Bermudan-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the put],H-E-*-F-*-*,HEXFXX
+,G,"European-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price, only on the contract's expiration date; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-E-*-G-*-*,HEXGXX
+,H,"American-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price at any time during the term of the contract, up to and including the expiration date of the call or put; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-E-*-H-*-*,HEXHXX
+,I,"Bermudan-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the contract; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-E-*-I-*-*,HEXIXX
+Third attribute,,Valuation method or trigger,Code,rdfs.label
+,V,Vanilla,H-E-*-*-V-*,HEXXVX
+,A,Asian,H-E-*-*-A-*,HEXXAX
+,D,Digital (Binary),H-E-*-*-D-*,HEXXDX
+,B,Barrier,H-E-*-*-B-*,HEXXBX
+,G,Digital barrier,H-E-*-*-G-*,HEXXGX
+,L,Lookback,H-E-*-*-L-*,HEXXLX
+,P,Other path dependent,H-E-*-*-P-*,HEXXPX
+,M,Others (miscellaneous),H-E-*-*-M-*,HEXXMX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,H-E-*-*-*-C,HEXXXC
+,P,Physical,H-E-*-*-*-P,HEXXXP
+,E,Elect at settlement (determined at the time of settlement),H-E-*-*-*-E,HEXXXE
+
+,,Return to Non_listed_and_complex_Category Category,,
+
+,,Return to Categories,,

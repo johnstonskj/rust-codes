@@ -1,0 +1,13 @@
+Commodities,(K-T),"Commodity derivative strategies are the simultaneous trading of two or more commodity contracts where the value of the contract is derived from an underlying commodity or commodity index. Commodity derivatives can be physically or cash settled. Primary underliers include metals, agricultural goods and energy.",K-T-*-*-*-*,KTXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-T-X-*-*-*,KTXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-T-*-X-*-*,KTXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-T-*-*-X-*,KTXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-T-*-*-*-X,KTXXXX
+
+,,Return to Strategies_Category Category,,
+
+,,Return to Categories,,

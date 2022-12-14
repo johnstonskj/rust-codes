@@ -1,0 +1,18 @@
+Others (miscellaneous),(D-M),Debt instruments that do not fit into any of the Groups of debt instruments.,D-M-*-*-*-*,DMXXXX
+First attribute,,Type,Code,rdfs.label
+,B,"Bank loan (an amount of money loaned at interest by a bank to a borrower, usually on collateral security, for a certain period of time)",D-M-B-*-*-*,DMBXXX
+,P,Promissory note (written promise by one party to pay another party a definite sum of money either on demand or at a specified future date),D-M-P-*-*-*,DMPXXX
+,M,Others (miscellaneous),D-M-M-*-*-*,DMMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,D-M-*-X-*-*,DMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,D-M-*-*-X-*,DMXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),D-M-*-*-*-B,DMXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),D-M-*-*-*-R,DMXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),D-M-*-*-*-N,DMXXXN
+,M,Others (miscellaneous),D-M-*-*-*-M,DMXXXM
+
+,,Return to Debt_instruments_Category Category,,
+
+,,Return to Categories,,

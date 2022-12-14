@@ -1,0 +1,20 @@
+Depositary receipts on entitlements,(R-D),Depository receipts are securities that facilitate the ownership of instruments traded in other jurisdictions. Depository receipts are widely used in order to allow the trading of entitlements in jurisdictions other than the one where the original entitlements were issued.,R-D-*-*-*-*,RDXXXX
+First attribute,,Instrument dependency,Code,rdfs.label
+,A,Allotment (bonus) rights,R-D-A-*-*-*,RDAXXX
+,S,Subscription rights,R-D-S-*-*-*,RDSXXX
+,P,Purchase rights,R-D-P-*-*-*,RDPXXX
+,W,Warrants,R-D-W-*-*-*,RDWXXX
+,M,Others (miscellaneous),R-D-M-*-*-*,RDMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-D-*-X-*-*,RDXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-D-*-*-X-*,RDXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),R-D-*-*-*-B,RDXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),R-D-*-*-*-R,RDXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),R-D-*-*-*-N,RDXXXN
+,M,Others (miscellaneous),R-D-*-*-*-M,RDXXXM
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

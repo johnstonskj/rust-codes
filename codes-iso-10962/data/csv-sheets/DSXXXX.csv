@@ -1,0 +1,30 @@
+Structured instruments (capital protection),(D-S),"Capital protected structured instruments offer investors exposure to chosen underlying assets using various approaches and offering a large variety of asymmetric pay-off profiles. There are one or more reference entities underlying the product. Redemption is made at least in the amount of the conditional capital protection at maturity, provided that no credit event by the reference entity has occurred. Conditional capital protection only applies to the nominal amount and not to the purchase price. The general functioning of a capital guaranteed structured instrument is as follows: the notional amount is split into a zero bond, that will deliver the capital guarantee at maturity, and the difference between the zero bond’s value (= present value of the guarantee level at maturity) and the notional amount is used for structuring the performance component with options which deliver the agreed pay-off profile of the structured instrument.",D-S-*-*-*-*,DSXXXX
+First attribute,,Type,Code,rdfs.label
+,A,"Capital protection certificate with participation [minimum redemption at expiry equivalent to the capital protection; capital protection is defined as a percentage of the nominal amount (e.g. 100 %); capital protection refers to the nominal amount only, and not to the purchase price; the value of the product may fall below its capital protection value during its lifetime; participation is in the underlying price increase above the strike]",D-S-A-*-*-*,DSAXXX
+,B,"Capital protection convertible certificate [minimum redemption at expiry equivalent to the capital protection; capital protection is defined as a percentage of the nominal price (e.g. 100 %); capital protection refers to the nominal price only, and not to the purchase price; the value of the product may fall below its capital protection value during its lifetime; participation is in the underlying price increase above the conversion price; coupon payment is possible]",D-S-B-*-*-*,DSBXXX
+,C,"Barrier capital protection certificate [minimum redemption at expiry equivalent to the capital protection; capital protection is defined as a percentage of the nominal price (e.g. 100 %); capital protection refers to the nominal amount only, and not to the purchase price; the value of the product may fall below its capital protection value during its lifetime; participation is in the underlying price increase above the strike up to the barrier; possibility of rebate payment once barrier is breached; limited profit potential]",D-S-C-*-*-*,DSCXXX
+,D,"Capital protection certificate with coupons [minimum redemption at expiry equivalent to the capital protection; capital protection is defined as a percentage of the nominal price (e.g. 100 %); capital protection refers to the nominal amount only, and not to the purchase price; the value of the product may fall below its capital protection value during its lifetime; the coupon amount is dependent on the development of the underlying asset; periodic coupon payment is expected]",D-S-D-*-*-*,DSDXXX
+,M,Others (miscellaneous),D-S-M-*-*-*,DSMXXX
+Second attribute,,Distribution (indicates the cash distribution provided by the structured instrument),Code,rdfs.label
+,F,Fixed interest payments,D-S-*-F-*-*,DSXFXX
+,D,Dividend payments,D-S-*-D-*-*,DSXDXX
+,V,Variable interest payments,D-S-*-V-*-*,DSXVXX
+,Y,No payments,D-S-*-Y-*-*,DSXYXX
+,M,Others (miscellaneous),D-S-*-M-*-*,DSXMXX
+Third attribute,,Repayment (indicates the repayment form provided by the structured instrument),Code,rdfs.label
+,F,Fixed cash repayment (only protected capital level),D-S-*-*-F-*,DSXXFX
+,V,Variable cash repayment (protected capital level and additional performance capital depending on the underlying),D-S-*-*-V-*,DSXXVX
+,M,Others (miscellaneous),D-S-*-*-M-*,DSXXMX
+Fourth attribute,,Underlying assets (indicates the type of underlying assets in which the structured instrument participates),Code,rdfs.label
+,B,Baskets,D-S-*-*-*-B,DSXXXB
+,S,Equities,D-S-*-*-*-S,DSXXXS
+,D,Debt instruments,D-S-*-*-*-D,DSXXXD
+,T,Commodities,D-S-*-*-*-T,DSXXXT
+,C,Currencies (specified exchange rate),D-S-*-*-*-C,DSXXXC
+,I,Indices (the performance of an index),D-S-*-*-*-I,DSXXXI
+,N,Interest rates (specified amount based on the future level of interest rates),D-S-*-*-*-N,DSXXXN
+,M,Others (miscellaneous),D-S-*-*-*-M,DSXXXM
+
+,,Return to Debt_instruments_Category Category,,
+
+,,Return to Categories,,

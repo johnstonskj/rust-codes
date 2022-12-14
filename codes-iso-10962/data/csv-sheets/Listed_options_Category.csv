@@ -1,0 +1,7 @@
+Listed options,(O),"This Category classifies listed options, which are contracts that grant to the holder either the privilege to purchase or the privilege to sell the assets specified at a predetermined price or formula at or within a time in the future. Where a listed option cannot be classified within this Category, refer to non-listed and complex listed options.",O-*-*-*-*-*,OXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+C,Call options,"Contracts between a buyer and a seller giving the buyer (holder) the right, but not the obligation, to buy the assets specified at a fixed price or formula, on or before a specified date. The seller of the call option assumes the obligation of delivering the assets specified should the buyer exercise his or her option.",O-C-*-*-*-*,OCXXXX,2019
+P,Put options,"Contracts between a buyer and a seller giving the buyer (holder) the right, but not the obligation, to sell the assets specified at a fixed price or formula, on or before a specified date. The seller of the put option assumes the obligation of buying the assets specified should the buyer exercise his or her option.",O-P-*-*-*-*,OPXXXX,2019
+M,Others (miscellaneous),Options that do not fit into any of the above Groups.,O-M-*-*-*-*,OMXXXX,2019
+
+,Return to Categories,,,,

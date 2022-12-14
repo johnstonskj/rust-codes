@@ -1,0 +1,34 @@
+Credit,(H-C),"An option to buy or sell a credit product which is a contract in which one party (protection seller) agrees to provide payment to the other party (protection buyer) should a credit event occur against the underlying, which could be a specified debt (the reference obligation), a specific debt issuer (reference entity), a basket of reference entities and/or reference obligations, or a credit index (reference index).",H-C-*-*-*-*,HCXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,U,CDS on a single name (a CDS where the underlying risk is a single reference entity or single reference obligation),H-C-U-*-*-*,HCUXXX
+,V,"CDS on an index tranche (a synthetic CDO based on a CDS index where each tranche references a different segment of the loss distribution of the underlying CDS index; each tranche has a different priority of claims on the principal and interest flows from the collateral pool, and is traditionally portioned into rising levels of seniority)",H-C-V-*-*-*,HCVXXX
+,I,"CDS on an index [family of standardized credit derivative indices, where the underlying reference entities are a defined basket of credit from a particular geographic region (e.g. Asia, North America, Europe), and/or credit rating level (e.g. emerging markets, high yield, investment grade); credit default indices trade in standard maturities, and the reference entities are typically the most liquid; the reference portfolio is reassessed periodically to maintain this]",H-C-I-*-*-*,HCIXXX
+,W,Swaps (a swap other than a CDS),H-C-W-*-*-*,HCWXXX
+,M,Others (miscellaneous),H-C-M-*-*-*,HCMXXX
+Second attribute,,Option style and type,Code,rdfs.label
+,A,European-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price only on the expiration date of the call],H-C-*-A-*-*,HCXAXX
+,B,"American-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price at any time during the term of the call option, up to and including the expiration date of the call]",H-C-*-B-*-*,HCXBXX
+,C,Bermudan-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the call],H-C-*-C-*-*,HCXCXX
+,D,European-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price only on the expiration date of the put],H-C-*-D-*-*,HCXDXX
+,E,"American-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price at any time during the term of the put option, up to and including the expiration date of the put]",H-C-*-E-*-*,HCXEXX
+,F,Bermudan-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the put],H-C-*-F-*-*,HCXFXX
+,G,"European-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price, only on the contract's expiration date; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-C-*-G-*-*,HCXGXX
+,H,"American-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price at any time during the term of the contract, up to and including the expiration date of the call or put; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-C-*-H-*-*,HCXHXX
+,I,"Bermudan-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the contract; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-C-*-I-*-*,HCXIXX
+Third attribute,,Valuation method or trigger,Code,rdfs.label
+,V,Vanilla,H-C-*-*-V-*,HCXXVX
+,A,Asian,H-C-*-*-A-*,HCXXAX
+,D,Digital (Binary),H-C-*-*-D-*,HCXXDX
+,B,Barrier,H-C-*-*-B-*,HCXXBX
+,G,Digital barrier,H-C-*-*-G-*,HCXXGX
+,L,Lookback,H-C-*-*-L-*,HCXXLX
+,P,Other path dependent,H-C-*-*-P-*,HCXXPX
+,M,Others (miscellaneous),H-C-*-*-M-*,HCXXMX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,H-C-*-*-*-C,HCXXXC
+,P,Physical,H-C-*-*-*-P,HCXXXP
+,E,Elect at settlement (determined at the time of settlement),H-C-*-*-*-E,HCXXXE
+
+,,Return to Non_listed_and_complex_Category Category,,
+
+,,Return to Categories,,

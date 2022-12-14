@@ -1,0 +1,13 @@
+Others (miscellaneous),(R-M),Entitlements (rights) that do not fit into any of the other Groups of entitlements rights.,R-M-*-*-*-*,RMXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-M-X-*-*-*,RMXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-M-*-X-*-*,RMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-M-*-*-X-*,RMXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-M-*-*-*-X,RMXXXX
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

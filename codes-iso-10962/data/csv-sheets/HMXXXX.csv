@@ -1,0 +1,36 @@
+Others (miscellaneous),(H-M),Options that do not fit into any of the Groups described in the non listed and complex category.,H-M-*-*-*-*,HMXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,P,Commercial property (or property derivative),H-M-P-*-*-*,HMPXXX
+,M,Others (miscellaneous),H-M-M-*-*-*,HMMXXX
+Second attribute,,Option style and type,Code,rdfs.label
+,A,European-Call,H-M-*-A-*-*,HMXAXX
+,B,American-Call,H-M-*-B-*-*,HMXBXX
+,C,Bermudan-Call,H-M-*-C-*-*,HMXCXX
+,D,European-Put,H-M-*-D-*-*,HMXDXX
+,E,American-Put,H-M-*-E-*-*,HMXEXX
+,F,Bermudan-Put,H-M-*-F-*-*,HMXFXX
+,G,European-Chooser,H-M-*-G-*-*,HMXGXX
+,H,American-Chooser,H-M-*-H-*-*,HMXHXX
+,I,Bermudan-Chooser,H-M-*-I-*-*,HMXIXX
+,J,European (an option which allows its holder to exercise the right to buy/sell the specified call/put asset at a specified price only on the expiration date),H-M-*-J-*-*,HMXJXX
+,K,"American (an option which allows its holder to exercise the right to buy/sell the specified call/put asset at a specified price at any time during the term of the option, up to and including the expiration date)",H-M-*-K-*-*,HMXKXX
+,L,Bermudan (an option which allows its holder to exercise the right to buy/sell the specified call/put asset at a specified price on a number of specific dates within the exercise period of the option),H-M-*-L-*-*,HMXLXX
+Third attribute,,Valuation method or trigger,Code,rdfs.label
+,V,Vanilla,H-M-*-*-V-*,HMXXVX
+,A,Asian,H-M-*-*-A-*,HMXXAX
+,D,Digital (Binary),H-M-*-*-D-*,HMXXDX
+,B,Barrier,H-M-*-*-B-*,HMXXBX
+,G,Digital barrier,H-M-*-*-G-*,HMXXGX
+,L,Lookback,H-M-*-*-L-*,HMXXLX
+,P,Other path dependent,H-M-*-*-P-*,HMXXPX
+,M,Others (miscellaneous),H-M-*-*-M-*,HMXXMX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,H-M-*-*-*-C,HMXXXC
+,P,Physical,H-M-*-*-*-P,HMXXXP
+,E,Elect at exercise,H-M-*-*-*-E,HMXXXE
+,N,Non-deliverable,H-M-*-*-*-N,HMXXXN
+,A,Auction,H-M-*-*-*-A,HMXXXA
+
+,,Return to Non_listed_and_complex_Category Category,,
+
+,,Return to Categories,,

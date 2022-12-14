@@ -1,0 +1,46 @@
+Commodities,(H-T),"An option where the option buyer has the right to buy or sell specified commodities assets at a fixed price or formula, on or before a specified date.",H-T-*-*-*-*,HTXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,J,Energy,H-T-J-*-*-*,HTJXXX
+,K,Metals,H-T-K-*-*-*,HTKXXX
+,A,Agriculture,H-T-A-*-*-*,HTAXXX
+,N,Environmental,H-T-N-*-*-*,HTNXXX
+,G,Freight,H-T-G-*-*-*,HTGXXX
+,P,Polypropylene products,H-T-P-*-*-*,HTPXXX
+,S,Fertilizer,H-T-S-*-*-*,HTSXXX
+,T,Paper,H-T-T-*-*-*,HTTXXX
+,I,Index – single-commodity (an option where the underlying reference entity is a commodity index),H-T-I-*-*-*,HTIXXX
+,H,Index – multi-commodity (an index containing constituents from two or more of the underlying assets identified for this attribute),H-T-H-*-*-*,HTHXXX
+,B,Basket – single-commodity (a custom basket containing constituents from one of the underlying assets identified for this attribute),H-T-B-*-*-*,HTBXXX
+,C,Basket – multi-commodity (a custom basket containing constituents from two or more of the underlying assets identified for this attribute),H-T-C-*-*-*,HTCXXX
+,O,Options,H-T-O-*-*-*,HTOXXX
+,R,Forwards,H-T-R-*-*-*,HTRXXX
+,F,Futures,H-T-F-*-*-*,HTFXXX
+,W,Swaps,H-T-W-*-*-*,HTWXXX
+,M,Others (miscellaneous),H-T-M-*-*-*,HTMXXX
+Second attribute,,Option style and type,Code,rdfs.label
+,A,European-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price only on the expiration date of the call],H-T-*-A-*-*,HTXAXX
+,B,"American-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price at any time during the term of the call option, up to and including the expiration date of the call]",H-T-*-B-*-*,HTXBXX
+,C,Bermudan-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the call],H-T-*-C-*-*,HTXCXX
+,D,European-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price only on the expiration date of the put],H-T-*-D-*-*,HTXDXX
+,E,"American-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price at any time during the term of the put option, up to and including the expiration date of the put]",H-T-*-E-*-*,HTXEXX
+,F,Bermudan-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the put],H-T-*-F-*-*,HTXFXX
+,G,"European-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price, only on the contract's expiration date; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-T-*-G-*-*,HTXGXX
+,H,"American-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price at any time during the term of the contract, up to and including the expiration date of the call or put; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-T-*-H-*-*,HTXHXX
+,I,"Bermudan-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the contract; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-T-*-I-*-*,HTXIXX
+Third attribute,,Valuation method or trigger,Code,rdfs.label
+,V,Vanilla,H-T-*-*-V-*,HTXXVX
+,A,Asian,H-T-*-*-A-*,HTXXAX
+,D,Digital (Binary),H-T-*-*-D-*,HTXXDX
+,B,Barrier,H-T-*-*-B-*,HTXXBX
+,G,Digital barrier,H-T-*-*-G-*,HTXXGX
+,L,Lookback,H-T-*-*-L-*,HTXXLX
+,P,Other path dependent,H-T-*-*-P-*,HTXXPX
+,M,Others (miscellaneous),H-T-*-*-M-*,HTXXMX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,H-T-*-*-*-C,HTXXXC
+,P,Physical,H-T-*-*-*-P,HTXXXP
+,E,Elect at settlement (determined at the time of settlement),H-T-*-*-*-E,HTXXXE
+
+,,Return to Non_listed_and_complex_Category Category,,
+
+,,Return to Categories,,

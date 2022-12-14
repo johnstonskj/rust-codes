@@ -1,0 +1,22 @@
+Purchase rights,(R-P),Anti-takeover device that gives a prospective acquiree's shareholders the right to buy shares of the firm or shares of anyone who acquires the firm at a deep discount to their fair market value.,R-P-*-*-*-*,RPXXXX
+First attribute,,Assets (indicates the type of assets that the rights holder is entitled to acquire),Code,rdfs.label
+,S,Common/ordinary shares,R-P-S-*-*-*,RPSXXX
+,P,Preferred/preference shares,R-P-P-*-*-*,RPPXXX
+,C,Common/ordinary convertible shares,R-P-C-*-*-*,RPCXXX
+,F,Preferred/preference convertible shares,R-P-F-*-*-*,RPFXXX
+,B,Bonds,R-P-B-*-*-*,RPBXXX
+,I,Combined instruments,R-P-I-*-*-*,RPIXXX
+,M,Others (miscellaneous),R-P-M-*-*-*,RPMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-P-*-X-*-*,RPXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-P-*-*-X-*,RPXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),R-P-*-*-*-B,RPXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),R-P-*-*-*-R,RPXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),R-P-*-*-*-N,RPXXXN
+,M,Others (miscellaneous),R-P-*-*-*-M,RPXXXM
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

@@ -1,0 +1,29 @@
+Money market instruments,(D-Y),"Financial instruments designated at issuance as such with a short-term life, for instance treasury bills and commercial paper including municipal money market instruments.",D-Y-*-*-*-*,DYXXXX
+First attribute,,Type of interest,Code,rdfs.label
+,F,Fixed rate,D-Y-F-*-*-*,DYFXXX
+,Z,Zero rate/discounted,D-Y-Z-*-*-*,DYZXXX
+,V,Variable,D-Y-V-*-*-*,DYVXXX
+,K,Payment in kind,D-Y-K-*-*-*,DYKXXX
+Second attribute,,"Guarantee or ranking (indicates, in the case of the issuer's inability to settle, whether the debt issue is additionally secured
+Guideline: the values N (senior), O (senior subordinated), Q (junior) and J (junior subordinated) may only be used for unsecured securities. P (negative pledge) may only be used for unsecured securities that are neither senior nor junior. U (unsecured) may be used only if one of these codes does not apply to the relevant security.)",Code,rdfs.label
+,T,"Government guarantee [the debt instrument is guaranteed by a federal, state, (semi)-government, sovereigns, agencies]",D-Y-*-T-*-*,DYXTXX
+,G,Joint guarantee [the debt instrument is guaranteed by an entity (e.g. corporation) other than the issuer; not a federal or state government],D-Y-*-G-*-*,DYXGXX
+,S,"Secured (debt issue against which specific assets are pledged to secure the obligation, e.g. mortgage or receivables)",D-Y-*-S-*-*,DYXSXX
+,U,Unsecured/unguaranteed (the direct obligations of the issuer rest solely on its general credit),D-Y-*-U-*-*,DYXUXX
+,P,Negative pledge (the borrower agrees not to pledge any assets if such pledging would result in less security for the agreement's bondholders),D-Y-*-P-*-*,DYXPXX
+,N,"Senior (applies to senior debts that are placed before senior subordinated, junior and junior subordinated in the ranking in the event of liquidation)",D-Y-*-N-*-*,DYXNXX
+,O,Senior subordinated (applies to senior subordinated debts that are placed before junior and junior subordinated in the ranking in the event of liquidation),D-Y-*-O-*-*,DYXOXX
+,Q,Junior (applies to junior debts that are placed before junior subordinated in the ranking in the event of liquidation),D-Y-*-Q-*-*,DYXQXX
+,J,Junior subordinated (applies to junior subordinated debts in the ranking in the event of liquidation),D-Y-*-J-*-*,DYXJXX
+,C,"Supranational (organization defined as being beyond the scope or borders of any one nation such as two or more central banks or two or more central governments. Examples of supranational include the United Nations, the European Union, the European Investment Bank and the World Bank)",D-Y-*-C-*-*,DYXCXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,D-Y-*-*-X-*,DYXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),D-Y-*-*-*-B,DYXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),D-Y-*-*-*-R,DYXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),D-Y-*-*-*-N,DYXXXN
+,M,Others (miscellaneous),D-Y-*-*-*-M,DYXXXM
+
+,,Return to Debt_instruments_Category Category,,
+
+,,Return to Categories,,

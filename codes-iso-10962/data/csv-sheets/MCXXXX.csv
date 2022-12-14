@@ -1,0 +1,23 @@
+Combined instruments,(M-C),"Packages of different financial instruments issued and/or traded as one single unit (also referred to as staple security). They can be separated during their life cycle and be traded individually. In that case, CFI codes classifying each of the financial instruments involved individually shall be assigned.",M-C-*-*-*-*,MCXXXX
+First attribute,,Components,Code,rdfs.label
+,S,Combination of shares (with different characteristics),M-C-S-*-*-*,MCSXXX
+,B,Combination of bonds (with different characteristics),M-C-B-*-*-*,MCBXXX
+,H,Share and bond,M-C-H-*-*-*,MCHXXX
+,A,Share and warrant,M-C-A-*-*-*,MCAXXX
+,W,Warrant and warrant (or multiple),M-C-W-*-*-*,MCWXXX
+,U,Fund unit and other components,M-C-U-*-*-*,MCUXXX
+,M,Others (miscellaneous),M-C-M-*-*-*,MCMXXX
+Second attribute,,Ownership/transfer/sales restrictions (the ownership or transfer of the security is subject to special conditions including country-specific restrictions),Code,rdfs.label
+,T,Restrictions,M-C-*-T-*-*,MCXTXX
+,U,Free (unrestricted),M-C-*-U-*-*,MCXUXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,M-C-*-*-X-*,MCXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),M-C-*-*-*-B,MCXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),M-C-*-*-*-R,MCXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),M-C-*-*-*-N,MCXXXN
+,M,Others (miscellaneous),M-C-*-*-*-M,MCXXXM
+
+,,Return to Others_miscellaneous_Category Category,,
+
+,,Return to Categories,,

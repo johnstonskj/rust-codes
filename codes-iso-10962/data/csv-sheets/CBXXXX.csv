@@ -1,0 +1,20 @@
+Real estate investment trust (REITs),(C-B),"A REIT is a real estate company that offers shares/units to the public and invests in real estate directly, either through properties or mortgages.",C-B-*-*-*-*,CBXXXX
+First attribute,,Closed/open-end (indicates whether units are traded or whether funds continually stand ready to sell new units and redeem the outstanding units on demand),Code,rdfs.label
+,C,Closed-end [units are sold on either an organized exchange or in the over-the-counter (OTC) market and are usually not redeemed],C-B-C-*-*-*,CBCXXX
+,O,"Open-end (funds permanently sell new units to the public and redeem outstanding units on demand, resulting in an increase or decrease of outstanding capital)",C-B-O-*-*-*,CBOXXX
+,M,Others (miscellaneous),C-B-M-*-*-*,CBMXXX
+Second attribute,,Distribution policy (indicates the fund's normal distribution policy),Code,rdfs.label
+,I,Income funds (the fund regularly distributes its investment profits),C-B-*-I-*-*,CBXIXX
+,G,Accumulation funds (the fund normally reinvests its investment profits),C-B-*-G-*-*,CBXGXX
+,J,"Mixed funds (investment profits are partly distributed, partly reinvested)",C-B-*-J-*-*,CBXJXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-B-*-*-X-*,CBXXXX
+Fourth attribute,,Security type and investor restrictions,Code,rdfs.label
+,S,Shares (retail and/or qualified/institutional/professional investors),C-B-*-*-*-S,CBXXXS
+,Q,Shares for QI (qualified/institutional/professional investors only),C-B-*-*-*-Q,CBXXXQ
+,U,Units (retail and/or qualified/institutional/professional investors),C-B-*-*-*-U,CBXXXU
+,Y,Units for QI (qualified/institutional/professional investors only),C-B-*-*-*-Y,CBXXXY
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

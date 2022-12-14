@@ -1,0 +1,12 @@
+CIVs,(C),"Securities representing a portion of assets pooled by investors run by a management company whose share capital remains separate from such assets and includes issues of shares or units in the form of, for example, a unit trust, mutual fund, OICVM, OPCVM, SICAV or SICAF.",C-*-*-*-*-*,CXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+I,Standard (vanilla) investment funds/mutual funds,"An investment vehicle that is made up of a pool of funds collected from many investors for the purpose of investing in securities such as stocks, bonds, money market instruments and similar assets.",C-I-*-*-*-*,CIXXXX,2019
+H,Hedge funds,Type of investment fund which pursues a total return and is usually open to qualified investors only.,C-H-*-*-*-*,CHXXXX,2019
+B,Real estate investment trust (REITs),"A REIT is a real estate company that offers shares/units to the public and invests in real estate directly, either through properties or mortgages.",C-B-*-*-*-*,CBXXXX,2019
+E,Exchange traded funds (ETFs),"An ETF is an investment fund traded on stock exchanges, much like stocks. An ETF holds assets such as stocks, commodities or bonds, and trades close to its net asset value over the course of the trading day. Most ETFs track an index, such as a stock, bond or commodity. index",C-E-*-*-*-*,CEXXXX,2019
+S,Pension funds,A pension fund is run by a financial intermediary for the company and its employees. The pension fund is a common asset pool meant to generate stable growth over the long term.,C-S-*-*-*-*,CSXXXX,2019
+F,Funds of funds,"A fund of funds is a CIV that invests directly in other investment funds rather than investing in stocks, bonds or other securities.",C-F-*-*-*-*,CFXXXX,2019
+P,Private equity funds,A private equity fund is normally structured as a limited partnership or a limited liability company (investors are limited partners) managed by a GP.,C-P-*-*-*-*,CPXXXX,2019
+M,Others (miscellaneous),CIVs which do not fit into any of the above Groups.,C-M-*-*-*-*,CMXXXX,2019
+
+,Return to Categories,,,,

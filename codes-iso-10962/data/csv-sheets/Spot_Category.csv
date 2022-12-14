@@ -1,0 +1,6 @@
+Spot,(I),Contracts conducted on the spot market which are bought and sold for cash with immediate delivery based on market convention for the asset.,I-*-*-*-*-*,IXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+F,Foreign exchange,Spot contracts to deliver the agreed foreign currency at settlement.,I-F-*-*-*-*,IFXXXX,2019
+T,Commodities,Spot contracts to physically deliver the commodity asset at settlement.,I-T-*-*-*-*,ITXXXX,2019
+
+,Return to Categories,,,,

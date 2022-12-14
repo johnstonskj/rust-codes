@@ -1,0 +1,28 @@
+Foreign exchange,(J-F),Forward contracts to buy or sell the foreign currency.,J-F-*-*-*-*,JFXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,T,Spot – Single Currency Pair,J-F-T-*-*-*,JFTXXX
+,U,Spot – Currency Index,J-F-U-*-*-*,JFUXXX
+,V,Spot – Custom Basket of Currencies,J-F-V-*-*-*,JFVXXX
+,R,Forward – Single Currency Pair,J-F-R-*-*-*,JFRXXX
+,S,Forward – Currency Index,J-F-S-*-*-*,JFSXXX
+,W,Forward – Custom Basket of Currencies,J-F-W-*-*-*,JFWXXX
+,O,Options – Single Currency Pair,J-F-O-*-*-*,JFOXXX
+,J,Options – Currency Index,J-F-J-*-*-*,JFJXXX
+,K,Options – Custom Basket of Currencies,J-F-K-*-*-*,JFKXXX
+,F,Futures – Single Currency Pair,J-F-F-*-*-*,JFFXXX
+,L,Futures – Currency Index,J-F-L-*-*-*,JFLXXX
+,N,Futures – Custom Basket of Currencies,J-F-N-*-*-*,JFNXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,J-F-*-X-*-*,JFXXXX
+Third attribute,,Return or payout trigger,Code,rdfs.label
+,C,CFD,J-F-*-*-C-*,JFXXCX
+,S,Spread-bet,J-F-*-*-S-*,JFXXSX
+,F,Forward price of underlying instrument,J-F-*-*-F-*,JFXXFX
+,R,Rolling spot (an indefinitely renewed position in which no currency is actually delivered until a party closes out its position),J-F-*-*-R-*,JFXXRX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash (the contract will settle as cash on the performance of the contract at maturity),J-F-*-*-*-C,JFXXXC
+,P,Physical (the contract will settle with the delivery of shares on the performance of the contract at maturity),J-F-*-*-*-P,JFXXXP
+
+,,Return to Forwards_Category Category,,
+
+,,Return to Categories,,

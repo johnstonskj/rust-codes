@@ -1,0 +1,31 @@
+Structured instruments (participation),(E-Y),"The construction is generally based on a low exercise price option (LEPO) (base value less discounted future dividends) which in some cases might be comparable to a direct investment in the underlying asset(s) or a LEPO combined with other options, which together provide the desired disbursement profile.",E-Y-*-*-*-*,EYXXXX
+First attribute,,Type,Code,rdfs.label
+,A,Tracker certificate [participation in development of the underlying asset(s); reflects underlying price moves 1:1 (adjusted by conversion ratio and any related fees); risk is comparable to direct investment in the underlying asset(s)],E-Y-A-*-*-*,EYAXXX
+,B,Outperformance certificate [participation in development of the underlying asset(s); disproportionate participation (outperformance) in positive performance above the strike; reflects underlying price moves 1:1 (adjusted by conversion ratio and any related fees); risk is comparable to direct investment in the underlying asset(s)],E-Y-B-*-*-*,EYBXXX
+,C,Bonus certificate [participation in development of the underlying asset(s); minimum redemption is equal to the nominal value provided the barrier has not been breached; if the barrier is breached the product changes into a tracker certificate; with greater risk multiple underlying asset(s) (worst-of) allow for a higher bonus level or lower barrier; reduced risk compared to a direct investment into the underlying asset(s)],E-Y-C-*-*-*,EYCXXX
+,D,Outperformance bonus certificate [participation in development of the underlying asset(s); disproportionate participation (outperformance) in positive performance above the strike; minimum redemption is equal to the nominal value provided the barrier has not been breached; if the barrier is breached the product changes into an outperformance certificate; with greater risk multiple underlying asset(s) (worst-of) allow for a higher bonus level or lower barrier; reduced risk compared to a direct investment into the underlying asset(s)],E-Y-D-*-*-*,EYDXXX
+,E,"Twin-win-certificate [participation in development of the underlying asset(s); profits possible with rising and falling underlying asset values; falling underlying asset price converts into profit up to the barrier; minimum redemption is equal to the nominal value provided the barrier has not been breached; if the barrier is breached the product changes into a tracker certificate; with higher risk levels, multiple underlying asset(s) (worst-of) allow for a higher bonus level or lower barrier; reduced risk compared to a direct investment into the underlying asset(s)]",E-Y-E-*-*-*,EYEXXX
+,M,Others (miscellaneous),E-Y-M-*-*-*,EYMXXX
+Second attribute,,Distribution (indicates the cash distribution provided by the structured instrument),Code,rdfs.label
+,D,Dividend payments (depending on strategy of the structured instrument),E-Y-*-D-*-*,EYXDXX
+,Y,No payments,E-Y-*-Y-*-*,EYXYXX
+,M,Others (miscellaneous),E-Y-*-M-*-*,EYXMXX
+Third attribute,,Repayment (indicates the repayment form provided by the structured instrument),Code,rdfs.label
+,F,Cash repayment,E-Y-*-*-F-*,EYXXFX
+,V,Physical repayment,E-Y-*-*-V-*,EYXXVX
+,E,Elect at settlement (determined at the time of settlement),E-Y-*-*-E-*,EYXXEX
+,M,Others (miscellaneous),E-Y-*-*-M-*,EYXXMX
+Fourth attribute,,Underlying assets  (indicates the type of underlying assets in which the structured instrument participates),Code,rdfs.label
+,B,Baskets (group of securities that have been put together for a specific investment purpose),E-Y-*-*-*-B,EYXXXB
+,S,Equities,E-Y-*-*-*-S,EYXXXS
+,D,Debt instruments,E-Y-*-*-*-D,EYXXXD
+,G,"Derivatives (options, futures, swaps, spot, forwards, strategies, financing)",E-Y-*-*-*-G,EYXXXG
+,T,Commodities,E-Y-*-*-*-T,EYXXXT
+,C,Currencies (specified exchange rate),E-Y-*-*-*-C,EYXXXC
+,I,Indices (the performance of an index),E-Y-*-*-*-I,EYXXXI
+,N,Interest rates (specified amount based on the future level of interest rates),E-Y-*-*-*-N,EYXXXN
+,M,Others (miscellaneous),E-Y-*-*-*-M,EYXXXM
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,

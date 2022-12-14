@@ -1,0 +1,16 @@
+Others (miscellaneous),(E-M),Equities that do not fit into any of the other Equity Groups,E-M-*-*-*-*,EMXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,E-M-X-*-*-*,EMXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,E-M-*-X-*-*,EMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,E-M-*-*-X-*,EMXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),E-M-*-*-*-B,EMXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),E-M-*-*-*-R,EMXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),E-M-*-*-*-N,EMXXXN
+,M,Others (miscellaneous),E-M-*-*-*-M,EMXXXM
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,

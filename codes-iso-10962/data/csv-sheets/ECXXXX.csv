@@ -1,0 +1,22 @@
+Common/ordinary convertible shares,(E-C),"Shares (common/ordinary) which, at the discretion of the holder, are convertible into other securities, at a designated rate. The conversion privilege may be perpetual or limited to a specific period.",E-C-*-*-*-*,ECXXXX
+First attribute,,Voting right (indicates the kind of voting power conferred to the shareholder),Code,rdfs.label
+,V,Voting (each share has one vote),E-C-V-*-*-*,ECVXXX
+,N,Non-voting (the shareholder has no voting right),E-C-N-*-*-*,ECNXXX
+,R,Restricted voting (the shareholder may be entitled to less than one vote per share),E-C-R-*-*-*,ECRXXX
+,E,Enhanced voting (the shareholder is entitled to more than one vote per share),E-C-E-*-*-*,ECEXXX
+Second attribute,,Ownership/transfer/sales restrictions (the ownership or transfer of the security is subject to special conditions including country-specific restrictions),Code,rdfs.label
+,T,Restrictions,E-C-*-T-*-*,ECXTXX
+,U,Free (unrestricted),E-C-*-U-*-*,ECXUXX
+Third attribute,,Payment status,Code,rdfs.label
+,O,Nil paid,E-C-*-*-O-*,ECXXOX
+,P,Partly paid,E-C-*-*-P-*,ECXXPX
+,F,Fully paid,E-C-*-*-F-*,ECXXFX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),E-C-*-*-*-B,ECXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),E-C-*-*-*-R,ECXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),E-C-*-*-*-N,ECXXXN
+,M,Others (miscellaneous),E-C-*-*-*-M,ECXXXM
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,

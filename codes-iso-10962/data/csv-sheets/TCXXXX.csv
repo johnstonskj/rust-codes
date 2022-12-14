@@ -1,0 +1,16 @@
+Currencies,(T-C),"An accepted form of money, including coins and paper notes, which is generally issued by a government and circulated within an economy.",T-C-*-*-*-*,TCXXXX
+First attribute,,Type,Code,rdfs.label
+,N,National currency (the currency or legal tender issued by a nation's central bank or monetary authority; the national currency of a nation is usually the predominant currency used for most financial transactions in that country according to ISO 4217),T-C-N-*-*-*,TCNXXX
+,L,Legacy currency (national currency that ceased to be a legal tender),T-C-L-*-*-*,TCLXXX
+,C,"Bullion coins (coins struck from precious metals and kept as a store of value or an investment, rather than used in day-to-day commerce)",T-C-C-*-*-*,TCCXXX
+,M,Others (miscellaneous),T-C-M-*-*-*,TCMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-C-*-X-*-*,TCXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-C-*-*-X-*,TCXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-C-*-*-*-X,TCXXXX
+
+,,Return to Referential_instrument_Category Category,,
+
+,,Return to Categories,,

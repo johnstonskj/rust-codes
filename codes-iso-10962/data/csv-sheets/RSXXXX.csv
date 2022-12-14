@@ -1,0 +1,22 @@
+Subscription rights,(R-S),"Privileges allotted to existing security holders, entitling them to subscribe to new securities at a price normally lower than the prevailing market price.",R-S-*-*-*-*,RSXXXX
+First attribute,,Assets (indicates the type of assets that the rights holder is entitled to acquire),Code,rdfs.label
+,S,Common/ordinary shares,R-S-S-*-*-*,RSSXXX
+,P,Preferred/preference shares,R-S-P-*-*-*,RSPXXX
+,C,Common/ordinary convertible shares,R-S-C-*-*-*,RSCXXX
+,F,Preferred/preference convertible shares,R-S-F-*-*-*,RSFXXX
+,B,Bonds,R-S-B-*-*-*,RSBXXX
+,I,Combined instruments,R-S-I-*-*-*,RSIXXX
+,M,Others (miscellaneous),R-S-M-*-*-*,RSMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-S-*-X-*-*,RSXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-S-*-*-X-*,RSXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),R-S-*-*-*-B,RSXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),R-S-*-*-*-R,RSXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),R-S-*-*-*-N,RSXXXN
+,M,Others (miscellaneous),R-S-*-*-*-M,RSXXXM
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

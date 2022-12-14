@@ -1,0 +1,26 @@
+"Mini-future certificates, constant leverage certificates",(R-F),"Mini-futures combine the structure of open-end certificates with leverage option. Mini-futures have no fixed term. The leverage is therefore available without a term restriction. The price of a mini-future always corresponds to its intrinsic value, i.e. the capital outlay, plus the bid-ask spread. The financing costs associated with building up the leverage effect are offset against the capital outlay on a daily basis, thereby eliminating the need for a premium. Investors have to pay only financing costs they actually utilize. In contrast to options, factors like volatility have no influence at all on the price of mini-futures.",R-F-*-*-*-*,RFXXXX
+First attribute,,Underlying assets (indicates the type of underlying assets that the warrant holder is entitled to acquire),Code,rdfs.label
+,B,Baskets (the warrant holder is entitled to acquire a package or group of assets),R-F-B-*-*-*,RFBXXX
+,S,Equities (the warrant holder is entitled to acquire equity),R-F-S-*-*-*,RFSXXX
+,D,Debt instruments/interest rates (the warrant holder is entitled to acquire debt instruments),R-F-D-*-*-*,RFDXXX
+,T,Commodities (the warrant holder is entitled to acquire a specific commodity),R-F-T-*-*-*,RFTXXX
+,C,Currencies (the warrant holder is entitled to acquire a specified amount in a certain currency at a specified exchange rate),R-F-C-*-*-*,RFCXXX
+,I,Indices (the warrant holder is entitled to acquire a specified amount based on the performance of an index),R-F-I-*-*-*,RFIXXX
+,M,Others (miscellaneous),R-F-M-*-*-*,RFMXXX
+Second attribute,,Barrier dependency type (indicates whether the instrument barrier depends on the underlying level or on the instrument trading price level),Code,rdfs.label
+,T,Barrier underlying based (the instrument immediately expires if the barrier underlying level is breached during product lifetime),R-F-*-T-*-*,RFXTXX
+,N,Barrier instrument based (the instrument immediately expires if the barrier instrument trading price level is breached during product lifetime),R-F-*-N-*-*,RFXNXX
+,M,Others (miscellaneous),R-F-*-M-*-*,RFXMXX
+Third attribute,,Long/short (indicates whether the instrument entitles the holder to acquire assets at specified terms or to acquire cash in exchange for specific underlying assets),Code,rdfs.label
+,C,"Long (in most cases, the instrument entitles the holder to acquire specific underlying assets during a specified period at a specified price)",R-F-*-*-C-*,RFXXCX
+,P,Short (the instrument entitles the holder to acquire cash in exchange for specific underlying assets),R-F-*-*-P-*,RFXXPX
+,M,Others (miscellaneous),R-F-*-*-M-*,RFXXMX
+Fourth attribute,,Exercise option style,Code,rdfs.label
+,E,"European (warrant that can only be exercised for a short, specified period of time just prior to its expiration, usually a single day)",R-F-*-*-*-E,RFXXXE
+,A,American (warrant that can be exercised at any time between the purchase date and the expiration date),R-F-*-*-*-A,RFXXXA
+,B,"Bermudan (warrant that can only be exercised on predetermined dates, usually every month)",R-F-*-*-*-B,RFXXXB
+,M,Others (miscellaneous),R-F-*-*-*-M,RFXXXM
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

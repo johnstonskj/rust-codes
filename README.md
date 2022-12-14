@@ -281,6 +281,9 @@ making *unchecked* operations public.
   flammable liquids, oxidizers, toxic liquids, etc.) in the framework 
   of international trade and transport.
 * United Nations Standard Products and Services Code (UNSPSC) https://en.wikipedia.org/wiki/UNSPSC
+* ISO 10962, generally known as CFI (Classification of Financial Instruments)
+  https://en.wikipedia.org/wiki/ISO_10962
+
 
 https://unstats.un.org/unsd/classifications/unsdclassifications/
 

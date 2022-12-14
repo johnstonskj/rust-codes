@@ -1,0 +1,26 @@
+Financial futures,(F-F),Futures contracts based on underlying assets excluding commodities.,F-F-*-*-*-*,FFXXXX
+First attribute,,"Underlying assets (indicates the type of underlying assets that the futures buyer receives, and that the seller delivers)",Code,rdfs.label
+,B,Baskets,F-F-B-*-*-*,FFBXXX
+,S,Stock-equities,F-F-S-*-*-*,FFSXXX
+,D,Debt instruments,F-F-D-*-*-*,FFDXXX
+,C,Currencies,F-F-C-*-*-*,FFCXXX
+,I,Indices,F-F-I-*-*-*,FFIXXX
+,O,Options,F-F-O-*-*-*,FFOXXX
+,F,Futures,F-F-F-*-*-*,FFFXXX
+,W,Swaps,F-F-W-*-*-*,FFWXXX
+,N,Interest rates,F-F-N-*-*-*,FFNXXX
+,V,Stock dividends,F-F-V-*-*-*,FFVXXX
+,M,Others (miscellaneous),F-F-M-*-*-*,FFMXXX
+Second attribute,,Delivery (indicates whether the settlement of the future is made in cash or whether the underlying instruments are delivered),Code,rdfs.label
+,P,Physical,F-F-*-P-*-*,FFXPXX
+,C,Cash,F-F-*-C-*-*,FFXCXX
+,N,Non-deliverable,F-F-*-N-*-*,FFXNXX
+Third attribute,,Standardized/non-standardized (indicates whether the terms of the contract are standardized or not),Code,rdfs.label
+,S,"Standardized (the underlying instruments, exercise price, expiration date and contract size of the options are standardized; these options are traded on special option exchanges)",F-F-*-*-S-*,FFXXSX
+,N,Non-standardized (options traded on option exchanges which have non-standard delivery or expiry terms),F-F-*-*-N-*,FFXXNX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,F-F-*-*-*-X,FFXXXX
+
+,,Return to Futures_Category Category,,
+
+,,Return to Categories,,

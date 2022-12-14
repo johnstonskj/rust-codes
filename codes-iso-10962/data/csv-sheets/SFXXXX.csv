@@ -1,0 +1,16 @@
+Foreign exchange,(S-F),A foreign exchange swap is a foreign exchange agreement between two parties to exchange a given amount of one currency for another currency for spot delivery or for forward delivery at an agreed rate after a specified period of time.,S-F-*-*-*-*,SFXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,A,Spot-forward swap (a transaction that involves both an exchange of two currencies on the spot settlement date at a fixed rate that is agreed upon at the inception of the contract covering the exchange; and a reverse exchange of the same two currencies at a later date and at a fixed rate that is agreed upon at the inception of the contract covering the exchange),S-F-A-*-*-*,SFAXXX
+,C,"Forward-forward swap (a transaction that involves both an exchange of two currencies on a specified future date at a fixed rate that is agreed upon at the inception of the contract covering the exchange; and a reverse exchange of the same two currencies at a further future date, at a fixed rate that is agreed upon at the inception of the contract covering the exchange, e.g. a swap between the 3-month forward and 6-month forward dates)",S-F-C-*-*-*,SFCXXX
+,M,Others (miscellaneous),S-F-M-*-*-*,SFMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,S-F-*-X-*-*,SFXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,S-F-*-*-X-*,SFXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,P,Physical (delivery of traded currencies on settlement date),S-F-*-*-*-P,SFXXXP
+,C,"Cash (on settlement date of the trade, if the net settlement amount is positive, then the currency buyer will pay that amount in the settlement currency to the currency seller; if that amount is negative, the seller will make that payment to the buyer)",S-F-*-*-*-C,SFXXXC
+
+,,Return to Swaps_Category Category,,
+
+,,Return to Categories,,

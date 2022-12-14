@@ -1,0 +1,33 @@
+Depositary receipts on equities,(E-D),Depository receipts are securities that facilitate the ownership of securities traded in other jurisdictions. Depository receipts are widely used in order to allow the trading of shares in jurisdictions other than the one where the original shares were issued.,E-D-*-*-*-X,EDXXXX
+First attribute,,Instrument dependency (represents the ownership of an instrument provided in this table),Code,rdfs.label
+,S,Common/ordinary shares,E-D-S-*-*-X,EDSXXX
+,P,Preferred/preference shares,E-D-P-*-*-X,EDPXXX
+,C,Common/ordinary convertible shares,E-D-C-*-*-X,EDCXXX
+,F,Preferred/preference convertible shares,E-D-F-*-*-X,EDFXXX
+,L,Limited partnership units,E-D-L-*-*-X,EDLXXX
+,M,Others (miscellaneous),E-D-M-*-*-X,EDMXXX
+Second attribute,,"Redemption/conversion of the underlying assets (Guideline: for common/ordinary shares and limited partnership units, only the values N (perpetual) and X (not applicable/undefined) may be used. All values apply for other underlying instruments.)",Code,rdfs.label
+,R,Redeemable,E-D-*-R-*-X,EDXRXX
+,N,Perpetual,E-D-*-N-*-X,EDXNXX
+,B,Convertible,E-D-*-B-*-X,EDXBXX
+,D,Convertible/redeemable,E-D-*-D-*-X,EDXDXX
+Third attribute,,Income (indicates the kind of dividend income the shareholders are entitled to),Code,rdfs.label
+,F,Fixed rate income,E-D-*-*-F-X,EDXXFX
+,C,"Cumulative, fixed rate income",E-D-*-*-C-X,EDXXCX
+,P,Participating income,E-D-*-*-P-X,EDXXPX
+,Q,"Cumulative, participating income",E-D-*-*-Q-X,EDXXQX
+,A,Adjustable/variable rate income,E-D-*-*-A-X,EDXXAX
+,N,Normal rate income,E-D-*-*-N-X,EDXXNX
+,U,Auction rate income,E-D-*-*-U-*,EDXXUX
+,N,Dividends,E-D-*-*-D-*,EDXXDX
+Fourth attribute,,Form,Code,rdfs.label
+,B,Bearer,E-D-*-*-*-B,EDXXXB
+,R,Registered,E-D-*-*-*-N,EDXXXN
+,N,Bearer/registered,E-D-*-*-*-R,EDXXXR
+,M,Others (miscellaneous),E-D-*-*-*-M,EDXXXM
+,,,,
+,,,,
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,

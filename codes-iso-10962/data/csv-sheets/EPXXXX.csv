@@ -1,0 +1,31 @@
+Preferred/preference shares,(E-P),"Payment of dividends to holders normally takes preference over the payment of dividends to other classes of shares. In the event of liquidation, preferred/preference shares normally rank above ordinary shares but behind creditors of the company.",E-P-*-*-*-*,EPXXXX
+First attribute,,Voting right (indicates the kind of voting power conferred to the shareholder),Code,rdfs.label
+,V,Voting (each share has one vote),E-P-V-*-*-*,EPVXXX
+,N,Non-voting (the shareholder has no voting right),E-P-N-*-*-*,EPNXXX
+,R,Restricted voting (the shareholder may be entitled to less than one vote per share),E-P-R-*-*-*,EPRXXX
+,E,Enhanced voting (the shareholder is entitled to more than one vote per share),E-P-E-*-*-*,EPEXXX
+Second attribute,,Redemption (indicates the retirement provisions made for the shares),Code,rdfs.label
+,R,Redeemable (the shares may be redeemed at the option of the issuer and/or of the shareholder),E-P-*-R-*-*,EPXRXX
+,E,Extendible (the redemption date can be extended at the issuer or holder option),E-P-*-E-*-*,EPXEXX
+,T,Redeemable/extendible (the issuer and/or holders of redeemable shares with a fixed maturity date have the option to extend the maturity date),E-P-*-T-*-*,EPXTXX
+,G,Exchangeable (the shares may be exchanged for securities of another issuer),E-P-*-G-*-*,EPXGXX
+,A,Redeemable/exchangeable/extendible (the issuer and/or holders of redeemable shares with a fixed maturity date have the option to extend the maturity date and the shares may be exchanged for securities of another issuer),E-P-*-A-*-*,EPXAXX
+,C,Redeemable/exchangeable (the shares may be redeemed at the option of the issuer and/or of the shareholder and may be exchanged for securities of another issuer),E-P-*-C-*-*,EPXCXX
+,N,Perpetual (the share has no fixed maturity date),E-P-*-N-*-*,EPXNXX
+Third attribute,,Income (indicates the kind of dividend income the shareholders are entitled to),Code,rdfs.label
+,F,Fixed rate income (the shareholder periodically receives a stated income),E-P-*-*-F-*,EPXXFX
+,C,"Cumulative, fixed rate income (the shareholder periodically receives a stated amount; dividends not paid in any year accumulate and shall be paid at a later date before dividends can be paid on the common/ordinary shares)",E-P-*-*-C-*,EPXXCX
+,P,"Participating income (preferred/preference shareholders, in addition to receiving their fixed rate of prior dividend, share with the common shareholders in further dividend distributions and in capital distributions)",E-P-*-*-P-*,EPXXPX
+,Q,"Cumulative, participating income (shareholders are entitled to dividends in excess of the stipulated preferential rate under specified conditions; dividends not paid in any year accumulate and shall be paid at a later date before dividends can be paid on the common/ordinary shares)",E-P-*-*-Q-*,EPXXQX
+,A,"Adjustable/variable rate income (the dividend rate is set periodically, usually based on a certain yield)",E-P-*-*-A-*,EPXXAX
+,N,"Normal rate income (shareholders are entitled to the same dividends as common/ordinary shareholders, but have other privileges, for example as regards distribution of assets upon dissolution)",E-P-*-*-N-*,EPXXNX
+,U,"Auction rate income (dividend is adjusted through an auction, such as the Dutch auction)",E-P-*-*-U-*,EPXXUX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),E-P-*-*-*-B,EPXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),E-P-*-*-*-R,EPXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),E-P-*-*-*-N,EPXXXN
+,M,Others (miscellaneous),E-P-*-*-*-M,EPXXXM
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,

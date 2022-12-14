@@ -1,0 +1,22 @@
+Loan-lease,(L-L),"One party lends a commodity to a counterparty, in return for a fixed price or a premium (aka lease rate). At the end of the contract, the lender expects to receive the commodity back, and their return is linked to fluctuations in the market price of the commodity, or the premium, respectively.",L-L-*-*-*-*,LLXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,A,Agriculture,L-L-A-*-*-*,LLAXXX
+,B,Baskets,L-L-B-*-*-*,LLBXXX
+,J,Energy,L-L-J-*-*-*,LLJXXX
+,K,Metals,L-L-K-*-*-*,LLKXXX
+,N,Environmental,L-L-N-*-*-*,LLNXXX
+,P,Polypropylene products,L-L-P-*-*-*,LLPXXX
+,S,Fertilizer,L-L-S-*-*-*,LLSXXX
+,T,Paper,L-L-T-*-*-*,LLTXXX
+,M,Others (miscellaneous),L-L-M-*-*-*,LLMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,L-L-*-X-*-*,LLXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,L-L-*-*-X-*,LLXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash (the contract will settle as cash on the performance of the contract at maturity),L-L-*-*-*-C,LLXXXC
+,P,Physical (the contract will settle with the delivery of shares on the performance of the contract at maturity),L-L-*-*-*-P,LLXXXP
+
+,,Return to Financing_Category Category,,
+
+,,Return to Categories,,

@@ -1,0 +1,33 @@
+Structured instruments (without capital protection),(D-E),"A structured instrument without capital protection is a short-term note linked to an underlying stock. The security offers a steady stream of income due to the payment of a coupon rate. The redemption at the end of the term is determined on the basis of the performance and final fixing of the underlying asset: a redemption at the nominal value is guaranteed as long as the underlying asset has not touched its barrier during relevant barrier monitoring. If the underlying asset has touched its barrier but is again above the strike price at final fixing, the nominal price is also repaid. Nevertheless, if the underlying asset has touched its barrier during barrier monitoring and closes below the strike price at final fixing, the underlying asset is delivered or cash compensation paid, provided that no credit event by the reference entity has occurred. Depending on the characteristics of the product, either a coupon or a discount to the underlying asset can apply. A coupon is paid out regardless of the performance of the underlying asset, provided that no credit event by the reference entity has occurred.",D-E-*-*-*-*,DEXXXX
+First attribute,,Type,Code,rdfs.label
+,A,"Discount certificate [should the underlying asset close below the strike on expiry, the underlying asset(s) and/or a cash amount is redeemed; discount certificates enable investors to acquire the underlying asset at a lower price; it corresponds to a buy-write-strategy; it has reduced risk compared to a direct investment into the underlying asset; with higher risk levels multiple underlying assets (worst-of) allow for higher discounts; limited profit opportunity (Cap)]",D-E-A-*-*-*,DEAXXX
+,B,"Barrier discount certificate [the maximum redemption amount (Cap) is paid out if the barrier is never breached; barrier discount certificates enable investors to acquire the underlying asset(s) at a lower price; due to the barrier, the probability of maximum redemption is higher; the discount, however, is smaller than for a discount certificate; if the barrier is breached the product changes into a discount certificate; it has reduced risk compared to a direct investment into the underlying asset; limited profit potential (Cap); with higher risk levels multiple underlying assets (worst-of) allow for higher discounts or a lower barrier]",D-E-B-*-*-*,DEBXXX
+,C,"Reverse convertible [should the underlying asset close below the strike on expiry, the underlying asset(s) and/or a cash amount is redeemed; should the underlying asset close above the strike at expiry, the nominal amount plus the coupon is paid at redemption; the coupon is paid regardless of the underlying development; it has reduced risk compared to a direct investment into the underlying asset; with higher risk levels, multiple underlying assets (worst-of) allow for higher coupons; limited profit potential (Cap)]",D-E-C-*-*-*,DECXXX
+,D,"Barrier reverse convertible [should the barrier never be breached, the nominal price plus coupon is paid at redemption; due to the barrier, the probability of maximum redemption is higher; the coupon, however, is smaller than for a reverse convertible; if the barrier is breached the product changes into a reverse convertible; the coupon is paid regardless of the underlying development; it has reduced risk compared to a direct investment into the underlying asset(s); with higher risk levels, multiple underlying assets (worst-of) allow for higher coupons or lower barriers; limited profit potential (Cap)]",D-E-D-*-*-*,DEDXXX
+,E,"Express certificate [should the underlying trade above the strike on the observation date, an early redemption consisting of nominal price plus an additional coupon amount is paid; it offers the possibility of an early redemption combined with an attractive yield opportunity; it has reduced risk compared to a direct investment into the underlying asset(s); with higher risk levels, multiple underlying assets (worst-of) allow for higher coupons or lower barriers; limited profit opportunity (Cap)]",D-E-E-*-*-*,DEEXXX
+,M,Others (miscellaneous),D-E-M-*-*-*,DEMXXX
+Second attribute,,Distribution (indicates the cash distribution provided by the structured instrument),Code,rdfs.label
+,F,Fixed interest payments,D-E-*-F-*-*,DEXFXX
+,D,Dividend payments,D-E-*-D-*-*,DEXDXX
+,V,Variable interest payments,D-E-*-V-*-*,DEXVXX
+,Y,No payments,D-E-*-Y-*-*,DEXYXX
+,M,Others (miscellaneous),D-E-*-M-*-*,DEXMXX
+Third attribute,,Repayment (indicates the repayment form provided by the structured instrument),Code,rdfs.label
+,R,"Repayment in cash (depending on the underlying, if the barrier is not breached)",D-E-*-*-R-*,DEXXRX
+,S,Repayment in assets,D-E-*-*-S-*,DEXXSX
+,C,Repayment in assets and cash,D-E-*-*-C-*,DEXXCX
+,T,Repayment in assets or cash,D-E-*-*-T-*,DEXXTX
+,M,Others (miscellaneous),D-E-*-*-M-*,DEXXMX
+Fourth attribute,,Underlying assets (indicates the type of underlying assets in which the structured instrument participates),Code,rdfs.label
+,B,Baskets,D-E-*-*-*-B,DEXXXB
+,S,Equities,D-E-*-*-*-S,DEXXXS
+,D,Debt instruments,D-E-*-*-*-D,DEXXXD
+,T,Commodities,D-E-*-*-*-T,DEXXXT
+,C,Currencies (specified exchange rate),D-E-*-*-*-C,DEXXXC
+,I,Indices (the performance of an index),D-E-*-*-*-I,DEXXXI
+,N,Interest rates (specified amount based on the future level of interest rates),D-E-*-*-*-N,DEXXXN
+,M,Others (miscellaneous),D-E-*-*-*-M,DEXXXM
+
+,,Return to Debt_instruments_Category Category,,
+
+,,Return to Categories,,

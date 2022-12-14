@@ -1,0 +1,13 @@
+Others (miscellaneous),(O-M),Options that do not fit into any of the Groups of the listed options.,O-M-*-*-*-*,OMXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,O-M-X-*-*-*,OMXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,O-M-*-X-*-*,OMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,O-M-*-*-X-*,OMXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,O-M-*-*-*-X,OMXXXX
+
+,,Return to Listed_options_Category Category,,
+
+,,Return to Categories,,

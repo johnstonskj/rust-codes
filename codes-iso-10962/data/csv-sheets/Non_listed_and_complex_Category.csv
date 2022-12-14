@@ -1,0 +1,10 @@
+Non-listed and complex listed options,(H),"This Category includes OTC or unlisted options and also includes any listed option which is not captured by the listed options Category (see ""Others""). An option grants the holder either the privilege to purchase or the privilege to sell the assets specified at a predetermined price or formula at or within a time in the future.",H-*-*-*-*-*,HXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+R,Rates,"An option where the holder of the option has the right but not the obligation to enter into the underlying contract, or pay or receive payment related to the underlying rate on a specified future date based on a specified future rate and term.",H-R-*-*-*-*,HRXXXX,2019
+T,Commodities,"An option where the option buyer has the right to buy or sell specified commodities assets at a fixed price or formula, on or before a specified date.",H-T-*-*-*-*,HTXXXX,2019
+E,Equity,"An option where the underlying asset is an equity-linked instrument (i.e. shares, depository receipts, ETFs, indices, baskets).",H-E-*-*-*-*,HEXXXX,2019
+C,Credit,"An option to buy or sell a credit product which is a contract in which one party (protection seller) agrees to provide payment to the other party (protection buyer) should a credit event occur against the underlying, which could be a specified debt (the reference obligation), a specific debt issuer (reference entity), a basket of reference entities and/or reference obligations, or a credit index (reference index).",H-C-*-*-*-*,HCXXXX,2019
+F,Foreign exchange,An option to buy or sell a foreign exchange agreement between two parties to exchange a given amount of one currency for another currency for spot delivery or for forward delivery at an agreed rate after a specified period of time.,H-F-*-*-*-*,HFXXXX,2019
+M,Others (miscellaneous),Options that do not fit into any of the above Groups.,H-M-*-*-*-*,HMXXXX,2019
+
+,Return to Categories,,,,

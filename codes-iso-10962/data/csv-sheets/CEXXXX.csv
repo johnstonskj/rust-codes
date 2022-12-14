@@ -1,0 +1,27 @@
+Exchange traded funds (ETFs),(C-E),"An ETF is an investment fund traded on stock exchanges, much like stocks. An ETF holds assets such as stocks, commodities or bonds, and trades close to its net asset value over the course of the trading day. Most ETFs track an index, such as a stock, bond or commodity. index",C-E-*-*-*-*,CEXXXX
+First attribute,,Closed/open-end (indicates whether units are traded or whether funds continually stand ready to sell new units and redeem the outstanding units on demand),Code,rdfs.label
+,C,Closed-end [units are sold on either an organized exchange or in the over-the-counter (OTC) market and are usually not redeemed],C-E-C-*-*-*,CECXXX
+,O,"Open-end (funds permanently sell new units to the public and redeem outstanding units on demand, resulting in an increase or decrease of outstanding capital)",C-E-O-*-*-*,CEOXXX
+,M,Others (miscellaneous),C-E-M-*-*-*,CEMXXX
+Second attribute,,Distribution policy (indicates the fund's normal distribution policy),Code,rdfs.label
+,I,Income funds (the fund regularly distributes its investment profits),C-E-*-I-*-*,CEXIXX
+,G,Accumulation funds (the fund normally reinvests its investment profits),C-E-*-G-*-*,CEXGXX
+,J,"Mixed funds (investment profits are partly distributed, partly reinvested)",C-E-*-J-*-*,CEXJXX
+Third attribute,,Assets (indicates the underlying assets in which the fund invests),Code,rdfs.label
+,R,Real estate,C-E-*-*-R-*,CEXXRX
+,B,Debt instruments (fund invests in debt instrument regardless of maturity),C-E-*-*-B-*,CEXXBX
+,E,Equities,C-E-*-*-E-*,CEXXEX
+,V,Convertible securities,C-E-*-*-V-*,CEXXVX
+,L,Mixed (fund invests in different assets),C-E-*-*-L-*,CEXXLX
+,C,Commodities,C-E-*-*-C-*,CEXXCX
+,D,Derivatives,C-E-*-*-D-*,CEXXDX
+,F,Referential instruments excluding commodities,C-E-*-*-F-*,CEXXFX
+,K,"Credits [contractual agreement in which a borrower receives something of value (good, service or money) now and agrees to repay the lender at some date in the future, generally with interest; CIVs normally invest in credits originated by third parties; credits are not freely transferable like debt securities]",C-E-*-*-K-*,CEXXKX
+,M,Others (miscellaneous),C-E-*-*-M-*,CEXXMX
+Fourth attribute,,Security type and investor restrictions,Code,rdfs.label
+,S,Shares,C-E-*-*-*-S,CEXXXS
+,U,Units,C-E-*-*-*-U,CEXXXU
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

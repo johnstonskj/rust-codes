@@ -1,0 +1,26 @@
+Common/ordinary shares,(E-S),"Holders are typically entitled to vote and receive dividends. In the event of liquidation, holders of shares usually rank behind the entity's creditors and holders of preferred/preference shares.",E-S-*-*-*-*,ESXXXX
+First attribute,,Voting right (indicates the kind of voting power conferred to the shareholder),Code,rdfs.label
+,V,Voting (each share has one vote),E-S-V-*-*-*,ESVXXX
+,N,Non-voting (the shareholder has no voting right),E-S-N-*-*-*,ESNXXX
+,R,Restricted voting (the shareholder may be entitled to less than one vote per share),E-S-R-*-*-*,ESRXXX
+,E,Enhanced voting (the shareholder is entitled to more than one vote per share),E-S-E-*-*-*,ESEXXX
+Second attribute,,Ownership/transfer/sales restrictions (the ownership or transfer of the security is subject to special conditions including country-specific restrictions),Code,rdfs.label
+,T,Restrictions,E-S-*-T-*-*,ESXTXX
+,U,Free (unrestricted),E-S-*-U-*-*,ESXUXX
+Third attribute,,Payment status,Code,rdfs.label
+,O,Nil paid,E-S-*-*-O-*,ESXXOX
+,P,Partly paid,E-S-*-*-P-*,ESXXPX
+,F,Fully paid,E-S-*-*-F-*,ESXXFX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),E-S-*-*-*-B,ESXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),E-S-*-*-*-R,ESXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),E-S-*-*-*-N,ESXXXN
+,M,Others (miscellaneous),E-S-*-*-*-M,ESXXXM
+
+,,Return to Equities_Category Category,,
+,,,,
+,,Return to Categories,,
+,,,,
+,,,,
+,,,,
+,,,,

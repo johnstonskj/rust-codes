@@ -1,0 +1,13 @@
+Rates,(K-R),"Interest rate derivative strategies are the simultaneous trading of two or more rate contracts in which two counterparties agree to exchange interest rate cash flows on defined dates during an agreed period, based on a specified notional amount, from a fixed rate to a floating rate, floating to fixed, or floating to floating.",K-R-*-*-*-*,KRXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-R-X-*-*-*,KRXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-R-*-X-*-*,KRXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-R-*-*-X-*,KRXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-R-*-*-*-X,KRXXXX
+
+,,Return to Strategies_Category Category,,
+
+,,Return to Categories,,

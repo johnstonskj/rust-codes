@@ -1,0 +1,26 @@
+Warrants,(R-W),"Financial instruments which permit the holder to purchase a specified amount of a financial instrument, commodity, currency or other during a specified period at a specified price.",R-W-*-*-*-*,RWXXXX
+First attribute,,Underlying assets (indicates the type of underlying assets that the warrant holder is entitled to acquire),Code,rdfs.label
+,B,Baskets (the warrant holder is entitled to acquire a package or group of assets),R-W-B-*-*-*,RWBXXX
+,S,Equities (the warrant holder is entitled to acquire equity),R-W-S-*-*-*,RWSXXX
+,D,Debt instruments/interest rates (the warrant holder is entitled to acquire debt instruments),R-W-D-*-*-*,RWDXXX
+,T,Commodities (the warrant holder is entitled to acquire a specific commodity),R-W-T-*-*-*,RWTXXX
+,C,Currencies (the warrant holder is entitled to acquire a specified amount in a certain currency at a specified exchange rate),R-W-C-*-*-*,RWCXXX
+,I,Indices (the warrant holder is entitled to acquire a specified amount based on the performance of an index),R-W-I-*-*-*,RWIXXX
+,M,Others (miscellaneous),R-W-M-*-*-*,RWMXXX
+Second attribute,,Type (indicates whether the warrant is issued by the issuer of the underlying instrument or by a third party),Code,rdfs.label
+,T,Traditional warrants (issued by the issuer of the underlying instrument),R-W-*-T-*-*,RWXTXX
+,N,Naked warrants (issued by a third party which is not the issuer of the underlying securities to which the warrant refers; warrant issuer does not hold as many securities as would be required if all the warrants are exercised),R-W-*-N-*-*,RWXNXX
+,C,Covered warrants (issued by a third party which is not the issuer of the underlying securities to which the warrant refers; warrant issuer holds as many securities as would be required if all the warrants are exercised),R-W-*-C-*-*,RWXCXX
+Third attribute,,Call/put (indicates whether the warrant entitles the holder to acquire assets at specified terms or to acquire cash in exchange for specific underlying assets),Code,rdfs.label
+,C,"Call (in most cases, the warrant entitles the holder to acquire specific underlying assets during a specified period at a specified price)",R-W-*-*-C-*,RWXXCX
+,P,Put (the warrant entitles the holder to acquire cash in exchange for specific underlying assets),R-W-*-*-P-*,RWXXPX
+,B,Call and put (warrants with neither call nor put feature or warrants with call and put feature),R-W-*-*-B-*,RWXXBX
+Fourth attribute,,Exercise option style,Code,rdfs.label
+,E,"European (warrant that can only be exercised for a short, specified period of time just prior to its expiration, usually a single day)",R-W-*-*-*-E,RWXXXE
+,A,American (warrant that can be exercised at any time between the purchase date and the expiration date),R-W-*-*-*-A,RWXXXA
+,B,"Bermudan (warrant that can only be exercised on predetermined dates, usually every month)",R-W-*-*-*-B,RWXXXB
+,M,Others (miscellaneous),R-W-*-*-*-M,RWXXXM
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

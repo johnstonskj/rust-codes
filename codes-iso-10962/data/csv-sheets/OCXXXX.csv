@@ -1,0 +1,29 @@
+Call options,(O-C),"Contracts between a buyer and a seller giving the buyer (holder) the right, but not the obligation, to buy the assets specified at a fixed price or formula, on or before a specified date. The seller of the call option assumes the obligation of delivering the assets specified should the buyer exercise his or her option.",O-C-*-*-*-*,OCXXXX
+First attribute,,Exercise option style,Code,rdfs.label
+,E,European,O-C-E-*-*-*,OCEXXX
+,A,American,O-C-A-*-*-*,OCAXXX
+,B,Bermudan,O-C-B-*-*-*,OCBXXX
+Second attribute,,Underlying assets (indicates the type of underlying assets that the option holder is entitled to acquire),Code,rdfs.label
+,B,Baskets,O-C-*-B-*-*,OCXBXX
+,S,Stock-equities,O-C-*-S-*-*,OCXSXX
+,D,Debt instruments,O-C-*-D-*-*,OCXDXX
+,T,Commodities,O-C-*-T-*-*,OCXTXX
+,C,Currencies,O-C-*-C-*-*,OCXCXX
+,I,Indices,O-C-*-I-*-*,OCXIXX
+,O,Options,O-C-*-O-*-*,OCXOXX
+,F,Futures,O-C-*-F-*-*,OCXFXX
+,W,Swaps,O-C-*-W-*-*,OCXWXX
+,N,Interest rates,O-C-*-N-*-*,OCXNXX
+,M,Others (miscellaneous),O-C-*-M-*-*,OCXMXX
+Third attribute,,"Delivery (indicates whether the settlement of the option, when exercised, is made in cash or whether the underlying instruments are delivered)",Code,rdfs.label
+,P,Physical [the meeting of a settlement obligation under a derivative contract through the receipt or delivery of the actual underlying instrument(s) instead of through cash settlement],O-C-*-*-P-*,OCXXPX
+,C,Cash (the discharge of an obligation by payment or receipt of a net cash amount instead of payment or delivery by both parties),O-C-*-*-C-*,OCXXCX
+,N,Non-deliverable [synthetic options on foreign exchange forwards that are based on non-convertible or thinly traded currencies],O-C-*-*-N-*,OCXXNX
+,E,Elect at exercise (the method of delivery of the underlying instrument when the option is exercised shall be determined at the time of exercise),O-C-*-*-E-*,OCXXEX
+Fourth attribute,,Standardized/non-standardized (indicates whether the terms of the contract are standardized or not),Code,rdfs.label
+,S,"Standardized (the underlying instruments, exercise price, expiration date and contract size of the options are standardized; these options are traded on special option exchanges)",O-C-*-*-*-S,OCXXXS
+,N,Non-standardized (options traded on option exchanges which have non-standard delivery or expiry terms),O-C-*-*-*-N,OCXXXN
+
+,,Return to Listed_options_Category Category,,
+
+,,Return to Categories,,

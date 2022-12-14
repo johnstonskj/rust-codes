@@ -1,0 +1,9 @@
+Forwards,(J),"Contracts, which are not exchange traded or listed, entered between two parties to buy or sell the underlying asset at a specified future date at the price specified at the outset of the contract.",J-*-*-*-*-*,JXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+E,Equity,"Forward contracts to buy or sell the underlying equity stock, equity index or basket of equity stock.",J-E-*-*-*-*,JEXXXX,2019
+F,Foreign exchange,Forward contracts to buy or sell the foreign currency.,J-F-*-*-*-*,JFXXXX,2019
+C,Credit,Forward contracts to buy or sell the credit product.,J-C-*-*-*-*,JCXXXX,2019
+R,Rates,Forward contracts to buy or sell the financial rates product.,J-R-*-*-*-*,JRXXXX,2019
+T,Commodities,Forward contracts to buy or sell the commodity asset.,J-T-*-*-*-*,JTXXXX,2019
+
+,Return to Categories,,,,

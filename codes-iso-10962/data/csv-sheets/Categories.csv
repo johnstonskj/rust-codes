@@ -1,0 +1,18 @@
+Code,Name,Description,Code Pattern,rdfs:label
+E,Equities,Financial instruments representing an ownership interest in an entity or pool of assets.,E-U-*-*-*-*,EXXXXX
+C,CIVs,"Securities representing a portion of assets pooled by investors run by a management company whose share capital remains separate from such assets and includes issues of shares or units in the form of, for example, a unit trust, mutual fund, OICVM, OPCVM, SICAV or SICAF.",C-M-*-*-*-*,CXXXXX
+D,Debt instruments,Financial instruments evidencing monies owed by the issuer to the holder on terms as specified.,D-M-*-*-*-*,DXXXXX
+R,Entitlement (rights),Financial instruments providing the holder with the privilege to subscribe to or receive specific assets on terms specified.,R-P-*-*-*-*,RXXXXX
+O,Listed options,"This Category classifies listed options, which are contracts that grant to the holder either the privilege to purchase or the privilege to sell the assets specified at a predetermined price or formula at or within a time in the future. Where a listed option cannot be classified within this Category, refer to non-listed and complex listed options.",O-M-*-*-*-*,OXXXXX
+F,Futures,"Contracts, listed on an exchange or regulated market, which obligate the buyer to receive and the seller to deliver in the future the assets specified at an agreed price. This includes forwards on regulated markets.",F-C-*-*-*-*,FXXXXX
+S,Swaps,"A swap is an agreement or contract where two counterparties agree to exchange periodic streams of cash flows with each other. Swaps can be executed with a variety of asset classes, as listed below.",S-M-*-*-*-*,SXXXXX
+H,Non-listed and complex listed options,This Category includes OTC or unlisted options and also includes any listed option which is not captured by the listed options Category. An option grants the holder either the privilege to purchase or the privilege to sell the assets specified at a predetermined price or formula at or within a time in the future.,H-M-*-*-*-*,HXXXXX
+I,Spot,Contracts conducted on the spot market which are bought and sold for cash with immediate delivery based on market convention for the asset.,I-T-*-*-*-*,IXXXXX
+J,Forwards,"Contracts, which are not exchange traded or listed, entered between two parties to buy or sell the underlying asset at a specified future date at the price specified at the outset of the contract.",J-T-*-*-*-*,JXXXXX
+K,Strategies,This subclause defines a classification of derivative strategies. Strategies are the simultaneous trading of two or more derivative instruments.,K-M-*-*-*-*,KXXXXX
+L,Financing,"Financing is a collateralized loan agreement entered into between two parties where one party, the lender, lends (temporarily) the underlying asset which is secured with cash or other acceptable collateral (securities or other assets) provided by the borrower. Depending on the exact type of financing transaction, a simultaneous agreement to reverse the agreement may be entered into at the same time with an agreed-upon future date for the reverse transaction to take place.",L-S-*-*-*-*,LXXXXX
+T,Referential instruments,Indicators that are used as a reference for other financial instruments.,T-M-*-*-*-*,TXXXXX
+M,Others (miscellaneous),Financial instruments that do not fit the above categories as defined.,M-M-*-*-*-*,MXXXXX
+,,,,
+,,,,
+,,,,

@@ -1,0 +1,18 @@
+Rates,(J-R),Forward contracts to buy or sell the financial rates product.,J-R-*-*-*-*,JRXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,I,Interest rate index,J-R-I-*-*-*,JRIXXX
+,O,Options,J-R-O-*-*-*,JROXXX
+,M,Others (miscellaneous),J-R-M-*-*-*,JRMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,J-R-*-X-*-*,JRXXXX
+Third attribute,,Return or payout trigger (method used to determine contract value if different from standard forward price of underlying instrument),Code,rdfs.label
+,C,CFD,J-R-*-*-C-*,JRXXCX
+,S,Spread-bet [the payout is determined by the movement in the reference price of the underlying instrument to its price at expiry (or the price when the holder wishes to close out) multiplied by an agreed amount per point movement],J-R-*-*-S-*,JRXXSX
+,F,Forward price of underlying instrument (the agreed-upon price for the time of delivery),J-R-*-*-F-*,JRXXFX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash (the contract will settle as cash on the performance of the contract at maturity),J-R-*-*-*-C,JRXXXC
+,P,Physical (the contract will settle with the delivery of shares on the performance of the contract at maturity),J-R-*-*-*-P,JRXXXP
+
+,,Return to Forwards_Category Category,,
+
+,,Return to Categories,,

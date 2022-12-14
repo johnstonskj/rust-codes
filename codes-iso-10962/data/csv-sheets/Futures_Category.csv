@@ -1,0 +1,6 @@
+Futures,(F),"Contracts, listed on an exchange or regulated market, which obligate the buyer to receive and the seller to deliver in the future the assets specified at an agreed price. This includes forwards on regulated markets.",F-*-*-*-*-*,FXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+F,Financial futures,Futures contracts based on underlying assets excluding commodities.,F-F-*-*-*-*,FFXXXX,2019
+C,Commodities futures,Futures contracts based on bulk goods.,F-C-*-*-*-*,FCXXXX,2019
+
+,Return to Categories,,,,

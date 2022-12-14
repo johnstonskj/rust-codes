@@ -1,0 +1,20 @@
+Commodities,(T-T),A basic good used in commerce that is interchangeable with other commodities of the same type. Commodities are most often used as inputs in the production of other goods or services.,T-T-*-*-*-*,TTXXXX
+First attribute,,Type of commodity,Code,rdfs.label
+,E,"Extraction resources (metals, precious metals, coal, oil, gas)",T-T-E-*-*-*,TTEXXX
+,A,"Agriculture (commodities which include forestry, fishing, livestock, grain, dairy, corn, cocoa, soybeans, sugar, coffee)",T-T-A-*-*-*,TTAXXX
+,I,"Industrial products (construction, manufacturing)",T-T-I-*-*-*,TTIXXX
+,S,"Services (transportation, communication, trade)",T-T-S-*-*-*,TTSXXX
+,N,"Environmental (includes carbon-related, emission reduction, weather)",T-T-N-*-*-*,TTNXXX
+,P,Polypropylene products (includes plastics),T-T-P-*-*-*,TTPXXX
+,H,"Generated resources (includes electricity, renewable energy, or any power/energy delivered through a utility network or provider)",T-T-H-*-*-*,TTHXXX
+,M,Others (miscellaneous),T-T-M-*-*-*,TTMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-T-*-X-*-*,TTXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-T-*-*-X-*,TTXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-T-*-*-*-X,TTXXXX
+
+,,Return to Referential_instrument_Category Category,,
+
+,,Return to Categories,,

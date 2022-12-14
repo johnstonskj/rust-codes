@@ -1,0 +1,23 @@
+Credit,(S-C),A credit swap references a value or event related to a debt product or debt issuer.,S-C-*-*-*-*,SCXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,U,Single name (the underlying risk is a single reference entity or reference obligation),S-C-U-*-*-*,SCUXXX
+,V,"Index tranche [a synthetic collateralized debt obligation (CDO) based on a credit index where each tranche references a different segment of the loss distribution of the underlying index; each tranche has a different priority of claims on the principal and interest flows from the collateral pool, and is traditionally portioned into rising levels of seniority]",S-C-V-*-*-*,SCVXXX
+,I,"Index [family of standardized credit derivative indices, where the underlying reference entities are a defined basket of credit from a particular geographic region (e.g. Asia, North America, Europe), and/or credit rating level (e.g. emerging markets, high yield, investment grade); credit default indices trade in standard maturities, and the reference entities are typically the most liquid; the reference portfolio is reassessed periodically to maintain this]",S-C-I-*-*-*,SCIXXX
+,B,"Basket (a bespoke, synthetic portfolio of underlying assets whose components have been agreed to for a specific OTC derivative by the parties to the transaction)",S-C-B-*-*-*,SCBXXX
+,M,Others (miscellaneous),S-C-M-*-*-*,SCMXXX
+Second attribute,,Return or payout trigger,Code,rdfs.label
+,C,"Credit default [a credit default swap (CDS) is a contract in which one party (protection seller) agrees to provide payment to the other party (protection buyer) should a credit event occur against the underlying, which could be a specified debt (the reference obligation), a specific debt issuer (reference entity), a basket of reference entities and/or reference obligations or a credit index (reference index)]",S-C-*-C-*-*,SCXCXX
+,T,Total return,S-C-*-T-*-*,SCXTXX
+,M,Others (miscellaneous),S-C-*-M-*-*,SCXMXX
+Third attribute,,Underlying issuer type,Code,rdfs.label
+,C,Corporate entity [the underlying exposure is a corporate (a private sector entity)],S-C-*-*-C-*,SCXXCX
+,S,"Sovereign entity [the underlying exposure is a sovereign, e.g. country; thus, investor’s risk is that a country may not (be able to) pay its debt obligations; supranationals would be included here]",S-C-*-*-S-*,SCXXSX
+,L,Local (a municipality or local government authority),S-C-*-*-L-*,SCXXLX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,S-C-*-*-*-C,SCXXXC
+,P,Physical,S-C-*-*-*-P,SCXXXP
+,A,Auction (an independently administered synthetic auction process on a set of defined deliverable obligations that sets a reference final price that can be used to facilitate cash settlement of all covered transactions following a credit event),S-C-*-*-*-A,SCXXXA
+
+,,Return to Swaps_Category Category,,
+
+,,Return to Categories,,

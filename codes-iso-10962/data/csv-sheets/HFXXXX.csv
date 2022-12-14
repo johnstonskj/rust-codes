@@ -1,0 +1,36 @@
+Foreign exchange,(H-F),An option to buy or sell a foreign exchange agreement between two parties to exchange a given amount of one currency for another currency for spot delivery or for forward delivery at an agreed rate after a specified period of time.,H-F-*-*-*-*,HFXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,R,Forwards – Single Currency Pair,H-F-R-*-*-*,HFRXXX
+,F,Futures – Single Currency Pair,H-F-F-*-*-*,HFFXXX
+,T,Spot – Single Currency Pair (an option on a foreign exchange transaction in which two parties agree to buy one currency against selling another currency at an agreed price for settlement on the spot date),H-F-T-*-*-*,HFTXXX
+,V,Volatility – Single Currency Pair (please refer to 6.8.4),H-F-V-*-*-*,HFVXXX
+,B,Forwards – Currency Index,H-F-B-*-*-*,HFBXXX
+,C,Futures – Currency Index,H-F-C-*-*-*,HFCXXX
+,D,Spot – Currency Index,H-F-D-*-*-*,HFDXXX
+,E,Volatility – Currency Index,H-F-E-*-*-*,HFEXXX
+,Q,Forwards – Custom Basket of Currencies,H-F-Q-*-*-*,HFQXXX
+,U,Futures – Custom Basket of Currencies,H-F-U-*-*-*,HFUXXX
+,W,Spot – Custom Basket of Currencies,H-F-W-*-*-*,HFWXXX
+,Y,Volatility – Custom Basket of Currencies,H-F-Y-*-*-*,HFYXXX
+,M,Others (miscellaneous),H-F-M-*-*-*,HFMXXX
+Second attribute,,Option style and type,Code,rdfs.label
+,J,European (an option which allows its holder to exercise the right to buy/sell the specified call/put currency at a specified price only on the expiration date,H-F-*-J-*-*,HFXJXX
+,K,"American (an option which allows its holder to exercise the right to buy/sell the specified call/put currency at a specified price at any time during the term of the option, up to and including the expiration date)",H-F-*-K-*-*,HFXKXX
+,L,Bermudan (an option which allows its holder to exercise the right to buy/sell the specified call/put currency at a specified price on a number of specific dates within the exercise period of the option),H-F-*-L-*-*,HFXLXX
+Third attribute,,Valuation method or trigger,Code,rdfs.label
+,V,Vanilla,H-F-*-*-V-*,HFXXVX
+,A,Asian,H-F-*-*-A-*,HFXXAX
+,D,Digital (Binary),H-F-*-*-D-*,HFXXDX
+,B,Barrier,H-F-*-*-B-*,HFXXBX
+,G,Digital barrier,H-F-*-*-G-*,HFXXGX
+,L,Lookback,H-F-*-*-L-*,HFXXLX
+,P,Other path dependent,H-F-*-*-P-*,HFXXPX
+,M,Others (miscellaneous),H-F-*-*-M-*,HFXXMX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,H-F-*-*-*-C,HFXXXC
+,P,Physical,H-F-*-*-*-P,HFXXXP
+,E,Elect at settlement (determined at the time of settlement),H-F-*-*-*-E,HFXXXE
+
+,,Return to Non_listed_and_complex_Category Category,,
+
+,,Return to Categories,,

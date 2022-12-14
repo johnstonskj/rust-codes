@@ -1,0 +1,19 @@
+Stock dividends,(T-D),Relate to the dividend payments of a specific underlying equity stock.,T-D-*-*-*-*,TDXXXX
+First attribute,,Type of equity,Code,rdfs.label
+,S,Common/ordinary shares,T-D-S-*-*-*,TDSXXX
+,P,Preferred/preference shares,T-D-P-*-*-*,TDPXXX
+,C,Common/ordinary convertible shares,T-D-C-*-*-*,TDCXXX
+,F,Preferred/preference convertible shares,T-D-F-*-*-*,TDFXXX
+,L,Limited partnership units,T-D-L-*-*-*,TDLXXX
+,K,CIVs,T-D-K-*-*-*,TDKXXX
+,M,Others (miscellaneous),T-D-M-*-*-*,TDMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-D-*-X-*-*,TDXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-D-*-*-X-*,TDXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-D-*-*-*-X,TDXXXX
+
+,,Return to Referential_instrument_Category Category,,
+
+,,Return to Categories,,

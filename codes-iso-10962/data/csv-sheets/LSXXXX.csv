@@ -1,0 +1,27 @@
+Securities lending,(L-S),"An agreement entered into by two parties where one party (lender) agrees to lend cash or securities to the other party (borrower) in exchange for collateral plus a lending fee. The lender retains the rights (i.e. title, dividend/interest payments and corporate actions that may arise during the term of the loan) to the securities on loan to the borrower.",L-S-*-*-*-*,LSXXXX
+First attribute,,"Underlying assets (collateral that may be used, or substituted, to secure the lending agreement)",Code,rdfs.label
+,C,Cash collateral,L-S-C-*-*-*,LSCXXX
+,G,Government bonds,L-S-G-*-*-*,LSGXXX
+,P,Corporate bonds,L-S-P-*-*-*,LSPXXX
+,T,Convertible bonds,L-S-T-*-*-*,LSTXXX
+,E,Equity,L-S-E-*-*-*,LSEXXX
+,L,Letter of credit,L-S-L-*-*-*,LSLXXX
+,D,Certificate of deposit,L-S-D-*-*-*,LSDXXX
+,W,Warrants,L-S-W-*-*-*,LSWXXX
+,K,Money market instruments,L-S-K-*-*-*,LSKXXX
+,M,Others (miscellaneous),L-S-M-*-*-*,LSMXXX
+Second attribute,,Termination,Code,rdfs.label
+,N,Overnight,L-S-*-N-*-*,LSXNXX
+,O,Open,L-S-*-O-*-*,LSXOXX
+,T,Term,L-S-*-T-*-*,LSXTXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,L-S-*-*-X-*,LSXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,D,Delivery versus payment,L-S-*-*-*-D,LSXXXD
+,F,Free of payment (the borrower delivers the collateral with no corresponding payment of funds),L-S-*-*-*-F,LSXXXF
+,H,Hold-in-custody,L-S-*-*-*-H,LSXXXH
+,T,Tri-party,L-S-*-*-*-T,LSXXXT
+
+,,Return to Financing_Category Category,,
+
+,,Return to Categories,,

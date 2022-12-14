@@ -1,0 +1,11 @@
+Referential instruments,(T),Indicators that are used as a reference for other financial instruments.,T-*-*-*-*-*,TXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+C,Currencies,"An accepted form of money, including coins and paper notes, which is generally issued by a government and circulated within an economy.",T-C-*-*-*-*,TCXXXX,2019
+T,Commodities,A basic good used in commerce that is interchangeable with other commodities of the same type. Commodities are most often used as inputs in the production of other goods or services.,T-T-*-*-*-*,TTXXXX,2019
+R,Interest rates,Rate at which interest is paid by a borrower for the use of money that they borrow from a lender.,T-R-*-*-*-*,TRXXXX,2019
+I,Indices,An index provides a representation of the value of its constituents. Indices often serve as barometers for a given market or industry and benchmarks against which financial or economic performance is measured.,T-I-*-*-*-*,TIXXXX,2019
+B,Baskets,Group of securities that have been put together for a specific investment purpose.,T-B-*-*-*-*,TBXXXX,2019
+D,Stock dividends,Relate to the dividend payments of a specific underlying equity stock.,T-D-*-*-*-*,TDXXXX,2019
+M,Others (miscellaneous),Referential instruments that do not fit into any of the Groups described in above groups.,T-M-*-*-*-*,TMXXXX,2019
+
+,Return to Categories,,,,

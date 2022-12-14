@@ -1,0 +1,16 @@
+Others (miscellaneous),(C-M),CIVs which do not fit into any of the Groups described between standard (vanilla) investment funds/mutual funds and private equity funds,C-M-*-*-*-*,CMXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-M-*-*-*-*,CMXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-M-*-*-*-*,CMXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-M-*-*-*-*,CMXXXX
+Fourth attribute,,Security type and investor restrictions,Code,rdfs.label
+,S,Shares (retail and/or qualified/institutional/professional investors),C-M-*-*-*-S,CMXXXS
+,Q,Shares for QI (qualified/institutional/professional investors only),C-M-*-*-*-Q,CMXXXQ
+,U,Units (retail and/or qualified/institutional/professional investors),C-M-*-*-*-U,CMXXXU
+,Y,Units for QI (qualified/institutional/professional investors only),C-M-*-*-*-Y,CMXXXY
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

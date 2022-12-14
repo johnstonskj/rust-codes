@@ -1,0 +1,29 @@
+Commodities,(S-T),"A commodity swap is a derivative contract where the value of the contract is derived from an underlying commodity or commodity index. Commodity derivatives can be physically settled or cash settled. Primary underliers include metals, agricultural goods and energy.",S-T-*-*-*-*,STXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,J,"Energy [an energy-related product, or a derivative of an energy-related product, including electricity, renewable energy, or any power/energy delivered through a utility network of provider; diesel fuel, fuel oil, gas oil, gasoline, heating oil, jet fuel, kerosene, natural gas, oil (Brent, Tapis, Dubai, WTI)]",S-T-J-*-*-*,STJXXX
+,K,"Metals (a precious or industrial metal, such as aluminium, copper, gold, lead, nickel, platinum, silver, tin, zinc)",S-T-K-*-*-*,STKXXX
+,A,"Agriculture (commodities which include forestry, fishing, livestock, grain, dairy, corn, cocoa, soybeans, sugar, coffee)",S-T-A-*-*-*,STAXXX
+,N,"Environmental (includes carbon-related, emission reduction, weather)",S-T-N-*-*-*,STNXXX
+,G,Freight (the specified commodity is a freight index route),S-T-G-*-*-*,STGXXX
+,P,Polypropylene products,S-T-P-*-*-*,STPXXX
+,S,"Fertilizer [ammonia, diammonium phosphate (DAP), potash, sulphur, urea, urea and ammonium nitrate (UAN)]",S-T-S-*-*-*,STSXXX
+,T,"Paper (containerboard, newsprint, pulp, recovered paper)",S-T-T-*-*-*,STTXXX
+,I,Index – single-commodity (an index containing constituents from one of the underlying assets identified for this attribute),S-T-I-*-*-*,STIXXX
+,H,Index – multi-commodity (an index containing constituents from two or more of the underlying assets identified for this attribute),S-T-H-*-*-*,STHXXX
+,B,Basket – single-commodity (a custom basket containing constituents from one of the underlying assets identified for this attribute),S-T-B-*-*-*,STBXXX
+,C,Basket – multi-commodity (a custom basket containing constituents from two or more of the underlying assets identified for this attribute),S-T-C-*-*-*,STCXXX
+,Q,Multi-commodity (each leg of the swap references a different respective commodity than the other leg),S-T-Q-*-*-*,STQXXX
+,M,Others (miscellaneous),S-T-M-*-*-*,STMXXX
+Second attribute,,Return or payout trigger (method used to determine contract value),Code,rdfs.label
+,C,Contract for difference (CFD) (a cash-settled total return swap or forward where the parties agree to exchange on the maturity of the contract the difference between the opening price and closing price of the underlying),S-T-*-C-*-*,STXCXX
+,T,"Total return [the total economic return of an underlying asset is transferred from one party (total return buyer) to another (total return seller); total return seller takes on the risk of negative changes in market value of the reference asset, and pays any positive cash flow to the buyer such as coupon, capital gains or dividends of the reference asset]",S-T-*-T-*-*,STXTXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,S-T-*-*-X-*,STXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,S-T-*-*-*-C,STXXXC
+,P,Physical,S-T-*-*-*-P,STXXXP
+,E,Elect at settlement (determined at the time of settlement),S-T-*-*-*-E,STXXXE
+
+,,Return to Swaps_Category Category,,
+
+,,Return to Categories,,

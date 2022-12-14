@@ -1,0 +1,16 @@
+Allotment (bonus) rights,(R-A),"Privileges allotted to existing security holders, entitling them to receive new securities free of charge.",R-A-*-*-*-*,RAXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-A-X-*-*-*,RAXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-A-*-X-*-*,RAXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,R-A-*-*-X-*,RAXXXX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),R-A-*-*-*-B,RAXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),R-A-*-*-*-R,RAXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),R-A-*-*-*-N,RAXXXN
+,M,Others (miscellaneous),R-A-*-*-*-M,RAXXXM
+
+,,Return to Entitlement_rights_Category Category,,
+
+,,Return to Categories,,

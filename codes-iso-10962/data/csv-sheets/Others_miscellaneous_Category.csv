@@ -1,0 +1,6 @@
+Others (miscellaneous),(M),Financial instruments that do not fit the above categories as defined.,M-*-*-*-*-*,MXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+C,Combined instruments,"Packages of different financial instruments issued and/or traded as one single unit (also referred to as staple security). They can be separated during their life cycle and be traded individually. In that case, CFI codes classifying each of the financial instruments involved individually shall be assigned.",M-C-*-*-*-*,MCXXXX,2019
+M,Other assets (miscellaneous),The following are other assets that do not fit the Groupings as defined.,M-M-*-*-*-*,MMXXXX,2019
+
+,Return to Categories,,,,

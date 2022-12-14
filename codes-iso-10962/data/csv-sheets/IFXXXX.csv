@@ -1,0 +1,13 @@
+Foreign exchange,(I-F),Spot contracts to deliver the agreed foreign currency at settlement.,I-F-*-*-*-*,IFXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,I-F-X-*-*-*,IFXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,I-F-*-X-*-*,IFXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,I-F-*-*-X-*,IFXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,P,Physical,I-F-*-*-*-P,IFXXXP
+
+,,Return to Spot_Category Category,,
+
+,,Return to Categories,,

@@ -1,0 +1,23 @@
+Interest rates,(T-R),Rate at which interest is paid by a borrower for the use of money that they borrow from a lender.,T-R-*-*-*-*,TRXXXX
+First attribute,,Type of interest rates,Code,rdfs.label
+,N,Nominal (an interest rate before taking inflation into account),T-R-N-*-*-*,TRNXXX
+,V,Variable (an interest rate that fluctuates over time),T-R-V-*-*-*,TRVXXX
+,F,Fixed (an interest rate that remains fixed for the entire term),T-R-F-*-*-*,TRFXXX
+,R,Real (an interest rate that has been adjusted to remove the effects of inflation),T-R-R-*-*-*,TRRXXX
+,M,Others (miscellaneous),T-R-M-*-*-*,TRMXXX
+Second attribute,,Frequency of calculation,Code,rdfs.label
+,D,Daily,T-R-*-D-*-*,TRXDXX
+,W,Weekly,T-R-*-W-*-*,TRXWXX
+,N,Monthly,T-R-*-N-*-*,TRXNXX
+,Q,Quarterly,T-R-*-Q-*-*,TRXQXX
+,S,Semi-annually,T-R-*-S-*-*,TRXSXX
+,A,Annually,T-R-*-A-*-*,TRXAXX
+,M,Others (miscellaneous),T-R-*-M-*-*,TRXMXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-R-*-*-X-*,TRXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,T-R-*-*-*-X,TRXXXX
+
+,,Return to Referential_instrument_Category Category,,
+
+,,Return to Categories,,

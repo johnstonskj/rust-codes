@@ -1,0 +1,13 @@
+Foreign exchange,(K-F),Foreign exchange derivative strategies are the simultaneous trading of two or more foreign exchange agreements between two parties to exchange a given amount of one currency for another currency for spot delivery or for forward delivery at an agreed rate after a specified period of time.,K-F-*-*-*-*,KFXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-F-X-*-*-*,KFXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-F-*-X-*-*,KFXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-F-*-*-X-*,KFXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-F-*-*-*-X,KFXXXX
+
+,,Return to Strategies_Category Category,,
+
+,,Return to Categories,,

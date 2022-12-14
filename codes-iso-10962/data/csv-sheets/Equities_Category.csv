@@ -1,0 +1,13 @@
+Equities,(E),Financial instruments representing an ownership interest in an entity or pool of assets.,E-*-*-*-*-*,EXXXXX,
+Group,Name,Description,Code Pattern,rdfs:label,Version
+S,Common/ordinary shares,"Holders are typically entitled to vote and receive dividends. In the event of liquidation, holders of shares usually rank behind the entity's creditors and holders of preferred/preference shares.",E-S-*-*-*-*,ESXXXX,2019
+P,Preferred/preference shares,"Payment of dividends to holders normally takes preference over the payment of dividends to other classes of shares. In the event of liquidation, preferred/preference shares normally rank above ordinary shares but behind creditors of the company.",E-P-*-*-*-*,EPXXXX,2019
+C,Common/ordinary convertible shares,"Shares (common/ordinary) which, at the discretion of the holder, are convertible into other securities, at a designated rate. The conversion privilege may be perpetual or limited to a specific period.",E-C-*-*-*-*,ECXXXX,2019
+F,Preferred/preference convertible shares,"Preferred/preference shares which, at the discretion of the holder, are convertible into other securities, usually common/ordinary shares, at a designated rate. The conversion privilege may be perpetual or limited to a specified period.",E-F-*-*-*-*,EFXXXX,2019
+L,Limited partnership units,"A limited partnership is a form of partnership similar to a general partnership, except that in addition to one or more general partners (GPs), there are one or more limited partners (LPs).
+Like shareholders in a corporation, the LPs have limited liability, i.e. they are only liable on debts incurred by the firm to the extent of their registered investment and they have no management authority. The GPs pay the LPs the equivalent of a dividend on their investment, the nature and extent of which is usually defined in the partnership agreement.",E-L-*-*-*-*,ELXXXX,2019
+D,Depositary receipts on equities,Depository receipts are securities that facilitate the ownership of securities traded in other jurisdictions. Depository receipts are widely used in order to allow the trading of shares in jurisdictions other than the one where the original shares were issued.,E-D-*-*-*-X,EDXXXX,2019
+Y,Structured instruments (participation),"The construction is generally based on a low exercise price option (LEPO) (base value less discounted future dividends) which in some cases might be comparable to a direct investment in the underlying asset(s) or a LEPO combined with other options, which together provide the desired disbursement profile.",E-Y-*-*-*-*,EYXXXX,2019
+M,Others (miscellaneous),Equities that do not fit into any of the other Equity Groups,E-M-*-*-*-*,EMXXXX,2019
+
+,Return to Categories,,,,

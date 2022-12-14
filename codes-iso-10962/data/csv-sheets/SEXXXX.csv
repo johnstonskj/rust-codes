@@ -1,0 +1,24 @@
+Equity,(S-E),"An equity swap is a derivative contract where payments are linked to the change in value of an underlying equity (e.g. shares, basket of equities or index). Equity swaps can be physically or cash settled.",S-E-*-*-*-*,SEXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,S,Single stock (single name security),S-E-S-*-*-*,SESXXX
+,I,Index (a synthetic portfolio of underlying assets whose components have been set by a third-party administrator),S-E-I-*-*-*,SEIXXX
+,B,"Basket (a bespoke, synthetic portfolio of underlying assets whose components have been agreed to for a specific OTC derivative by the parties to the transaction)",S-E-B-*-*-*,SEBXXX
+,M,Others (miscellaneous),S-E-M-*-*-*,SEMXXX
+Second attribute,,Return or payout trigger,Code,rdfs.label
+,P,"Price (price return equity swap; similar to a total return swap, except that dividends are not passed through to the buyer)",S-E-*-P-*-*,SEXPXX
+,D,Dividend (a fixed-term contract between two parties where one party will make an interest rate payment for each interval and the other party will pay the total dividends received as pay-out by a selected underlying asset),S-E-*-D-*-*,SEXDXX
+,V,Variance [a forward swap that uses the variance (being the volatility squared) of an underlying’s price movement over a period as the basis for the payoff calculation],S-E-*-V-*-*,SEXVXX
+,L,Volatility (the variability of movements in a security or underlying instrument’s price; it is a measure of the amount by which an asset’s price is expected to fluctuate over a given period of time; it is normally measured by the annual standard deviation of daily price changes),S-E-*-L-*-*,SEXLXX
+,T,Total return,S-E-*-T-*-*,SEXTXX
+,C,CFD,S-E-*-C-*-*,SEXCXX
+,M,Others (miscellaneous),S-E-*-M-*-*,SEXMXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,S-E-*-*-X-*,SEXXXX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,S-E-*-*-*-C,SEXXXC
+,P,Physical,S-E-*-*-*-P,SEXXXP
+,E,Elect at settlement (determined at the time of settlement),S-E-*-*-*-E,SEXXXE
+
+,,Return to Swaps_Category Category,,
+
+,,Return to Categories,,

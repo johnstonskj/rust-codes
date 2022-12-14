@@ -1,0 +1,20 @@
+Equity,(J-E),"Forward contracts to buy or sell the underlying equity stock, equity index or basket of equity stock.",J-E-*-*-*-*,JEXXXX
+First attribute,,"Underlying assets (indicates the type of underlying equity product that the forward contract buyer will buy, and that the seller will sell, at the specified future date and price)",Code,rdfs.label
+,S,Single stock (single equity stock),J-E-S-*-*-*,JESXXX
+,I,Index,J-E-I-*-*-*,JEIXXX
+,B,Basket (a defined basket of instruments),J-E-B-*-*-*,JEBXXX
+,O,Options,J-E-O-*-*-*,JEOXXX
+,F,Futures,J-E-F-*-*-*,JEFXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,J-E-*-X-*-*,JEXXXX
+Third attribute,,Return or payout trigger (method used to determine contract value if different from standard forward price of underlying instrument),Code,rdfs.label
+,C,CFD,J-E-*-*-C-*,JEXXCX
+,S,Spread-bet [the payout is determined by the movement in the reference price of the underlying instrument to its price at expiry (or the price when the holder wishes to close out) multiplied by an agreed amount per point movement],J-E-*-*-S-*,JEXXSX
+,F,Forward price of underlying instrument (the agreed-upon price for the time of delivery),J-E-*-*-F-*,JEXXFX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash (the contract will settle as cash on the performance of the contract at maturity),J-E-*-*-*-C,JEXXXC
+,P,Physical (the contract will settle with the delivery of shares on the performance of the contract at maturity),J-E-*-*-*-P,JEXXXP
+
+,,Return to Forwards_Category Category,,
+
+,,Return to Categories,,

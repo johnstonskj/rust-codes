@@ -1,0 +1,28 @@
+Commodities,(J-T),Forward contracts to buy or sell the commodity asset.,J-T-*-*-*-*,JTXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,A,Agriculture,J-T-A-*-*-*,JTAXXX
+,B,Basket – single-commodity (a custom basket containing constituents from one of the underlying assets identified for this attribute),J-T-B-*-*-*,JTBXXX
+,C,Basket – multi-commodity (a custom basket containing constituents from two or more of the underlying assets identified for this attribute),J-T-C-*-*-*,JTCXXX
+,G,Freight,J-T-G-*-*-*,JTGXXX
+,I,Index – single-commodity (an option where the underlying reference entity is a commodity index),J-T-I-*-*-*,JTIXXX
+,H,Index – multi-commodity (an index containing constituents from two or more of the underlying assets identified for this attribute),J-T-H-*-*-*,JTHXXX
+,J,Energy,J-T-J-*-*-*,JTJXXX
+,K,Metals,J-T-K-*-*-*,JTKXXX
+,N,Environmental,J-T-N-*-*-*,JTNXXX
+,P,Polypropylene products,J-T-P-*-*-*,JTPXXX
+,S,Fertilizer,J-T-S-*-*-*,JTSXXX
+,T,Paper,J-T-T-*-*-*,JTTXXX
+,M,Others (miscellaneous),J-T-M-*-*-*,JTMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,J-T-*-X-*-*,JTXXXX
+Third attribute,,Return or payout trigger (method used to determine contract value if different from standard forward price of underlying instrument),Code,rdfs.label
+,C,CFD,J-T-*-*-C-*,JTXXCX
+,S,Spread-bet [the payout is determined by the movement in the reference price of the underlying instrument to its price at expiry (or the price when the holder wishes to close out) multiplied by an agreed amount per point movement],J-T-*-*-S-*,JTXXSX
+,F,Forward price of underlying instrument (the agreed-upon price for the time of delivery),J-T-*-*-F-*,JTXXFX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash (the contract will settle as cash on the performance of the contract at maturity),J-T-*-*-*-C,JTXXXC
+,P,Physical (the contract will settle with the delivery of shares on the performance of the contract at maturity),J-T-*-*-*-P,JTXXXP
+
+,,Return to Forwards_Category Category,,
+
+,,Return to Categories,,

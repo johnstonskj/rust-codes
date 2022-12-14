@@ -1,0 +1,13 @@
+Equity,(K-E),"Equity derivative strategies are the simultaneous trading of two or more equity contracts where payments are linked to the change in value of an underlying equity (e.g. shares, basket of equities or index). The equity return payer pays to the equity return receiver any increase in the value of the underlying plus any dividends received. The equity return receiver pays the equity return payer any decrease in the value of the underlying plus funding cost.",K-E-*-*-*-*,KEXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-E-X-*-*-*,KEXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-E-*-X-*-*,KEXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-E-*-*-X-*,KEXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-E-*-*-*-X,KEXXXX
+
+,,Return to Strategies_Category Category,,
+
+,,Return to Categories,,

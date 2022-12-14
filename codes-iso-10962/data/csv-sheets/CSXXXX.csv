@@ -1,0 +1,21 @@
+Pension funds,(C-S),A pension fund is run by a financial intermediary for the company and its employees. The pension fund is a common asset pool meant to generate stable growth over the long term.,C-S-*-*-*-*,CSXXXX
+First attribute,,Closed/open,Code,rdfs.label
+,C,Closed (pension funds supporting only pension plans that are limited to certain employees),C-S-C-*-*-*,CSCXXX
+,O,Open (pension funds supporting at least one pension plan with no restriction on membership),C-S-O-*-*-*,CSOXXX
+,M,Others (miscellaneous),C-S-M-*-*-*,CSMXXX
+Second attribute,,Strategy/style,Code,rdfs.label
+,B,Balanced/conservative,C-S-*-B-*-*,CSXBXX
+,G,Growth,C-S-*-G-*-*,CSXGXX
+,L,Life style (strategy changes depending on age group of members),C-S-*-L-*-*,CSXLXX
+,M,Others (miscellaneous),C-S-*-M-*-*,CSXMXX
+Third attribute,,Type,Code,rdfs.label
+,R,Defined benefit,C-S-*-*-R-*,CSXXRX
+,B,Defined contribution,C-S-*-*-B-*,CSXXBX
+,M,Others (miscellaneous),C-S-*-*-M-*,CSXXMX
+Fourth attribute,,Security type and investor restrictions,Code,rdfs.label
+,S,Shares,C-S-*-*-*-S,CSXXXS
+,U,Units,C-S-*-*-*-U,CSXXXU
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

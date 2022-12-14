@@ -1,0 +1,20 @@
+Repurchase agreements,(L-R),"A simultaneous sale and repurchase agreement entered into by two parties where one party agrees to sell securities or cash to the other party in exchange for collateral. The repurchase terms are generally for the repurchase of the same or equivalent securities at a specified price on an agreed future date. During the term of the agreement, the ownership rights of the securities are transferred.",L-R-*-*-*-*,LRXXXX
+First attribute,,Underlying assets (underlying collateral used to secure the repurchase agreement),Code,rdfs.label
+,G,"General collateral [the repurchase agreement is secured by a range of acceptable high-quality and liquid assets, or a general collateral basket of acceptable general collateral securities as prescribed by a repo trading system or the central counterparty (CCP); the securities may be substituted with other acceptable securities, as determined by the seller]",L-R-G-*-*-*,LRGXXX
+,S,"Specific security collateral (the repurchase agreement is secured by a specific agreed-upon security, which may not be substituted)",L-R-S-*-*-*,LRSXXX
+,C,Cash collateral,L-R-C-*-*-*,LRCXXX
+Second attribute,,Termination (termination terms of the agreement),Code,rdfs.label
+,F,Flexible (the agreement has flexible term duration of up to 120 days),L-R-*-F-*-*,LRXFXX
+,N,Overnight (the term of the agreement is one day),L-R-*-N-*-*,LRXNXX
+,O,Open (the agreement has no fixed termination date),L-R-*-O-*-*,LRXOXX
+,T,Term (the set number of days specified at the outset of the agreement),L-R-*-T-*-*,LRXTXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,L-R-*-*-X-*,LRXXXX
+Fourth attribute,,Delivery (delivery method for the collateral at the outset of the agreement),Code,rdfs.label
+,D,Delivery versus payment (the borrower delivers the collateral to the lender against payment of funds within a securities settlement system),L-R-*-*-*-D,LRXXXD
+,H,"Hold-in-custody (the borrower holds the collateral in a segregated customer account, in custody, for the lender)",L-R-*-*-*-H,LRXXXH
+,T,Tri-party (the borrower delivers the collateral to the lender's account at the lender's clearing bank or custodian),L-R-*-*-*-T,LRXXXT
+
+,,Return to Financing_Category Category,,
+
+,,Return to Categories,,

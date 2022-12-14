@@ -1,0 +1,20 @@
+Hedge funds,(C-H),Type of investment fund which pursues a total return and is usually open to qualified investors only.,C-H-*-*-*-*,CHXXXX
+First attribute,,Investment strategy  (the investment process describes core hedge fund strategy characteristics),Code,rdfs.label
+,D,"Directional [the two biggest constituents of directional are macro and commodity trading advisor (CTA)/managed futures; macro describes directional strategies that are based upon the direction of market prices of currencies, commodities, equities, fixed income and includes futures and cash markets; CTA/managed futures describe strategies that are based upon futures contracts across all asset classes only]",C-H-D-*-*-*,CHDXXX
+,R,"Relative value (strategies focusing on the spread relationships across various financial assets or commodities; they often utilize leverage and avoid market risk, although spread risk may often be large)",C-H-R-*-*-*,CHRXXX
+,S,Security selection (strategies typically equity-based and including long/short equity; the manager attempts to make money from superior stock selection by building some combination of long and short positions in such a way to mitigate systematic market risks),C-H-S-*-*-*,CHSXXX
+,E,Event-driven (combination of investment strategies focusing on securities that are expected to experience a change in valuation due to corporate transactions or events such as bankruptcies),C-H-E-*-*-*,CHEXXX
+,A,"Arbitrage (in economics and finance, arbitrage is the practice of taking advantage of a price difference between two or more markets, striking a combination of matching deals that capitalize upon the imbalance, the profit being the difference between the market prices)",C-H-A-*-*-*,CHAXXX
+,N,Multi-strategy (multi-strategy as a separate set of investment strategies is broad and by it the manager is expected to maintain approximately 25 % of portfolio exposure in two or more strategies that are distinct from one another),C-H-N-*-*-*,CHNXXX
+,L,"Asset-based lending (strategy based on providing loans against assets to companies, including the ones viewed as not being creditworthy by commercial banks; the amount of the loan is secured by claims against the borrower’s assets and as such it is directly determined by the assets' value)",C-H-L-*-*-*,CHLXXX
+,M,Others (miscellaneous),C-H-M-*-*-*,CHMXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-H-*-X-*-*,CHXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-H-*-*-X-*,CHXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,C-H-*-*-*-X,CHXXXX
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

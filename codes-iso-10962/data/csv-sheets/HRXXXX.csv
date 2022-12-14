@@ -1,0 +1,41 @@
+Rates,(H-R),"An option where the holder of the option has the right but not the obligation to enter into the underlying contract, or pay or receive payment related to the underlying rate on a specified future date based on a specified future rate and term.",H-R-*-*-*-*,HRXXXX
+First attribute,,Underlying assets,Code,rdfs.label
+,A,Basis swap (float-float),H-R-A-*-*-*,HRAXXX
+,C,Fixed-floating swap,H-R-C-*-*-*,HRCXXX
+,D,Fixed-fixed swap,H-R-D-*-*-*,HRDXXX
+,E,Interest rate index,H-R-E-*-*-*,HREXXX
+,G,Inflation rate index,H-R-G-*-*-*,HRGXXX
+,H,OIS,H-R-H-*-*-*,HRHXXX
+,O,Options,H-R-O-*-*-*,HROXXX
+,R,"Forwards (derivatives involving the exchange of two rates on a defined future date, as agreed by the two parties to the transaction)",H-R-R-*-*-*,HRRXXX
+,F,Futures,H-R-F-*-*-*,HRFXXX
+,M,Others (miscellaneous),H-R-M-*-*-*,HRMXXX
+Second attribute,,Option style and type,Code,rdfs.label
+,A,European-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price only on the expiration date of the call],H-R-*-A-*-*,HRXAXX
+,B,"American-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price at any time during the term of the call option, up to and including the expiration date of the call]",H-R-*-B-*-*,HRXBXX
+,C,Bermudan-Call [an option on a contract which allows its holder (buyer) to exercise the right to buy specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the call],H-R-*-C-*-*,HRXCXX
+,D,European-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price only on the expiration date of the put],H-R-*-D-*-*,HRXDXX
+,E,"American-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price at any time during the term of the put option, up to and including the expiration date of the put]",H-R-*-E-*-*,HRXEXX
+,F,Bermudan-Put [an option on a contract which allows its holder (buyer) to exercise the right to sell specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the put],H-R-*-F-*-*,HRXFXX
+,G,"European-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price, only on the contract's expiration date; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-R-*-G-*-*,HRXGXX
+,H,"American-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price at any time during the term of the contract, up to and including the expiration date of the call or put; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-R-*-H-*-*,HRXHXX
+,I,"Bermudan-Chooser [an option on a contract which allows its holder (buyer) to exercise the right to buy (call) or sell (put) specified assets (interest rates product) at a fixed price on a number of specific dates within the exercise period of the contract; the buyer does not have to decide whether the contract will be a put or a call until an agreed future date, prior to expiration]",H-R-*-I-*-*,HRXIXX
+Third attribute,,Valuation method or trigger,Code,rdfs.label
+,V,Vanilla (an option for which all terms are standardized),H-R-*-*-V-*,HRXXVX
+,A,Asian (an option where either the strike price or the settlement price is the average level of an underlying instrument over a predetermined period; the averaging can be either a geometric or arithmetic average),H-R-*-*-A-*,HRXXAX
+,D,Digital (Binary) (an option that has a pre-determined payout if the option is in-the-money and the payoff condition is satisfied; also referred to as a “binary option” or an “all-or-nothing option”),H-R-*-*-D-*,HRXXDX
+,B,"Barrier (an option whose final exercise depends upon the path taken by the price of an underlying instrument; for a “knock-out” barrier option, the option is cancelled if the underlying price crosses a predetermined barrier level; for a “knock-in” barrier option, the option becomes available-for-exercise if the underlying price crosses a predetermined barrier level)",H-R-*-*-B-*,HRXXBX
+,G,"Digital barrier (a digital option embedded with a barrier option; there are different variations of this type of option; as an example, a down-and-out digital call option will pay a fixed payoff, or the underlying, at any time before maturity that the underlying price is equal to or greater than the barrier level; it will pay zero if the underlying price is less than the barrier level)",H-R-*-*-G-*,HRXXGX
+,L,"Lookback (an option that minimizes the uncertainties related to the timing of market entry; there are two types of lookback options: fixed and floating; the fixed option strike is determined at purchase, and the floating option strike is determined at maturity)",H-R-*-*-L-*,HRXXLX
+,P,Other path dependent (an option on a contract whose payoff is directly related to the price pattern the underlying asset follows during the life of the contract),H-R-*-*-P-*,HRXXPX
+,C,Cap (an option in which the payment is triggered when the value of the underlier exceeds a specified level),H-R-*-*-C-*,HRXXCX
+,F,Floor (an option in which the payment is triggered when the value of the underlier falls below a specified level),H-R-*-*-F-*,HRXXFX
+,M,Others (miscellaneous),H-R-*-*-M-*,HRXXMX
+Fourth attribute,,Delivery,Code,rdfs.label
+,C,Cash,H-R-*-*-*-C,HRXXXC
+,P,Physical,H-R-*-*-*-P,HRXXXP
+,E,Elect at settlement (determined at the time of settlement),H-R-*-*-*-E,HRXXXE
+
+,,Return to Non_listed_and_complex_Category Category,,
+
+,,Return to Categories,,

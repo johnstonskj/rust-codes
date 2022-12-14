@@ -1,0 +1,26 @@
+Funds of funds,(C-F),"A fund of funds is a CIV that invests directly in other investment funds rather than investing in stocks, bonds or other securities.",C-F-*-*-*-*,CFXXXX
+First attribute,,Closed/open-end (indicates whether units are traded or whether funds continually stand ready to sell new units and redeem the outstanding units on demand),Code,rdfs.label
+,C,Closed-end [units are sold on either an organized exchange or in the over-the-counter (OTC) market and are usually not redeemed],C-F-C-*-*-*,CFCXXX
+,O,"Open-end (funds permanently sell new units to the public and redeem outstanding units on demand, resulting in an increase or decrease of outstanding capital)",C-F-O-*-*-*,CFOXXX
+,M,Others (miscellaneous),C-F-M-*-*-*,CFMXXX
+Second attribute,,Distribution policy (indicates the fund's normal distribution policy),Code,rdfs.label
+,I,Income funds (the fund regularly distributes its investment profits),C-F-*-I-*-*,CFXIXX
+,G,Accumulation funds (the fund normally reinvests its investment profits),C-F-*-G-*-*,CFXGXX
+,J,"Mixed funds (investment profits are partly distributed, partly reinvested)",C-F-*-J-*-*,CFXJXX
+Third attribute,,Type of funds ( indicates the type of funds in which the fund invests),Code,rdfs.label
+,I,Standard (vanilla) investment funds/mutual funds,C-F-*-*-I-*,CFXXIX
+,M,Others (miscellaneous),C-F-*-*-M-*,CFXXMX
+,H,Hedge funds,C-F-*-*-H-*,CFXXHX
+,B,REITs,C-F-*-*-B-*,CFXXBX
+,E,ETFs,C-F-*-*-E-*,CFXXEX
+,P,Private equity funds,C-F-*-*-P-*,CFXXPX
+,M,Others (miscellaneous),C-F-*-*-M-*,CFXXMX
+Fourth attribute,,Security type and investor restrictions,Code,rdfs.label
+,S,Shares (retail and/or qualified/institutional/professional investors),C-F-*-*-*-S,CFXXXS
+,Q,Shares for QI (qualified/institutional/professional investors only),C-F-*-*-*-Q,CFXXXQ
+,U,Units (retail and/or qualified/institutional/professional investors),C-F-*-*-*-U,CFXXXU
+,Y,Units for QI (qualified/institutional/professional investors only),C-F-*-*-*-Y,CFXXXY
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

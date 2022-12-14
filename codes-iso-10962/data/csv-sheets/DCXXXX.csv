@@ -1,0 +1,40 @@
+Convertible bonds,(D-C),A bond that can be converted into other securities.,D-C-*-*-*-*,DCXXXX
+First attribute,,Type of interest,Code,rdfs.label
+,F,Fixed rate,D-C-F-*-*-*,DCFXXX
+,Z,Zero rate/discounted,D-C-Z-*-*-*,DCZXXX
+,V,Variable,D-C-V-*-*-*,DCVXXX
+,K,Payment in kind,D-C-K-*-*-*,DCKXXX
+Second attribute,,"Guarantee or ranking (indicates, in the case of the issuer's inability to settle, whether the debt issue is additionally secured
+Guideline: the values N (senior), O (senior subordinated), Q (junior) and J (junior subordinated) may only be used for unsecured securities. P (negative pledge) may only be used for unsecured securities that are neither senior nor junior. U (unsecured) may be used only if one of these codes does not apply to the relevant security.)",Code,rdfs.label
+,T,"Government guarantee [the debt instrument is guaranteed by a federal, state, (semi)-government, sovereigns, agencies]",D-C-*-T-*-*,DCXTXX
+,G,Joint guarantee [the debt instrument is guaranteed by an entity (e.g. corporation) other than the issuer; not a federal or state government],D-C-*-G-*-*,DCXGXX
+,S,"Secured (debt issue against which specific assets are pledged to secure the obligation, e.g. mortgage or receivables)",D-C-*-S-*-*,DCXSXX
+,U,Unsecured/unguaranteed (the direct obligations of the issuer rest solely on its general credit),D-C-*-U-*-*,DCXUXX
+,P,Negative pledge (the borrower agrees not to pledge any assets if such pledging would result in less security for the agreement's bondholders),D-C-*-P-*-*,DCXPXX
+,N,"Senior (applies to senior debts that are placed before senior subordinated, junior and junior subordinated in the ranking in the event of liquidation)",D-C-*-N-*-*,DCXNXX
+,O,Senior subordinated (applies to senior subordinated debts that are placed before junior and junior subordinated in the ranking in the event of liquidation),D-C-*-O-*-*,DCXOXX
+,Q,Junior (applies to junior debts that are placed before junior subordinated in the ranking in the event of liquidation),D-C-*-Q-*-*,DCXQXX
+,J,Junior subordinated (applies to junior subordinated debts in the ranking in the event of liquidation),D-C-*-J-*-*,DCXJXX
+,C,"Supranational (organization defined as being beyond the scope or borders of any one nation such as two or more central banks or two or more central governments. Examples of supranational include the United Nations, the European Union, the European Investment Bank and the World Bank)",D-C-*-C-*-*,DCXCXX
+Third attribute,,Redemption/reimbursement (indicates the retirement provisions made for the debt issue),Code,rdfs.label
+,F,Fixed maturity (the principal amount is repaid in full at maturity),D-C-*-*-F-*,DCXXFX
+,G,Fixed maturity with call feature (the issue may be called for redemption prior to the fixed maturity date),D-C-*-*-G-*,DCXXGX
+,C,Fixed maturity with put feature (the holder may request the reimbursement of his or her bonds prior to the maturity date),D-C-*-*-C-*,DCXXCX
+,D,Fixed maturity with put and call,D-C-*-*-D-*,DCXXDX
+,A,Amortization plan (reduction of principal by regular payments),D-C-*-*-A-*,DCXXAX
+,B,Amortization plan with call feature (the redemption of principal may occur as the result of the outstanding portion of the bond being called),D-C-*-*-B-*,DCXXBX
+,T,Amortization plan with put feature,D-C-*-*-T-*,DCXXTX
+,L,Amortization plan with put and call,D-C-*-*-L-*,DCXXLX
+,P,Perpetual (the debt instrument has no fixed maturity date and is only due for redemption in the case of the issuer's liquidation),D-C-*-*-P-*,DCXXPX
+,Q,Perpetual with call feature (the issue may be called for redemption at some time in the future),D-C-*-*-Q-*,DCXXQX
+,R,Perpetual with put feature (the issue may be puttable for redemption at some time in the future),D-C-*-*-R-*,DCXXRX
+,E,Extendible,D-C-*-*-E-*,DCXXEX
+Fourth attribute,,"Form (negotiability, transmission)",Code,rdfs.label
+,B,Bearer (the owner is not registered in the books of the issuer or of the registrar),D-C-*-*-*-B,DCXXXB
+,R,Registered (securities are recorded in the name of the owner on the books of the issuer or the issuer's registrar and can only be transferred to another owner when endorsed by the registered owner),D-C-*-*-*-R,DCXXXR
+,N,Bearer/registered (securities are issued in both bearer and registered form but with the same identification number),D-C-*-*-*-N,DCXXXN
+,M,Others (miscellaneous),D-C-*-*-*-M,DCXXXM
+
+,,Return to Debt_instruments_Category Category,,
+
+,,Return to Categories,,

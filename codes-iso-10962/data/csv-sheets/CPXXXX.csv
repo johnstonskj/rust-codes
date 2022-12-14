@@ -1,0 +1,29 @@
+Private equity funds,(C-P),A private equity fund is normally structured as a limited partnership or a limited liability company (investors are limited partners) managed by a GP.,C-P-*-*-*-*,CPXXXX
+First attribute,,Closed/open-end (indicates whether units are traded or whether funds continually stand ready to sell new units and redeem the outstanding units on demand),Code,rdfs.label
+,C,Closed-end [units are sold on either an organized exchange or in the over-the-counter (OTC) market and are usually not redeemed],C-P-C-*-*-*,CPCXXX
+,O,"Open-end (funds permanently sell new units to the public and redeem outstanding units on demand, resulting in an increase or decrease of outstanding capital)",C-P-O-*-*-*,CPOXXX
+,M,Others (miscellaneous),C-P-M-*-*-*,CPMXXX
+Second attribute,,Distribution policy (indicates the fund's normal distribution policy),Code,rdfs.label
+,I,Income funds (the fund regularly distributes its investment profits),C-P-*-I-*-*,CPXIXX
+,G,Accumulation funds (the fund normally reinvests its investment profits),C-P-*-G-*-*,CPXGXX
+,J,"Mixed funds (investment profits are partly distributed, partly reinvested)",C-P-*-J-*-*,CPXJXX
+Third attribute,,Assets (indicates the underlying assets in which the fund invests),Code,rdfs.label
+,R,Real estate,C-P-*-*-R-*,CPXXRX
+,B,Debt instruments (fund invests in debt instrument regardless of maturity),C-P-*-*-B-*,CPXXBX
+,E,Equities,C-P-*-*-E-*,CPXXEX
+,V,Convertible securities,C-P-*-*-V-*,CPXXVX
+,L,Mixed (fund invests in different assets),C-P-*-*-L-*,CPXXLX
+,C,Commodities,C-P-*-*-C-*,CPXXCX
+,D,Derivatives,C-P-*-*-D-*,CPXXDX
+,F,Referential instruments excluding commodities,C-P-*-*-F-*,CPXXFX
+,K,"Credits [contractual agreement in which a borrower receives something of value (good, service or money) now and agrees to repay the lender at some date in the future, generally with interest; CIVs normally invest in credits originated by third parties; credits are not freely transferable like debt securities]",C-P-*-*-K-*,CPXXKX
+,M,Others (miscellaneous),C-P-*-*-M-*,CPXXMX
+Fourth attribute,,Security type and investor restrictions,Code,rdfs.label
+,S,Shares (retail and/or qualified/institutional/professional investors),C-P-*-*-*-S,CPXXXS
+,Q,Shares for QI (qualified/institutional/professional investors only),C-P-*-*-*-Q,CPXXXQ
+,U,Units (retail and/or qualified/institutional/professional investors),C-P-*-*-*-U,CPXXXU
+,Y,Units for QI (qualified/institutional/professional investors only),C-P-*-*-*-Y,CPXXXY
+
+,,Return to CIVs_Category Category,,
+
+,,Return to Categories,,

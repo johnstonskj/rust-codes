@@ -1,0 +1,13 @@
+Credit,(K-C),"Credit derivative strategies are the simultaneous trading of two or more credit default contracts in which one party (protection seller) agrees to provide payment to the other party (protection buyer) should a credit event occur against the underlying, which could be a specified debt (the reference obligation), a specific debt issuer (reference entity), a basket of reference entities and/or reference obligations, or a credit index (reference index).",K-C-*-*-*-*,KCXXXX
+First attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-C-X-*-*-*,KCXXXX
+Second attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-C-*-X-*-*,KCXXXX
+Third attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-C-*-*-X-*,KCXXXX
+Fourth attribute,,Not applicable/undefined,Code,rdfs.label
+,X,Not applicable/undefined,K-C-*-*-*-X,KCXXXX
+
+,,Return to Strategies_Category Category,,
+
+,,Return to Categories,,
