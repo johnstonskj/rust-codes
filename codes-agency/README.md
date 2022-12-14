@@ -43,6 +43,10 @@ By default only the `serde` feature is enabled.
   
 ## Changes
 
+**Version 0.1.7**
+
+* Add the GS1 as a new Agency.
+
 **Version 0.1.6**
 
 * Add the UN as a new Agency.

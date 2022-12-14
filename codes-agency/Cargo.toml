@@ -1,7 +1,7 @@
 [package]
 name = "codes-agency"
 description = "This package provides a common code representing standards agencies"
-version = "0.1.6"
+version = "0.1.7"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-agency/"
