@@ -84,7 +84,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub enum Agency {
-    /// [GS1]()
+    /// [GS1](https://www.gs1.org)
     GS1,
     /// [Internet Assigned Numbers Authority](https://www.iana.org)
     IANA,
