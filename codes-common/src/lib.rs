@@ -72,7 +72,10 @@ pub const DEFAULT_DATA_DIR: &str = "data";
 
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
 
-pub trait Code<T>: Clone + Debug + Display + FromStr + Into<T> + PartialEq + Eq + Hash {}
+pub trait Code<T>: Clone + Debug + Display + FromStr + Into<T> + PartialEq + Eq + Hash {
+    fn is_valid<S>(s: S) -> bool where S: AsRef<str> {
+        Self::from_str(s.as_ref()).is_ok()
+}
 
 pub type DataRow = Map<String, Value>;
 pub type DataMap = BTreeMap<String, Map<String, Value>>;
