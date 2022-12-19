@@ -1,0 +1,27 @@
+[package]
+name = "codes-iso-6166"
+description  = "This package contains an implementation of the ISO 6166 International securities identification number (ISIN) specification."
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-iso-6166/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+publish = true
+
+[dependencies]
+codes-agency = { version = "0.1", path = "../codes-agency" }
+codes-common = { version = "0.1", path = "../codes-common" }
+codes-iso-3166 = { version = "0.1", path = "../codes-iso-3166" }
+lazy_static = "1.4"
+serde = { version = "1.0", features = ["derive"], optional = true }
+url = { version = "2.3", optional = true, features = ["serde"] }
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+all-features = true
+
+[features]
+default = ["serde"]
+urn = ["url"]
