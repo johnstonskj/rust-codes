@@ -10,8 +10,6 @@ license = "MIT"
 readme = "README.md"
 publish = true
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 codes-agency = { version = "0.1", path = "../codes-agency" }
 codes-common = { version = "0.1", path = "../codes-common" }

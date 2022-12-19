@@ -10,16 +10,11 @@ license = "MIT"
 readme = "README.md"
 publish = true
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 codes-agency = { version = ">=0.1.3", path = "../codes-agency" }
 codes-common = { version = "0.1", path = "../codes-common" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 url = { version = "2.3.1", optional = true, features = ["serde"] }
-
-[build-dependencies]
-codes-common = { version = "0.1", path = "../codes-common" }
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
