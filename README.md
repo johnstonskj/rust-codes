@@ -270,7 +270,6 @@ making *unchecked* operations public.
 * ISO 13616 IBAN
 * Currency symbols? https://en.wikipedia.org/wiki/Currency_symbol
 * ISO 3901	International Standard Recording Code (ISRC)
-* ISO 6166 International Securities Identifying Number (ISIN)
 * UN/LOCODE	United Nations Code for Trade and Transport Locations
 
 ### Classification Standards

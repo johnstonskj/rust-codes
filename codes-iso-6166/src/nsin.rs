@@ -179,10 +179,10 @@ impl NsinScheme for Valoren {
 
 fn known_nsids() -> HashMap<CountryCode, Box<dyn NsinScheme>> {
     let mut nsids: HashMap<CountryCode, Box<dyn NsinScheme>> = Default::default();
-    nsids.insert(CountryCode::CA, Box::new(Cusip::default()));
-    nsids.insert(CountryCode::CH, Box::new(Valoren::default()));
-    nsids.insert(CountryCode::UK, Box::new(Sedol::default()));
-    nsids.insert(CountryCode::US, Box::new(Cusip::default()));
+    nsids.insert(CountryCode::CA, Box::<Cusip>::default());
+    nsids.insert(CountryCode::CH, Box::<Valoren>::default());
+    nsids.insert(CountryCode::UK, Box::<Sedol>::default());
+    nsids.insert(CountryCode::US, Box::<Cusip>::default());
     nsids
 }
 
