@@ -334,7 +334,7 @@ where
 
         let tera = tera::Tera::new(&format!("{}/*._rs", DEFAULT_TEMPLATE_DIR))?;
 
-        let file = File::create(&file_name)?;
+        let file = File::create(file_name)?;
         tera.render_to(&template_name, &ctx, file)?;
 
         Ok(ctx)
