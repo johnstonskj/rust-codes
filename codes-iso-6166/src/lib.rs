@@ -142,8 +142,8 @@ pub const ISO_6166: Standard = Standard::new_with_long_ref(
 );
 
 ///
-/// The (ISO 6166)[https://www.isin.org] International Securities Identification
-/// Number (ISIN)
+/// The ISO 6166 International Securities Identification
+/// Number ([ISIN](https://www.isin.org))
 ///
 /// * A two-letter country code, drawn from a list (ISO 6166) prepared by the
 ///   International Organization for Standardization (ISO). This code is
