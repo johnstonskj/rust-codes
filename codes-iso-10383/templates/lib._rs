@@ -199,6 +199,18 @@ impl {{ type_name }} {{ "{" }}
         {{ "}" }}
     {{ "}" }}
 
+
+    pub fn from_str_extended(s: &str) -> Result<Self, {{ type_name }}Error> {{ "{" }}
+        if let Ok(market) = Self::from_str(s) {{ "{" }}
+            Ok(market)
+        {{ "}" }} else {{ "{" }}
+            #[allow(unreachable_patterns)]
+            match s {{ "{" }}{% for id in all_ids %}{% if codes[id].acronym and codes[id].acronym != id and not codes[id].operating_mic %}
+                "{{ codes[id].acronym }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endif %}{% endfor %}
+                _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+            {{ "}" }}
+        {{ "}" }}
+    {{ "}" }}
     
     ///
     /// Website: website of the market.

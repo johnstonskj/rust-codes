@@ -56,6 +56,20 @@ assert_eq!(market.acronym(), None);
 // assert_eq!(market.comments(), Some("..."));
 ```
 
+The following demonstrates the `from_str_extended` which searches the
+acronym values *if* there is not a direct MIC match via `from_str`.
+
+```rust
+use codes_iso_10383::MarketIdCode;
+use std::str::FromStr;
+
+assert!(MarketIdCode::from_str("NASDAQ").is_err());
+
+let market = MarketIdCode::from_str_extended("NASDAQ");
+assert!(market.is_ok());
+assert_eq!(market.unwrap().code(), "XNAS");
+```
+
 # Features
 
 By default only the `serde` feature is enabled, the [MarketIdCode::code] and
