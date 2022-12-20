@@ -89,7 +89,7 @@ if let Some(nsin) = national_number_scheme_for(&CountryCode::GB) {
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the `LegalEntityId` type.
+* `serde` - Enables serialization of the `InternationalSecuritiesId` type.
 * `url` - Enables the conversion between ISIN and URL (URN) forms.
 
 ## Changes

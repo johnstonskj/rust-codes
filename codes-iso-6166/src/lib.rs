@@ -67,7 +67,7 @@ assert_eq!(&format!("{:#}", bae_systems), "GB-000263494-6");
 
 By default only the `serde` feature is enabled.
 
-* `serde` - Enables serialization of the [LegalEntityId] type.
+* `serde` - Enables serialization of the [InternationalSecuritiesId] type.
 * `url` - Enables the conversion between ISIN and URL (URN) forms.
 
 */
@@ -142,9 +142,8 @@ pub const ISO_6166: Standard = Standard::new_with_long_ref(
 );
 
 ///
-/// International Securities Identification Number (ISIN)
-///
-/// (ISO-6166)[https://www.isin.org]
+/// The (ISO 6166)[https://www.isin.org] International Securities Identification
+/// Number (ISIN)
 ///
 /// * A two-letter country code, drawn from a list (ISO 6166) prepared by the
 ///   International Organization for Standardization (ISO). This code is
