@@ -49,7 +49,7 @@ fn process_iso_list_xml(
 ) -> Result<Data, Box<dyn Error>> {
     let file_name = input_file_name(file_name);
 
-    let mut reader = Reader::from_file(&file_name)?;
+    let mut reader = Reader::from_file(file_name)?;
     reader.trim_text(true);
 
     let is_historical_default = Value::Bool(is_historical);
@@ -237,7 +237,7 @@ fn process_symbol_data(mut data: Data) -> Result<Data, Box<dyn std::error::Error
     }
 
     let file_name = input_file_name("xe-symbols.html");
-    let source = fs::read_to_string(&file_name)?;
+    let source = fs::read_to_string(file_name)?;
 
     let document = Html::parse_document(&source);
     let row_selector = Selector::parse("li.eOCRRO").unwrap();

@@ -217,6 +217,18 @@ making *unchecked* operations public.
 
 ## Changes
 
+**2022-12-19**
+
+* Released the following:
+  * [`codes-iso-6166`](codes-iso-6166); an implementation of the [ISO 6166](https://www.iso.org/standard/78502.html)
+  International securities identification number (ISIN) standard.
+
+**2022-12-14**
+
+Released the following:
+  * [`codes-gs1-gln`](codes-gs1-gln); an implementation of the [GS1 GLN](https://www.gs1.org/standards/id-keys/gln) 
+  Global Location Number (GLN) specification.
+ 
 **2022-12-12**
 
 * Released the following:
