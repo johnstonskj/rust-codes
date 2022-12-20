@@ -39,7 +39,7 @@ fn process_input_data(mut data: SimpleData) -> Result<SimpleData, Box<dyn std::e
     }
 
     let file_name = input_file_name("m49-overview.html");
-    let source = fs::read_to_string(&file_name)?;
+    let source = fs::read_to_string(file_name)?;
 
     let document = Html::parse_document(&source);
     let row_selector = Selector::parse("#downloadTableEN tbody tr").unwrap();

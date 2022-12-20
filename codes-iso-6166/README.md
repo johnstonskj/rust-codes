@@ -5,7 +5,7 @@ This package contains an implementation of the [ISO
 identification number (ISIN) specification.
 
 [![crates.io](https://img.shields.io/crates/v/codes-iso-6166.svg)](https://crates.io/crates/codes-iso-6166)
-[![docs.rs](https://docs.rs/codes-iso-6166/badge.svg)](https://docs.rs/codes-iso-6166
+[![docs.rs](https://docs.rs/codes-iso-6166/badge.svg)](https://docs.rs/codes-iso-6166)
 
 ISO 6166 defines the structure of an International Securities Identification
 Number (ISIN). An ISIN uniquely identifies a fungible security.

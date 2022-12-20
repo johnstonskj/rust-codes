@@ -225,7 +225,7 @@ making *unchecked* operations public.
 
 **2022-12-14**
 
-Released the following:
+* Released the following:
   * [`codes-gs1-gln`](codes-gs1-gln); an implementation of the [GS1 GLN](https://www.gs1.org/standards/id-keys/gln) 
   Global Location Number (GLN) specification.
  
