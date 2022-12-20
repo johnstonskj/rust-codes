@@ -1,11 +1,10 @@
-use codes_common::{
-    default_finalize_for, input_file_name, make_default_renderer, process, Data, SimpleData,
-};
-use tera::Value;
+use codes_common::{default_finalize_for, make_default_renderer, process, Data, SimpleData};
 
 #[allow(dead_code)]
-const TYPE_NAME: &str = "{{ type name }}";
+const TYPE_NAME: &str = "FinancialInstrumentClassification";
 
+#[allow(dead_code)]
+#[derive(Debug)]
 struct Details {
     code: char,
     name: String,
@@ -13,16 +12,22 @@ struct Details {
     label: String,
 }
 
+#[allow(dead_code)]
+#[derive(Debug)]
 struct Category {
     details: Details,
     groups: Vec<Group>,
 }
 
+#[allow(dead_code)]
+#[derive(Debug)]
 struct Group {
     details: Details,
     version: u16,
 }
 
+#[allow(dead_code)]
+#[derive(Debug)]
 struct Attribute {
     details: Details,
     version: u16,
@@ -37,6 +42,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     )
 }
 
-fn process_input_data(_data: SimpleData) -> Result<SimpleData, Box<dyn std::error::Error>> {
-    todo!()
+fn process_input_data(data: SimpleData) -> Result<SimpleData, Box<dyn std::error::Error>> {
+    Ok(data)
 }

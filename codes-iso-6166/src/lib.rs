@@ -1,9 +1,66 @@
 /*!
+This package contains an implementation of the [ISO
+6166](https://www.iso.org/standard/78502.html) International securities
+identification number (ISIN) specification.
 
+ISO 6166 defines the structure of an International Securities Identification
+Number (ISIN). An ISIN uniquely identifies a fungible security.
+
+Securities with which ISINs can be used are:
+
+* Equities (shares, units, depository receipts)
+* Debt instruments (bonds and debt instruments other than international,
+  international bonds and debt instruments, stripped coupons and principal,
+  treasury bills, others)
+* Entitlements (rights, warrants)
+* Derivatives (options, futures)
+* Others (commodities, currencies, indices, interest rates)
+
+ISINs consist of two alphabetic characters, which are the ISO 3166-1 alpha-2
+code for the issuing country, nine alpha-numeric characters (the National
+Securities Identifying Number, or NSIN, which identifies the security, padded
+as necessary with leading zeros), and one numerical check digit. They are thus
+always 12 characters in length. When the NSIN changes due to corporate actions
+or other reasons, the ISIN will also change. Issuance of ISINs is
+decentralized to individual national numbering agencies (NNAs). Since existing
+national numbering schemes administered by the various NNAs form the basis for
+ISINs, the methodology for assignment is not consistent across agencies
+globally.
+
+An ISIN cannot specify a particular trading location. Another identifier,
+typically a MIC (Market Identifier Code) or the three-letter exchange code,
+will have to be specified in addition to the ISIN for this. The currency of
+the trade will also be required to uniquely identify the instrument using this
+method.
 
 # Example
 
+The following demonstrates the most common method for constructing an ISIN,
+using the standard `FromStr` trait.
+
 ```rust
+use codes_iso_3166::part_1::CountryCode;
+use codes_iso_6166::InternationalSecuritiesId as Isin;
+use std::str::FromStr;
+
+let walmart = Isin::from_str("US9311421039").unwrap();
+assert_eq!(walmart.country_code(), CountryCode::US);
+assert_eq!(walmart.national_number(), "931142103");
+assert_eq!(walmart.check_digit(), 9);
+```
+
+Alternatively, an ISIN can be constructed from a combination of ISO 3166
+country code and an NSIN string. This will calculate and append the ISIN check
+digit.
+
+``` rust
+use codes_iso_3166::part_1::CountryCode;
+use codes_iso_6166::InternationalSecuritiesId as Isin;
+use std::str::FromStr;
+
+let bae_systems = Isin::new(CountryCode::GB, "263494").unwrap();
+assert_eq!(&format!("{}", bae_systems), "GB0002634946");
+assert_eq!(&format!("{:#}", bae_systems), "GB-000263494-6");
 ```
 
 # Features
@@ -56,8 +113,13 @@ By default only the `serde` feature is enabled.
 )]
 
 use codes_agency::{Agency, Standard};
-use codes_common::{invalid_format, invalid_length};
-use std::{fmt::Display, fmt::Formatter, ops::Deref, str::FromStr};
+use codes_common::{
+    check_digits::{Calculator, LuhnAlgorithm},
+    invalid_format, invalid_length,
+};
+use codes_iso_3166::part_1::CountryCode;
+use std::{fmt::Display, fmt::Formatter, str::FromStr};
+use tracing::warn;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -100,14 +162,16 @@ pub const ISO_6166: Standard = Standard::new_with_long_ref(
 ///   11 characters/digits and uses a sum modulo 10 algorithm and helps ensure
 ///   against counterfeit numbers.
 ///
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct InternationalSecuritiesId {
     country: CountryCode,
     // National Securities Identifying Number (NSIN)
-    nsid: String,
+    nsin: String,
+    check_digit: u8,
 }
-pub use codes_common::CodeParseError as InternationalSecuritiesError;
+
+pub use codes_common::CodeParseError as InternationalSecuritiesIdError;
 
 // ------------------------------------------------------------------------------------------------
 // Public Functions
@@ -125,9 +189,9 @@ impl Display for InternationalSecuritiesId {
             f,
             "{}",
             if f.alternate() {
-                format!("{}-{}-{}", self.country, &self.nsid[0..9], &self.nsid[9..])
+                format!("{}-{:0>9}-{}", self.country, &self.nsin, &self.check_digit)
             } else {
-                format!("{}{}", self.country, self.nsid)
+                format!("{}{:0>9}{}", self.country, self.nsin, self.check_digit)
             }
         )
     }
@@ -135,7 +199,7 @@ impl Display for InternationalSecuritiesId {
 
 impl From<InternationalSecuritiesId> for String {
     fn from(v: InternationalSecuritiesId) -> String {
-        v.0
+        v.to_string()
     }
 }
 
@@ -144,28 +208,25 @@ impl FromStr for InternationalSecuritiesId {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         if s.len() == 14 {
-            Self::from_str(s.replace('-', ""))
+            Self::from_str(&s.replace('-', ""))
         } else if s.len() != 12 {
             warn!("ISIN must be 12 characters long, not {}", s.len());
-            Err(invalid_identifier_value((TYPE_NAME, s))
+            Err(invalid_length(TYPE_NAME, s.len()))
         } else if let Ok(country_code) = CountryCode::from_str(&s[0..2]) {
-            validate_check_digit(s)?;
-            let nsid = &s[2..];
-            if nsid.chars().all(|c| c.is_ascii_alphanumeric()) {
-                Ok(InternationalSecuritiesId {
-                    country: country_code,
-                    nsid: validate_nsid(nsid)?,
-                })
-            } else {
-                warn!("NSID must be alphanumeric only, not {:?}", nsid);
-                Err(invalid_identifier_value((TYPE_NAME, s))
-            }
+            let cd_calc: LuhnAlgorithm = Default::default();
+            cd_calc.validate(s)?;
+            let nsid = &s[2..11];
+            Ok(InternationalSecuritiesId {
+                country: country_code,
+                nsin: validate_nsin(&country_code, nsid)?,
+                check_digit: u8::from_str(&s[11..]).map_err(|_| invalid_format(TYPE_NAME, s))?,
+            })
         } else {
             warn!(
                 "ISIN must have a valid ISO country code as first two characters, not {:?}",
                 &s[0..2]
             );
-            Err(invalid_identifier_value((TYPE_NAME, s))
+            Err(invalid_format(TYPE_NAME, s))
         }
     }
 }
@@ -180,8 +241,9 @@ impl TryFrom<url::Url> for InternationalSecuritiesId {
         } else {
             let path = value.path();
             if path[0..5].eq_ignore_ascii_case("isin:") {
-                LegalEntityId::from_str(&path[4..])
+                InternationalSecuritiesId::from_str(&path[4..])
             } else {
+                warn!("URN authority is not ISIN");
                 Err(invalid_format(TYPE_NAME, path))
             }
         }
@@ -196,71 +258,134 @@ impl From<InternationalSecuritiesId> for url::Url {
 }
 
 impl InternationalSecuritiesId {
-    pub fn country_code(&self) -> &CountryCode {
-        &self.country
-    }
-
-    pub fn nsid(&self) -> &String {
-        &self.nsid
-    }
-}
-
-// ------------------------------------------------------------------------------------------------
-// Public Functions
-// ------------------------------------------------------------------------------------------------
-
-fn validate_check_digit(s: &str) -> Result<(), Error> {
-    let sum = letters_to_digits(&s[0..2])
-        .chain(digits_to_digits(&s[2..11]))
-        .enumerate()
-        .map(|(i, n)| {
-            if i & 1 != 0 {
-                n
-            } else if n > 4 {
-                1 + ((n * 2) - 10)
-            } else {
-                n
-            }
+    ///
+    /// Construct a new ISIN from country code and NSIN. This will
+    /// check the NSIN for validity if possible, and calculate the
+    /// ISIN check digit.
+    ///
+    pub fn new(country: CountryCode, nsin: &str) -> Result<Self, InternationalSecuritiesIdError> {
+        let cd_calc: LuhnAlgorithm = Default::default();
+        let check_digit = cd_calc.calculate(&format!("{}{:0>9}", country, nsin))?;
+        Ok(Self {
+            country,
+            nsin: nsin.to_string(),
+            check_digit,
         })
-        .sum();
-    let check: u8 = (10 - (sum % 10)) % 10;
-    if u8::parse(&s[12..]).unwrap() == check {
-        Ok(())
-    } else {
-        warn!("Check digit {:?} invalid, expecting {}", &s[12..], check);
-        Err(invalid_identifier_value(TYPE_NAME, s))
     }
-}    
 
-#[inline(always)]
-fn letters_to_digits(s: &str) -> impl Iterator<Item = u8> {
-    const BASE: u8 = 'A' as u8;
+    ///
+    /// Return the country code of this ISIN.
+    ///
+    pub fn country_code(&self) -> CountryCode {
+        self.country
+    }
 
-    s.chars().flat_map(|c| {
-        let n: u8 = (c as u8) - BASE;
-        vec![n / 10, n % 10]
-    })
+    ///
+    /// Return the NSIN portion of this ISIN.
+    ///
+    pub fn national_number(&self) -> &String {
+        &self.nsin
+    }
+
+    ///
+    /// Return the check digit of this ISIN.
+    ///
+    pub fn check_digit(&self) -> u8 {
+        self.check_digit
+    }
 }
 
-#[inline(always)]
-fn digits_to_digits(s: &str) -> impl Iterator<Item = u8> {
-    const BASE: u8 = '0' as u8;
+// ------------------------------------------------------------------------------------------------
+// Private Functions
+// ------------------------------------------------------------------------------------------------
 
-    s.chars().map(|c| (c as u8) - BASE)
-}
-
-fn validate_nsid(country: &CountryCode, s: &str) -> Result<String, Error> {
-    match nsid::nsid_validate(country, s) {
-        Some(false) => {
-            warn!(
-                "NSID value {:?} is not a valid {}",
-                s,
-                nsid::nsid_name(country).unwrap()
-            );
-            Err(invalid_identifier_value((TYPE_NAME, s))
+///
+/// Wrapper to fetch an NSIN scheme for the provided country code
+/// and, if one exists, validate it.
+///
+fn validate_nsin(country: &CountryCode, s: &str) -> Result<String, InternationalSecuritiesIdError> {
+    if let Some(nsin) = nsin::national_number_scheme_for(country) {
+        if nsin.is_valid(s) {
+            Ok(s.to_string())
+        } else {
+            warn!("NSID value {:?} is not a valid {}", s, nsin.name());
+            Err(invalid_format(nsin.name(), s))
         }
-        _ => Ok(s.to_string()),
+    } else {
+        Ok(s.to_string())
     }
 }
 
-// -----------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
+// Modules
+// ------------------------------------------------------------------------------------------------
+
+pub mod nsin;
+
+// ------------------------------------------------------------------------------------------------
+// Unit Tests
+// ------------------------------------------------------------------------------------------------
+
+#[cfg(test)]
+mod tests {
+    /*
+    use pretty_assertions::assert_eq;
+     */
+    use super::*;
+
+    #[test]
+    fn test_display_formatting() {
+        // Walmart
+        let isin = InternationalSecuritiesId::from_str("US9311421039").unwrap();
+        assert_eq!(format!("{}", isin), "US9311421039".to_string());
+        assert_eq!(format!("{:#}", isin), "US-931142103-9".to_string());
+    }
+
+    #[test]
+    fn test_from_str() {
+        let isin = InternationalSecuritiesId::from_str("US9311421039").unwrap();
+        assert_eq!(format!("{}", isin), "US9311421039".to_string());
+
+        let isin = InternationalSecuritiesId::from_str("US-931142103-9").unwrap();
+        assert_eq!(format!("{}", isin), "US9311421039".to_string());
+    }
+
+    #[test]
+    fn test_us_cusip() {
+        // Apple
+        let isin = InternationalSecuritiesId::new(CountryCode::US, "37833100").unwrap();
+        assert_eq!(format!("{}", isin), "US0378331005".to_string());
+        assert_eq!(format!("{:#}", isin), "US-037833100-5".to_string());
+    }
+
+    #[test]
+    fn test_swiss_valor() {
+        // Credit Suisse
+        let isin = InternationalSecuritiesId::new(CountryCode::CH, "1213853").unwrap();
+        assert_eq!(format!("{}", isin), "CH0012138530".to_string());
+        assert_eq!(format!("{:#}", isin), "CH-001213853-0".to_string());
+    }
+
+    #[test]
+    fn test_uk_sedol() {
+        // BAE Systems
+        let isin = InternationalSecuritiesId::new(CountryCode::GB, "263494").unwrap();
+        assert_eq!(format!("{}", isin), "GB0002634946".to_string());
+        assert_eq!(format!("{:#}", isin), "GB-000263494-6".to_string());
+    }
+
+    #[test]
+    fn test_australia() {
+        // Treasury Corporation
+        let isin = InternationalSecuritiesId::new(CountryCode::AU, "XVGZA").unwrap();
+        assert_eq!(format!("{}", isin), "AU0000XVGZA3".to_string());
+        assert_eq!(format!("{:#}", isin), "AU-0000XVGZA-3".to_string());
+    }
+
+    #[test]
+    fn test_japan() {
+        let isin = InternationalSecuritiesId::new(CountryCode::JP, "K0VF05").unwrap();
+        assert_eq!(format!("{}", isin), "JP000K0VF055".to_string());
+        assert_eq!(format!("{:#}", isin), "JP-000K0VF05-5".to_string());
+    }
+}

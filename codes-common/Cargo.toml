@@ -1,7 +1,7 @@
 [package]
 name = "codes-common"
 description  = "Support capabilities for codes-* packages."
-version = "0.1.6"
+version = "0.1.7"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-common/"
@@ -13,6 +13,7 @@ publish = true
 [dependencies]
 tera = "1.17"
 csv = { version = "1.1", optional = true }
+tracing = "0.1"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
@@ -20,3 +21,4 @@ all-features = true
 
 [features]
 csv_tools = ["csv"]
+check_digits = []

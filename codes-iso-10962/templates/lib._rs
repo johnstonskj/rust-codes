@@ -48,6 +48,7 @@ pub use codes_common::CodeParseError as {{ type_name }}Error;
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
 
+    #[allow(clippy::match_single_binding)]
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
@@ -62,9 +63,12 @@ impl {{ type_name }} {{ "{" }}
     ///
     /// Returns the CODE as a string.
     ///
+    #[allow(clippy::match_single_binding)]
     pub fn code(&self) -> &'static str {{ "{" }}
         match self {{ "{" }}{% for id in all_ids %}
-            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{ id }}",{% endfor %}
+            Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }} => "{{
+    id }}",{% endfor %}
+    _ => "",
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

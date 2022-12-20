@@ -1,13 +1,10 @@
 /*!
-One-line description.
-
-More detailed description, with
-
-# Example
-
-YYYYY
+Support capabilities for `codes-*` packages.
 
 # Features
+
+* `csv_tools` - Tools for reading and processing CSV files.
+* `check_digits` - Algorithms for calculating check digits.
 
 */
 
@@ -73,8 +70,12 @@ pub const DEFAULT_DATA_DIR: &str = "data";
 pub const DEFAULT_TEMPLATE_DIR: &str = "templates";
 
 pub trait Code<T>: Clone + Debug + Display + FromStr + Into<T> + PartialEq + Eq + Hash {
-    fn is_valid<S>(s: S) -> bool where S: AsRef<str> {
+    fn is_valid<S>(s: S) -> bool
+    where
+        S: AsRef<str>,
+    {
         Self::from_str(s.as_ref()).is_ok()
+    }
 }
 
 pub type DataRow = Map<String, Value>;
@@ -403,6 +404,9 @@ impl SimpleData {
 #[doc(hidden)]
 mod error;
 pub use error::{invalid_format, invalid_length, unknown_value, CodeParseError};
+
+#[cfg(feature = "check_digits")]
+pub mod check_digits;
 
 #[cfg(feature = "csv_tools")]
 pub mod csv;

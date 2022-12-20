@@ -7,9 +7,8 @@ identification number (ISIN) specification.
 [![crates.io](https://img.shields.io/crates/v/codes-iso-6166.svg)](https://crates.io/crates/codes-iso-6166)
 [![docs.rs](https://docs.rs/codes-iso-6166/badge.svg)](https://docs.rs/codes-iso-6166
 
-ISO 6166 (or ISO6166:2013 as of the 2013 revision) defines the structure of an
-International Securities Identification Number (ISIN). An ISIN uniquely
-identifies a fungible security.
+ISO 6166 defines the structure of an International Securities Identification
+Number (ISIN). An ISIN uniquely identifies a fungible security.
 
 Securities with which ISINs can be used are:
 
@@ -43,12 +42,50 @@ For notes on the design of the API, see the repository
 
 # Example
 
-```rust
+The following demonstrates the most common method for constructing an ISIN,
+using the standard `FromStr` trait.
 
+```rust
+use codes_iso_3166::part_1::CountryCode;
+use codes_iso_6166::InternationalSecuritiesId as Isin;
+use std::str::FromStr;
+
+let walmart = Isin::from_str("US9311421039").unwrap();
+assert_eq!(walmart.country_code(), CountryCode::US);
+assert_eq!(walmart.national_number(), "931142103");
+assert_eq!(walmart.check_digit(), 9);
+```
+
+Alternatively, an ISIN can be constructed from a combination of ISO 3166
+country code and an NSIN string. This will calculate and append the ISIN check
+digit.
+
+``` rust
+use codes_iso_3166::part_1::CountryCode;
+use codes_iso_6166::InternationalSecuritiesId as Isin;
+use std::str::FromStr;
+
+let bae_systems = Isin::new(CountryCode::GB, "263494").unwrap();
+assert!(&format!("{}", bae_systems), "GB0002634946");
+assert!(&format!("{:#}", bae_systems), "GB-000263494-6");
+```
+
+The following demonstrates the functionality in the `nsin` module which allows
+for the creation of validation tools for specific national codes.
+
+```rust
+# let test_code: &str = "263494";
+use codes_iso_3166::part_1::CountryCode;
+use codes_iso_6166::nsin::{NsinScheme, national_number_scheme_for};
+
+if let Some(nsin) = national_number_scheme_for(&CountryCode::GB) {
+    if !nsin.is_valid(test_code) {
+        panic!("Not a valid {} (NSIN).", nsin.name());
+    }
+}
 ```
 
 # Features
-
 
 By default only the `serde` feature is enabled.
 

@@ -146,12 +146,10 @@ impl FromStr for GlobalLocationNumber {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         if s.len() != 13 {
             Err(codes_common::invalid_length(TYPE_NAME, s.len()))
+        } else if Self::is_valid(s) {
+            Ok(Self(s.to_string()))
         } else {
-            if Self::is_valid(s) {
-                Ok(Self(s.to_string()))
-            } else {
-                Err(codes_common::invalid_format(TYPE_NAME, s))
-            }
+            Err(codes_common::invalid_format(TYPE_NAME, s))
         }
     }
 }

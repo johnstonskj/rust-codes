@@ -8,7 +8,16 @@ For notes on the design of the API, see the repository
 [![crates.io](https://img.shields.io/crates/v/codes-common.svg)](https://crates.io/crates/codes-common)
 [![docs.rs](https://docs.rs/codes-common/badge.svg)](https://docs.rs/codes-common)
 
+## Features
+
+* `csv_tools` - Tools for reading and processing CSV files.
+* `check_digits` - Algorithms for calculating check digits.
+
 ## Changes
+
+**Version 0.1.7**
+
+Added the `check_digits` module with an implementation of `LuhnAlgorithm`.
 
 **Version 0.1.6**
 
