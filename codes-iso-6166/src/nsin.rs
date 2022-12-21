@@ -19,6 +19,7 @@ if let Some(nsin) = national_number_scheme_for(&CountryCode::GB) {
 
 use codes_common::check_digits::Calculator;
 use codes_common::check_digits::LuhnAlgorithm;
+use codes_common::check_digits::Sedol as SedolCheckDigitAlgorithm;
 use codes_iso_3166::part_1::CountryCode;
 use lazy_static::lazy_static;
 use std::{collections::HashMap, fmt::Debug};
@@ -120,27 +121,7 @@ impl NsinScheme for Cusip {
 
 // ------------------------------------------------------------------------------------------------
 
-impl Calculator for Sedol {
-    fn calculate(&self, s: &str) -> Result<u8, codes_common::CodeParseError> {
-        const WEIGHTS: [u16; 6] = [1, 3, 1, 7, 3, 9];
-        let sum: u16 = s
-            .chars()
-            .enumerate()
-            .map(|(i, c)| {
-                let n = if c.is_ascii_uppercase() {
-                    (c as u16) - 55 // magic number, corresponds to b'7'
-                } else if c.is_ascii_digit() {
-                    (c as u16) - (b'0' as u16)
-                } else {
-                    unreachable!("What is {:?} doing here?", c)
-                };
-                n * WEIGHTS[i]
-            })
-            .sum();
-
-        Ok(((10 - (sum % 10)) % 10) as u8)
-    }
-}
+const SEDOL_CODE_VALIDATOR: SedolCheckDigitAlgorithm = SedolCheckDigitAlgorithm {};
 
 impl NsinScheme for Sedol {
     fn agency_name(&self) -> &'static str {
@@ -153,7 +134,7 @@ impl NsinScheme for Sedol {
 
     fn is_valid(&self, s: &str) -> bool {
         assert!(s.len() == 7);
-        Calculator::is_valid(self, s)
+        SEDOL_CODE_VALIDATOR.is_valid(s)
     }
 }
 

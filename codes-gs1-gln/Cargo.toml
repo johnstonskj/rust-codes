@@ -12,7 +12,7 @@ publish = true
 
 [dependencies]
 codes-agency = { version = "0.1", path = "../codes-agency" }
-codes-common = { version = "0.1", path = "../codes-common" }
+codes-common = { version = "0.1", path = "../codes-common", features = ["check_digits"] }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [package.metadata.docs.rs]

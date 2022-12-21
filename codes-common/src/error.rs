@@ -17,8 +17,13 @@ pub enum CodeParseError {
     InvalidLength { type_name: String, length: usize },
     /// The value is incorrectly formatted
     InvalidFormat { type_name: String, value: String },
+    /// The value contains an invalid character
+    InvalidCharacter { type_name: String, c: char },
     /// The string value did not represent a known value.
     UnknownValue { type_name: String, value: String },
+    /// An error in check digit calculation/verification.
+    #[cfg(feature = "check_digits")]
+    CheckDigit(crate::check_digits::CheckDigitError),
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -43,6 +48,17 @@ where
     CodeParseError::InvalidFormat {
         type_name: type_name.into(),
         value: value.into(),
+    }
+}
+
+pub fn invalid_character<S, C>(type_name: S, c: C) -> CodeParseError
+where
+    S: Into<String>,
+    C: Into<char>,
+{
+    CodeParseError::InvalidCharacter {
+        type_name: type_name.into(),
+        c: c.into(),
     }
 }
 
@@ -79,10 +95,16 @@ impl fmt::Display for CodeParseError {
                     "The string passed is incorrectly formatted for type `{}`; value: {:?}",
                     type_name, value
                 ),
-                 Self::UnknownValue { type_name, value } => format!(
+                Self::InvalidCharacter { type_name, c } => format!(
+                    "The string passed contains characters not legal for type `{}`; character: {:?}",
+                    type_name, c
+                ),
+                Self::UnknownValue { type_name, value } => format!(
                     "The string passed is an invalid length for the not a known value of type `{}`; value: {:?}",
                     type_name, value
                 ),
+                #[cfg(feature = "check_digits")]
+                Self::CheckDigit(e) => e.to_string(),
             }
         )
     }

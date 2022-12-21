@@ -403,7 +403,7 @@ impl SimpleData {
 
 #[doc(hidden)]
 mod error;
-pub use error::{invalid_format, invalid_length, unknown_value, CodeParseError};
+pub use error::{invalid_character, invalid_format, invalid_length, unknown_value, CodeParseError};
 
 #[cfg(feature = "check_digits")]
 pub mod check_digits;

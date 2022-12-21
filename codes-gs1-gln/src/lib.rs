@@ -77,7 +77,10 @@ By default only the `serde` feature is enabled.
 )]
 
 use codes_agency::{Agency, Standard};
-use codes_common::Code;
+use codes_common::{
+    check_digits::{Calculator, GsOne, GsOneCode},
+    Code,
+};
 use std::{fmt::Display, str::FromStr};
 
 #[cfg(feature = "serde")]
@@ -132,8 +135,6 @@ const CODE_LENGTH: usize = 13;
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-const TYPE_NAME: &str = "GlobalLocationNumber";
-
 impl Display for GlobalLocationNumber {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.0)
@@ -144,13 +145,8 @@ impl FromStr for GlobalLocationNumber {
     type Err = GlobalLocationNumberError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        if s.len() != 13 {
-            Err(codes_common::invalid_length(TYPE_NAME, s.len()))
-        } else if Self::is_valid(s) {
-            Ok(Self(s.to_string()))
-        } else {
-            Err(codes_common::invalid_format(TYPE_NAME, s))
-        }
+        GLN_CODE_VALIDATOR.validate(s)?;
+        Ok(Self(s.to_string()))
     }
 }
 
@@ -168,18 +164,15 @@ impl AsRef<str> for GlobalLocationNumber {
 
 impl Code<String> for GlobalLocationNumber {}
 
+const GLN_CODE_VALIDATOR: GsOne = GsOne::new(GsOneCode::Gln);
+
 impl GlobalLocationNumber {
     ///
     /// Returns `true` if the passed string is a valid GLN
     /// including check digit.
     ///
     pub fn is_valid(s: &str) -> bool {
-        if s.len() == 13 && s.chars().all(|c| c.is_ascii_digit()) {
-            let calculated = Self::calculate_check_digit(&s[0..(CODE_LENGTH - 1)]);
-            calculated.to_string().as_str() == &s[(CODE_LENGTH - 1)..]
-        } else {
-            false
-        }
+        GLN_CODE_VALIDATOR.is_valid(s)
     }
 
     ///
@@ -187,30 +180,14 @@ impl GlobalLocationNumber {
     /// excluding the check digit.
     ///
     pub fn data(&self) -> &str {
-        &self.0[0..(CODE_LENGTH - 1)]
+        &self.0[0..(CODE_LENGTH - GsOne::NUM_CHECK_DIGITS)]
     }
 
     ///
     /// Return the check digit portion of the GLN only.
     ///
     pub fn check_digit(&self) -> u8 {
-        u8::from_str(&self.0[(CODE_LENGTH - 1)..]).unwrap()
-    }
-
-    fn calculate_check_digit(s: &str) -> u32 {
-        const BASE: u32 = '0' as u32;
-        const FACTORS: [u32; 12] = [1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3];
-        let remainder = s
-            .chars()
-            .enumerate()
-            .map(|(i, c)| ((c as u32) - BASE) * FACTORS[i])
-            .sum::<u32>()
-            % 10;
-        if remainder == 0 {
-            0
-        } else {
-            10 - remainder
-        }
+        u8::from_str(&self.0[(CODE_LENGTH - GsOne::NUM_CHECK_DIGITS)..]).unwrap()
     }
 }
 
@@ -232,17 +209,8 @@ mod tests {
 
     #[test]
     fn test_check_digits() {
-        assert_eq!(
-            GlobalLocationNumber::calculate_check_digit("123456789012"),
-            8
-        );
-        assert_eq!(
-            GlobalLocationNumber::calculate_check_digit("210987654321"),
-            0
-        );
-        assert_eq!(
-            GlobalLocationNumber::calculate_check_digit("943646579210"),
-            4
-        );
+        assert_eq!(GsOne::new(GsOneCode::Gln).calculate("123456789012"), Ok(8));
+        assert_eq!(GsOne::new(GsOneCode::Gln).calculate("210987654321"), Ok(0));
+        assert_eq!(GsOne::new(GsOneCode::Gln).calculate("943646579210"), Ok(4));
     }
 }
