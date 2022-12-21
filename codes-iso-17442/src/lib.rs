@@ -125,6 +125,24 @@ pub const ISO_17442: Standard = Standard::new_with_long_ref(
 /// available LEI data pool can be regarded as a global directory of
 /// non-individual participants in the financial market.
 ///
+/// # Format
+///
+/// Note that the characters in the LEI are commonly numbered from left to
+/// right starting at one.
+///
+/// | Characters | Usage           | Alphabet      | Notes                 |
+/// | ---------- | --------------- | ------------- | --------------------- |
+/// | 1..4       | LOU ID          | digits        |                       |
+/// | 5..6       | Reserved        | digits        | currently always `00` |
+/// | 7..18      | Entity ID       | alpha-numeric | assigned by the LOU   |
+/// | 19..20     | Verification ID | digits        | check digits          |
+///
+/// # Examples:
+///
+/// * `5493 00 84UKLVMY22DS 16` - G.E. Financing GmbH
+/// * `2138 00 WSGIIZCXF1P5 72` - Jaguar Land Rover Ltd
+/// * `5493 00 0IBP32UQZ0KL 24` - British Broadcasting Corporation (BBC)
+///
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct LegalEntityId(String);

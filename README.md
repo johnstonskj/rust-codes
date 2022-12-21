@@ -9,6 +9,21 @@ structured manner
 [![Codecov](https://codecov.io/gh/johnstonskj/rust-codes/branch/main/graph/badge.svg?token=1HGN6M4KIT)](https://codecov.io/gh/johnstonskj/rust-codes)
 [![GitHub stars](https://img.shields.io/github/stars/johnstonskj/rust-codes.svg)](https://github.com/johnstonskj/rust-codes/stargazers)
 
+## Supported Standards
+
+| Agency | Standard | Description                                                                                    |
+|--------|----------|------------------------------------------------------------------------------------------------|
+| GS1    | GLN      | Global Location Number (GLN)                                                                   |
+| IANA   | Charset  | IANA Character Sets                                                                            |
+| ISO    | 639      | Language Codes                                                                                 |
+| ISO    | 3166     | Country and Subdivision Codes                                                                  |
+| ISO    | 4217     | Currency codes                                                                                 |
+| ISO    | 6166     | International securities identification number (ISIN)                                          |
+| ISO    | 10383    | Market Identification (MIC)                                                                    |
+| ISO    | 15924    | Information and documentation — Codes for the representation of names of scripts specification |
+| ISO    | 17442    | Legal Entity Identifier (LEI)                                                                  |
+| UN     | M49      | Region Codes                                                                                   |
+
 ## Design Approach
 
 **Tenets**
@@ -271,6 +286,8 @@ making *unchecked* operations public.
 * Currency symbols? https://en.wikipedia.org/wiki/Currency_symbol
 * ISO 3901	International Standard Recording Code (ISRC)
 * UN/LOCODE	United Nations Code for Trade and Transport Locations
+* ISO/IEC 7812 Identification cards – Identification of issuers
+  https://en.wikipedia.org/wiki/ISO/IEC_7812
 
 ### Classification Standards
 
@@ -302,3 +319,8 @@ https://unstats.un.org/unsd/classifications/unsdclassifications/
 
 * Vehicle identification number https://en.wikipedia.org/wiki/Vehicle_identification_number
 * Serial shipping container code https://en.wikipedia.org/wiki/Serial_shipping_container_code
+
+### Other
+
+* ISO/IEC 7064:2003 (https://www.iso.org/standard/31531.html)
+  Information technology — Security techniques — Check character systems
