@@ -54,6 +54,13 @@ where
     fn calculate(&self, s: &str) -> Result<T, CheckDigitError>;
 
     ///
+    /// Create a new string with the original data plus check digit.
+    ///
+    fn create(&self, s: &str) -> Result<String, CheckDigitError> {
+        Ok(format!("{}{}", s, self.calculate(s)?))
+    }
+
+    ///
     /// Validate that the string is valid and that it contains a valid
     /// check digit.
     ///
