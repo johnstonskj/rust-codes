@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+    "codes-check-digits",
     "codes-common",
     "codes-agency",
     "codes-iana-charset",

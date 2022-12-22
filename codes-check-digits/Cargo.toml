@@ -1,0 +1,28 @@
+[package]
+name = "codes-check-digits"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/johnstonskj/rust-codes"
+documentation = "https://docs.rs/codes-check-digits/"
+authors = ["Simon Johnston, <johnstonskj@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+publish = true
+
+[dependencies]
+codes-common = { version = "0.1", path = "../codes-common" }
+num-integer = "0.1.45"
+rug = { version = "1.18.0", default-features = false, features = ["integer"] }
+tracing = "0.1"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]
+all-features = true
+
+[features]
+default = ["gs1", "iso_7064", "luhn", "sedol", "big_integer"]
+gs1 = []
+iso_7064 = []
+luhn = []
+sedol = []
+big_integer = []

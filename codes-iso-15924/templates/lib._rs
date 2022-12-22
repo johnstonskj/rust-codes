@@ -1,6 +1,6 @@
 use std::str::FromStr;
-use codes_agency::{Agency, Standard};
-use codes_common::code_impl;
+use codes_agency::{Agency, Standard, Standardized};
+use codes_common::{code_impl, FixedLengthCode};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -14,10 +14,10 @@ use serde::{Deserialize, Serialize};
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
 /// package that describes the ISO-10383 specification.
 ///
-pub const ISO_10383: Standard = Standard::new_with_long_ref(
+pub const ISO_15924: Standard = Standard::new_with_long_ref(
     Agency::ISO,
     "15924",
-    "ISO 9999915924:2022",
+    "ISO 15924:2022",
     "Information and documentation — Codes for the representation of names of scripts",
     "https://www.iso.org/standard/",
 );
@@ -56,6 +56,18 @@ impl FromStr for {{ type_name }} {{ "{" }}
 {{ "}" }}
 
 code_impl!({{ type_name }});
+
+impl FixedLengthCode for {{ type_name }}  {{ "{" }}
+    fn fixed_length() -> usize  {{ "{" }}
+        4
+    {{ "}" }}
+{{ "}" }}
+
+impl Standardized for {{ type_name }} {{ "{" }}
+    fn defining_standard() -> &'static Standard {{ "{" }}
+        &ISO_15924
+    {{ "}" }}
+{{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
     ///

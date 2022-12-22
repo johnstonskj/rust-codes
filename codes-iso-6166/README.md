@@ -94,6 +94,10 @@ By default only the `serde` feature is enabled.
 
 ## Changes
 
+**Version 0.1.1**
+
+* Moved check digit code to common package
+
 **Version 0.1.0**
 
 * Initial release

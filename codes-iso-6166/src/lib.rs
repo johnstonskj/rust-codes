@@ -112,11 +112,9 @@ By default only the `serde` feature is enabled.
     dyn_drop,
 )]
 
-use codes_agency::{Agency, Standard};
-use codes_common::{
-    check_digits::{Calculator, LuhnAlgorithm},
-    invalid_format, invalid_length,
-};
+use codes_agency::{Agency, Standard, Standardized};
+use codes_check_digits::{luhn, Calculator};
+use codes_common::{invalid_format, invalid_length, Code, FixedLengthCode};
 use codes_iso_3166::part_1::CountryCode;
 use std::{fmt::Display, fmt::Formatter, str::FromStr};
 use tracing::warn;
@@ -212,7 +210,7 @@ impl FromStr for InternationalSecuritiesId {
             warn!("ISIN must be 12 characters long, not {}", s.len());
             Err(invalid_length(TYPE_NAME, s.len()))
         } else if let Ok(country_code) = CountryCode::from_str(&s[0..2]) {
-            let cd_calc: LuhnAlgorithm = Default::default();
+            let cd_calc = luhn::get_algorithm_instance();
             cd_calc.validate(s)?;
             let nsid = &s[2..11];
             Ok(InternationalSecuritiesId {
@@ -256,6 +254,20 @@ impl From<InternationalSecuritiesId> for url::Url {
     }
 }
 
+impl Code<String> for InternationalSecuritiesId {}
+
+impl FixedLengthCode for InternationalSecuritiesId {
+    fn fixed_length() -> usize {
+        12
+    }
+}
+
+impl Standardized for InternationalSecuritiesId {
+    fn defining_standard() -> &'static Standard {
+        &ISO_6166
+    }
+}
+
 impl InternationalSecuritiesId {
     ///
     /// Construct a new ISIN from country code and NSIN. This will
@@ -263,7 +275,7 @@ impl InternationalSecuritiesId {
     /// ISIN check digit.
     ///
     pub fn new(country: CountryCode, nsin: &str) -> Result<Self, InternationalSecuritiesIdError> {
-        let cd_calc: LuhnAlgorithm = Default::default();
+        let cd_calc = luhn::get_algorithm_instance();
         let check_digit = cd_calc.calculate(&format!("{}{:0>9}", country, nsin))?;
         Ok(Self {
             country,

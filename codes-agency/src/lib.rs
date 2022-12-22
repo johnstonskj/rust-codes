@@ -116,6 +116,10 @@ pub struct Standard {
     url: &'static str,
 }
 
+pub trait Standardized {
+    fn defining_standard() -> &'static Standard;
+}
+
 ///
 /// An error associated with handling String representations of the Agency short name.
 ///

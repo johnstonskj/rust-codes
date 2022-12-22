@@ -1,7 +1,7 @@
 use crate::LanguageCodeError;
 use std::str::FromStr;
-use codes_agency::{Agency, Standard};
-use codes_common::code_impl;
+use codes_agency::{Agency, Standard, Standardized};
+use codes_common::{code_impl, FixedLengthCode};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -25,7 +25,7 @@ pub const ISO_639_5: Standard = Standard::new_with_long_ref(
 
 /// 
 /// A Language Code enumeration representing the three-letter
-/// 639-35identifier.
+/// 639-5 identifier.
 ///
 /// ISO 639-5 defines alpha-3 (3-letter) codes, called "collective
 /// codes", that identify language families and groups. As of the
@@ -66,6 +66,18 @@ impl FromStr for {{ type_name }} {{ "{" }}
 {{ "}" }}
 
 code_impl!({{ type_name }});
+
+impl FixedLengthCode for {{ type_name }} {
+    fn fixed_length() -> usize {
+        3
+    }
+}
+
+impl Standardized for {{ type_name }} {
+    fn defining_standard() -> &'static Standard {
+        &ISO_639_5
+    }
+}
 
 impl {{ type_name }} {{ "{" }}
      ///

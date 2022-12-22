@@ -1,5 +1,5 @@
 use std::str::FromStr;
-use codes_agency::{Agency, Standard};
+use codes_agency::{Agency, Standard, Standardized};
 use codes_common::code_impl;
 
 #[cfg(feature = "serde")]
@@ -12,9 +12,9 @@ use serde::{Deserialize, Serialize};
 ///
 /// An instance of the `Standard` struct defined in the
 /// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
-/// package that describes the ISO-10383 specification.
+/// package that describes the ISO-99999 specification.
 ///
-pub const ISO_10383: Standard = Standard::new_with_long_ref(
+pub const ISO_99999: Standard = Standard::new_with_long_ref(
     Agency::ISO,
     "99999",
     "ISO 99999:2023",
@@ -39,6 +39,18 @@ pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in al
 ];
 
 pub use codes_common::CodeParseError as {{ type_name }}Error;
+
+// impl FixedLengthCode for {{ type_name }} {{ "{" }}
+//     fn fixed_length() -> usize {{ "{" }}
+//         20
+//     {{ "}" }}
+// {{ "}" }}
+
+impl Standardized for {{ type_name }} {{ "{" }}
+    fn defining_standard() -> &'static Standard {{ "{" }}
+        &ISO_99999
+    {{ "}" }}
+{{ "}" }}
 
 // ------------------------------------------------------------------------------------------------
 // Implementations

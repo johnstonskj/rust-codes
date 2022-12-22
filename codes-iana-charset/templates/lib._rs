@@ -1,5 +1,5 @@
 use std::str::FromStr;
-use codes_agency::{Agency, Standard};
+use codes_agency::{Agency, Standard, Standardized};
 use codes_common::code_impl;
 
 #[cfg(feature = "serde")]
@@ -73,6 +73,12 @@ impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
 {{ "}" }}
 
 code_impl!({{ type_name }}, id, {{ inner_type_name }});
+
+impl Standardized for {{ type_name }} {{ "{" }}
+    fn defining_standard() -> &'static Standard {{ "{" }}
+        &IANA_CHARSET
+    {{ "}" }}
+{{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
     ///

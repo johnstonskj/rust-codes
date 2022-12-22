@@ -78,6 +78,16 @@ pub trait Code<T>: Clone + Debug + Display + FromStr + Into<T> + PartialEq + Eq 
     }
 }
 
+pub trait FixedLengthCode {
+    fn fixed_length() -> usize;
+}
+
+pub trait VariableLengthCode {
+    fn min_length() -> usize;
+
+    fn max_length() -> usize;
+}
+
 pub type DataRow = Map<String, Value>;
 pub type DataMap = BTreeMap<String, Map<String, Value>>;
 
@@ -150,6 +160,43 @@ macro_rules! code_impl {
 
         impl ::std::convert::AsRef<$id_type_ref> for $type_name {
             fn as_ref(&self) -> &$ltime $id_type_ref {
+                &self.$id_field()
+            }
+        }
+
+        impl ::std::ops::Deref for $type_name {
+            type Target = $id_type_ref;
+
+            fn deref(&self) -> &$ltime Self::Target {
+                &self.$id_field()
+            }
+        }
+
+        impl ::std::convert::From<$type_name> for $id_type {
+            fn from(v: $type_name) -> Self {
+                v.$id_field().$from_fn()
+            }
+        }
+
+        impl $crate::Code<$id_type> for $type_name {}
+    };
+    ($type_name:ty, $id_field:ident, $id_type_ref:ty, $id_type:ty, $from_fn:ident) => {
+        impl ::std::fmt::Display for $type_name {
+            fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+                write!(f, "{}", self.as_ref())
+            }
+        }
+
+        impl ::std::convert::AsRef<$id_type_ref> for $type_name {
+            fn as_ref(&self) -> &$id_type_ref {
+                &self.$id_field()
+            }
+        }
+
+        impl ::std::ops::Deref for $type_name {
+            type Target = $id_type_ref;
+
+            fn deref(&self) -> &Self::Target {
                 &self.$id_field()
             }
         }
@@ -404,9 +451,6 @@ impl SimpleData {
 #[doc(hidden)]
 mod error;
 pub use error::{invalid_character, invalid_format, invalid_length, unknown_value, CodeParseError};
-
-#[cfg(feature = "check_digits")]
-pub mod check_digits;
 
 #[cfg(feature = "csv_tools")]
 pub mod csv;

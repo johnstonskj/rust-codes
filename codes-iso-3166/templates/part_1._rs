@@ -1,5 +1,5 @@
-use codes_agency::{Agency, Standard};
-use codes_common::code_impl;
+use codes_agency::{Agency, Standard, Standardized};
+use codes_common::{code_impl, FixedLengthCode};
 use crate::CountryCodeError;
 use std::str::FromStr;
 
@@ -60,6 +60,18 @@ impl FromStr for {{ type_name }} {{ "{" }}
 {{ "}" }}
 
 code_impl!({{ type_name }}, alpha_2_code);
+
+impl FixedLengthCode for {{ type_name }} {{ "{" }}
+    fn fixed_length() -> usize {{ "{" }}
+        2
+    {{ "}" }}
+{{ "}" }}
+
+impl Standardized for {{ type_name }} {{ "{" }}
+    fn defining_standard() -> &'static Standard {{ "{" }}
+        &ISO_3166_1
+    {{ "}" }}
+{{ "}" }}
 
 impl {{ type_name }} {{ "{" }}
      /// Returns the two-letter country codes which are the most widely

@@ -11,7 +11,7 @@ use std::fmt;
 ///
 /// Common `Error` type, mainly used for `FromStr` failures.
 ///
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Debug)]
 pub enum CodeParseError {
     /// The string to parse was either too short or too long.
     InvalidLength { type_name: String, length: usize },
@@ -22,8 +22,7 @@ pub enum CodeParseError {
     /// The string value did not represent a known value.
     UnknownValue { type_name: String, value: String },
     /// An error in check digit calculation/verification.
-    #[cfg(feature = "check_digits")]
-    CheckDigit(crate::check_digits::CheckDigitError),
+    CheckDigit(Box<dyn std::error::Error>),
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -103,7 +102,6 @@ impl fmt::Display for CodeParseError {
                     "The string passed is an invalid length for the not a known value of type `{}`; value: {:?}",
                     type_name, value
                 ),
-                #[cfg(feature = "check_digits")]
                 Self::CheckDigit(e) => e.to_string(),
             }
         )

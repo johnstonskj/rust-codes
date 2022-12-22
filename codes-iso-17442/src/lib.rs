@@ -91,9 +91,11 @@ By default only the `serde` feature is enabled.
     dyn_drop,
 )]
 
-use codes_agency::{Agency, Standard};
-use codes_common::{invalid_format, invalid_length};
-use std::{fmt::Display, fmt::Formatter, ops::Deref, str::FromStr};
+use codes_agency::{Agency, Standard, Standardized};
+use codes_check_digits::iso_7064::{get_algorithm_instance, CheckDigitAlgorithm, IsoVariant};
+use codes_check_digits::Calculator;
+use codes_common::{code_impl, invalid_format, invalid_length, FixedLengthCode};
+use std::str::FromStr;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -143,6 +145,19 @@ pub const ISO_17442: Standard = Standard::new_with_long_ref(
 /// * `2138 00 WSGIIZCXF1P5 72` - Jaguar Land Rover Ltd
 /// * `5493 00 0IBP32UQZ0KL 24` - British Broadcasting Corporation (BBC)
 ///
+/// # Check Digits
+///
+/// From ISO 17442-1:2020:
+///
+/// The check digit pair shall be calculated based on the simplified procedure
+/// defined in ISO/IEC 7064 (MOD 97-10) after the conversion of the leftmost
+/// 18 alphanumeric characters into a character string consisting only of
+/// digits. The check digit pair is used to verify that the LEI code is properly
+/// formed.
+/// >
+/// > Valid check digit pairs are in the range of [02 .. 98]. 00, 01 and 99 are
+/// > not valid LEI check digit pairs.
+///
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct LegalEntityId(String);
@@ -157,62 +172,20 @@ pub use codes_common::CodeParseError as LegalEntityIdError;
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-impl Display for LegalEntityId {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.0)
-    }
-}
-
-impl AsRef<str> for LegalEntityId {
-    fn as_ref(&self) -> &str {
-        &self.0
-    }
-}
-
-impl Deref for LegalEntityId {
-    type Target = str;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl From<LegalEntityId> for String {
-    fn from(v: LegalEntityId) -> String {
-        v.0
-    }
-}
+const ISO_MOD_97_10: CheckDigitAlgorithm = get_algorithm_instance(IsoVariant::Mod_97_10);
 
 impl FromStr for LegalEntityId {
     type Err = LegalEntityIdError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        if s.len() != 20 {
+        // spaces are included for clarity, see examples above.
+        let s = s.replace(' ', "");
+        if s.len() != Self::fixed_length() {
             Err(invalid_length("LegalEntityId", s.len()))
-        } else if !s[..18].chars().all(|c| c.is_ascii_alphanumeric())
-            || !s[18..].chars().all(|c| c.is_ascii_digit())
-        {
-            Err(invalid_format("LegalEntityId", s))
+        } else if ISO_MOD_97_10.is_valid(&s) {
+            Ok(LegalEntityId(s))
         } else {
-            let num_str: String = s[..18]
-                .chars()
-                .map(|c| {
-                    if c.is_ascii_digit() {
-                        (c as u32) - 48
-                    } else {
-                        (c as u32) - 55
-                    }
-                    .to_string()
-                })
-                .collect();
-            let num = u128::from_str(&format!("{}00", num_str)).unwrap();
-            let check = 98 - num % 97;
-            let check_str = format!("{:02}", check);
-            if check_str == s[18..] {
-                Ok(LegalEntityId(s.to_string()))
-            } else {
-                Err(invalid_format("LegalEntityId", s))
-            }
+            Err(invalid_format("LegalEntityId", s))
         }
     }
 }
@@ -239,6 +212,20 @@ impl TryFrom<url::Url> for LegalEntityId {
 impl From<LegalEntityId> for url::Url {
     fn from(v: LegalEntityId) -> url::Url {
         url::Url::parse(&format!("urn:lei:{}", v.0)).unwrap()
+    }
+}
+
+code_impl!(LegalEntityId, as_str, str, String, to_string);
+
+impl FixedLengthCode for LegalEntityId {
+    fn fixed_length() -> usize {
+        20
+    }
+}
+
+impl Standardized for LegalEntityId {
+    fn defining_standard() -> &'static Standard {
+        &ISO_17442
     }
 }
 

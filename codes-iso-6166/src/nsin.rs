@@ -17,12 +17,11 @@ if let Some(nsin) = national_number_scheme_for(&CountryCode::GB) {
 
 */
 
-use codes_common::check_digits::Calculator;
-use codes_common::check_digits::LuhnAlgorithm;
-use codes_common::check_digits::Sedol as SedolCheckDigitAlgorithm;
+use codes_check_digits::{luhn, sedol, Calculator};
 use codes_iso_3166::part_1::CountryCode;
 use lazy_static::lazy_static;
 use std::{collections::HashMap, fmt::Debug};
+
 // ------------------------------------------------------------------------------------------------
 // Public Macros
 // ------------------------------------------------------------------------------------------------
@@ -84,9 +83,7 @@ lazy_static! {
 /// [https://en.wikipedia.org/wiki/CUSIP]
 ///
 #[derive(Debug, Default)]
-struct Cusip {
-    check_digits: LuhnAlgorithm,
-}
+struct Cusip {}
 
 ///
 /// [https://en.wikipedia.org/wiki/SEDOL]
@@ -115,13 +112,11 @@ impl NsinScheme for Cusip {
 
     fn is_valid(&self, s: &str) -> bool {
         assert!(s.len() <= 10);
-        self.check_digits.is_valid(s)
+        luhn::get_algorithm_instance().is_valid(s)
     }
 }
 
 // ------------------------------------------------------------------------------------------------
-
-const SEDOL_CODE_VALIDATOR: SedolCheckDigitAlgorithm = SedolCheckDigitAlgorithm {};
 
 impl NsinScheme for Sedol {
     fn agency_name(&self) -> &'static str {
@@ -134,7 +129,7 @@ impl NsinScheme for Sedol {
 
     fn is_valid(&self, s: &str) -> bool {
         assert!(s.len() == 7);
-        SEDOL_CODE_VALIDATOR.is_valid(s)
+        sedol::get_algorithm_instance().is_valid(s)
     }
 }
 

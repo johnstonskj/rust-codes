@@ -76,19 +76,15 @@ By default only the `serde` feature is enabled.
     dyn_drop,
 )]
 
-use codes_agency::{Agency, Standard};
-use codes_common::{
-    check_digits::{Calculator, GsOne, GsOneCode},
-    Code,
+use codes_agency::{Agency, Standard, Standardized};
+use codes_check_digits::{
+    gs1::get_algorithm_instance, gs1::CheckDigitAlgorithm, gs1::CodeFormat, Calculator,
 };
-use std::{fmt::Display, str::FromStr};
+use codes_common::{code_impl, FixedLengthCode};
+use std::str::FromStr;
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
-
-// ------------------------------------------------------------------------------------------------
-// Public Macros
-// ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
@@ -116,30 +112,11 @@ pub struct GlobalLocationNumber(String);
 
 pub use codes_common::CodeParseError as GlobalLocationNumberError;
 
-///
-/// GS1 codes such as the GLN but also GTIN-8, GTIN-12 (U.P.C.),
-/// GTIN-13, and GTIN-14 all share the same mechanism for check digit
-/// calculate, differing only in the length of the code in digits.
-///
-const CODE_LENGTH: usize = 13;
-
-// ------------------------------------------------------------------------------------------------
-// Public Functions
-// ------------------------------------------------------------------------------------------------
-
-// ------------------------------------------------------------------------------------------------
-// Private Types
-// ------------------------------------------------------------------------------------------------
-
 // ------------------------------------------------------------------------------------------------
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-impl Display for GlobalLocationNumber {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.0)
-    }
-}
+const GLN_CODE_VALIDATOR: CheckDigitAlgorithm = get_algorithm_instance(CodeFormat::Gln);
 
 impl FromStr for GlobalLocationNumber {
     type Err = GlobalLocationNumberError;
@@ -150,21 +127,19 @@ impl FromStr for GlobalLocationNumber {
     }
 }
 
-impl From<GlobalLocationNumber> for String {
-    fn from(v: GlobalLocationNumber) -> Self {
-        v.0
+code_impl!(GlobalLocationNumber, as_str, str, String, to_string);
+
+impl FixedLengthCode for GlobalLocationNumber {
+    fn fixed_length() -> usize {
+        13
     }
 }
 
-impl AsRef<str> for GlobalLocationNumber {
-    fn as_ref(&self) -> &str {
-        &self.0
+impl Standardized for GlobalLocationNumber {
+    fn defining_standard() -> &'static Standard {
+        &GS1_GLN
     }
 }
-
-impl Code<String> for GlobalLocationNumber {}
-
-const GLN_CODE_VALIDATOR: GsOne = GsOne::new(GsOneCode::Gln);
 
 impl GlobalLocationNumber {
     ///
@@ -180,24 +155,23 @@ impl GlobalLocationNumber {
     /// excluding the check digit.
     ///
     pub fn data(&self) -> &str {
-        &self.0[0..(CODE_LENGTH - GsOne::NUM_CHECK_DIGITS)]
+        &self.0[0..(Self::fixed_length() - GLN_CODE_VALIDATOR.number_of_check_digit_chars())]
     }
 
     ///
     /// Return the check digit portion of the GLN only.
     ///
     pub fn check_digit(&self) -> u8 {
-        u8::from_str(&self.0[(CODE_LENGTH - GsOne::NUM_CHECK_DIGITS)..]).unwrap()
+        u8::from_str(
+            &self.0[(Self::fixed_length() - GLN_CODE_VALIDATOR.number_of_check_digit_chars())..],
+        )
+        .unwrap()
+    }
+
+    fn as_str(&self) -> &str {
+        &self.0
     }
 }
-
-// ------------------------------------------------------------------------------------------------
-// Private Functions
-// ------------------------------------------------------------------------------------------------
-
-// ------------------------------------------------------------------------------------------------
-// Modules
-// ------------------------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------------------
 // Unit Tests
@@ -208,9 +182,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_check_digits() {
-        assert_eq!(GsOne::new(GsOneCode::Gln).calculate("123456789012"), Ok(8));
-        assert_eq!(GsOne::new(GsOneCode::Gln).calculate("210987654321"), Ok(0));
-        assert_eq!(GsOne::new(GsOneCode::Gln).calculate("943646579210"), Ok(4));
+    fn test_is_valid() {
+        assert!(GlobalLocationNumber::is_valid("1234567890128"));
+
+        assert!(!GlobalLocationNumber::is_valid("9436465792103"));
     }
 }
