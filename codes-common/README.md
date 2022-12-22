@@ -18,6 +18,7 @@ For notes on the design of the API, see the repository
 **Version 0.1.8**
 
 * Moved check digits to own crate.
+* Added `FixedLengthCode` and `VariableLengthCode` traits.
 
 **Version 0.1.7**
 

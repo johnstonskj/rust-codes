@@ -1,5 +1,6 @@
 [package]
 name = "codes-check-digits"
+description = "Common implementation of check digit algorithms"
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
