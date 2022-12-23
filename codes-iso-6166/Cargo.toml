@@ -1,7 +1,7 @@
 [package]
 name = "codes-iso-6166"
 description  = "This package contains an implementation of the ISO 6166 International securities identification number (ISIN) specification."
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-iso-6166/"
