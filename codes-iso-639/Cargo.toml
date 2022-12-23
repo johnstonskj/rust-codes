@@ -1,7 +1,7 @@
 [package]
 name = "codes-iso-639"
 description = "This package contains an implementation of the ISO 639 (Parts 1, 3, and 5) Language Code specifications."
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-iso-639/"

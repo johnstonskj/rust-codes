@@ -66,6 +66,10 @@ language codes.
 
 ## Changes
 
+**Version 0.1.4**
+
+* Implemented `Standardized` and `FixedLengthCode` traits.
+
 **Version 0.1.3**
 
 * Using new `codes-common` CSV handling framework.
