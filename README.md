@@ -232,6 +232,15 @@ making *unchecked* operations public.
 
 ## Changes
 
+**2022-12-23**
+
+* Moved all check digit calculations to a new package, imaginatively
+  named `codes-check-digits`.
+* Added new trait `Standardized` to the `codes-agency` package to allow
+  standard types to return an instance of the `Standard` struct.
+* Added new traits `FixedLengthCode` and `VariableLengthCode` to the 
+  `codes-check-digits` package to tag types that implement `Code`.
+
 **2022-12-19**
 
 * Released the following:

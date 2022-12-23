@@ -1,4 +1,4 @@
-use codes_agency::Standardized;
+use codes_agency::{Standard, Standardized};
 use crate::CountryCodeError;
 use crate::part_1::CountryCode;
 use std::str::FromStr;
