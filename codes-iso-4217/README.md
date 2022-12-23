@@ -69,6 +69,10 @@ By default only the `serde` feature is enabled, the `CurrencyCode::alpha_code` a
 
 ## Changes
 
+**Version 0.1.6**
+
+* Implemented `Standardized` and `FixedLengthCode` traits.
+
 **Version 0.1.5**
 
 * Added symbols, scraped from xe.com
