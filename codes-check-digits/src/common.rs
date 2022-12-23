@@ -2,7 +2,7 @@ use crate::error::{invalid_alphabet, invalid_length, CheckDigitError};
 use std::ops::RangeInclusive;
 use std::str::FromStr;
 
-#[cfg(feature = "big_integer")]
+#[cfg(all(feature = "big_integer", not(target_family = "windows")))]
 use rug::Integer;
 
 // ------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ pub(crate) fn ascii_alphanum_or_star_to_u8(c: char) -> u8 {
 // The string length of u64::MAX
 const MAX_STRING_LEN: usize = "18446744073709551615".len() - 4;
 
-#[cfg(not(feature = "big_integer"))]
+#[cfg(any(not(feature = "big_integer"), target_family = "windows"))]
 #[inline(always)]
 pub(crate) fn calculate_mod(s: &str, modulus: u16) -> u16 {
     if s.len() <= MAX_STRING_LEN {
@@ -173,7 +173,7 @@ pub(crate) fn calculate_mod(s: &str, modulus: u16) -> u16 {
     }
 }
 
-#[cfg(feature = "big_integer")]
+#[cfg(all(feature = "big_integer", not(target_family = "windows")))]
 pub(crate) fn calculate_mod(s: &str, modulus: u16) -> u16 {
     if s.len() <= MAX_STRING_LEN {
         (u64::from_str(s).unwrap() % modulus as u64) as u16

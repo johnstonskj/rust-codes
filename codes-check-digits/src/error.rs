@@ -16,7 +16,7 @@ use tracing::warn;
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Errors resulting from the Check Digit [Calculator]
+/// Errors resulting from the Check Digit [crate::Calculator]
 ///
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub enum CheckDigitError {

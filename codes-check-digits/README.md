@@ -33,6 +33,10 @@ assert_eq!(calculator.calculate("US037833100"), Ok(5));
 
 ## Changes
 
+**Version 0.1.1**
+
+* rug integers not building on Windows, gated the feature for now.
+
 **Version 0.1.0**
 
 * Initial release, copied from packages `codes-common`, `codes-iso-6166`,
