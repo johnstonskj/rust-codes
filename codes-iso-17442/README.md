@@ -51,7 +51,6 @@ assert_eq!(lei.check_digits(), "16");
 
 # Features
 
-
 By default only the `serde` feature is enabled.
 
 * `serde` - Enables serialization of the `LegalEntityId` type.
@@ -62,6 +61,7 @@ By default only the `serde` feature is enabled.
 **Version 0.1.2**
 
 * Moved check digit code to common package
+* Implemented `Standardized` and `FixedLengthCode` traits.
 
 **Version 0.1.0**
 
