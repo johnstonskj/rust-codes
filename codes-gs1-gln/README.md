@@ -45,7 +45,8 @@ By default only the `serde` feature is enabled.
 
 **Version 0.1.1**
 
-* Moved check digit code to common package
+* Moved check digit code to common package.
+* Implemented `Standardized` and `FixedLengthCode` traits.
 
 **Version 0.1.0**
 
