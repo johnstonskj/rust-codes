@@ -1,7 +1,7 @@
 [package]
 name = "codes-un-m49"
 description = "This package contains an implementation of the UN M49 - Standard Country or Area Codes for Statistical Use (Series M, No. 49) specification"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 repository = "https://github.com/johnstonskj/rust-codes"
 documentation = "https://docs.rs/codes-un-m49/"
