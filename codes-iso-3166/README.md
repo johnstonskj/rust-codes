@@ -72,6 +72,9 @@ periodically to keep up-to-date.
 
 ## Changes
 
+**Version 0.1.4**
+
+* Implemented `Standardized` and `FixedLengthCode` traits.
 * Using new `codes-common` CSV handling framework.
 
 **Version 0.1.3**

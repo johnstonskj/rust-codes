@@ -1,3 +1,4 @@
+use codes_agency::Standardized;
 use crate::CountryCodeError;
 use crate::part_1::CountryCode;
 use std::str::FromStr;
@@ -62,6 +63,12 @@ impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
             {{ id }} => Ok(Self({{ id }})),{% endfor %}
             _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
         {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+impl Standardized for {{ type_name }} {{ "{" }}
+    fn defining_standard() -> &'static Standard {{ "{" }}
+        &crate::part_2::ISO_3166_2
     {{ "}" }}
 {{ "}" }}
 
