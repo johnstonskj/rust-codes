@@ -12,17 +12,19 @@ publish = true
 
 [dependencies]
 codes-common = { version = "0.1", path = "../codes-common" }
-rug = { version = "1.18.0", default-features = false, features = ["integer"], optional = true }
 tracing = "0.1"
+
+[target.'cfg(not(target_family = "windows"))'.dependencies]
+rug = { version = "1.18.0", default-features = false, features = ["integer"], optional = true }
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
 all-features = true
 
 [features]
-default = ["gs1", "iso_7064", "luhn", "sedol", "big_integer"]
+default = ["gs1", "iso_7064", "luhn", "sedol"]
 gs1 = []
 iso_7064 = []
 luhn = []
 sedol = []
-big_integer = ["rug"]
+big_integer = ["dep:rug"]

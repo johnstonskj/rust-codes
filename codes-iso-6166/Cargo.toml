@@ -27,3 +27,6 @@ all-features = true
 [features]
 default = ["serde"]
 urn = ["url"]
+nsin = ["nsin_cusip", "nsin_sedol"]
+nsin_cusip = []
+nsin_sedol = []

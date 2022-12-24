@@ -1,5 +1,5 @@
-use codes_agency::{Agency, Standard, Standardized};
-use codes_common::{code_impl, FixedLengthCode};
+use codes_agency::{Agency, Standard, standardized_type};
+use codes_common::{code_impl, fixed_length_code};
 use std::str::FromStr;
 
 #[cfg(feature = "location")]
@@ -64,17 +64,9 @@ impl FromStr for {{ type_name }} {{ "{" }}
 
 code_impl!({{ type_name }});
 
-impl FixedLengthCode for {{ type_name }} {{ "{" }}
-    fn fixed_length() -> usize {{ "{" }}
-        4
-    {{ "}" }}
-{{ "}" }}
+fixed_length_code!({{ type_name }}, 4);
 
-impl Standardized for {{ type_name }} {{ "{" }}
-    fn defining_standard() -> &'static Standard {{ "{" }}
-        &ISO_10383
-    {{ "}" }}
-{{ "}" }}
+standardized_type!({{ type_name }}, ISO_10383);
 
 impl {{ type_name }} {{ "{" }}
     ///

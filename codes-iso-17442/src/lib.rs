@@ -91,10 +91,12 @@ By default only the `serde` feature is enabled.
     dyn_drop,
 )]
 
-use codes_agency::{Agency, Standard, Standardized};
+use codes_agency::{standardized_type, Agency, Standard};
 use codes_check_digits::iso_7064::{get_algorithm_instance, CheckDigitAlgorithm, IsoVariant};
 use codes_check_digits::Calculator;
-use codes_common::{code_impl, invalid_format, invalid_length, FixedLengthCode};
+use codes_common::{
+    code_as_str, code_impl, fixed_length_code, invalid_format, invalid_length, FixedLengthCode,
+};
 use std::str::FromStr;
 
 #[cfg(feature = "serde")]
@@ -217,17 +219,11 @@ impl From<LegalEntityId> for url::Url {
 
 code_impl!(LegalEntityId, as_str, str, String, to_string);
 
-impl FixedLengthCode for LegalEntityId {
-    fn fixed_length() -> usize {
-        20
-    }
-}
+code_as_str!(LegalEntityId);
 
-impl Standardized for LegalEntityId {
-    fn defining_standard() -> &'static Standard {
-        &ISO_17442
-    }
-}
+fixed_length_code!(LegalEntityId, 20);
+
+standardized_type!(LegalEntityId, ISO_17442);
 
 impl LegalEntityId {
     ///
@@ -251,13 +247,6 @@ impl LegalEntityId {
     ///
     pub fn check_digits(&self) -> &str {
         &self.0[18..]
-    }
-
-    ///
-    /// Return a reference to this LEI as a string.
-    ///
-    pub fn as_str(&self) -> &str {
-        &self.0
     }
 }
 

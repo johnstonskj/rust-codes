@@ -1,5 +1,5 @@
 use std::str::FromStr;
-use codes_agency::{Agency, Standard, Standardized};
+use codes_agency::{standardized_type, Agency, Standard};
 use codes_common::code_impl;
 
 #[cfg(feature = "serde")]
@@ -40,22 +40,9 @@ pub const ALL_CODES: [{{ type_name }};{{ all_ids | length }}] = [{% for id in al
 
 pub use codes_common::CodeParseError as {{ type_name }}Error;
 
-// impl FixedLengthCode for {{ type_name }} {{ "{" }}
-//     fn fixed_length() -> usize {{ "{" }}
-//         20
-//     {{ "}" }}
-// {{ "}" }}
-
-impl Standardized for {{ type_name }} {{ "{" }}
-    fn defining_standard() -> &'static Standard {{ "{" }}
-        &ISO_99999
-    {{ "}" }}
-{{ "}" }}
-
 // ------------------------------------------------------------------------------------------------
 // Implementations
 // ------------------------------------------------------------------------------------------------
-
 
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
@@ -69,6 +56,11 @@ impl FromStr for {{ type_name }} {{ "{" }}
 {{ "}" }}
 
 code_impl!({{ type_name }});
+
+// fixed_length_code!({{ type_name }}, 20);
+// variable_length_code!({{ type_name }}, 4, 8);
+
+standardized_type!({{ type_name }}, ISO_99999);
 
 impl {{ type_name }} {{ "{" }}
     ///

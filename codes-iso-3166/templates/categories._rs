@@ -1,4 +1,4 @@
-use codes_agency::{Standard, Standardized};
+use codes_agency::{Standard, standardized_type};
 use crate::CountryCodeError;
 use crate::part_1::CountryCode;
 use std::str::FromStr;
@@ -67,11 +67,7 @@ impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
     {{ "}" }}
 {{ "}" }}
 
-impl Standardized for {{ type_name }} {{ "{" }}
-    fn defining_standard() -> &'static Standard {{ "{" }}
-        &crate::part_2::ISO_3166_2
-    {{ "}" }}
-{{ "}" }}
+standardized_type!({{ type_name }}, crate::part_2::ISO_3166_2);
 
 impl {{ type_name }} {{ "{" }}
      /// Returns the numeric code for this category.

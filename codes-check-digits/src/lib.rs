@@ -68,8 +68,9 @@ assert_eq!(calculator.calculate("US037833100"), Ok(5));
     dyn_drop,
 )]
 
+use codes_common::Code;
 use error::CheckDigitError;
-use std::fmt::Display;
+use std::{borrow::Cow, fmt::Display};
 use tracing::trace;
 
 use crate::error::invalid_check_digit;
@@ -78,8 +79,24 @@ use crate::error::invalid_check_digit;
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
+pub trait CodeWithCheckDigits: Code<String> + AsRef<str> {
+    type CheckDigit: Display + PartialEq;
+    type CheckDigitCalculator: Calculator<Self::CheckDigit>;
+    const CHECK_DIGIT_ALGORITHM: Self::CheckDigitCalculator;
+
+    fn data_no_check_digit(&self) -> Cow<'_, str> {
+        let s = self.as_ref();
+        s[..(s.len() - Self::CHECK_DIGIT_ALGORITHM.number_of_check_digit_chars())].into()
+    }
+
+    fn check_digit_as_str(&self) -> Cow<'_, str> {
+        let s = self.as_ref();
+        s[(s.len() - Self::CHECK_DIGIT_ALGORITHM.number_of_check_digit_chars())..].into()
+    }
+}
+
 ///
-/// ait for types that implement check digit algorithms.
+/// Trait for types that implement check digit algorithms.
 ///
 pub trait Calculator<T>
 where
@@ -108,7 +125,12 @@ where
     /// Create a new string with the original data plus check digit.
     ///
     fn create(&self, s: &str) -> Result<String, CheckDigitError> {
-        Ok(format!("{}{}", s, self.calculate(s)?))
+        Ok(format!(
+            "{}{:0>width$}",
+            s,
+            self.calculate(s)?,
+            width = self.number_of_check_digit_chars()
+        ))
     }
 
     ///
@@ -117,6 +139,7 @@ where
     ///
     fn validate<S>(&self, s: S) -> Result<(), CheckDigitError>
     where
+        Self: Sized,
         S: AsRef<str>,
     {
         let s = s.as_ref();
@@ -142,10 +165,36 @@ where
     ///
     fn is_valid<S>(&self, s: S) -> bool
     where
+        Self: Sized,
         S: AsRef<str>,
     {
         self.validate(s).is_ok()
     }
+}
+
+// ------------------------------------------------------------------------------------------------
+// Public Macros
+// ------------------------------------------------------------------------------------------------
+
+#[macro_export]
+macro_rules! check_digits_impl {
+    ($type_name:ty, $error_type:ty, $algorithm_type:ty, $check_digit_type:ty, $algorithm_init:expr) => {
+        impl CodeWithCheckDigits for $type_name {
+            type CheckDigit = $check_digit_type;
+            type CheckDigitCalculator = $algorithm_type;
+            const CHECK_DIGIT_ALGORITHM: Self::CheckDigitCalculator = $algorithm_init;
+        }
+
+        impl ::std::str::FromStr for $type_name {
+            type Err = GlobalLocationNumberError;
+
+            fn from_str(s: &str) -> ::std::result::Result<Self, Self::Err> {
+                use codes_check_digits::Calculator;
+                Self::CHECK_DIGIT_ALGORITHM.validate(s)?;
+                Ok(Self(s.to_string()))
+            }
+        }
+    };
 }
 
 // ------------------------------------------------------------------------------------------------

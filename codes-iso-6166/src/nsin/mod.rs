@@ -182,3 +182,9 @@ mod tests {
         assert!(NsinScheme::is_valid(&valor, "1213853"));
     }
 }
+
+#[cfg(feature = "nsin_cusip")]
+pub mod cusip;
+
+#[cfg(feature = "nsin_sedol")]
+pub mod sedol;

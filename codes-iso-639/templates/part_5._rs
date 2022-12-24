@@ -1,7 +1,7 @@
+use codes_agency::{Agency, Standard, standardized_type};
+use codes_common::{code_impl, fixed_length_code};
 use crate::LanguageCodeError;
 use std::str::FromStr;
-use codes_agency::{Agency, Standard, Standardized};
-use codes_common::{code_impl, FixedLengthCode};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -67,17 +67,9 @@ impl FromStr for {{ type_name }} {{ "{" }}
 
 code_impl!({{ type_name }});
 
-impl FixedLengthCode for {{ type_name }} {
-    fn fixed_length() -> usize {
-        3
-    }
-}
+fixed_length_code!({{ type_name }}, 3);
 
-impl Standardized for {{ type_name }} {
-    fn defining_standard() -> &'static Standard {
-        &ISO_639_5
-    }
-}
+standardized_type!({{ type_name }}, ISO_639_5);
 
 impl {{ type_name }} {{ "{" }}
      ///

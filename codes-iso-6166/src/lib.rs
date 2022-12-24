@@ -112,9 +112,9 @@ By default only the `serde` feature is enabled.
     dyn_drop,
 )]
 
-use codes_agency::{Agency, Standard, Standardized};
+use codes_agency::{standardized_type, Agency, Standard};
 use codes_check_digits::{luhn, Calculator};
-use codes_common::{invalid_format, invalid_length, Code, FixedLengthCode};
+use codes_common::{fixed_length_code, invalid_format, invalid_length, Code};
 use codes_iso_3166::part_1::CountryCode;
 use std::{fmt::Display, fmt::Formatter, str::FromStr};
 use tracing::warn;
@@ -256,17 +256,9 @@ impl From<InternationalSecuritiesId> for url::Url {
 
 impl Code<String> for InternationalSecuritiesId {}
 
-impl FixedLengthCode for InternationalSecuritiesId {
-    fn fixed_length() -> usize {
-        12
-    }
-}
+fixed_length_code!(InternationalSecuritiesId, 12);
 
-impl Standardized for InternationalSecuritiesId {
-    fn defining_standard() -> &'static Standard {
-        &ISO_6166
-    }
-}
+standardized_type!(InternationalSecuritiesId, ISO_6166);
 
 impl InternationalSecuritiesId {
     ///

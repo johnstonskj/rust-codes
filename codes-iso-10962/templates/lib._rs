@@ -1,6 +1,6 @@
 use std::str::FromStr;
-use codes_agency::{Agency, Standard, Standardized};
-use codes_common::{code_impl, FixedLengthCode};
+use codes_agency::{Agency, Standard, standardized_type};
+use codes_common::{code_impl, fixed_length_code};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -59,17 +59,9 @@ impl FromStr for {{ type_name }} {{ "{" }}
 
 code_impl!({{ type_name }});
 
-impl FixedLengthCode for {{ type_name }}  {{ "{" }}
-    fn fixed_length() -> usize  {{ "{" }}
-        6
-    {{ "}" }}
-{{ "}" }}
+fixed_length_code!({{ type_name }}, 6);
 
-impl Standardized for {{ type_name }} {{ "{" }}
-    fn defining_standard() -> &'static Standard {{ "{" }}
-        &ISO_10962
-    {{ "}" }}
-{{ "}" }}
+standardized_type!({{ type_name }}, ISO_10962);
 
 impl {{ type_name }} {{ "{" }}
     ///

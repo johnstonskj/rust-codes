@@ -150,6 +150,24 @@ pub struct SimpleData {
 // ------------------------------------------------------------------------------------------------
 
 #[macro_export]
+macro_rules! code_as_str {
+    ($type_name:ty, $inner:ident) => {
+        impl $type_name {
+            fn as_str(&self) -> &str {
+                &self.$inner
+            }
+        }
+    };
+    ($type_name:ty) => {
+        impl $type_name {
+            fn as_str(&self) -> &str {
+                &self.0
+            }
+        }
+    };
+}
+
+#[macro_export]
 macro_rules! code_impl {
     ($type_name:ty, $id_field:ident, $ltime:lifetime $id_type_ref:ty, $id_type:ty, $from_fn:ident) => {
         impl ::std::fmt::Display for $type_name {
@@ -233,6 +251,33 @@ macro_rules! code_impl {
         code_impl!($type_name, code, 'static str, String, to_string);
     };
 }
+
+#[macro_export]
+macro_rules! fixed_length_code {
+    ($type_name:ty, $length:literal) => {
+        impl $crate::FixedLengthCode for $type_name {
+            fn fixed_length() -> usize {
+                $length
+            }
+        }
+    };
+}
+
+#[macro_export]
+macro_rules! variable_length_code {
+    ($type_name:ty, $min:literal, $max:literal) => {
+        impl $crate::FixedLengthCode for $type_name {
+            fn min_length() -> usize {
+                $min
+            }
+            fn max_length() -> usize {
+                $max
+            }
+        }
+    };
+}
+
+// ------------------------------------------------------------------------------------------------
 
 #[cfg(feature = "csv_tools")]
 #[macro_export]

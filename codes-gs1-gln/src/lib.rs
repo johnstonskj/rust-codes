@@ -11,13 +11,15 @@ Unique identification is critical to maintaining operational efficiencies that b
 # Example
 
 ```rust
+use codes_check_digits::CodeWithCheckDigits;
+use codes_common::Code;
 use codes_gs1_gln::GlobalLocationNumber;
 use std::str::FromStr;
 
 let gln = GlobalLocationNumber::from_str("9436465792104").unwrap();
 
-assert_eq!(gln.data(), "943646579210");
-assert_eq!(gln.check_digit(), 4);
+assert_eq!(gln.data_no_check_digit(), "943646579210");
+assert_eq!(gln.check_digit_as_str(), "4");
 
 assert!(!GlobalLocationNumber::is_valid("9436465792109"));
 ```
@@ -76,12 +78,9 @@ By default only the `serde` feature is enabled.
     dyn_drop,
 )]
 
-use codes_agency::{Agency, Standard, Standardized};
-use codes_check_digits::{
-    gs1::get_algorithm_instance, gs1::CheckDigitAlgorithm, gs1::CodeFormat, Calculator,
-};
-use codes_common::{code_impl, FixedLengthCode};
-use std::str::FromStr;
+use codes_agency::{standardized_type, Agency, Standard};
+use codes_check_digits::{check_digits_impl, gs1, CodeWithCheckDigits};
+use codes_common::{code_as_str, code_impl, fixed_length_code};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -116,62 +115,21 @@ pub use codes_common::CodeParseError as GlobalLocationNumberError;
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-const GLN_CODE_VALIDATOR: CheckDigitAlgorithm = get_algorithm_instance(CodeFormat::Gln);
-
-impl FromStr for GlobalLocationNumber {
-    type Err = GlobalLocationNumberError;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        GLN_CODE_VALIDATOR.validate(s)?;
-        Ok(Self(s.to_string()))
-    }
-}
-
 code_impl!(GlobalLocationNumber, as_str, str, String, to_string);
 
-impl FixedLengthCode for GlobalLocationNumber {
-    fn fixed_length() -> usize {
-        13
-    }
-}
+code_as_str!(GlobalLocationNumber);
 
-impl Standardized for GlobalLocationNumber {
-    fn defining_standard() -> &'static Standard {
-        &GS1_GLN
-    }
-}
+check_digits_impl!(
+    GlobalLocationNumber,
+    GlobalLocationNumberError,
+    gs1::CheckDigitAlgorithm,
+    u8,
+    gs1::get_algorithm_instance(gs1::CodeFormat::Gln)
+);
 
-impl GlobalLocationNumber {
-    ///
-    /// Returns `true` if the passed string is a valid GLN
-    /// including check digit.
-    ///
-    pub fn is_valid(s: &str) -> bool {
-        GLN_CODE_VALIDATOR.is_valid(s)
-    }
+fixed_length_code!(GlobalLocationNumber, 13);
 
-    ///
-    /// Return the data portion of the GLN, that is the string of digits
-    /// excluding the check digit.
-    ///
-    pub fn data(&self) -> &str {
-        &self.0[0..(Self::fixed_length() - GLN_CODE_VALIDATOR.number_of_check_digit_chars())]
-    }
-
-    ///
-    /// Return the check digit portion of the GLN only.
-    ///
-    pub fn check_digit(&self) -> u8 {
-        u8::from_str(
-            &self.0[(Self::fixed_length() - GLN_CODE_VALIDATOR.number_of_check_digit_chars())..],
-        )
-        .unwrap()
-    }
-
-    fn as_str(&self) -> &str {
-        &self.0
-    }
-}
+standardized_type!(GlobalLocationNumber, GS1_GLN);
 
 // ------------------------------------------------------------------------------------------------
 // Unit Tests
@@ -180,6 +138,7 @@ impl GlobalLocationNumber {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use codes_common::Code;
 
     #[test]
     fn test_is_valid() {
