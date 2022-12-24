@@ -94,9 +94,8 @@ By default only the `serde` feature is enabled.
 use codes_agency::{standardized_type, Agency, Standard};
 use codes_check_digits::iso_7064::{get_algorithm_instance, CheckDigitAlgorithm, IsoVariant};
 use codes_check_digits::Calculator;
-use codes_common::{
-    code_as_str, code_impl, fixed_length_code, invalid_format, invalid_length, FixedLengthCode,
-};
+use codes_common::error::{invalid_format, invalid_length};
+use codes_common::{code_as_str, code_impl, fixed_length_code, FixedLengthCode};
 use std::str::FromStr;
 
 #[cfg(feature = "serde")]

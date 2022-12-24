@@ -1,4 +1,5 @@
 use codes_agency::standardized_type;
+use codes_common::error;
 use crate::CountryCodeError;
 use crate::part_1::CountryCode;
 use std::str::FromStr;
@@ -45,7 +46,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self({{ id }})),{% endfor %}
-            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+            _ => Err(error::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
@@ -62,7 +63,7 @@ impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
     fn try_from(value: {{ inner_type_name }}) -> Result<Self, Self::Error> {{ "{" }}
         match value {{ "{" }}{% for id in all_ids %}
             {{ id }} => Ok(Self({{ id }})),{% endfor %}
-            _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
+            _ => Err(error::unknown_value("{{ type_name }}", value.to_string())),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

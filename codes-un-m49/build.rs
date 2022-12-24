@@ -1,11 +1,9 @@
-use std::str::FromStr;
-use tera::{Map, Value};
-
-use codes_common::{
+use codes_common::build::{
     default_finalize_for, input_file_name, make_default_renderer, process, Data, SimpleData,
     DEFAULT_NUMERIC_CODE_TYPE,
 };
-//use tera::Value;
+use std::str::FromStr;
+use tera::{Map, Value};
 
 #[allow(dead_code)]
 const TYPE_NAME: &str = "RegionClassificationCode";

@@ -14,12 +14,6 @@ YYYYY
 
 */
 
-use std::fmt::Display;
-
-// ------------------------------------------------------------------------------------------------
-// Public Types
-// ------------------------------------------------------------------------------------------------
-
 use crate::{
     common::{
         ascii_alphanum_to_u8, calculate_mod, is_ascii_alpha_upper, is_ascii_alphanumeric_upper,
@@ -27,8 +21,13 @@ use crate::{
     },
     Calculator,
 };
+use std::fmt::Display;
 
-#[derive(Debug)]
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[allow(non_camel_case_types)]
 pub enum IsoVariant {
     ///
@@ -86,7 +85,7 @@ pub enum IsoVariant {
     Mod_1271_36,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Copy, Debug)]
 pub struct CheckDigitAlgorithm {
     variant: IsoVariant,
 }

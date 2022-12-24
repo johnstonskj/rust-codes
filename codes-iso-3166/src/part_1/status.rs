@@ -1,5 +1,5 @@
 use crate::CountryCodeError;
-use codes_common::unknown_value;
+use codes_common::error::unknown_value;
 use std::fmt::Display;
 use std::str::FromStr;
 

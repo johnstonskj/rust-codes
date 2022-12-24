@@ -81,7 +81,7 @@ use crate::error::invalid_check_digit;
 
 pub trait CodeWithCheckDigits: Code<String> + AsRef<str> {
     type CheckDigit: Display + PartialEq;
-    type CheckDigitCalculator: Calculator<Self::CheckDigit>;
+    type CheckDigitCalculator: Calculator<Self::CheckDigit> + Copy;
     const CHECK_DIGIT_ALGORITHM: Self::CheckDigitCalculator;
 
     fn data_no_check_digit(&self) -> Cow<'_, str> {

@@ -1,6 +1,6 @@
 use std::str::FromStr;
 use codes_agency::{Agency, Standard, standardized_type};
-use codes_common::{code_impl, fixed_length_code};
+use codes_common::{code_impl, error, fixed_length_code};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -50,7 +50,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{{ id }}),{% endfor %}
-            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+            _ => Err(error::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

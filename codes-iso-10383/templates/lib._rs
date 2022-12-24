@@ -1,5 +1,5 @@
 use codes_agency::{Agency, Standard, standardized_type};
-use codes_common::{code_impl, fixed_length_code};
+use codes_common::{code_impl, error, fixed_length_code};
 use std::str::FromStr;
 
 #[cfg(feature = "location")]
@@ -57,7 +57,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endfor %}
-            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+            _ => Err(error::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
@@ -211,7 +211,7 @@ impl {{ type_name }} {{ "{" }}
             #[allow(unreachable_patterns)]
             match s {{ "{" }}{% for id in all_ids %}{% if codes[id].acronym and codes[id].acronym != id and not codes[id].operating_mic %}
                 "{{ codes[id].acronym }}" => Ok(Self::{% if id is matching("^[0-9]") %}m{% endif %}{{ id }}),{% endif %}{% endfor %}
-                _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+                _ => Err(error::unknown_value("{{ type_name }}", s)),
             {{ "}" }}
         {{ "}" }}
     {{ "}" }}

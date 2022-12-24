@@ -114,7 +114,8 @@ By default only the `serde` feature is enabled.
 
 use codes_agency::{standardized_type, Agency, Standard};
 use codes_check_digits::{luhn, Calculator};
-use codes_common::{fixed_length_code, invalid_format, invalid_length, Code};
+use codes_common::error::{invalid_format, invalid_length};
+use codes_common::{fixed_length_code, Code};
 use codes_iso_3166::part_1::CountryCode;
 use std::{fmt::Display, fmt::Formatter, str::FromStr};
 use tracing::warn;
@@ -212,10 +213,11 @@ impl FromStr for InternationalSecuritiesId {
         } else if let Ok(country_code) = CountryCode::from_str(&s[0..2]) {
             let cd_calc = luhn::get_algorithm_instance();
             cd_calc.validate(s)?;
-            let nsid = &s[2..11];
+            let nsin = &s[2..11];
             Ok(InternationalSecuritiesId {
                 country: country_code,
-                nsin: validate_nsin(&country_code, nsid)?,
+                // old: nsin: validate_nsin(&country_code, nsid)?,
+                nsin: nsin.to_string(),
                 check_digit: u8::from_str(&s[11..]).map_err(|_| invalid_format(TYPE_NAME, s))?,
             })
         } else {
@@ -306,6 +308,7 @@ impl InternationalSecuritiesId {
 /// Wrapper to fetch an NSIN scheme for the provided country code
 /// and, if one exists, validate it.
 ///
+#[cfg(feature = "old_nsin")]
 fn validate_nsin(country: &CountryCode, s: &str) -> Result<String, InternationalSecuritiesIdError> {
     if let Some(nsin) = nsin::national_number_scheme_for(country) {
         if nsin.is_valid(s) {

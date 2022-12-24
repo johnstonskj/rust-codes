@@ -10,8 +10,8 @@ For notes on the design of the API, see the repository
 
 ## Features
 
-* `csv_tools` - Tools for reading and processing CSV files.
-* `check_digits` - Algorithms for calculating check digits.
+* `build` - Tools for build scripts.
+* `csv_tools` - Tools for reading and processing CSV files, requires `build`.
 
 ## Changes
 

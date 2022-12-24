@@ -31,7 +31,7 @@ use crate::{common::is_ascii_alphanumeric_upper, error::CheckDigitError, Calcula
 /// It catches all single digit errors, but does not catch transposition errors
 /// with "0" and "9" (meaning "09" → "90" and "90" → "09" are not caught).
 ///
-#[derive(Debug, Default)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct CheckDigitAlgorithm {}
 
 // ------------------------------------------------------------------------------------------------

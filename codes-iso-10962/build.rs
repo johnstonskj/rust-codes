@@ -1,4 +1,4 @@
-use codes_common::{default_finalize_for, make_default_renderer, process, Data, SimpleData};
+use codes_common::build::{default_finalize_for, make_default_renderer, process, Data, SimpleData};
 
 #[allow(dead_code)]
 const TYPE_NAME: &str = "FinancialInstrumentClassification";

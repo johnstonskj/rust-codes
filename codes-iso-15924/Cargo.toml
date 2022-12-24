@@ -12,7 +12,7 @@ publish = true
 
 [dependencies]
 codes-agency = { version = "0.1", path = "../codes-agency" }
-codes-common = { version = "0.1", path = "../codes-common" }
+codes-common = { version = "0.1", path = "../codes-common", features = ["build"] }
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [build-dependencies]

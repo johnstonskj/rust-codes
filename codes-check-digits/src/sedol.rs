@@ -28,7 +28,7 @@ use crate::{
 ///
 /// Validate the SEDOL numbers defined by the London Stock Exchange
 ///
-#[derive(Debug, Default)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct CheckDigitAlgorithm {}
 
 // ------------------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ publish = true
 [dependencies]
 codes-agency = { version = "0.1", path = "../codes-agency" }
 codes-check-digits = { version = "0.1", path = "../codes-check-digits", features = ["luhn", "sedol"] }
-codes-common = { version = "0.1", path = "../codes-common" }
+codes-common = { version = "0.1", path = "../codes-common", features = ["build"] }
 codes-iso-3166 = { version = "0.1", path = "../codes-iso-3166" }
 lazy_static = "1.4"
 serde = { version = "1.0", features = ["derive"], optional = true }
@@ -25,8 +25,9 @@ targets = ["x86_64-unknown-linux-gnu"]
 all-features = true
 
 [features]
-default = ["serde"]
+default = ["serde", "nsin"]
 urn = ["url"]
-nsin = ["nsin_cusip", "nsin_sedol"]
+nsin = ["nsin_cusip", "nsin_sedol", "nsin_valoren"]
 nsin_cusip = []
 nsin_sedol = []
+nsin_valoren = []

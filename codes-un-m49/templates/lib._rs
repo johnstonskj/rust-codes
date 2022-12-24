@@ -1,6 +1,6 @@
 use std::str::FromStr;
 use codes_agency::{Agency, Standard, standardized_type};
-use codes_common::code_impl;
+use codes_common::{code_impl, error};
 
 #[cfg(feature = "country_codes")]
 use codes_iso_3166::part_1::CountryCode;
@@ -55,7 +55,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self({{ codes[id].code_as_int }})),{% endfor %}
-            _ => Err(codes_common::unknown_value(TYPE_NAME, s)),
+            _ => Err(error::unknown_value(TYPE_NAME, s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

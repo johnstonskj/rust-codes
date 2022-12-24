@@ -1,6 +1,6 @@
 use std::str::FromStr;
 use codes_agency::{Agency, Standard, standardized_type};
-use codes_common::code_impl;
+use codes_common::{code_impl, error};
 
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
@@ -56,7 +56,7 @@ impl FromStr for {{ type_name }} {{ "{" }}
             "{{ codes[id].name }}" => Ok(Self({{ id }})),{% if codes[id].aliases %}
             {% for alias in codes[id].aliases %}"{{ alias }}" => Ok(Self({{ id }})),{% endfor %}
         {% endif %}{% endfor %}
-            _ => Err(codes_common::unknown_value("{{ type_name }}", s)),
+            _ => Err(error::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}
@@ -67,7 +67,7 @@ impl TryFrom<{{ inner_type_name }}> for {{ type_name }} {{ "{" }}
     fn try_from(value: {{ inner_type_name }}) -> Result<Self, Self::Error> {{ "{" }}
         match value {{ "{" }}{% for id in all_ids %}
             {{ id }} => Ok(Self({{ id }})),{% endfor %}
-            _ => Err(codes_common::unknown_value("{{ type_name }}", value.to_string())),
+            _ => Err(error::unknown_value("{{ type_name }}", value.to_string())),
         {{ "}" }}
     {{ "}" }}
 {{ "}" }}

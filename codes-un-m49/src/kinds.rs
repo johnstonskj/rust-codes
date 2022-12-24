@@ -2,7 +2,7 @@
 Provides a classifier for UN M49 regions.
 */
 
-use codes_common::unknown_value;
+use codes_common::error::unknown_value;
 use std::{fmt::Display, str::FromStr};
 
 #[cfg(feature = "serde")]

@@ -58,7 +58,7 @@ pub enum CodeFormat {
 ///
 /// Validate the different identifiers defined by GS1.
 ///
-#[derive(Debug)]
+#[derive(Clone, Copy, Debug)]
 pub struct CheckDigitAlgorithm {
     code_type: CodeFormat,
     length: usize,
