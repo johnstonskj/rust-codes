@@ -93,6 +93,10 @@ By default only the `serde` feature is enabled, the `MarketIdCode::code` and
 
 ## Changes
 
+**Version 0.1.8**
+
+* Catering for new `build` module in codes-common
+
 **Version 0.1.7**
 
 * Implemented `Standardized` and `FixedLengthCode` traits.

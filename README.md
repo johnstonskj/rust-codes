@@ -232,6 +232,11 @@ making *unchecked* operations public.
 
 ## Changes
 
+**2022-12-24**
+
+* Moved all build related capabilities into a new `build` module in
+  codes-common, also made this a feature if you don't need them.
+  
 **2022-12-23**
 
 * Moved all check digit calculations to a new package, imaginatively

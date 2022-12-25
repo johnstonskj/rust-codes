@@ -69,6 +69,10 @@ By default only the `serde` feature is enabled, the `CurrencyCode::alpha_code` a
 
 ## Changes
 
+**Version 0.1.7**
+
+* Catering for new `build` module in codes-common
+
 **Version 0.1.6**
 
 * Implemented `Standardized` and `FixedLengthCode` traits.

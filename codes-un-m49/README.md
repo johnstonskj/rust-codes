@@ -58,6 +58,10 @@ By default only the `serde` feature is enabled.
 
 ## Changes
 
+**Version 0.1.2**
+
+* Catering for new `build` module in codes-common
+
 **Version 0.1.1**
 
 * Implemented `Standardized` and `FixedLengthCode` traits.

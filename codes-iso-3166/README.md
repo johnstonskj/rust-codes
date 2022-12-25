@@ -72,6 +72,10 @@ periodically to keep up-to-date.
 
 ## Changes
 
+**Version 0.1.5**
+
+* Catering for new `build` module in codes-common
+
 **Version 0.1.4**
 
 * Implemented `Standardized` and `FixedLengthCode` traits.
