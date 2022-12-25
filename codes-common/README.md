@@ -15,6 +15,10 @@ For notes on the design of the API, see the repository
 
 ## Changes
 
+**Version 0.1.9**
+
+* Moved build related tools to `build` module, gated with feature
+
 **Version 0.1.8**
 
 * Moved check digits to own crate.
