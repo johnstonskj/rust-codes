@@ -2,6 +2,7 @@
 
 This package contains an implementation of the ISO 639
 [part 1](https://www.iso.org/standard/22109.html),
+[part 2](https://www.iso.org/standard/4767.html),
 [part 3](https://www.iso.org/standard/39534.html), and
 [part 5](https://www.iso.org/standard/39536.html)
 Language Code specifications.

@@ -1,0 +1,87 @@
+use codes_agency::{Agency, Standard, standardized_type};
+use codes_common::{code_impl, error, fixed_length_code};
+use crate::LanguageCodeError;
+use std::str::FromStr;
+
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+// ------------------------------------------------------------------------------------------------
+// Public Types
+// ------------------------------------------------------------------------------------------------
+
+///
+/// An instance of the `Standard` struct defined in the
+/// [`codes_agency`](https://docs.rs/codes-agency/latest/codes_agency/)
+/// package that describes the ISO-639-2 specification.
+///
+pub const ISO_639_2: Standard = Standard::new_with_long_ref(
+    Agency::ISO,
+    "639-2",
+    "ISO 639-1:1998",
+    "Codes for the representation of names of languages — Part 2: Alpha-3 code",
+    "https://www.iso.org/standard/4767.html",
+);
+
+/// 
+/// A Language Code enumeration representing the three-letter
+/// 639-2 identifier.
+/// 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
+    /// {{ codes[id].label }}
+    {{ id | capitalize }},{% endfor %}
+    /// Reserved for local use 
+    Reserved,
+{{ "}" }}
+
+/// Provides an array of all defined [{{ type_name }}] codes, useful for queries.
+pub const ALL_CODES: [{{ type_name }};{{ all_ids | length + 1 }}] = [{% for id in all_ids %}
+    {{ type_name }}::{{ id | capitalize }},{% endfor %}
+    {{ type_name }}::Reserved,
+];
+
+// ------------------------------------------------------------------------------------------------
+// Implementations
+// ------------------------------------------------------------------------------------------------
+
+impl FromStr for {{ type_name }} {{ "{" }}
+    type Err = {{ type_name }}Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
+        match s {{ "{" }}{% for id in all_ids %}
+            "{{ id }}" => Ok(Self::{{ id | capitalize }}),{% endfor %}
+            _ => Err(error::unknown_value("{{ type_name }}", s)),
+        {{ "}" }}
+    {{ "}" }}
+{{ "}" }}
+
+code_impl!({{ type_name }});
+
+fixed_length_code!({{ type_name }}, 3);
+
+standardized_type!({{ type_name }}, ISO_639_2);
+
+impl {{ type_name }} {{ "{" }}
+     ///
+     /// Returns the ISO 639-2 three-letter code a string.
+     ///
+     pub fn code(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ id }}",{% endfor %}
+             Self::Reserved => "qaa-qtz",
+         {{ "}" }}
+     {{ "}" }}
+
+     ///
+     /// Returns name, or names of this language. Where multiple names
+     /// exist they are separated by `';'`.
+     ///
+     pub fn language_name(&self) -> &'static str {{ "{" }}
+         match self {{ "{" }}{% for id in all_ids %}
+             Self::{{ id | capitalize }} => "{{ codes[id].label }}",{% endfor %}
+             Self::Reserved => "Reserved for local use",
+         {{ "}" }}
+     {{ "}" }}
+{{ "}" }}

@@ -23,6 +23,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     process(
         default_init,
+        |data: Data| process_tsv_input(data, "iso-639-2.tsv", process_part2_row)
+            .map(|mut data| {
+                // qaa-qtz range is manually implemented in template
+                data.rows.remove("qaa-qtz");
+                data
+            }),
+        default_finalize_for,
+        make_default_renderer("part_2._rs", "part_2.rs"),
+    )?;
+
+    process(
+        default_init,
         |data| {
             process_tsv_input(data, "iso-639-3.tsv", process_part3_row)
                 .and_then(process_part3_macro_csv)
@@ -42,6 +54,32 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn process_part1_row(
+    record: StringRecord,
+    row: &mut DataRow,
+) -> Result<String, Box<dyn std::error::Error>> {
+    let id = record.get(1).unwrap().to_string();
+
+    // ID field
+    insert_field!(id.clone() => row, "code");
+
+    // Required fields
+    let names = record.get(2).unwrap();
+    insert_field!(
+        if names.contains('|') {
+            let names = names.split('|');
+            names
+                .map(|s| s.to_string())
+                .collect::<Vec<String>>()
+                .join("; ")
+        } else {
+            names.to_string()
+        } => row, "label"
+    );
+
+    Ok(id)
+}
+
+fn process_part2_row(
     record: StringRecord,
     row: &mut DataRow,
 ) -> Result<String, Box<dyn std::error::Error>> {
