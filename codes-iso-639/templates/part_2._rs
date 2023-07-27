@@ -46,12 +46,34 @@ pub const ALL_CODES: [{{ type_name }};{{ all_ids | length + 1 }}] = [{% for id i
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
+const fn code_to_num(a: char, b: char, c: char) -> u32 {
+    (c as u32) * 26u32.pow(0) +
+    (b as u32) * 26u32.pow(1) +
+    (a as u32) * 26u32.pow(2)
+}
+
+fn str_code_to_num(code: &str) -> u32 {
+    if code.len() != 3 {
+        panic!("Expected 3-letter ISO 639-2 language code!");
+    }
+    let mut chars = code.chars();
+    code_to_num(
+        chars.next().unwrap(),
+        chars.next().unwrap(),
+        chars.next().unwrap()
+    )
+}
+
+// qaa-qtz
+const RESERVED: std::ops::RangeInclusive<u32> = code_to_num('q', 'a', 'a')..=code_to_num('q', 't', 'z');
+
 impl FromStr for {{ type_name }} {{ "{" }}
     type Err = {{ type_name }}Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {{ "{" }}
         match s {{ "{" }}{% for id in all_ids %}
             "{{ id }}" => Ok(Self::{{ id | capitalize }}),{% endfor %}
+            id if RESERVED.contains(&str_code_to_num(id)) => Ok({{ type_name }}::Reserved),
             _ => Err(error::unknown_value("{{ type_name }}", s)),
         {{ "}" }}
     {{ "}" }}
