@@ -15,5 +15,6 @@ pkgs.mkShell {
     ruststable
     rust-analyzer
     bacon
+    gnum4
   ];
 }

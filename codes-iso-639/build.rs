@@ -23,12 +23,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     process(
         default_init,
-        |data: Data| process_tsv_input(data, "iso-639-2.tsv", process_part2_row)
-            .map(|mut data| {
+        |data: Data| {
+            process_tsv_input(data, "iso-639-2.tsv", process_part2_row).map(|mut data| {
                 // qaa-qtz range is manually implemented in template
                 data.rows.remove("qaa-qtz");
                 data
-            }),
+            })
+        },
         default_finalize_for,
         make_default_renderer("part_2._rs", "part_2.rs"),
     )?;
