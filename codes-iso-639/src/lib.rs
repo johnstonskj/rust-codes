@@ -111,6 +111,9 @@ pub use codes_common::CodeParseError as LanguageCodeError;
 
 pub mod part_1;
 
+#[cfg(feature = "part_2")]
+pub mod part_2;
+
 #[cfg(feature = "part_3")]
 pub mod part_3;
 

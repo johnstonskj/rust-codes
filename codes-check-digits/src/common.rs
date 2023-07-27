@@ -37,7 +37,7 @@ pub(crate) fn is_length_eq(s: &str, expected: usize) -> Result<(), CheckDigitErr
 #[allow(dead_code)]
 #[inline(always)]
 pub(crate) fn is_ascii_numeric(s: &str) -> Result<(), CheckDigitError> {
-    if s.chars().all(|c| matches!(c, '0'..='9')) {
+    if s.chars().all(|c| c.is_ascii_digit()) {
         Ok(())
     } else {
         Err(invalid_alphabet("ascii-numeric"))
@@ -47,7 +47,7 @@ pub(crate) fn is_ascii_numeric(s: &str) -> Result<(), CheckDigitError> {
 #[allow(dead_code)]
 #[inline(always)]
 pub(crate) fn is_ascii_alpha_upper(s: &str) -> Result<(), CheckDigitError> {
-    if s.chars().all(|c| matches!(c, 'A'..='Z')) {
+    if s.chars().all(|c| c.is_ascii_uppercase()) {
         Ok(())
     } else {
         Err(invalid_alphabet("ascii-alpha-upper"))
