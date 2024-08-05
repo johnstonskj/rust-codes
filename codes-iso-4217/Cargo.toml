@@ -31,5 +31,5 @@ serde = { version = "1.0", features = ["derive"], optional = true }
 [build-dependencies]
 codes-common = { version = "0.1", path = "../codes-common", features = ["build"] }
 quick-xml = "0.35"
-scraper = "0.19.0"
+scraper = "0.20.0"
 tera = "1.17"

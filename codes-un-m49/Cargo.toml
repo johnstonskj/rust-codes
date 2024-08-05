@@ -19,7 +19,7 @@ tera = "1.17"
 
 [build-dependencies]
 codes-common = { version = "0.1", path = "../codes-common", features = ["build"] }
-scraper = "0.19.0"
+scraper = "0.20.0"
 tera = "1.17"
 
 [package.metadata.docs.rs]
