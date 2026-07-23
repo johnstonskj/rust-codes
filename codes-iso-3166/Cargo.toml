@@ -21,7 +21,7 @@ codes-common = { version = "0.1", features = ["csv_tools"], path = "../codes-com
 csv = "1.1"
 lazy_static = "1.4"
 regex = "1.7"
-tera = "1.17"
+tera = "2.1"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
