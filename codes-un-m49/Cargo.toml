@@ -18,8 +18,8 @@ serde = { version = "1.0", features = ["derive"], optional = true }
 tera = "2.1"
 
 [build-dependencies]
-codes-common = { version = "0.1", path = "../codes-common", features = ["build"] }
-scraper = "0.20.0"
+codes-common = { version = "0.1", path = "../codes-common", features = ["build"] }s
+scraper = "0.27.0"
 tera = "2.1"
 
 [package.metadata.docs.rs]
