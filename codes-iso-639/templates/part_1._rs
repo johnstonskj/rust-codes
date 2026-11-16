@@ -28,7 +28,7 @@ pub const ISO_639_1: Standard = Standard::new_with_long_ref(
 /// 639-1 identifier.
 /// 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize), serde(rename_all = "lowercase"))]
 pub enum {{ type_name }} {{ "{" }}{% for id in all_ids %}
     /// {{ codes[id].label }}
     {{ id | capitalize }},{% endfor %}
